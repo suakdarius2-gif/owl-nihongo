@@ -79,7 +79,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .chip-stat{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:var(--surface-2);font-weight:700;font-size:.85rem}
 .main{min-width:0;padding-block:20px 110px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .view{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(5,1fr);background:var(--surface);border-top:1px solid var(--line);
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(6,1fr);background:var(--surface);border-top:1px solid var(--line);
   padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(4px,env(safe-area-inset-left,0px));padding-right:max(4px,env(safe-area-inset-right,0px))}
 .tabs a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 2px 8px;text-decoration:none;color:var(--ink-3);font-size:.7rem;font-weight:700}
 .tabs a svg{width:22px;height:22px}
@@ -278,6 +278,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .switch.on::after{left:23px}
 .wod{padding:20px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
 .wod .w{font-size:1.8rem;line-height:2.2;font-weight:500}
+.lvtabs{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:10px}
+.lvtab{padding:12px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);display:flex;flex-direction:column;gap:6px;text-align:left}
+.lvtab:hover{border-color:var(--amber)}
+.lvtab.on{border-color:var(--maple);background:var(--maple-soft)}
+.lvtab b{font-family:var(--f-display);font-size:1.25rem;color:var(--maple);line-height:1}
+.lvtab small{color:var(--ink-2);font-size:.78rem;line-height:1.3}
+.biz-hero{border-radius:22px;padding:26px;background:linear-gradient(135deg,var(--maple-soft),var(--amber-soft));border:1px solid var(--line);display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.ktab{width:100%;border-collapse:collapse;min-width:600px}
+.ktab th{white-space:nowrap;text-align:left;font-size:.75rem;letter-spacing:.06em;color:var(--ink-3);padding:10px 8px;border-bottom:1.5px solid var(--line)}
+.ktab td{padding:8px;border-bottom:1px solid var(--line);font-size:1.05rem;line-height:2.1;vertical-align:middle;white-space:nowrap}
+.ktab td:first-child{color:var(--ink-2);font-size:.9rem}
 </style>
 </head>
 <body>
@@ -289,6 +300,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM17 9h3a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-3-3h-3"/></symbol>
     <symbol id="i-pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 3h6l1 2h3v16H5V5h3zM9 11l2 2 4-4M9 17h6"/></symbol>
     <symbol id="i-game" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 7h10a5 5 0 0 1 0 10c-1.5 0-2.3-1-3-2h-4c-.7 1-1.5 2-3 2A5 5 0 0 1 7 7zM8 10v4M6 12h4M16 11h.01M18 13h.01"/></symbol>
+    <symbol id="i-brief" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 8h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zM9 8V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V8M3 13h18"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M5 9v6h4l5 4V5L9 9zm11.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
@@ -451,6 +463,58 @@ const LEVELS=[
     {q:'空{そら}が 暗{くら}いです。 雨{あめ}が（　）そうです。',o:['降{ふ}り','降{ふ}る','降{ふ}った'],a:0,x:'Dugaan visual: stem ます + <b>そう</b> → 降りそう.'},
     {q:'"Katanya" (info yang didengar) paling tepat memakai…',o:['はず','らしい','ように'],a:1,x:'<b>らしい</b> = berdasarkan informasi dari orang lain.'},
     {q:'Ia sudah berangkat jam 8, jadi （　） sudah sampai.',o:['もう 着{つ}いた はずです','もう 着{つ}きそうです','もう 着{つ}く ことに しました'],a:0,x:'Kesimpulan logis: <b>はずです</b>.'}]}]},
+ {id:'n2',tag:'N2',name:'Menengah Atas',sub:'Bahasa Jepang untuk kerja dan berita',desc:'Sudut pandang, sebab-akibat, dan ungkapan waktu yang sering muncul di teks resmi.',lessons:[
+  {id:'n2-1',title:'Sudut Pandang dan Topik',jp:'〜にとって・〜に対{たい}して・〜に関{かん}して',sum:'Menyatakan "bagi", "terhadap", dan "mengenai".',
+   points:[
+    {p:'N にとって',e:'"Bagi N", menilai sesuatu dari sudut pandang N.',ex:[['外国人{がいこくじん}にとって、 敬語{けいご}は 難{むずか}しいです。','Bagi orang asing, keigo itu sulit.']]},
+    {p:'N に対{たい}して',e:'"Terhadap N", sikap atau tindakan yang diarahkan ke N.',ex:[['お客様{きゃくさま}に対{たい}して、 丁寧{ていねい}に 話{はな}して ください。','Bicaralah dengan sopan terhadap pelanggan.']]},
+    {p:'N に関{かん}して',e:'"Mengenai N", lebih formal dari について.',ex:[['この 件{けん}に関{かん}して、 ご質問{しつもん}は ありますか。','Apakah ada pertanyaan mengenai hal ini?']]}],
+   vocab:[['態度{たいど}','sikap'],['件{けん}','hal / perkara'],['意見{いけん}','pendapat'],['対策{たいさく}','langkah penanganan'],['影響{えいきょう}','pengaruh']],
+   quiz:[
+    {q:'子供{こども}（　）、 この 本{ほん}は 難{むずか}しすぎる。',o:['にとって','に対して','に関して'],a:0,x:'Sudut pandang "bagi anak-anak": <b>にとって</b>.'},
+    {q:'会議{かいぎ}の 日程{にってい}（　）、 メールで ご連絡{れんらく}します。',o:['にとって','に関して','に対して'],a:1,x:'"Mengenai jadwal rapat": <b>に関して</b>.'},
+    {q:'目上{めうえ}の 人{ひと}（　）、 失礼{しつれい}な ことを 言{い}っては いけない。',o:['に関して','にとって','に対して'],a:2,x:'Sikap yang diarahkan ke orang lain: <b>に対して</b>.'}]},
+  {id:'n2-2',title:'Sebab dan Akibat',jp:'〜おかげで・〜せいで・〜わけではない',sum:'Membedakan sebab positif, sebab negatif, dan penyangkalan sebagian.',
+   points:[
+    {p:'〜おかげで',e:'"Berkat…", untuk hasil yang baik.',ex:[['先輩{せんぱい}の おかげで、 仕事{しごと}に 慣{な}れました。','Berkat senior, saya jadi terbiasa dengan pekerjaan.']]},
+    {p:'〜せいで',e:'"Gara-gara…", untuk hasil yang buruk.',ex:[['雨{あめ}の せいで、 試合{しあい}が 中止{ちゅうし}に なりました。','Gara-gara hujan, pertandingan dibatalkan.']]},
+    {p:'〜わけではない',e:'"Bukan berarti…", menyangkal sebagian.',ex:[['日本料理{にほんりょうり}が 嫌{きら}いな わけではありません。','Bukan berarti saya tidak suka masakan Jepang.']]}],
+   vocab:[['慣{な}れる','terbiasa'],['中止{ちゅうし}','pembatalan'],['原因{げんいん}','penyebab'],['結果{けっか}','hasil'],['努力{どりょく}','usaha']],
+   quiz:[
+    {q:'先生{せんせい}の（　）、 試験{しけん}に 合格{ごうかく}できました。',o:['おかげで','せいで','わけで'],a:0,x:'Hasil baik: <b>おかげで</b>.'},
+    {q:'寝坊{ねぼう}した（　）、 電車{でんしゃ}に 遅{おく}れた。',o:['おかげで','せいで','わけではなく'],a:1,x:'Hasil buruk: <b>せいで</b>.'},
+    {q:'"Bukan berarti saya tidak mau pergi."',o:['行{い}きたくない わけではない。','行{い}きたくない せいだ。','行{い}きたくない おかげだ。'],a:0,x:'Penyangkalan sebagian: <b>わけではない</b>.'}]},
+  {id:'n2-3',title:'Ungkapan Waktu',jp:'〜うちに・〜たとたん・〜次第{しだい}',sum:'Selagi, begitu… langsung, dan segera setelah.',
+   points:[
+    {p:'〜うちに',e:'"Selagi…", melakukan sesuatu sebelum keadaan berubah.',ex:[['若{わか}いうちに、 いろいろな 経験{けいけん}を したいです。','Selagi muda, saya ingin mencoba berbagai pengalaman.']]},
+    {p:'Vた とたん（に）',e:'"Begitu…, langsung…", untuk kejadian tak terduga.',ex:[['家{いえ}を 出{で}た とたん、 雨{あめ}が 降{ふ}り出{だ}しました。','Begitu keluar rumah, hujan langsung turun.']]},
+    {p:'V-ます stem + 次第{しだい}',e:'"Segera setelah…", sering dipakai di kantor.',ex:[['資料{しりょう}が 届{とど}き次第{しだい}、 お送{おく}りします。','Segera setelah dokumennya tiba, akan saya kirimkan.']]}],
+   vocab:[['若{わか}い','muda'],['届{とど}く','tiba / sampai'],['到着{とうちゃく}','kedatangan'],['降{ふ}り出{だ}す','mulai turun (hujan)'],['連絡{れんらく}','kabar / kontak']],
+   quiz:[
+    {q:'温{あたた}かい（　）、 どうぞ 召{め}し上{あ}がって ください。',o:['うちに','とたん','次第'],a:0,x:'"Selagi masih hangat": <b>うちに</b>.'},
+    {q:'立{た}ち上{あ}がった（　）、 めまいが しました。',o:['うちに','とたん','次第'],a:1,x:'Kejadian tiba-tiba: <b>たとたん</b>.'},
+    {q:'結果{けっか}が わかり（　）、 ご連絡{れんらく}いたします。',o:['うちに','とたん','次第'],a:2,x:'"Segera setelah": stem ます + <b>次第</b>.'}]}]},
+ {id:'n1',tag:'N1',name:'Mahir',sub:'Ungkapan formal tingkat tertinggi',desc:'Pola tingkat tertinggi JLPT untuk pengumuman resmi, pidato, dan tulisan.',lessons:[
+  {id:'n1-1',title:'Ungkapan Resmi',jp:'〜をもって・〜に至{いた}るまで・〜をよそに',sum:'Pola yang sering muncul di pengumuman dan berita.',
+   points:[
+    {p:'N を もって',e:'"Per / dengan…", menandai batas waktu atau cara secara resmi.',ex:[['本日{ほんじつ}を もって、 受付{うけつけ}を 終了{しゅうりょう}いたします。','Per hari ini, pendaftaran kami tutup.']]},
+    {p:'N に至{いた}るまで',e:'"Sampai ke…", menegaskan cakupan yang sangat luas.',ex:[['社長{しゃちょう}から 新入社員{しんにゅうしゃいん}に至{いた}るまで、 全員{ぜんいん}が 参加{さんか}しました。','Dari direktur sampai karyawan baru, semua ikut serta.']]},
+    {p:'N を よそに',e:'"Tanpa memedulikan…".',ex:[['家族{かぞく}の 心配{しんぱい}を よそに、 彼{かれ}は 一人{ひとり}で 旅{たび}に 出{で}ました。','Tanpa memedulikan kekhawatiran keluarganya, ia bepergian sendirian.']]}],
+   vocab:[['終了{しゅうりょう}','berakhir'],['受付{うけつけ}','pendaftaran / resepsionis'],['全員{ぜんいん}','semua orang'],['新入社員{しんにゅうしゃいん}','karyawan baru'],['懸念{けねん}','kekhawatiran']],
+   quiz:[
+    {q:'本日{ほんじつ}（　）、 この 店{みせ}は 閉店{へいてん}いたします。',o:['を もって','を よそに','に至るまで'],a:0,x:'Batas waktu resmi: <b>をもって</b>.'},
+    {q:'周囲{しゅうい}の 反対{はんたい}（　）、 彼{かれ}は 会社{かいしゃ}を 辞{や}めた。',o:['を もって','を よそに','に至るまで'],a:1,x:'"Tanpa memedulikan penolakan": <b>をよそに</b>.'},
+    {q:'子供{こども}から お年寄{としよ}り（　）、 だれでも 楽{たの}しめます。',o:['に至るまで','を よそに','を もって'],a:0,x:'Cakupan luas: <b>に至るまで</b>.'}]},
+  {id:'n1-2',title:'Penekanan dan Kekhasan',jp:'〜ずにはいられない・〜までもない・〜ならでは',sum:'Mengungkapkan dorongan kuat, hal yang sudah jelas, dan ciri khas.',
+   points:[
+    {p:'Vない → Vずには いられない',e:'"Tidak bisa tidak…", dorongan yang tak tertahan. する → せずには.',ex:[['その 話{はなし}を 聞{き}いて、 笑{わら}わずには いられませんでした。','Mendengar cerita itu, saya tak bisa menahan tawa.']]},
+    {p:'V辞書形{じしょけい} までもない',e:'"Tidak perlu sampai…", karena sudah jelas.',ex:[['言{い}うまでもなく、 安全{あんぜん}が 第一{だいいち}です。','Tidak perlu dikatakan lagi, keselamatan adalah yang utama.']]},
+    {p:'N ならではの N',e:'"Khas…", hanya bisa ditemukan pada N.',ex:[['これは 京都{きょうと}ならではの 景色{けしき}です。','Ini pemandangan yang khas Kyoto.']]}],
+   vocab:[['感動{かんどう}','haru / terkesan'],['第一{だいいち}','yang utama'],['景色{けしき}','pemandangan'],['職人{しょくにん}','pengrajin ahli'],['修理{しゅうり}','perbaikan']],
+   quiz:[
+    {q:'感動的{かんどうてき}な 映画{えいが}で、 泣{な}か（　）。',o:['ずには いられなかった','までもなかった','ならではだった'],a:0,x:'Dorongan tak tertahan: <b>ずにはいられない</b>.'},
+    {q:'簡単{かんたん}な 修理{しゅうり}なので、 業者{ぎょうしゃ}を 呼{よ}ぶ（　）。',o:['ずには いられない','までもない','ならではだ'],a:1,x:'Tidak perlu sampai memanggil teknisi: <b>までもない</b>.'},
+    {q:'これは 職人{しょくにん}（　）の 技術{ぎじゅつ}です。',o:['ならでは','を よそに','に至るまで'],a:0,x:'Keahlian khas pengrajin: <b>ならではの</b>.'}]}]},
  {id:'biz',tag:'ビジ',name:'Bahasa Jepang Bisnis',sub:'Keigo, telepon, email, wawancara',desc:'Komunikasi profesional di perusahaan Jepang.',lessons:[
   {id:'biz-1',title:'Dasar Keigo',jp:'敬語{けいご}の 基本{きほん}',sum:'Tiga jenis bahasa hormat dan kapan memakainya.',
    points:[
@@ -471,7 +535,37 @@ const LEVELS=[
    quiz:[
     {q:'Kalimat pembuka email ke klien yang paling umum:',o:['いつも お世話{せわ}に なって おります。','おはよう。','ごちそうさまでした。'],a:0,x:'<b>いつも お世話に なって おります</b> adalah salam baku bisnis.'},
     {q:'"Perusahaan Anda" dalam email (tulisan):',o:['御社{おんしゃ}','貴社{きしゃ}','弊社{へいしゃ}'],a:1,x:'Tulisan: <b>貴社</b>. Lisan: 御社. Perusahaan sendiri: 弊社.'},
-    {q:'Saat memindahkan telepon Anda berkata…',o:['少々{しょうしょう} お待{ま}ち ください。','お疲{つか}れさまでした。','いただきます。'],a:0,x:'<b>少々お待ちください</b> = mohon tunggu sebentar.'}]}]}
+    {q:'Saat memindahkan telepon Anda berkata…',o:['少々{しょうしょう} お待{ま}ち ください。','お疲{つか}れさまでした。','いただきます。'],a:0,x:'<b>少々お待ちください</b> = mohon tunggu sebentar.'}]},
+  {id:'biz-3',title:'Wawancara Kerja',jp:'面接{めんせつ}の 基本{きほん}',sum:'Etika masuk ruangan, memperkenalkan diri, dan menjawab pertanyaan umum.',
+   points:[
+    {p:'失礼{しつれい}いたします',e:'Diucapkan saat mengetuk pintu, masuk, dan keluar ruangan wawancara.',ex:[['失礼{しつれい}いたします。','Permisi.']]},
+    {p:'わたしの 長所{ちょうしょ}は 〜ところです',e:'Pola menjelaskan kelebihan diri dalam 自己PR.',ex:[['わたしの 長所{ちょうしょ}は 責任感{せきにんかん}が 強{つよ}い ところです。','Kelebihan saya adalah rasa tanggung jawab yang kuat.']]},
+    {p:'御社{おんしゃ}を 志望{しぼう}した 理由{りゆう}は 〜からです',e:'Menjawab motivasi melamar dengan alasan yang jelas.',ex:[['御社{おんしゃ}の 技術{ぎじゅつ}を 学{まな}びたいと 思{おも}ったからです。','Karena saya ingin mempelajari teknologi perusahaan Anda.']]}],
+   vocab:[['長所{ちょうしょ}','kelebihan'],['短所{たんしょ}','kekurangan'],['志望動機{しぼうどうき}','motivasi melamar'],['履歴書{りれきしょ}','daftar riwayat hidup'],['面接官{めんせつかん}','pewawancara']],
+   quiz:[
+    {q:'Saat masuk ruang wawancara, Anda berkata…',o:['失礼{しつれい}いたします。','ただいま。','お邪魔{じゃま}しました。'],a:0,x:'<b>失礼いたします</b> dipakai saat masuk dan keluar ruangan.'},
+    {q:'"Kelebihan saya adalah tekun."',o:['わたしの 長所{ちょうしょ}は まじめな ところです。','わたしの 短所{たんしょ}は まじめな ところです。','御社{おんしゃ}の 長所{ちょうしょ}は まじめです。'],a:0,x:'Kelebihan = <b>長所</b>, kekurangan = 短所.'},
+    {q:'Menyebut perusahaan pewawancara secara lisan:',o:['弊社{へいしゃ}','御社{おんしゃ}','当社{とうしゃ}'],a:1,x:'Lisan: <b>御社</b>. 弊社 dan 当社 berarti perusahaan sendiri.'}]},
+  {id:'biz-4',title:'Rapat dan Laporan',jp:'会議{かいぎ}・報連相{ほうれんそう}',sum:'Melapor, menyampaikan pendapat, dan mengonfirmasi keputusan rapat.',
+   points:[
+    {p:'報連相{ほうれんそう}',e:'報告 (melaporkan hasil), 連絡 (mengabarkan fakta), 相談 (meminta saran). Dasar kerja di perusahaan Jepang.',ex:[['進捗{しんちょく}を ご報告{ほうこく}いたします。','Saya laporkan progresnya.']]},
+    {p:'〜では ないでしょうか',e:'Menyampaikan pendapat dengan halus di rapat.',ex:[['コストを 見直{みなお}すべきでは ないでしょうか。','Bukankah sebaiknya biaya ditinjau ulang?']]},
+    {p:'〜と いう ことで よろしいでしょうか',e:'Mengonfirmasi kesimpulan rapat.',ex:[['締{し}め切{き}りは 金曜日{きんようび}と いう ことで よろしいでしょうか。','Apakah tenggatnya kita sepakati hari Jumat?']]}],
+   vocab:[['進捗{しんちょく}','progres'],['締{し}め切{き}り','tenggat waktu'],['議題{ぎだい}','agenda rapat'],['提案{ていあん}','usulan'],['見直{みなお}す','meninjau ulang']],
+   quiz:[
+    {q:'報連相{ほうれんそう} terdiri dari…',o:['報告・連絡・相談','報告・練習・相談','放送・連絡・相談'],a:0,x:'<b>報告・連絡・相談</b>: lapor, kabari, konsultasi.'},
+    {q:'Cara halus menyampaikan pendapat di rapat:',o:['〜では ないでしょうか','〜に 決{き}まって いる','〜だろう'],a:0,x:'<b>〜ではないでしょうか</b> terdengar sopan dan tidak memaksa.'},
+    {q:'締{し}め切{き}り artinya…',o:['tenggat waktu','agenda rapat','laporan'],a:0,x:'<b>締め切り</b> = batas waktu penyerahan.'}]},
+  {id:'biz-5',title:'Menulis Email Bisnis',jp:'ビジネスメール',sum:'Struktur email dan ungkapan baku permintaan serta penutup.',
+   points:[
+    {p:'宛名{あてな} → 挨拶{あいさつ} → 名乗{なの}り → 本文{ほんぶん} → 結{むす}び',e:'Urutan baku: penerima, salam, perkenalan pengirim, isi, penutup.',ex:[['株式会社{かぶしきがいしゃ}ABC 営業部{えいぎょうぶ} 山田様{やまださま}','Kepada Bapak/Ibu Yamada, Divisi Penjualan PT ABC']]},
+    {p:'お手数{てすう}ですが、 〜ください',e:'Meminta tolong dengan sopan: "maaf merepotkan, mohon…".',ex:[['お手数{てすう}ですが、 添付{てんぷ}の 資料{しりょう}を ご確認{かくにん}ください。','Maaf merepotkan, mohon periksa dokumen terlampir.']]},
+    {p:'ご検討{けんとう}の ほど、 よろしく お願{ねが}い いたします',e:'Penutup untuk usulan atau penawaran.',ex:[['ご検討{けんとう}の ほど、 よろしく お願{ねが}い いたします。','Mohon pertimbangannya.']]}],
+   vocab:[['件名{けんめい}','subjek email'],['添付{てんぷ}','lampiran'],['返信{へんしん}','balasan'],['検討{けんとう}','pertimbangan'],['御中{おんちゅう}','kepada (instansi / divisi)']],
+   quiz:[
+    {q:'御中{おんちゅう} dipakai saat menulis kepada…',o:['instansi atau divisi','satu orang tertentu','diri sendiri'],a:0,x:'<b>御中</b> untuk organisasi. Untuk perorangan memakai 様.'},
+    {q:'添付{てんぷ} artinya…',o:['lampiran','subjek','balasan'],a:0,x:'<b>添付</b> = lampiran.'},
+    {q:'Penutup email penawaran yang tepat:',o:['ご検討{けんとう}の ほど、 よろしく お願{ねが}い いたします。','じゃあ、 また。','おやすみなさい。'],a:0,x:'<b>ご検討のほど、よろしくお願いいたします</b> adalah penutup baku.'}]}]}
 ];
 
 const KAIWA=[
@@ -570,16 +664,33 @@ const QB=[
  ['n3','dokkai','「店長{てんちょう}に よると、 来週{らいしゅう}から 営業時間{えいぎょうじかん}が 変{か}わる らしい。」 Maksudnya…',['Jam operasional pasti tidak berubah','Katanya jam operasional berubah mulai minggu depan','Manajer akan pindah minggu depan','Toko tutup minggu depan'],1,'に よると + <b>らしい</b> = katanya (menurut info dari manajer).'],
  ['biz','dokkai','Kalimat pertama email kepada klien:',['いつも お世話{せわ}に なって おります。','元気{げんき}？','おやすみなさい。','ただいま。'],0,'Salam pembuka baku: <b>いつも お世話に なって おります</b>.'],
  ['biz','dokkai','Saat masuk ruang wawancara, Anda berkata…',['ただいま','失礼{しつれい}いたします','お邪魔{じゃま}しました','いってきます'],1,'<b>失礼いたします</b> saat masuk dan keluar ruangan.'],
- ['biz','dokkai','Kepada klien luar, menyebut manajer sendiri bernama Sato: 「（　）は 外出{がいしゅつ}して おります。」',['佐藤{さとう}','佐藤{さとう}部長{ぶちょう}','佐藤{さとう}さん','佐藤{さとう}様{さま}'],0,'Kepada pihak luar, orang dalam perusahaan sendiri disebut <b>tanpa jabatan dan sebutan hormat</b>.']
+ ['biz','dokkai','Kepada klien luar, menyebut manajer sendiri bernama Sato: 「（　）は 外出{がいしゅつ}して おります。」',['佐藤{さとう}','佐藤{さとう}部長{ぶちょう}','佐藤{さとう}さん','佐藤{さとう}様{さま}'],0,'Kepada pihak luar, orang dalam perusahaan sendiri disebut <b>tanpa jabatan dan sebutan hormat</b>.'],
+ ['n2','kosa','「影響」の 読{よ}み方{かた}は？',['えいきょう','えいこう','けいきょう','えいぎょう'],0,'影響 = <b>えいきょう</b> (pengaruh).'],
+ ['n2','kosa','「原因」の 意味{いみ}は？',['penyebab','hasil','tujuan','rencana'],0,'原因 (げんいん) = <b>penyebab</b>. 結果 = hasil.'],
+ ['n2','bunpo','外国人{がいこくじん}（　）、 日本{にほん}の 敬語{けいご}は 難{むずか}しい。',['にとって','に対して','によって','に関して'],0,'Sudut pandang "bagi orang asing": <b>にとって</b>.'],
+ ['n2','bunpo','雨{あめ}の（　）、 遠足{えんそく}が 中止{ちゅうし}に なった。',['せいで','おかげで','わけで','くせに'],0,'Akibat buruk: <b>せいで</b>.'],
+ ['n2','bunpo','資料{しりょう}が 届{とど}き（　）、 すぐ お送{おく}りします。',['次第','とたん','うちに','ばかり'],0,'Stem ます + <b>次第</b> = segera setelah.'],
+ ['n2','dokkai','「日本料理{にほんりょうり}が 嫌{きら}いな わけではない。」 Maksudnya…',['Bukan berarti tidak suka masakan Jepang','Sangat benci masakan Jepang','Pasti suka semua masakan Jepang','Belum pernah makan masakan Jepang'],0,'<b>わけではない</b> = bukan berarti.'],
+ ['n1','kosa','「終了」の 読{よ}み方{かた}は？',['しゅうりょう','しゅりょう','しゅうりょ','じゅうりょう'],0,'終了 = <b>しゅうりょう</b> (berakhir).'],
+ ['n1','kosa','「懸念」の 読{よ}み方{かた}は？',['けねん','けんねん','かねん','けいねん'],0,'懸念 = <b>けねん</b> (kekhawatiran).'],
+ ['n1','bunpo','本日{ほんじつ}（　）、 営業{えいぎょう}を 終了{しゅうりょう}いたします。',['を もって','を よそに','に至るまで','ならでは'],0,'Batas waktu resmi: <b>をもって</b>.'],
+ ['n1','bunpo','親{おや}の 心配{しんぱい}（　）、 彼{かれ}は 海外{かいがい}へ 行{い}った。',['を よそに','を もって','ならでは','までもなく'],0,'"Tanpa memedulikan": <b>をよそに</b>.'],
+ ['n1','bunpo','言{い}う（　）、 健康{けんこう}が 一番{いちばん} 大切{たいせつ}だ。',['までもなく','ずには いられなく','を もって','ならでは'],0,'"Tidak perlu dikatakan": <b>までもなく</b>.'],
+ ['n1','dokkai','「この 店{みせ}ならではの 味{あじ}」 Maksudnya…',['Rasa khas yang hanya ada di toko ini','Rasa yang sama di semua toko','Rasa yang kurang enak','Menu yang sudah habis'],0,'<b>ならでは</b> = khas, hanya ada pada hal tersebut.'],
+ ['biz','bunpo','お手数{てすう}ですが、 添付{てんぷ}資料{しりょう}を ご（　）ください。',['確認','確認する','確認して','確認し'],0,'Pola hormat: ご + kata benda + ください → <b>ご確認ください</b>.'],
+ ['biz','kosa','Bentuk 謙譲語 dari 会{あ}う adalah…',['お目{め}に かかる','お会{あ}いに なる','会{あ}われる','ご覧{らん}に なる'],0,'Merendahkan diri: <b>お目にかかる</b>. お会いになる adalah 尊敬語.'],
+ ['biz','kosa','「御中」 dipakai untuk…',['menulis kepada instansi atau divisi','menulis kepada satu orang','tanda tangan pengirim','subjek email'],0,'<b>御中</b> untuk organisasi, 様 untuk perorangan.'],
+ ['biz','dokkai','報連相{ほうれんそう} terdiri dari…',['報告・連絡・相談','報告・練習・相談','放送・連絡・相談','報告・連絡・送信'],0,'<b>報告・連絡・相談</b>: lapor, kabari, konsultasi.']
 ];
 const CATS={kosa:'Kosakata & Kanji',bunpo:'Tata Bahasa',dokkai:'Membaca & Situasi'};
 const CATJP={kosa:'文字・語彙',bunpo:'文法',dokkai:'読解・会話'};
-const LVNAME={n5:'N5',n4:'N4',jft:'JFT A2',n3:'N3',biz:'Bisnis'};
+const LVNAME={n5:'N5',n4:'N4',jft:'JFT A2',n3:'N3',n2:'N2',n1:'N1',biz:'Bisnis'};
 
 const TRYOUTS=[
  {id:'t-jft',title:'Simulasi JFT A2',jp:'JFT-Basic 模擬試験{もぎしけん}',lv:['n5','n4','jft'],n:15,min:12,desc:'Gabungan N5, N4, dan bahasa tempat kerja.'},
  {id:'t-biz',title:'Tryout Bisnis & N3',jp:'ビジネス 模擬試験{もぎしけん}',lv:['n3','biz'],n:12,min:10,desc:'Keigo, telepon, email, dan pola N3.'},
- {id:'t-all',title:'Tryout Lengkap',jp:'総合{そうごう} 模擬試験{もぎしけん}',lv:['n5','n4','jft','n3','biz'],n:20,min:15,desc:'Semua level, acak setiap kali dimulai.'}
+ {id:'t-jlpt',title:'Simulasi JLPT N2–N1',jp:'JLPT 模擬試験{もぎしけん}',lv:['n2','n1'],n:12,min:12,desc:'Kosakata, kanji, dan tata bahasa tingkat lanjut.'},
+ {id:'t-all',title:'Tryout Lengkap',jp:'総合{そうごう} 模擬試験{もぎしけん}',lv:['n5','n4','jft','n3','n2','n1','biz'],n:25,min:20,desc:'Semua level, acak setiap kali dimulai.'}
 ];
 
 const SENT=[
@@ -602,7 +713,23 @@ const BADGES=[
  ['streak3','三日','3 Hari Beruntun','Belajar 3 hari berturut-turut'],
  ['xp500','五百','500 XP','Kumpulkan 500 XP'],
  ['biz','敬語','Profesional','Selesaikan level Bisnis'],
+ ['n1','一級','Puncak JLPT','Selesaikan level N1'],
  ['all','全','Tamat','Selesaikan semua pelajaran']
+];
+const JLPT_ORDER=['kana','n5','n4','jft','n3','n2','n1'];
+const KEIGO=[
+ ['pergi','行{い}く','いらっしゃる','参{まい}る'],
+ ['datang','来{く}る','いらっしゃる','参{まい}る'],
+ ['ada','いる','いらっしゃる','おる'],
+ ['berkata','言{い}う','おっしゃる','申{もう}す'],
+ ['melihat','見{み}る','ご覧{らん}に なる','拝見{はいけん}する'],
+ ['makan / minum','食{た}べる・飲{の}む','召{め}し上{あ}がる','いただく'],
+ ['melakukan','する','なさる','いたす'],
+ ['tahu','知{し}って いる','ご存{ぞん}じだ','存{ぞん}じて おる'],
+ ['bertanya / berkunjung','聞{き}く・訪{たず}ねる','お聞{き}きに なる','伺{うかが}う'],
+ ['bertemu','会{あ}う','お会{あ}いに なる','お目{め}に かかる'],
+ ['memberi (kepada saya)','くれる','くださる','—'],
+ ['menerima','もらう','—','いただく']
 ];
 </script>
 
@@ -613,7 +740,7 @@ const DEF=()=>({name:'',xp:0,streak:0,last:null,days:{},done:{},kaiwa:{},best:{}
 function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r)return Object.assign(DEF(),r,{set:Object.assign(DEF().set,r.set||{})})}catch(e){}return DEF()}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 let S=load();
-const UI={route:'beranda',lesson:null,lq:{},kaiwa:null,kmode:'dengar',rp:null,quiz:null,pf:{lv:'all',cat:'all'},game:null,reset:false,rev:null,confirmSubmit:false};
+const UI={route:'beranda',lvTab:null,lesson:null,lq:{},kaiwa:null,kmode:'dengar',rp:null,quiz:null,pf:{lv:'all',cat:'all'},game:null,reset:false,rev:null,confirmSubmit:false};
 let timers=[];
 function stopTimers(){timers.forEach(clearInterval);timers=[];try{speechSynthesis.cancel()}catch(e){}}
 
@@ -657,23 +784,24 @@ function addXP(n,why){if(n<=0)return;const t=dk(Date.now());
 function checkBadges(){const B=S.badges;const give=k=>{if(!B[k]){B[k]=dk(Date.now());const b=BADGES.find(x=>x[0]===k);setTimeout(()=>toast('Lencana baru: '+b[2]),2600)}};
  if(Object.keys(S.done).length>=1)give('first');if((S.best.kilat||0)>=15)give('kana');if(Object.keys(S.kaiwa).length>=3)give('kaiwa');
  if(S.tryouts.some(t=>t.pct>=80))give('pass');if(S.streak>=3)give('streak3');if(S.xp>=500)give('xp500');
- if(LEVELS.find(l=>l.id==='biz').lessons.every(x=>S.done[x.id]))give('biz');if(allLessons().every(x=>S.done[x.id]))give('all')}
+ if(LEVELS.find(l=>l.id==='biz').lessons.every(x=>S.done[x.id]))give('biz');if(LEVELS.find(l=>l.id==='n1').lessons.every(x=>S.done[x.id]))give('n1');if(allLessons().every(x=>S.done[x.id]))give('all')}
 
 /* ===================== KERANGKA ===================== */
-const NAV=[['beranda','Beranda','ホーム','home'],['belajar','Belajar','学習','book'],['kaiwa','Kaiwa','会話','chat'],['soal','Soal','問題','pen'],['game','Game','ゲーム','game'],['profil','Profil','マイページ','user']];
+const NAV=[['beranda','Beranda','ホーム','home'],['belajar','Belajar','学習','book'],['bisnis','Bisnis','ビジネス','brief'],['kaiwa','Kaiwa','会話','chat'],['soal','Soal','問題','pen'],['game','Game','ゲーム','game'],['profil','Profil','マイページ','user']];
 function paintChrome(){
  $('#sidenav').innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${UI.route===n[0]?'on':''}">${ic(n[3])}<span>${n[1]}</span><span class="jpn">${n[2]}</span></a>`).join('');
- $('#tabs').innerHTML=NAV.slice(0,5).map(n=>`<a href="#${n[0]}" class="${UI.route===n[0]?'on':''}">${ic(n[3])}<span>${n[1]}</span><span class="jpn">${n[2]}</span></a>`).join('');
+ $('#tabs').innerHTML=NAV.slice(0,6).map(n=>`<a href="#${n[0]}" class="${UI.route===n[0]?'on':''}">${ic(n[3])}<span>${n[1]}</span><span class="jpn">${n[2]}</span></a>`).join('');
  $('#topstats').innerHTML=`<span class="chip-stat" title="Hari beruntun">${ic('fire')}<span class="num">${curStreak()}</span></span><span class="chip-stat num">${S.xp} XP</span><a class="iconbtn" href="#profil" aria-label="Profil">${ic('user')}</a>`;
  $('#sidegoal').innerHTML=ring(todayXP()/GOAL,50)+`<div style="min-width:0"><b style="font-size:.9rem">Target harian</b><div class="muted num" style="font-size:.82rem">${Math.min(todayXP(),GOAL)}/${GOAL} XP · ${curStreak()} hari beruntun</div></div>`;
  document.documentElement.style.setProperty('--rt',{m:'.5em',l:'.6em',xl:'.72em'}[S.set.fs]||'.6em');
  document.body.classList.toggle('nofuri',!S.set.furi);document.body.classList.toggle('notr',!S.set.tr);
 }
-function render(keepScroll){const y=window.scrollY;const V={beranda:vHome,belajar:vLearn,kaiwa:vKaiwa,soal:vSoal,game:vGame,profil:vProfile}[UI.route];
+function render(keepScroll){const y=window.scrollY;const V={beranda:vHome,belajar:vLearn,bisnis:vBisnis,kaiwa:vKaiwa,soal:vSoal,game:vGame,profil:vProfile}[UI.route];
  $('#view').innerHTML=V();paintChrome();if(keepScroll)window.scrollTo(0,y)}
 function rerender(){render(true)}
 function go(){const h=location.hash.slice(1);UI.route=NAV.some(n=>n[0]===h)?h:'beranda';stopTimers();
- Object.assign(UI,{lesson:UI.route==='belajar'&&UI.pending?UI.pending:null,pending:null,lq:{},kaiwa:null,rp:null,quiz:null,game:null,reset:false,rev:null,confirmSubmit:false});render();window.scrollTo(0,0)}
+ Object.assign(UI,{lesson:(UI.route==='belajar'||UI.route==='bisnis')&&UI.pending?UI.pending:null,pending:null,lq:{},kaiwa:UI.route==='kaiwa'&&UI.pendingK?UI.pendingK:null,pendingK:null,kmode:'dengar',rp:null,quiz:null,game:null,reset:false,rev:null,confirmSubmit:false});render();window.scrollTo(0,0);
+ if(UI.route==='soal'&&UI.pendingT){const id=UI.pendingT;UI.pendingT=null;ACT.startTryout({id})}}
 function openSub(fn){stopTimers();fn();render();window.scrollTo(0,0)}
 
 /* ===================== BERANDA ===================== */
@@ -682,7 +810,7 @@ function vHome(){
  const h=new Date().getHours();const g=h<11?'おはようございます':h<18?'こんにちは':'こんばんは';
  const {r}=rank();const next=allLessons().find(x=>!S.done[x.id]);const wl=allVocab();
  const w=wl[Math.floor(Date.now()/864e5)%wl.length];const tx=todayXP();
- const feats=[['belajar','book','Belajar','学習','Jalur 6 tahap dari kana sampai bahasa bisnis.',''],['kaiwa','chat','Kaiwa','会話','Dialog bersuara dan roleplay situasi nyata.','am'],['soal','pen','Soal & Tryout','問題','Latihan per kategori dan simulasi ujian berwaktu.',''],['game','game','Game','ゲーム','Kana match, kuis kilat, flashcard, susun kalimat.','am']];
+ const feats=[['belajar','book','Belajar JLPT','学習','Jalur bertahap dari kana, N5, sampai N1.',''],['bisnis','brief','Bahasa Jepang Bisnis','ビジネス','Keigo, telepon, email, rapat, dan wawancara.','am'],['kaiwa','chat','Kaiwa','会話','Dialog bersuara dan roleplay situasi nyata.','am'],['soal','pen','Soal & Tryout','問題','Latihan per kategori dan simulasi ujian berwaktu.',''],['game','game','Game','ゲーム','Kana match, kuis kilat, flashcard, susun kalimat.','am'],['profil','user','Progres','マイページ','XP, hari beruntun, lencana, dan pengaturan.','']];
  return `
  <section class="hero">
   <div class="leaves" aria-hidden="true">${leaves(7)}</div>
@@ -721,7 +849,7 @@ function vHome(){
 
  <section style="display:flex;flex-direction:column;gap:14px">
   <div class="sec-head"><h2>Fitur utama<span class="jpn">機能</span></h2></div>
-  <div class="grid g4">${feats.map(f=>`<a class="card tap feat" href="#${f[0]}" style="text-decoration:none;color:inherit"><span class="ico ${f[5]}">${ic(f[1])}</span><span><b>${f[2]}</b><span class="jpn">${f[3]}</span></span><span class="muted" style="font-size:.88rem">${f[4]}</span></a>`).join('')}</div>
+  <div class="grid g3">${feats.map(f=>`<a class="card tap feat" href="#${f[0]}" style="text-decoration:none;color:inherit"><span class="ico ${f[5]}">${ic(f[1])}</span><span><b>${f[2]}</b><span class="jpn">${f[3]}</span></span><span class="muted" style="font-size:.88rem">${f[4]}</span></a>`).join('')}</div>
  </section>
 
  <section style="display:flex;flex-direction:column;gap:14px">
@@ -731,8 +859,31 @@ function vHome(){
 }
 
 /* ===================== BELAJAR ===================== */
+const lessonRows=l=>`<div class="lessons">${l.lessons.map(x=>`<button class="lrow ${S.done[x.id]?'ok':''}" data-act="openLesson" data-id="${x.id}"><span class="chk">${S.done[x.id]?ic('check'):''}</span><span class="t"><b>${esc(x.title)}</b> <span style="font-size:.88rem;color:var(--ink-2)">${rb(x.jp)}</span><small>${esc(x.sum)}</small></span><span aria-hidden="true" style="color:var(--ink-3)">›</span></button>`).join('')}</div>`;
 function vLearn(){
  if(UI.lesson)return vLesson();
+ const lvls=JLPT_ORDER.map(id=>LEVELS.find(l=>l.id===id));
+ if(!UI.lvTab){const c=lvls.find(l=>!l.lessons.every(x=>S.done[x.id]));UI.lvTab=(c||lvls[0]).id}
+ const l=lvls.find(x=>x.id===UI.lvTab)||lvls[0],i=lvls.indexOf(l),d=l.lessons.filter(x=>S.done[x.id]).length;
+ const all=lvls.flatMap(x=>x.lessons),dn=all.filter(x=>S.done[x.id]).length;
+ return `<div class="sec-head"><div><span class="eyebrow">Jalur JLPT · 日本語能力試験</span><h1>Belajar dari N5 sampai N1</h1></div><span class="pill maple num">${dn}/${all.length} pelajaran selesai</span></div>
+ <div class="lvtabs" role="tablist">${lvls.map(x=>{const dd=x.lessons.filter(y=>S.done[y.id]).length;return `<button class="lvtab ${x.id===l.id?'on':''}" role="tab" aria-selected="${x.id===l.id}" data-act="lvTab" data-id="${x.id}"><b>${x.tag}</b><span style="font-weight:700;font-size:.88rem">${x.name}</span><div class="bar"><i style="width:${dd/x.lessons.length*100}%"></i></div><small class="num">${dd}/${x.lessons.length} pelajaran</small></button>`}).join('')}</div>
+ <section class="card stage-body" style="padding:20px"><header><div><span class="eyebrow">Tahap ${i+1} dari ${lvls.length}</span><h2>${l.tag} · ${l.name}</h2><p class="muted" style="font-size:.9rem">${l.sub}</p></div><span class="pill ${d===l.lessons.length?'good':''} num">${d}/${l.lessons.length}</span></header>
+ <p style="margin-top:8px;font-size:.95rem">${l.desc}</p>${lessonRows(l)}</section>
+ <a class="card tap" href="#bisnis" style="padding:18px;display:flex;gap:14px;align-items:center;text-decoration:none;color:inherit"><span class="iconbtn" style="width:44px;height:44px">${ic('brief')}</span><span style="flex:1;min-width:0"><b>Bahasa Jepang Bisnis</b><span class="muted" style="display:block;font-size:.88rem">Keigo, telepon, email, rapat, dan wawancara kerja.</span></span><span aria-hidden="true" style="color:var(--ink-3)">›</span></a>`;
+}
+function vBisnis(){
+ if(UI.lesson)return vLesson();
+ const l=LEVELS.find(x=>x.id==='biz'),d=l.lessons.filter(x=>S.done[x.id]).length;
+ const kb=KAIWA.filter(k=>k.lv==='Bisnis'),t=TRYOUTS.find(x=>x.id==='t-biz');
+ return `<section class="biz-hero"><svg width="96" height="96" role="img" aria-label="Maskot burung hantu bertoga"><use href="#owl"/></svg><div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:8px"><span class="eyebrow">ビジネス日本語 · Business Japanese</span><h1>Bahasa Jepang Bisnis</h1><p class="muted">Bekal komunikasi profesional di perusahaan Jepang: keigo, telepon, email, rapat, dan wawancara kerja.</p><div class="bar" style="max-width:320px"><i style="width:${d/l.lessons.length*100}%"></i></div><span class="muted num" style="font-size:.85rem">${d}/${l.lessons.length} materi selesai</span></div></section>
+ <section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Materi bisnis<span class="jpn">教材</span></h2></div><div class="card" style="padding:16px">${lessonRows(l)}</div></section>
+ <section class="card" style="padding:18px;display:flex;flex-direction:column;gap:10px"><div class="sec-head"><h2>Tabel keigo<span class="jpn">敬語表</span></h2></div>
+  <div class="tblwrap"><table class="ktab"><thead><tr><th>ARTI</th><th>BIASA</th><th>尊敬語 · HORMAT</th><th>謙譲語 · RENDAH HATI</th></tr></thead><tbody>${KEIGO.map(k=>`<tr><td>${esc(k[0])}</td><td>${rb(k[1])}</td><td>${rb(k[2])}</td><td>${rb(k[3])}</td></tr>`).join('')}</tbody></table></div>
+  <p class="muted" style="font-size:.88rem">尊敬語 untuk tindakan atasan dan klien. 謙譲語 untuk tindakan diri sendiri, termasuk rekan satu perusahaan saat berbicara dengan pihak luar.</p></section>
+ <section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Latihan percakapan dan ujian<span class="jpn">実践</span></h2></div><div class="grid g3">${kb.map(k=>`<button class="card tap" style="padding:18px;display:flex;flex-direction:column;gap:6px" data-act="openKaiwa" data-id="${k.id}"><span class="pill">Kaiwa</span><h3>${esc(k.title)}</h3><span style="color:var(--maple)">${rb(k.jp)}</span><span class="muted" style="font-size:.88rem">${esc(k.place)}</span></button>`).join('')}<div class="card" style="padding:18px;display:flex;flex-direction:column;gap:6px"><span class="pill">Tryout</span><h3>${t.title}</h3><span class="muted num" style="font-size:.88rem">${t.n} soal · ${t.min} menit${S.best[t.id]!==undefined?' · terbaik '+S.best[t.id]+'%':''}</span><button class="btn sm" style="align-self:flex-start;margin-top:6px" data-act="startTryoutX" data-id="${t.id}">Mulai tryout</button></div></div></section>`;
+}
+function vRoadmapAll(){
  const all=allLessons(),dn=all.filter(x=>S.done[x.id]).length;let curSet=false;
  return `<div class="sec-head"><div><span class="eyebrow">Jalur belajar · 学習ロードマップ</span><h1>Dari nol sampai bisnis</h1></div><span class="pill maple num">${dn}/${all.length} pelajaran selesai</span></div>
  <div class="road">${LEVELS.map((l,i)=>{const d=l.lessons.filter(x=>S.done[x.id]).length,full=d===l.lessons.length;let cur=false;if(!full&&!curSet){cur=true;curSet=true}
@@ -761,7 +912,7 @@ function vLesson(){
     ${lock?`<div class="expl pop"><b>${a===q.a?'Benar.':'Belum tepat.'}</b> ${rbh(q.x)}</div>`:''}</article>`}).join('')}</section>`;
  }
  const canDone=x.kana||x.quiz.every((q,i)=>UI.lq[i]!==undefined);
- return `<button class="back" data-act="backLearn">${ic('left').replace('<svg','<svg width="18" height="18"')} Jalur belajar</button>
+ return `<button class="back" data-act="backLearn">${ic('left').replace('<svg','<svg width="18" height="18"')} ${UI.route==='bisnis'?'Bahasa Jepang Bisnis':'Jalur belajar'}</button>
  <header style="display:flex;flex-direction:column;gap:8px"><span class="eyebrow">${lv.tag} · ${lv.name}</span><h1>${esc(x.title)}</h1><div class="jp" style="color:var(--maple);font-size:1.4rem">${rb(x.jp)}</div><p class="muted">${esc(x.sum)}</p></header>
  ${body}
  <div class="card" style="padding:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
@@ -819,7 +970,7 @@ function vSoal(){
   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button class="btn" data-act="startPractice" ${n?'':'disabled'}>Mulai latihan · ${Math.min(10,n)} soal</button><span class="muted num" style="font-size:.88rem">${n} soal tersedia</span></div>
  </section>
  <section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Tryout berwaktu<span class="jpn">模擬試験</span></h2></div>
-  <div class="grid g3">${TRYOUTS.map(t=>`<div class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px"><span class="eyebrow">${t.lv.map(l=>LVNAME[l]).join(' · ')}</span><h3>${t.title}</h3><div style="color:var(--maple);font-weight:500">${rb(t.jp)}</div><p class="muted" style="font-size:.9rem">${t.desc}</p>
+  <div class="grid g2">${TRYOUTS.map(t=>`<div class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px"><span class="eyebrow">${t.lv.map(l=>LVNAME[l]).join(' · ')}</span><h3>${t.title}</h3><div style="color:var(--maple);font-weight:500">${rb(t.jp)}</div><p class="muted" style="font-size:.9rem">${t.desc}</p>
    <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill num">${t.n} soal</span><span class="pill num">${t.min} menit</span>${S.best[t.id]!==undefined?`<span class="pill good num">Terbaik ${S.best[t.id]}%</span>`:''}</div>
    <button class="btn" style="margin-top:6px" data-act="startTryout" data-id="${t.id}">Mulai tryout</button></div>`).join('')}</div></section>
  ${S.tryouts.length?`<section class="card" style="padding:8px 18px"><h3 style="padding:12px 0 4px">Riwayat tryout</h3>${S.tryouts.slice(-5).reverse().map(t=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line)"><span>${esc(t.title)} <small class="muted">· ${t.date}</small></span><b class="num" style="color:${t.pct>=80?'var(--good)':'var(--maple)'}">${t.pct}%</b></div>`).join('')}</section>`:''}`;
@@ -931,12 +1082,14 @@ function vProfile(){const {r,nx}=rank();const pr=nx?(S.xp-r[0])/(nx[0]-r[0]):1;c
 function playAll(i=0){const k=KAIWA.find(x=>x.id===UI.kaiwa);document.querySelectorAll('.bub.playing').forEach(b=>b.classList.remove('playing'));if(!k||UI.kmode!=='dengar'||i>=k.lines.length)return;
  const el=$('#bub-'+i);if(el){el.classList.add('playing');el.scrollIntoView({block:'nearest',behavior:'smooth'})}speak(k.lines[i][1],()=>setTimeout(()=>playAll(i+1),350))}
 const ACT={
- openLesson:d=>{if(UI.route!=='belajar'){UI.pending=d.id;location.hash='belajar';return}openSub(()=>{UI.lesson=d.id;UI.lq={}})},
- backLearn:()=>openSub(()=>{UI.lesson=null}),
+ openLesson:d=>{const x=findLesson(d.id),dest=x.lv.id==='biz'?'bisnis':'belajar';if(dest==='belajar')UI.lvTab=x.lv.id;if(UI.route!==dest){UI.pending=d.id;location.hash=dest;return}openSub(()=>{UI.lesson=d.id;UI.lq={}})},
+ backLearn:()=>openSub(()=>{const x=findLesson(UI.lesson);if(x&&x.lv.id!=='biz')UI.lvTab=x.lv.id;UI.lesson=null}),
+ lvTab:d=>{UI.lvTab=d.id;rerender()},
+ startTryoutX:d=>{UI.pendingT=d.id;location.hash='soal'},
  lq:d=>{const x=findLesson(UI.lesson),i=+d.q;if(UI.lq[i]!==undefined)return;UI.lq[i]=+d.o;if(+d.o===x.quiz[i].a)addXP(5,'Jawaban benar');rerender()},
  doneLesson:()=>{const x=findLesson(UI.lesson);if(S.done[x.id])return;S.done[x.id]=dk(Date.now());save();addXP(30,'Pelajaran selesai');rerender()},
  nextLesson:()=>{const L=allLessons(),i=L.findIndex(x=>x.id===UI.lesson);const n=L.slice(i+1).find(x=>!S.done[x.id])||L[i+1];openSub(()=>{UI.lesson=n?n.id:null;UI.lq={}})},
- openKaiwa:d=>openSub(()=>{UI.kaiwa=d.id;UI.kmode='dengar';UI.rp=null}),
+ openKaiwa:d=>{if(UI.route!=='kaiwa'){UI.pendingK=d.id;location.hash='kaiwa';return}openSub(()=>{UI.kaiwa=d.id;UI.kmode='dengar';UI.rp=null})},
  backKaiwa:()=>openSub(()=>{UI.kaiwa=null}),
  kmode:d=>{stopTimers();UI.kmode=d.m;if(d.m==='roleplay'){UI.rp={i:0,wrong:0,order:[]};const l=rpAdvance();if(l)setTimeout(()=>speak(l[1]),300)}render();window.scrollTo(0,0)},
  playAll:()=>playAll(0),
