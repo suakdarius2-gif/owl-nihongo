@@ -9,7 +9,7 @@ Aplikasi web belajar bahasa Jepang dari nol sampai bisnis: jalur belajar 6 tahap
 | `index.html` | Seluruh aplikasi: tampilan, materi, dan logika |
 | `manifest.webmanifest` | Data agar aplikasi bisa dipasang di layar utama HP |
 | `sw.js` | Service worker: membuat aplikasi tetap jalan saat offline |
-| `icons/` | Ikon burung hantu bertoga |
+| `icon-*.png`, `favicon.svg` | Ikon burung hantu bertoga |
 
 ## Cara update aplikasi
 
