@@ -289,6 +289,32 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .ktab th{white-space:nowrap;text-align:left;font-size:.75rem;letter-spacing:.06em;color:var(--ink-3);padding:10px 8px;border-bottom:1.5px solid var(--line)}
 .ktab td{padding:8px;border-bottom:1px solid var(--line);font-size:1.05rem;line-height:2.1;vertical-align:middle;white-space:nowrap}
 .ktab td:first-child{color:var(--ink-2);font-size:.9rem}
+.gcard{padding:20px;display:flex;flex-direction:column;gap:8px}
+.gcard.wide{grid-column:1/-1;background:linear-gradient(135deg,var(--maple-soft),var(--surface) 70%)}
+.gstars{display:inline-flex;gap:2px}
+.hud{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tbar{height:10px;border-radius:99px;background:var(--surface-2);overflow:hidden;flex:1 1 100%}
+.tbar i{display:block;height:100%;background:linear-gradient(90deg,var(--maple),var(--amber));transition:width 1s linear}
+.chip-stat.combo{background:var(--maple);color:var(--maple-ink)}
+.fb{font-family:var(--f-display);font-weight:800;color:var(--maple);font-size:1.05rem}
+.hearts{display:inline-flex;gap:2px}
+.gintro{padding:24px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;max-width:640px}
+.gq{padding:22px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;max-width:640px}
+.gq .opts{width:100%;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.gword{font-size:2.1rem;line-height:2.3;font-weight:500}
+.gword.kana-big{font-size:4.2rem;line-height:1.3}
+.gres{padding:28px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;max-width:640px}
+.gres-stars{display:flex;gap:6px}
+.gres-stars svg{animation:pop .45s both}
+.gres-stars svg:nth-child(2){animation-delay:.15s}.gres-stars svg:nth-child(3){animation-delay:.3s}
+.mgrid.wide{grid-template-columns:repeat(3,minmax(0,1fr));max-width:600px}
+.mgrid.wide .mcard{aspect-ratio:4/3}
+.mcard{padding:6px;text-align:center}
+.mcard .mjp{font-size:1.1rem;line-height:2;font-weight:500}
+.mcard .mtx{font-size:.86rem;line-height:1.35;font-weight:700}
+.burst{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+.burst svg{position:absolute;top:-24px;width:22px;height:22px;animation:burstfall 2s ease-in forwards}
+@keyframes burstfall{0%{transform:translate(0,0) rotate(0);opacity:1}100%{transform:translate(var(--dx),105vh) rotate(540deg);opacity:.85}}
 </style>
 </head>
 <body>
@@ -301,6 +327,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <symbol id="i-pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 3h6l1 2h3v16H5V5h3zM9 11l2 2 4-4M9 17h6"/></symbol>
     <symbol id="i-game" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 7h10a5 5 0 0 1 0 10c-1.5 0-2.3-1-3-2h-4c-.7 1-1.5 2-3 2A5 5 0 0 1 7 7zM8 10v4M6 12h4M16 11h.01M18 13h.01"/></symbol>
     <symbol id="i-brief" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 8h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zM9 8V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V8M3 13h18"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20.5s-7.6-4.6-9.6-9.3C1.1 8 3.3 4.5 6.9 4.5c2 0 3.5 1.1 4.3 2.5h1.6c.8-1.4 2.3-2.5 4.3-2.5 3.6 0 5.8 3.5 4.5 6.7-2 4.7-9.6 9.3-9.6 9.3z"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M5 9v6h4l5 4V5L9 9zm11.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
@@ -707,7 +734,7 @@ const SENT=[
 const RANKS=[[0,'ヒナ','Anak Burung Hantu'],[150,'見習{みなら}い','Murid Muda'],[400,'学生{がくせい}','Pelajar Tekun'],[800,'先輩{せんぱい}','Senior Berwawasan'],[1500,'先生{せんせい}','Sang Guru'],[2500,'博士{はかせ}','Profesor Owl']];
 const BADGES=[
  ['first','一歩','Langkah Pertama','Selesaikan 1 pelajaran'],
- ['kana','かな','Ahli Kana','Skor 15+ di Kuis Kilat'],
+ ['kana','かな','Ahli Kana','15 benar di Kilat Kana'],
  ['kaiwa','話','Pandai Bicara','Selesaikan 3 kaiwa'],
  ['pass','合格','Lulus Tryout','Nilai tryout 80% ke atas'],
  ['streak3','三日','3 Hari Beruntun','Belajar 3 hari berturut-turut'],
@@ -736,7 +763,7 @@ const KEIGO=[
 <script>
 /* ===================== STATE ===================== */
 const KEY='owl-nihongo-v1';
-const DEF=()=>({name:'',xp:0,streak:0,last:null,days:{},done:{},kaiwa:{},best:{},tryouts:[],badges:{},set:{furi:true,fs:'l',tr:true,rate:.9}});
+const DEF=()=>({name:'',xp:0,streak:0,last:null,days:{},done:{},kaiwa:{},best:{},stars:{},tryouts:[],badges:{},set:{furi:true,fs:'l',tr:true,rate:.9}});
 function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r)return Object.assign(DEF(),r,{set:Object.assign(DEF().set,r.set||{})})}catch(e){}return DEF()}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 let S=load();
@@ -782,7 +809,7 @@ function addXP(n,why){if(n<=0)return;const t=dk(Date.now());
  if(S.last!==t){S.streak=S.last===dk(Date.now()-864e5)?S.streak+1:1;S.last=t}
  S.xp+=n;S.days[t]=(S.days[t]||0)+n;checkBadges();save();toast(`+${n} XP · ${why}`);paintChrome()}
 function checkBadges(){const B=S.badges;const give=k=>{if(!B[k]){B[k]=dk(Date.now());const b=BADGES.find(x=>x[0]===k);setTimeout(()=>toast('Lencana baru: '+b[2]),2600)}};
- if(Object.keys(S.done).length>=1)give('first');if((S.best.kilat||0)>=15)give('kana');if(Object.keys(S.kaiwa).length>=3)give('kaiwa');
+ if(Object.keys(S.done).length>=1)give('first');if((S.best.kilat||0)>=15||(S.best['c-vq-kana']||0)>=15)give('kana');if(Object.keys(S.kaiwa).length>=3)give('kaiwa');
  if(S.tryouts.some(t=>t.pct>=80))give('pass');if(S.streak>=3)give('streak3');if(S.xp>=500)give('xp500');
  if(LEVELS.find(l=>l.id==='biz').lessons.every(x=>S.done[x.id]))give('biz');if(LEVELS.find(l=>l.id==='n1').lessons.every(x=>S.done[x.id]))give('n1');if(allLessons().every(x=>S.done[x.id]))give('all')}
 
@@ -810,7 +837,7 @@ function vHome(){
  const h=new Date().getHours();const g=h<11?'おはようございます':h<18?'こんにちは':'こんばんは';
  const {r}=rank();const next=allLessons().find(x=>!S.done[x.id]);const wl=allVocab();
  const w=wl[Math.floor(Date.now()/864e5)%wl.length];const tx=todayXP();
- const feats=[['belajar','book','Belajar JLPT','学習','Jalur bertahap dari kana, N5, sampai N1.',''],['bisnis','brief','Bahasa Jepang Bisnis','ビジネス','Keigo, telepon, email, rapat, dan wawancara.','am'],['kaiwa','chat','Kaiwa','会話','Dialog bersuara dan roleplay situasi nyata.','am'],['soal','pen','Soal & Tryout','問題','Latihan per kategori dan simulasi ujian berwaktu.',''],['game','game','Game','ゲーム','Kana match, kuis kilat, flashcard, susun kalimat.','am'],['profil','user','Progres','マイページ','XP, hari beruntun, lencana, dan pengaturan.','']];
+ const feats=[['belajar','book','Belajar JLPT','学習','Jalur bertahap dari kana, N5, sampai N1.',''],['bisnis','brief','Bahasa Jepang Bisnis','ビジネス','Keigo, telepon, email, rapat, dan wawancara.','am'],['kaiwa','chat','Kaiwa','会話','Dialog bersuara dan roleplay situasi nyata.','am'],['soal','pen','Soal & Tryout','問題','Latihan per kategori dan simulasi ujian berwaktu.',''],['game','game','Game','ゲーム','Game per level N5–N1 dan bisnis: kilat kosakata, pasangan kata, keigo master.','am'],['profil','user','Progres','マイページ','XP, hari beruntun, lencana, dan pengaturan.','']];
  return `
  <section class="hero">
   <div class="leaves" aria-hidden="true">${leaves(7)}</div>
@@ -898,7 +925,7 @@ function vLesson(){
  if(x.kana){const arr=x.kana==='hira'?HIRA:KATA;
   body=`<section class="card" style="padding:18px;display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Tabel ${x.title}<span class="jpn">五十音</span></h2><span class="muted" style="font-size:.88rem">Ketuk huruf untuk mendengar</span></div>
   <div class="kana-grid">${arr.map((c,i)=>c==='・'?`<div class="kana empty"></div>`:`<button class="kana" data-say="${c}" aria-label="${c} ${ROMA[i]}"><b>${c}</b><small>${ROMA[i]}</small></button>`).join('')}</div></section>
-  <div class="note"><b>Tips belajar:</b> hafalkan per baris (あ, か, さ…), ucapkan keras-keras, lalu uji diri di <b>Kuis Kilat</b>. Perhatikan bunyi khusus: し = shi, ち = chi, つ = tsu, ふ = fu. ${x.kana==='hira'?'Partikel は, を, へ dibaca wa, o, e.':'Tanda ー memanjangkan bunyi, contoh: コーヒー (kōhī).'}</div>`;
+  <div class="note"><b>Tips belajar:</b> hafalkan per baris (あ, か, さ…), ucapkan keras-keras, lalu uji diri di game <b>Kilat Kana</b>. Perhatikan bunyi khusus: し = shi, ち = chi, つ = tsu, ふ = fu. ${x.kana==='hira'?'Partikel は, を, へ dibaca wa, o, e.':'Tanda ー memanjangkan bunyi, contoh: コーヒー (kōhī).'}</div>`;
  }else{
   const qs=x.quiz,ans=UI.lq;const answered=qs.every((q,i)=>ans[i]!==undefined);const score=qs.filter((q,i)=>ans[i]===q.a).length;
   body=`<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Pola kalimat<span class="jpn">文型</span></h2></div>
@@ -1011,48 +1038,98 @@ function vQuiz(){const Q=UI.quiz;const back=`<button class="back" data-act="exit
 
 /* ===================== GAME ===================== */
 const KPOOL=ROMA.map((r,i)=>i).filter(i=>ROMA[i]!=='-');
-function vGame(){
- if(UI.game)return({match:vMatch,kilat:vKilat,flash:vFlash,susun:vSusun})[UI.game.t]();
- const G=[['match','かなマッチ','Kana Match','Pasangkan kartu huruf kana dengan cara bacanya.',S.best.match?`Terbaik ${S.best.match} langkah`:'Belum dimainkan'],
-  ['kilat','スピードクイズ','Kuis Kilat','60 detik: tebak bacaan kana sebanyak mungkin.',S.best.kilat?`Rekor ${S.best.kilat} benar`:'Belum dimainkan'],
-  ['flash','単語カード','Flashcard','Kartu bolak-balik untuk menghafal kosakata semua level.',S.best.flash?`Terakhir ${S.best.flash} kata hafal`:'Belum dimainkan'],
-  ['susun','文づくり','Susun Kalimat','Urutkan potongan kata menjadi kalimat yang benar.',S.best.susun?`Terbaik ${S.best.susun}/${SENT.length}`:'Belum dimainkan']];
- return `<div class="sec-head"><div><span class="eyebrow">Game · ゲーム</span><h1>Belajar sambil bermain</h1></div></div>
- <div class="grid g2">${G.map(g=>`<button class="card tap" style="padding:20px;display:flex;flex-direction:column;gap:8px" data-act="startGame" data-g="${g[0]}"><span style="font-family:var(--f-display);color:var(--maple);font-weight:700">${g[1]}</span><h3>${g[2]}</h3><span class="muted" style="font-size:.9rem">${g[3]}</span><span class="pill" style="margin-top:4px">${g[4]}</span></button>`).join('')}</div>`;
+const GLV=[['kana','かな','Kana Dasar'],['n5','N5','Pemula'],['n4','N4','Dasar Lanjut'],['n3','N3','Menengah'],['n2','N2','Menengah Atas'],['n1','N1','Mahir'],['biz','ビジ','Bisnis']];
+const GDEF={
+ vq:{jp:'語彙スピード',name:'Kilat Kosakata',desc:'Tebak arti kata sebanyak mungkin dalam 60 detik. Jawaban beruntun melipatgandakan skor.',meta:['60 detik','Combo ×4']},
+ pm:{jp:'ペアマッチ',name:'Pasangan Kata',desc:'Buka kartu dan cocokkan kata Jepang dengan artinya.',meta:['6 pasang','Memori']},
+ gc:{jp:'文法チャレンジ',name:'Tantangan Tata Bahasa',desc:'Jawab soal pola kalimat dan baca penjelasannya. Salah tiga kali, permainan selesai.',meta:['10 soal','3 nyawa']},
+ ss:{jp:'文づくり',name:'Susun Kalimat',desc:'Urutkan potongan kata menjadi kalimat yang benar, lalu dengarkan pelafalannya.',meta:['5 kalimat','Suara']},
+ km:{jp:'敬語マスター',name:'Keigo Master',desc:'Ubah kata kerja biasa menjadi 尊敬語 atau 謙譲語 secepat mungkin. Latihan wajib sebelum masuk kantor Jepang.',meta:['45 detik','Combo ×4','12 kata kerja']}
+};
+const GDEF_K={
+ vq:{jp:'かなスピード',name:'Kilat Kana',desc:'Tebak cara baca hiragana dan katakana sebanyak mungkin dalam 60 detik.',meta:['60 detik','92 huruf']},
+ pm:{jp:'かなマッチ',name:'Kana Match',desc:'Pasangkan kartu huruf kana dengan cara bacanya.',meta:['6 pasang','Memori']}
+};
+const gd=(t,lv)=>(lv==='kana'&&GDEF_K[t])||GDEF[t];
+const gList=lv=>lv==='kana'?['vq','pm']:lv==='biz'?['km','vq','pm','gc','ss']:['vq','pm','gc','ss'];
+const lvOf=id=>LEVELS.find(x=>x.id===id);
+const lvName=lv=>{const x=GLV.find(v=>v[0]===lv);return x?x[1]+' · '+x[2]:''};
+const gPool=lv=>lv==='kana'?KPOOL.flatMap(i=>[[HIRA[i],ROMA[i]],[KATA[i],ROMA[i]]]):lvOf(lv).lessons.flatMap(x=>x.vocab||[]);
+const lvSent=lv=>lvOf(lv).lessons.flatMap(x=>(x.points||[]).flatMap(p=>p.ex)).map(e=>[e[0].split(' ').filter(Boolean),e[1]]).filter(e=>e[0].length>=3&&e[0].length<=7);
+const lvQs=lv=>lvOf(lv).lessons.flatMap(x=>x.quiz||[]).map(q=>({q:q.q,o:q.o,a:q.a,x:q.x})).concat(QB.filter(q=>q[0]===lv).map(q=>({q:q[2],o:q[3],a:q[4],x:q[5]})));
+const starKey=(t,lv)=>t+'-'+lv;
+const getStars=(t,lv)=>(S.stars||{})[starKey(t,lv)]||0;
+const lvStars=lv=>gList(lv).reduce((a,t)=>a+getStars(t,lv),0);
+const starsHtml=(n,size=16)=>[0,1,2].map(i=>`<svg width="${size}" height="${size}" style="color:${i<n?'var(--amber)':'var(--line)'}" aria-hidden="true"><use href="#i-star"/></svg>`).join('');
+
+function initGame(t,lv){const g={t,lv,over:false,stars:0};
+ if(t==='vq'||t==='km'){const dur=t==='km'?45:60;return Object.assign(g,{pool:gPool(lv),score:0,correct:0,combo:0,maxCombo:0,left:dur,dur,run:false,q:null,lock:false,fb:''})}
+ if(t==='pm'){const pick=[],seen=new Set();for(const v of shuffle(gPool(lv))){if(!seen.has(v[1])){seen.add(v[1]);pick.push(v)}if(pick.length===6)break}
+  return Object.assign(g,{cards:shuffle(pick.flatMap((v,i)=>[{id:i,f:v[0],jp:1},{id:i,f:v[1]}])),open:[],got:[],moves:0,start:Date.now(),busy:false})}
+ if(t==='gc')return Object.assign(g,{qs:shuffle(lvQs(lv)).slice(0,10).map(q=>Object.assign({p:shuffle(q.o.map((_,j)=>j))},q)),i:0,lives:3,correct:0,ans:null});
+ if(t==='ss')return Object.assign(g,{sents:shuffle(lvSent(lv)).slice(0,5),i:0,pick:[],bank:null,res:null,correct:0});
 }
-const gBack=t=>`<button class="back" data-act="exitGame">${ic('left').replace('<svg','<svg width="18" height="18"')} Semua game</button><header style="display:flex;flex-direction:column;gap:4px"><span class="eyebrow">Game</span><h1>${t}</h1></header>`;
-function initGame(t){const set=Math.random()<.5?HIRA:KATA;
- if(t==='match'){const pick=shuffle(KPOOL).slice(0,6);const cards=shuffle(pick.flatMap(i=>[{id:i,f:set[i],jp:1},{id:i,f:ROMA[i]}]));return{t,cards,open:[],got:[],moves:0,start:Date.now(),busy:false}}
- if(t==='kilat')return{t,set,score:0,left:60,run:false,over:false,q:null};
- if(t==='flash')return{t,deck:shuffle(allVocab()).slice(0,12),i:0,flip:false,known:0};
- if(t==='susun')return{t,order:shuffle(SENT.map((_,i)=>i)),i:0,pick:[],bank:null,res:null,score:0};}
-function vMatch(){const g=UI.game;const win=g.got.length===12;
- if(win&&!g.fin){g.fin=true;const sec=Math.round((Date.now()-g.start)/1000);g.sec=sec;if(!S.best.match||g.moves<S.best.match)S.best.match=g.moves;save();setTimeout(()=>addXP(15,'Kana Match selesai'),100)}
- return `${gBack('Kana Match')}<p class="muted">Buka dua kartu. Jika huruf dan bacaannya cocok, kartu tetap terbuka.</p>
- <div style="display:flex;gap:8px"><span class="chip-stat num">Langkah: ${g.moves}</span><span class="chip-stat num">Pasangan: ${g.got.length/2}/6</span></div>
- <div class="mgrid">${g.cards.map((c,i)=>{const up=g.open.includes(i)||g.got.includes(i);return `<button class="mcard ${up?'up':''} ${g.got.includes(i)?'got':''}" data-act="mFlip" data-i="${i}" aria-label="${up?c.f:'Kartu tertutup'}">${up?`<span style="${c.jp?'':'font-size:1.15rem'}">${c.f}</span>`:`<svg width="34" height="34" style="opacity:.45"><use href="#leaf"/></svg>`}</button>`}).join('')}</div>
- ${win?`<div class="card pop" style="padding:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap"><svg width="64" height="64"><use href="#owl"/></svg><div style="flex:1;min-width:180px"><h2>おめでとう！</h2><p class="muted num">${g.moves} langkah · ${g.sec} detik</p></div><button class="btn" data-act="startGame" data-g="match">Main lagi</button></div>`:''}`}
-function kilatQ(g){const i=KPOOL[Math.floor(Math.random()*KPOOL.length)];const opts=shuffle([i].concat(shuffle(KPOOL.filter(x=>x!==i)).slice(0,3)));g.q={i,opts}}
-function vKilat(){const g=UI.game;
- if(!g.run&&!g.over)return `${gBack('Kuis Kilat')}<div class="card" style="padding:24px;display:flex;flex-direction:column;gap:12px;align-items:flex-start"><p>Tebak cara baca huruf ${g.set===HIRA?'hiragana':'katakana'} sebanyak mungkin dalam <b>60 detik</b>. Rekor saat ini: <b class="num">${S.best.kilat||0}</b>.</p>
-  <div class="seg"><button class="${g.set===HIRA?'on':''}" data-act="kSet" data-s="h">Hiragana</button><button class="${g.set===KATA?'on':''}" data-act="kSet" data-s="k">Katakana</button></div><button class="btn" data-act="kStart">Mulai</button></div>`;
- if(g.over)return `${gBack('Kuis Kilat')}<div class="card pop" style="padding:24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg width="64" height="64"><use href="#owl"/></svg><div style="flex:1;min-width:180px"><h2 class="num">${g.score} benar</h2><p class="muted">${g.score>=(S.best.kilat||0)?'Rekor baru!':'Rekor: '+S.best.kilat}</p></div><button class="btn" data-act="startGame" data-g="kilat">Main lagi</button></div>`;
- return `${gBack('Kuis Kilat')}<div style="display:flex;gap:8px"><span class="chip-stat timer">${ic('clock')}<span id="ktime" class="num">${g.left}</span>s</span><span class="chip-stat num">Skor ${g.score}</span></div>
- <div class="card" style="padding:18px;max-width:520px"><div class="bigkana">${g.set[g.q.i]}</div><div class="opts" style="grid-template-columns:1fr 1fr">${g.q.opts.map(o=>`<button class="opt" style="justify-content:center;font-weight:700" data-act="kAns" data-o="${o}">${ROMA[o]}</button>`).join('')}</div></div>`}
-function vFlash(){const g=UI.game;const c=g.deck[g.i];
- if(!c)return `${gBack('Flashcard')}<div class="card pop" style="padding:24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg width="64" height="64"><use href="#owl"/></svg><div style="flex:1;min-width:180px"><h2 class="num">${g.known} kata hafal</h2><p class="muted">Ulangi besok agar ingatan makin kuat.</p></div><button class="btn" data-act="startGame" data-g="flash">Kartu baru</button></div>`;
- return `${gBack('Flashcard')}<div style="display:flex;gap:8px;align-items:center"><span class="chip-stat num">Kartu ${g.i+1}/${g.deck.length}</span><span class="chip-stat num">Hafal ${g.known}</span></div>
- <div style="max-width:560px;display:flex;flex-direction:column;gap:12px"><button class="card flash" data-act="fFlip">${g.flip?`<span class="eyebrow">Arti</span><div class="big" style="font-size:1.6rem;line-height:1.5">${esc(c[1])}</div><div class="muted">${rb(c[0])}</div>`:`<span class="eyebrow">Ketuk untuk melihat arti</span><div class="big">${rb(c[0])}</div>`}</button>
- <div style="display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap">${say(c[0])}<div style="display:flex;gap:8px"><button class="btn ghost" data-act="fNext" data-k="0">Belum hafal</button><button class="btn" data-act="fNext" data-k="1">Hafal</button></div></div></div>`}
-function vSusun(){const g=UI.game;const si=g.order[g.i];
- if(si===undefined)return `${gBack('Susun Kalimat')}<div class="card pop" style="padding:24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg width="64" height="64"><use href="#owl"/></svg><div style="flex:1;min-width:180px"><h2 class="num">${g.score}/${SENT.length} benar</h2><p class="muted">Struktur dasar: topik は → keterangan → objek を → predikat.</p></div><button class="btn" data-act="startGame" data-g="susun">Main lagi</button></div>`;
- const s=SENT[si];if(!g.bank){let b;do{b=shuffle(s[0].map((_,i)=>i))}while(s[0].length>1&&b.every((v,i)=>v===i));g.bank=b}
- return `${gBack('Susun Kalimat')}<span class="chip-stat num" style="align-self:flex-start">Kalimat ${g.i+1}/${SENT.length} · Benar ${g.score}</span>
- <div class="card" style="padding:20px;display:flex;flex-direction:column;gap:14px"><span class="eyebrow">Terjemahkan ke bahasa Jepang</span><b style="font-size:1.15rem">${esc(s[1])}</b>
-  <div class="slots">${g.pick.length?g.pick.map((ti,pi)=>`<button class="tok" data-act="sDel" data-i="${pi}" ${g.res?'disabled':''}>${rb(s[0][ti])}</button>`).join(''):'<span class="muted" style="font-size:.9rem">Ketuk kata di bawah sesuai urutan</span>'}</div>
-  <div style="display:flex;flex-wrap:wrap;gap:8px">${g.bank.map(ti=>`<button class="tok ${g.pick.includes(ti)?'used':''}" data-act="sAdd" data-t="${ti}" ${g.res?'disabled':''}>${rb(s[0][ti])}</button>`).join('')}</div>
-  ${g.res?`<div class="expl pop"><b>${g.res==='ok'?'正解！ Benar.':'Belum tepat.'}</b> <span class="jp" style="font-size:1.1rem">${rb(s[0].join(' '))}</span></div>`:''}
-  <div style="display:flex;gap:8px;flex-wrap:wrap">${g.res?`<button class="btn" data-act="sNext">Berikutnya</button>${say(s[0].join(''))}`:`<button class="btn" data-act="sCheck" ${g.pick.length===s[0].length?'':'disabled'}>Periksa</button><button class="btn ghost" data-act="sClear">Ulang</button>`}</div></div>`}
+function vqQ(g){const P=g.pool;let k;do{k=Math.floor(Math.random()*P.length)}while(P.length>1&&g.q&&P[k][0]===g.q.w);
+ const ans=P[k][1],ds=shuffle([...new Set(P.map(v=>v[1]).filter(m=>m!==ans))]).slice(0,3),opts=shuffle([ans,...ds]);
+ g.q={w:P[k][0],opts,a:opts.indexOf(ans)};g.lock=false}
+function kmQ(g){const rows=[];KEIGO.forEach(r=>[2,3].forEach(c=>{if(r[c]!=='—')rows.push([r,c])}));
+ let pick;do{pick=rows[Math.floor(Math.random()*rows.length)]}while(g.q&&pick[0][1]===g.q.verb&&pick[1]===g.q.c);
+ const [r,c]=pick,ans=r[c],other=r[c===2?3:2];let ds=other!=='—'&&other!==ans?[other]:[];
+ const all=[...new Set(KEIGO.flatMap(x=>[x[2],x[3]]))].filter(v=>v!=='—'&&v!==ans&&!ds.includes(v));
+ ds=ds.concat(shuffle(all).slice(0,3-ds.length));const opts=shuffle([ans,...ds]);
+ g.q={verb:r[1],mean:r[0],c,opts,a:opts.indexOf(ans)};g.lock=false}
+function gRun(g){g.run=true;g.left=g.dur;g.fb='';(g.t==='km'?kmQ:vqQ)(g);render();
+ timers.push(setInterval(()=>{if(UI.game!==g)return;g.left--;const el=$('#gtime'),b=$('#gbar');if(el)el.textContent=g.left;if(b)b.style.width=(g.left/g.dur*100)+'%';
+  if(g.left<=0){g.run=false;const c=g.correct,st=g.t==='km'?(c>=12?3:c>=7?2:c>=1?1:0):(c>=15?3:c>=9?2:c>=1?1:0);gFinish(g,st,g.score,gd(g.t,g.lv).name)}},1000))}
+function burst(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const w=document.createElement('div');w.className='burst';w.setAttribute('aria-hidden','true');
+ const c=['var(--maple)','var(--amber)','var(--gold)'];for(let i=0;i<22;i++)w.innerHTML+=`<svg style="left:${Math.random()*100}%;--dx:${Math.round(Math.random()*160-80)}px;animation-delay:${(Math.random()*.5).toFixed(2)}s;color:${c[i%3]}"><use href="#leaf"/></svg>`;
+ document.body.appendChild(w);setTimeout(()=>w.remove(),2600)}
+function gFinish(g,stars,score,label){if(g.over)return;g.over=true;g.run=false;g.stars=stars;g.score=score;stopTimers();
+ const k=starKey(g.t,g.lv);S.stars=S.stars||{};g.newBest=stars>(S.stars[k]||0);if(g.newBest)S.stars[k]=stars;
+ if(score>(S.best['g-'+k]||0))S.best['g-'+k]=score;if(g.correct!==undefined&&g.correct>(S.best['c-'+k]||0))S.best['c-'+k]=g.correct;
+ save();addXP(5+stars*5,label);if(UI.game===g){render();window.scrollTo(0,0)}if(stars>=2)burst()}
+const gBack=(t,lv)=>`<button class="back" data-act="exitGame">${ic('left').replace('<svg','<svg width="18" height="18"')} Semua game</button><header style="display:flex;flex-direction:column;gap:4px"><span class="eyebrow">${lvName(lv)} · ${gd(t,lv).jp}</span><h1>${gd(t,lv).name}</h1></header>`;
+function gResult(g,line){const msg=g.stars===3?'すばらしい！ Sempurna!':g.stars===2?'いいね！ Sedikit lagi bintang tiga.':g.stars===1?'がんばって！ Coba lagi untuk bintang lebih banyak.':'まだまだ！ Ulangi materinya, lalu coba lagi.';
+ return `<div class="card pop gres"><svg width="88" height="88" class="owl-bob" role="img" aria-label="Maskot burung hantu"><use href="#owl"/></svg><div class="gres-stars">${starsHtml(g.stars,36)}</div><h2>${msg}</h2><p class="muted num">${line}</p>${g.newBest?'<span class="pill good">Rekor bintang baru</span>':''}
+ <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center"><button class="btn" data-act="startGame" data-g="${g.t}" data-lv="${g.lv}">Main lagi</button><button class="btn ghost" data-act="exitGame">Pilih game lain</button></div></div>`}
+function vGame(){
+ if(UI.game)return({vq:vTimed,km:vTimed,pm:vPM,gc:vGC,ss:vSS})[UI.game.t]();
+ const lv=UI.gLv||'n5',tot=GLV.reduce((a,v)=>a+lvStars(v[0]),0),max=GLV.reduce((a,v)=>a+gList(v[0]).length*3,0);
+ return `<div class="sec-head"><div><span class="eyebrow">Game · ゲーム</span><h1>Belajar sambil bermain</h1></div><span class="chip-stat">${ic('star')}<span class="num">${tot}/${max} bintang</span></span></div>
+ <p class="muted" style="max-width:62ch">Pilih level, lalu kumpulkan tiga bintang di setiap game. Kosakata dan soal diambil langsung dari materi level tersebut.</p>
+ <div class="lvtabs" role="tablist">${GLV.map(v=>{const n=lvStars(v[0]),m=gList(v[0]).length*3;return `<button class="lvtab ${v[0]===lv?'on':''}" role="tab" aria-selected="${v[0]===lv}" data-act="gLv" data-id="${v[0]}"><b>${v[1]}</b><span style="font-weight:700;font-size:.88rem">${v[2]}</span><div class="bar"><i style="width:${n/m*100}%"></i></div><small class="num">${n}/${m} bintang</small></button>`}).join('')}</div>
+ <div class="grid g2">${gList(lv).map((t,i)=>{const d=gd(t,lv),b=S.best['g-'+starKey(t,lv)];return `<button class="card tap gcard ${lv==='biz'&&i===0?'wide':''}" data-act="startGame" data-g="${t}" data-lv="${lv}"><div style="display:flex;justify-content:space-between;align-items:center;width:100%;gap:8px"><span style="font-family:var(--f-display);color:var(--maple);font-weight:700">${d.jp}</span><span class="gstars">${starsHtml(getStars(t,lv),18)}</span></div><h3>${d.name}</h3><span class="muted" style="font-size:.9rem">${d.desc}</span><span style="display:flex;gap:6px;flex-wrap:wrap">${d.meta.map(m=>`<span class="pill">${m}</span>`).join('')}${b?`<span class="pill good num">Skor terbaik ${b}</span>`:''}</span></button>`}).join('')}</div>`;
+}
+function gIntro(g,rules){return `${gBack(g.t,g.lv)}<div class="card gintro"><p>${rules}</p><div style="display:flex;gap:8px;align-items:center"><span class="muted" style="font-size:.88rem">Bintang terbaik</span>${starsHtml(getStars(g.t,g.lv),18)}</div><button class="btn" data-act="gStart">Mulai</button></div>`}
+function vTimed(){const g=UI.game,km=g.t==='km';
+ if(g.over)return gBack(g.t,g.lv)+gResult(g,`${g.score} poin · ${g.correct} benar · combo terbaik ${g.maxCombo}`);
+ if(!g.run)return gIntro(g,km?'Sebuah kata kerja muncul bersama targetnya: 尊敬語 (hormat) atau 謙譲語 (rendah hati). Pilih bentuk yang benar sebanyak mungkin dalam <b>45 detik</b>. 12 benar = tiga bintang.':g.lv==='kana'?'Tebak cara baca huruf hiragana dan katakana sebanyak mungkin dalam <b>60 detik</b>. 15 benar = tiga bintang.':`Tebak arti kosakata ${lvName(g.lv)} sebanyak mungkin dalam <b>60 detik</b>. Tiga jawaban benar berturut-turut menaikkan pengali skor hingga ×4. 15 benar = tiga bintang.`);
+ const q=g.q,mult=Math.min(4,1+Math.floor(g.combo/3));
+ return `${gBack(g.t,g.lv)}<div class="hud"><div class="tbar"><i id="gbar" style="width:${g.left/g.dur*100}%"></i></div><span class="chip-stat timer">${ic('clock')}<span id="gtime" class="num">${g.left}</span>s</span><span class="chip-stat num">${g.score} poin</span>${g.combo>=2?`<span class="chip-stat combo num">コンボ ${g.combo} · ×${mult}</span>`:''}${g.fb?`<span class="fb pop">${g.fb}</span>`:''}</div>
+ <div class="card gq">${km?`<span class="eyebrow">Ubah ke ${q.c===2?'尊敬語 · hormat':'謙譲語 · rendah hati'}</span><div class="gword">${rb(q.verb)}</div><span class="muted">${esc(q.mean)}</span>`:`<span class="eyebrow">${g.lv==='kana'?'Bagaimana cara bacanya?':'Apa artinya?'}</span><div class="gword ${g.lv==='kana'?'kana-big':''}">${rb(q.w)}</div>`}
+ <div class="opts">${q.opts.map((o,j)=>`<button class="opt" style="justify-content:center;text-align:center" data-act="gAns" data-o="${j}">${km?rb(o):esc(o)}</button>`).join('')}</div></div>`}
+function vPM(){const g=UI.game,win=g.got.length===g.cards.length;
+ if(win&&!g.fin){g.fin=true;g.sec=Math.round((Date.now()-g.start)/1000);const st=g.moves<=9?3:g.moves<=13?2:1;setTimeout(()=>gFinish(g,st,Math.max(10,200-g.moves*8-g.sec),gd(g.t,g.lv).name),600)}
+ if(g.over)return gBack(g.t,g.lv)+gResult(g,`${g.moves} langkah · ${g.sec} detik`);
+ return `${gBack(g.t,g.lv)}<p class="muted">Buka dua kartu. Jika ${g.lv==='kana'?'huruf dan cara bacanya':'kata dan artinya'} cocok, kartu tetap terbuka. Selesai dalam 9 langkah = tiga bintang.</p>
+ <div class="hud"><span class="chip-stat num">Langkah ${g.moves}</span><span class="chip-stat num">Pasangan ${g.got.length/2}/${g.cards.length/2}</span></div>
+ <div class="mgrid ${g.lv==='kana'?'':'wide'}">${g.cards.map((c,i)=>{const up=g.open.includes(i)||g.got.includes(i);return `<button class="mcard ${up?'up':''} ${g.got.includes(i)?'got':''}" data-act="pmFlip" data-i="${i}" aria-label="${up?esc(c.jp?kana(c.f):c.f):'Kartu tertutup'}">${up?`<span class="${c.jp?'mjp':'mtx'}">${c.jp?rb(c.f):esc(c.f)}</span>`:`<svg width="30" height="30" style="opacity:.45"><use href="#leaf"/></svg>`}</button>`}).join('')}</div>`}
+function vGC(){const g=UI.game;
+ if(g.over)return gBack(g.t,g.lv)+gResult(g,`${g.correct} dari ${g.qs.length} benar · sisa nyawa ${g.lives}`);
+ const q=g.qs[g.i],a=g.ans,lock=a!==null,last=g.i===g.qs.length-1||g.lives===0;
+ return `${gBack(g.t,g.lv)}<div class="hud"><span class="hearts" role="img" aria-label="Sisa nyawa ${g.lives}">${[0,1,2].map(i=>`<svg width="24" height="24" style="color:${i<g.lives?'var(--maple)':'var(--line)'}" aria-hidden="true"><use href="#i-heart"/></svg>`).join('')}</span><span class="chip-stat num">Soal ${g.i+1}/${g.qs.length}</span><span class="chip-stat num">Benar ${g.correct}</span></div>
+ <div class="bar"><i style="width:${(g.i+(lock?1:0))/g.qs.length*100}%"></i></div>
+ <article class="card q"><div class="stem">${rb(q.q)}</div><div class="opts ${lock?'locked':''}">${q.p.map((oi,j)=>{let c='';if(lock){if(oi===q.a)c='right';else if(j===a)c='wrong'}return `<button class="opt ${c}" data-act="gcPick" data-o="${j}"><span class="k">${'ABCD'[j]}</span><span>${rb(q.o[oi])}</span></button>`}).join('')}</div>
+ ${lock?`<div class="expl pop"><b>${q.p[a]===q.a?'正解！ Benar.':'Belum tepat.'}</b> ${rbh(q.x)}</div><button class="btn" style="align-self:flex-end" data-act="gcNext">${last?'Lihat hasil':'Soal berikutnya'}</button>`:''}</article>`}
+function vSS(){const g=UI.game;
+ if(g.over)return gBack(g.t,g.lv)+gResult(g,`${g.correct} dari ${g.sents.length} kalimat benar`);
+ const s=g.sents[g.i],T=s[0];if(!g.bank){let b;do{b=shuffle(T.map((_,i)=>i))}while(b.every((v,i)=>T[v]===T[i]));g.bank=b}const done=g.res;
+ return `${gBack(g.t,g.lv)}<div class="hud"><span class="chip-stat num">Kalimat ${g.i+1}/${g.sents.length}</span><span class="chip-stat num">Benar ${g.correct}</span></div>
+ <div class="card" style="padding:20px;display:flex;flex-direction:column;gap:14px;max-width:720px"><span class="eyebrow">Susun menjadi kalimat Jepang</span><b style="font-size:1.12rem">${esc(s[1])}</b>
+  <div class="slots">${g.pick.length?g.pick.map((ti,pi)=>`<button class="tok" data-act="sDel" data-i="${pi}" ${done?'disabled':''}>${rb(T[ti])}</button>`).join(''):'<span class="muted" style="font-size:.9rem">Ketuk potongan kata di bawah sesuai urutan</span>'}</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px">${g.bank.map(ti=>`<button class="tok ${g.pick.includes(ti)?'used':''}" data-act="sAdd" data-t="${ti}" ${done?'disabled':''}>${rb(T[ti])}</button>`).join('')}</div>
+  ${done?`<div class="expl pop"><b>${done==='ok'?'正解！ Benar.':'Belum tepat.'}</b> <span class="jp" style="font-size:1.1rem">${rb(T.join(' '))}</span></div>`:''}
+  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${done?`<button class="btn" data-act="sNext">${g.i===g.sents.length-1?'Lihat hasil':'Berikutnya'}</button>${say(T.join(''))}`:`<button class="btn" data-act="sCheck" ${g.pick.length===T.length?'':'disabled'}>Periksa</button><button class="btn ghost" data-act="sClear">Ulang</button>`}</div></div>`}
 
 /* ===================== PROFIL ===================== */
 function vProfile(){const {r,nx}=rank();const pr=nx?(S.xp-r[0])/(nx[0]-r[0]):1;const L=allLessons();const dn=L.filter(x=>S.done[x.id]).length;
@@ -1061,7 +1138,7 @@ function vProfile(){const {r,nx}=rank();const pr=nx?(S.xp-r[0])/(nx[0]-r[0]):1;c
  return `<section class="card" style="padding:22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap"><svg width="96" height="96" role="img" aria-label="Avatar burung hantu"><use href="#owl"/></svg>
   <div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:6px"><span class="eyebrow">Peringkat · ランク</span><h1>${S.name?esc(S.name):'Pelajar Owl'}</h1><div><b style="color:var(--maple)">${rb(r[1])}</b> · ${r[2]}</div>
   <div class="bar" style="max-width:360px"><i style="width:${pr*100}%"></i></div><span class="muted num" style="font-size:.85rem">${nx?`${nx[0]-S.xp} XP lagi menuju ${nx[2]}`:'Peringkat tertinggi tercapai'}</span></div></section>
- <section class="grid g4">${[['Total XP',S.xp],['Hari beruntun',curStreak()],['Pelajaran',dn+'/'+L.length],['Kaiwa selesai',Object.keys(S.kaiwa).length+'/'+KAIWA.length],['Tryout terbaik',best]].map(s=>`<div class="card" style="padding:16px"><span class="eyebrow">${s[0]}</span><div class="num" style="font-size:1.6rem;font-weight:800;font-family:var(--f-display)">${s[1]}</div></div>`).join('')}</section>
+ <section class="grid g3">${[['Total XP',S.xp],['Bintang game',GLV.reduce((a,v)=>a+lvStars(v[0]),0)],['Hari beruntun',curStreak()],['Pelajaran',dn+'/'+L.length],['Kaiwa selesai',Object.keys(S.kaiwa).length+'/'+KAIWA.length],['Tryout terbaik',best]].map(s=>`<div class="card" style="padding:16px"><span class="eyebrow">${s[0]}</span><div class="num" style="font-size:1.6rem;font-weight:800;font-family:var(--f-display)">${s[1]}</div></div>`).join('')}</section>
  <section class="card" style="padding:20px;display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>XP 7 hari terakhir</h2><span class="muted" style="font-size:.85rem">Target harian ${GOAL} XP</span></div>
   <div>
   <div class="weekbars">${days.map((d,i)=>{const v=S.days[d.k]||0;return `<div class="${i===6?'today':''}"><span>${v||''}</span><i style="height:calc(${v/mx} * (100% - 40px))"></i><small>${i===6?'Hari ini':d.l}</small></div>`}).join('')}</div></div></section>
@@ -1108,21 +1185,22 @@ const ACT={
  rev:d=>{UI.rev=UI.rev===+d.i?null:+d.i;rerender()},
  retryQuiz:()=>{const Q=UI.quiz;const t=Q.tid&&TRYOUTS.find(x=>x.id===Q.tid);if(t)ACT.startTryout({id:t.id});else startQuiz('latihan',shuffle(Q.qs.map(q=>q.k)),Q.title,null,0)},
  exitQuiz:()=>openSub(()=>{UI.quiz=null}),
- startGame:d=>openSub(()=>{UI.game=initGame(d.g)}),
+ gLv:d=>{UI.gLv=d.id;rerender()},
+ startGame:d=>openSub(()=>{UI.game=initGame(d.g,d.lv||UI.gLv||'n5')}),
  exitGame:()=>openSub(()=>{UI.game=null}),
- mFlip:d=>{const g=UI.game,i=+d.i;if(g.busy||g.open.includes(i)||g.got.includes(i))return;g.open.push(i);
-  if(g.open.length===2){g.moves++;const[a,b]=g.open;if(g.cards[a].id===g.cards[b].id&&a!==b){g.got.push(a,b);g.open=[];speak(HIRA[g.cards[a].id])}else{g.busy=true;setTimeout(()=>{g.open=[];g.busy=false;if(UI.game===g)rerender()},750)}}rerender()},
- kSet:d=>{UI.game.set=d.s==='h'?HIRA:KATA;rerender()},
- kStart:()=>{const g=UI.game;g.run=true;g.left=60;g.score=0;kilatQ(g);render();timers.push(setInterval(()=>{g.left--;const el=$('#ktime');if(el)el.textContent=g.left;if(g.left<=0){stopTimers();g.run=false;g.over=true;const best=S.best.kilat||0;if(g.score>best)S.best.kilat=g.score;save();addXP(Math.min(30,g.score*2),'Kuis Kilat');render()}},1000))},
- kAns:(d,el)=>{const g=UI.game;if(!g.run)return;if(+d.o===g.q.i){g.score++;kilatQ(g);rerender()}else{el.classList.add('wrong','shake');const ok=document.querySelector(`[data-act="kAns"][data-o="${g.q.i}"]`);ok&&ok.classList.add('right');setTimeout(()=>{if(g.run){kilatQ(g);rerender()}},450)}},
- fFlip:()=>{UI.game.flip=!UI.game.flip;rerender()},
- fNext:d=>{const g=UI.game;if(+d.k)g.known++;else if(!g.deck[g.i].again){g.deck.push(Object.assign([...g.deck[g.i]],{again:1}))}g.i++;g.flip=false;
-  if(!g.deck[g.i]){S.best.flash=g.known;save();addXP(10,'Flashcard selesai')}rerender()},
+ gStart:()=>gRun(UI.game),
+ gAns:(d,el)=>{const g=UI.game;if(!g||!g.run||g.lock)return;g.lock=true;const next=()=>{if(UI.game===g&&g.run){(g.t==='km'?kmQ:vqQ)(g);rerender()}};
+  if(+d.o===g.q.a){g.correct++;g.combo++;g.maxCombo=Math.max(g.maxCombo,g.combo);const m=Math.min(4,1+Math.floor(g.combo/3));g.score+=10*m;g.fb=g.combo>=3?'すごい！':'正解！';el.classList.add('right');setTimeout(next,220)}
+  else{g.combo=0;g.fb='おしい！';el.classList.add('wrong','shake');const r=document.querySelector(`[data-act="gAns"][data-o="${g.q.a}"]`);r&&r.classList.add('right');setTimeout(next,700)}},
+ pmFlip:d=>{const g=UI.game,i=+d.i;if(g.busy||g.fin||g.open.includes(i)||g.got.includes(i))return;g.open.push(i);
+  if(g.open.length===2){g.moves++;const[a,b]=g.open;if(g.cards[a].id===g.cards[b].id){g.got.push(a,b);g.open=[];const w=g.cards[a].jp?g.cards[a]:g.cards[b];speak(w.f)}else{g.busy=true;setTimeout(()=>{g.open=[];g.busy=false;if(UI.game===g)rerender()},800)}}rerender()},
+ gcPick:d=>{const g=UI.game;if(g.ans!==null)return;g.ans=+d.o;const q=g.qs[g.i];if(q.p[g.ans]===q.a)g.correct++;else g.lives--;rerender()},
+ gcNext:()=>{const g=UI.game;if(g.lives===0||g.i===g.qs.length-1){const r=g.correct/g.qs.length;gFinish(g,r>=.9?3:r>=.7?2:r>=.4?1:0,g.correct*10,gd(g.t,g.lv).name)}else{g.i++;g.ans=null;render();window.scrollTo(0,0)}},
  sAdd:d=>{const g=UI.game,t=+d.t;if(!g.pick.includes(t)){g.pick.push(t);rerender()}},
  sDel:d=>{UI.game.pick.splice(+d.i,1);rerender()},
  sClear:()=>{UI.game.pick=[];rerender()},
- sCheck:()=>{const g=UI.game;const ok=g.pick.every((v,i)=>v===i);g.res=ok?'ok':'no';if(ok){g.score++;addXP(5,'Kalimat benar')}rerender()},
- sNext:()=>{const g=UI.game;g.i++;g.pick=[];g.bank=null;g.res=null;if(g.i>=SENT.length){S.best.susun=Math.max(S.best.susun||0,g.score);save()}rerender()},
+ sCheck:()=>{const g=UI.game,T=g.sents[g.i][0];const ok=g.pick.map(i=>T[i]).join('')===T.join('');g.res=ok?'ok':'no';if(ok){g.correct++;speak(T.join(''))}rerender()},
+ sNext:()=>{const g=UI.game,n=g.sents.length;if(g.i===n-1){const c=g.correct;gFinish(g,c===n?3:c>=Math.ceil(n*.6)?2:c>=1?1:0,c*20,gd(g.t,g.lv).name)}else{g.i++;g.pick=[];g.bank=null;g.res=null;rerender()}},
  setT:d=>{S.set[d.k]=!S.set[d.k];save();rerender()},
  setV:d=>{S.set[d.k]=d.k==='rate'?+d.v:d.v;save();rerender()},
  resetAsk:()=>{UI.reset=true;rerender()},resetNo:()=>{UI.reset=false;rerender()},
