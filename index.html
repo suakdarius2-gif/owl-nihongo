@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Owl Nihongo: belajar bahasa Jepang dari nol sampai bisnis. Kaiwa bersuara, soal dan tryout JFT A2, game interaktif, dan progres harian.">
+<meta name="theme-color" content="#B5462F">
+<meta property="og:title" content="Owl Nihongo">
+<meta property="og:description" content="Belajar bahasa Jepang dari nol sampai bisnis.">
+<meta property="og:image" content="icons/icon-512.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Owl Nihongo">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Owl Nihongo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+/* Layout: sidebar kiri (desktop) / tab bawah (HP); konten satu kolom, kartu dipakai hanya untuk objek yang bisa disentuh. */
+:root{
+  --bg:#FBF5EC; --surface:#FFFDF8; --surface-2:#F4EADB; --line:#E7D8C4;
+  --ink:#3B2A20; --ink-2:#6E5848; --ink-3:#9A8370;
+  --maple:#B5462F; --maple-ink:#FFF6EF; --maple-soft:#F6E0D6;
+  --amber:#D9802F; --amber-soft:#FBE8D1; --gold:#B98A2E;
+  --good:#3E7D4F; --good-soft:#DFEFE1; --bad:#B5462F; --bad-soft:#F6DDD5;
+  --shadow:0 1px 2px rgba(59,42,32,.06),0 6px 20px rgba(59,42,32,.07);
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",system-ui,sans-serif;
+  --rt:.6em; --r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1D1713; --surface:#271F19; --surface-2:#32281F; --line:#46382D;
+  --ink:#F3E8DA; --ink-2:#C9B39D; --ink-3:#94806D;
+  --maple:#E2735B; --maple-ink:#2A130D; --maple-soft:#4A2A21;
+  --amber:#EFA15A; --amber-soft:#463121; --gold:#DDB462;
+  --good:#7CC08E; --good-soft:#233629; --bad:#EE8A75; --bad-soft:#4A2821;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1D1713; --surface:#271F19; --surface-2:#32281F; --line:#46382D;
+  --ink:#F3E8DA; --ink-2:#C9B39D; --ink-3:#94806D;
+  --maple:#E2735B; --maple-ink:#2A130D; --maple-soft:#4A2A21;
+  --amber:#EFA15A; --amber-soft:#463121; --gold:#DDB462;
+  --good:#7CC08E; --good-soft:#233629; --bad:#EE8A75; --bad-soft:#4A2821;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--maple);outline-offset:2px;border-radius:8px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3;letter-spacing:.01em}
+h1{font-size:clamp(1.6rem,1.2rem + 1.6vw,2.2rem)}
+h2{font-size:1.35rem}
+h3{font-size:1.08rem}
+p{margin:0}
+ruby{ruby-position:over}
+rt{font-size:var(--rt);color:var(--ink-2);font-weight:500;letter-spacing:0;font-family:var(--f-body)}
+.nofuri rt{display:none}
+.notr .tr{display:none}
+.jp{font-family:var(--f-body);font-size:1.28rem;line-height:2.25;font-weight:500}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.muted{color:var(--ink-2)}
+.num{font-variant-numeric:tabular-nums}
+
+/* Shell */
+.app{display:grid;grid-template-columns:1fr;min-height:100%}
+.side{display:none}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.brand svg{width:38px;height:38px}
+.brand b{font-family:var(--f-display);font-size:1.15rem;display:block;line-height:1.1}
+.brand small{font-size:.7rem;color:var(--ink-3);letter-spacing:.14em}
+.chip-stat svg{width:15px;height:15px;color:var(--amber);flex:none}
+.chip-stat{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:var(--surface-2);font-weight:700;font-size:.85rem}
+.main{min-width:0;padding-block:20px 110px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.view{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(5,1fr);background:var(--surface);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(4px,env(safe-area-inset-left,0px));padding-right:max(4px,env(safe-area-inset-right,0px))}
+.tabs a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 2px 8px;text-decoration:none;color:var(--ink-3);font-size:.7rem;font-weight:700}
+.tabs a svg{width:22px;height:22px}
+.tabs a.on{color:var(--maple)}
+.tabs a .jpn{font-size:.62rem;font-weight:500;opacity:.8}
+@media (min-width:900px){
+  .app{grid-template-columns:252px 1fr}
+  .top,.tabs{display:none}
+  .side{display:flex;flex-direction:column;gap:22px;position:sticky;top:0;height:100vh;padding:24px 16px;border-right:1px solid var(--line);background:var(--surface)}
+  .side nav{display:flex;flex-direction:column;gap:4px}
+  .side nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;text-decoration:none;color:var(--ink-2);font-weight:700}
+  .side nav a svg{width:20px;height:20px}
+  .side nav a .jpn{margin-left:auto;font-size:.72rem;font-weight:500;color:var(--ink-3)}
+  .side nav a:hover{background:var(--surface-2)}
+  .side nav a.on{background:var(--maple-soft);color:var(--maple)}
+  .main{padding-block:32px 48px}
+}
+.side .goal{margin-top:auto;padding:14px;border-radius:var(--r);background:var(--surface-2);display:flex;gap:12px;align-items:center}
+
+/* Common pieces */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border-radius:12px;font-weight:700;background:var(--maple);color:var(--maple-ink);transition:transform .12s,filter .12s}
+.btn:hover{filter:brightness(1.06)}.btn:active{transform:translateY(1px)}
+.btn.ghost{background:var(--surface-2);color:var(--ink)}
+.btn.line{background:transparent;border:1.5px solid var(--line);color:var(--ink)}
+.btn.sm{padding:7px 12px;font-size:.85rem;border-radius:10px}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.iconbtn{width:38px;height:38px;border-radius:50%;display:inline-grid;place-items:center;background:var(--surface-2);color:var(--maple);flex:none}
+.iconbtn svg{width:18px;height:18px}
+.iconbtn:hover{background:var(--maple-soft)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.tap{transition:transform .15s,border-color .15s;text-align:left}
+.tap:hover{transform:translateY(-2px);border-color:var(--amber)}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:var(--amber-soft);color:var(--ink)}
+.pill.maple{background:var(--maple-soft);color:var(--maple)}
+.pill.good{background:var(--good-soft);color:var(--good)}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sec-head h2 .jpn{font-size:.85rem;color:var(--ink-3);margin-left:8px;font-weight:600}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.bar{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--amber),var(--maple));border-radius:99px}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--ink-2);font-weight:700;font-size:.9rem;align-self:flex-start}
+.back:hover{color:var(--maple)}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);opacity:0;z-index:50;
+  background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;font-size:.9rem;transition:.25s;pointer-events:none;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (min-width:900px){.toast{bottom:28px}}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;border-radius:22px;padding:26px;background:
+  radial-gradient(120% 90% at 100% 0%,var(--amber-soft),transparent 60%),
+  radial-gradient(90% 80% at 0% 100%,var(--maple-soft),transparent 60%),var(--surface);border:1px solid var(--line);
+  display:grid;grid-template-columns:1fr;gap:20px;align-items:center}
+@media (min-width:640px){.hero{grid-template-columns:1fr 190px;padding:32px}}
+.hero .owl-big{width:150px;height:150px;justify-self:center;position:relative;z-index:1}
+@media (min-width:640px){.hero .owl-big{width:190px;height:190px}}
+.hero-text{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1;min-width:0}
+.hero .greet{font-family:var(--f-display);color:var(--maple);font-size:1.05rem;font-weight:700}
+.stats{display:flex;flex-wrap:wrap;gap:8px}
+.leaves{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.leaves svg{position:absolute;top:-30px;width:20px;height:20px;opacity:.75;animation:fall linear infinite}
+@keyframes fall{0%{transform:translate(0,-10px) rotate(0)}50%{transform:translate(-30px,140px) rotate(160deg)}100%{transform:translate(10px,320px) rotate(320deg);opacity:0}}
+.owl-eyes{transform-origin:60px 66px;animation:blink 5s infinite}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.owl-bob{animation:bob 4s ease-in-out infinite;transform-origin:center bottom}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.leaves{display:none}}
+
+/* Feature tiles */
+.feat{padding:18px;display:flex;flex-direction:column;gap:10px;min-height:150px}
+.feat .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--maple-soft);color:var(--maple)}
+.feat .ico svg{width:24px;height:24px}
+.feat .ico.am{background:var(--amber-soft);color:var(--amber)}
+.feat b{font-size:1.02rem}
+.feat .jpn{font-family:var(--f-display);color:var(--ink-3);font-size:.85rem;margin-left:6px}
+
+/* Roadmap */
+.road{display:flex;flex-direction:column;gap:0;position:relative}
+.stage{display:grid;grid-template-columns:52px 1fr;gap:14px;position:relative;padding-bottom:18px}
+.stage::before{content:"";position:absolute;left:25px;top:52px;bottom:0;width:2px;background:repeating-linear-gradient(var(--line) 0 6px,transparent 6px 11px)}
+.stage:last-child::before{display:none}
+.stage .badge{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:.95rem;background:var(--surface);border:2px solid var(--line);color:var(--ink-2)}
+.stage.done .badge{background:var(--maple);border-color:var(--maple);color:var(--maple-ink)}
+.stage.cur .badge{border-color:var(--maple);color:var(--maple)}
+.stage-body{padding:16px;min-width:0}
+.stage-body header{display:flex;justify-content:space-between;gap:10px;align-items:start;flex-wrap:wrap}
+.lessons{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.lrow{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;background:var(--surface-2);text-align:left;width:100%}
+.lrow:hover{background:var(--amber-soft)}
+.lrow .chk{width:24px;height:24px;border-radius:50%;border:2px solid var(--ink-3);flex:none;display:grid;place-items:center}
+.lrow.ok .chk{background:var(--good);border-color:var(--good);color:var(--surface)}
+.lrow .chk svg{width:14px;height:14px}
+.lrow .t{flex:1;min-width:0}
+.lrow .t small{display:block;color:var(--ink-3);font-size:.78rem}
+
+/* Lesson */
+.point{padding:20px;display:flex;flex-direction:column;gap:12px}
+.pattern{font-size:1.25rem;font-weight:700;color:var(--maple);font-family:var(--f-body);line-height:2}
+.ex{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px dashed var(--line)}
+.ex .jp{font-size:1.2rem}
+.ex .tr{color:var(--ink-2);font-size:.9rem;line-height:1.5}
+.ex>div{min-width:0;flex:1}
+.vtab{width:100%;border-collapse:collapse}
+.vtab td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle}
+.vtab td:first-child{font-size:1.15rem;font-weight:500;line-height:2.1}
+.vtab td:last-child{width:46px}
+.tblwrap{overflow-x:auto}
+.kana-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.kana{aspect-ratio:1;max-width:100%;border-radius:14px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.kana b{font-size:clamp(1.4rem,1rem + 2vw,2.2rem);font-weight:500;line-height:1}
+.kana small{color:var(--ink-3);font-weight:700;font-size:.78rem}
+.kana:hover{border-color:var(--maple);background:var(--maple-soft)}
+.kana.empty{visibility:hidden}
+.seg{display:inline-flex;background:var(--surface-2);padding:4px;border-radius:12px;gap:4px;flex-wrap:wrap}
+.seg button{padding:7px 14px;border-radius:9px;font-weight:700;font-size:.88rem;color:var(--ink-2)}
+.seg button.on{background:var(--surface);color:var(--maple);box-shadow:var(--shadow)}
+
+/* Quiz */
+.q{padding:20px;display:flex;flex-direction:column;gap:14px}
+.q .stem{font-size:1.2rem;line-height:2.2;font-weight:500}
+.opts{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.opt{padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);text-align:left;font-size:1.05rem;line-height:1.9;display:flex;gap:10px;align-items:center}
+.opt .k{width:26px;height:26px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;font-size:.8rem;font-weight:700;flex:none;line-height:1}
+.opt:hover{border-color:var(--amber)}
+.opt.sel{border-color:var(--maple);background:var(--maple-soft)}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opts.locked .opt{pointer-events:none}
+.expl{padding:14px 16px;border-radius:12px;background:var(--amber-soft);font-size:.95rem;line-height:1.8}
+.expl b{color:var(--maple)}
+.qnav{display:flex;flex-wrap:wrap;gap:6px}
+.qnav button{width:38px;height:38px;border-radius:10px;background:var(--surface-2);font-weight:700;font-size:.85rem}
+.qnav button.ans{background:var(--amber-soft)}
+.qnav button.cur{outline:2px solid var(--maple)}
+.qnav button.r{background:var(--good-soft);color:var(--good)}
+.qnav button.w{background:var(--bad-soft);color:var(--bad)}
+.timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:1.1rem;color:var(--maple)}
+.score-ring{width:140px;height:140px}
+.confirm{padding:14px;border-radius:12px;background:var(--maple-soft);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+/* Kaiwa */
+.chat{display:flex;flex-direction:column;gap:14px}
+.bub{display:flex;gap:10px;align-items:flex-end;max-width:92%}
+.bub .av{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:800;font-size:.8rem;background:var(--amber-soft);color:var(--ink)}
+.bub .msg{padding:10px 14px;border-radius:16px 16px 16px 4px;background:var(--surface);border:1px solid var(--line);min-width:0}
+.bub .who{font-size:.72rem;color:var(--ink-3);font-weight:700}
+.bub .jp{font-size:1.15rem;line-height:2.1}
+.bub .tr{color:var(--ink-2);font-size:.88rem;line-height:1.5}
+.bub.me{align-self:flex-end;flex-direction:row-reverse}
+.bub.me .msg{border-radius:16px 16px 4px 16px;background:var(--maple-soft);border-color:transparent}
+.bub.me .av{background:var(--maple);color:var(--maple-ink)}
+.bub.playing .msg{outline:2px solid var(--amber)}
+.bub .iconbtn{width:32px;height:32px}
+.pop{animation:pop .3s ease}
+@keyframes pop{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.note{padding:14px 16px;border-left:3px solid var(--gold);background:var(--surface-2);border-radius:0 12px 12px 0;font-size:.92rem;line-height:1.8}
+
+/* Games */
+.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:520px}
+.mcard{aspect-ratio:3/4;border-radius:14px;background:var(--maple);color:var(--maple-ink);display:grid;place-items:center;font-size:1.6rem;font-weight:700;position:relative}
+.mcard.back-face::after{content:"";width:40%;height:40%;background:currentColor;opacity:.25;-webkit-mask:var(--leaf) center/contain no-repeat;mask:var(--leaf) center/contain no-repeat}
+.mcard.up{background:var(--surface);color:var(--ink);border:1.5px solid var(--line)}
+.mcard.got{background:var(--good-soft);color:var(--good);border-color:var(--good)}
+.flash{min-height:240px;padding:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;cursor:pointer;width:100%}
+.flash .big{font-size:2rem;line-height:2.2;font-weight:500}
+.slots{min-height:64px;padding:12px;border-radius:14px;border:2px dashed var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tok{padding:8px 14px;border-radius:12px;background:var(--surface);border:1.5px solid var(--line);font-size:1.1rem;line-height:2;font-weight:500}
+.tok:hover{border-color:var(--maple)}
+.tok.used{visibility:hidden}
+.bigkana{font-size:4.5rem;line-height:1;font-weight:500;text-align:center;padding:24px 0}
+
+/* Profile */
+.weekbars{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:150px}
+.weekbars div{display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.weekbars i{width:100%;max-width:34px;border-radius:8px 8px 3px 3px;background:var(--amber);min-height:3px}
+.weekbars .today i{background:var(--maple)}
+.weekbars small{font-size:.72rem;color:var(--ink-3);font-weight:700}
+.weekbars span{font-size:.7rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.bdg{padding:14px 10px;text-align:center;border-radius:14px;background:var(--surface-2);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:.55}
+.bdg.on{opacity:1;background:var(--amber-soft)}
+.bdg .medal{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--surface);font-family:var(--f-display);font-weight:800;color:var(--ink-3);font-size:1.1rem}
+.bdg.on .medal{background:var(--maple);color:var(--maple-ink)}
+.bdg b{font-size:.85rem}.bdg small{font-size:.72rem;color:var(--ink-2);line-height:1.4}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:700;font-size:.88rem}
+.input{padding:11px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;width:100%}
+.setrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.switch{width:48px;height:28px;border-radius:99px;background:var(--line);position:relative;flex:none}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--surface);transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.switch.on{background:var(--maple)}
+.switch.on::after{left:23px}
+.wod{padding:20px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.wod .w{font-size:1.8rem;line-height:2.2;font-weight:500}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="leaf" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5l1.9 4.4 3.3-1.7-.8 4.2 4.1-1-2.1 3.3 3.9 1.3-3.7 2 1 2.3-4.6-.6.6 4.5-3.6-2.6V23h-1.2v-5.4l-3.6 2.6.6-4.5-4.6.6 1-2.3-3.7-2 3.9-1.3L4.2 7.4l4.1 1-.8-4.2 3.3 1.7z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 4.5A1.5 1.5 0 0 1 5.5 3H11v17H5.5A1.5 1.5 0 0 1 4 18.5zM20 4.5A1.5 1.5 0 0 0 18.5 3H13v17h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM17 9h3a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-3-3h-3"/></symbol>
+    <symbol id="i-pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 3h6l1 2h3v16H5V5h3zM9 11l2 2 4-4M9 17h6"/></symbol>
+    <symbol id="i-game" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 7h10a5 5 0 0 1 0 10c-1.5 0-2.3-1-3-2h-4c-.7 1-1.5 2-3 2A5 5 0 0 1 7 7zM8 10v4M6 12h4M16 11h.01M18 13h.01"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M5 9v6h4l5 4V5L9 9zm11.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-fire" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2s5 4.5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 1-3.5S9 11 11 11c0-4 1-9 1-9zm0 20a7 7 0 0 0 7-7c0-1.5-.4-2.8-1-4 0 3-2 5-2 5a4 4 0 0 1-8 0c0-.5 0-1 .2-1.5A6.9 6.9 0 0 0 5 15a7 7 0 0 0 7 7z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2"/></symbol>
+    <symbol id="owl" viewBox="0 0 120 120">
+      <ellipse cx="60" cy="114" rx="30" ry="4" fill="#3B2A20" opacity=".12"/>
+      <ellipse cx="25" cy="86" rx="11" ry="21" fill="#8E4E28" transform="rotate(14 25 86)"/>
+      <ellipse cx="95" cy="86" rx="11" ry="21" fill="#8E4E28" transform="rotate(-14 95 86)"/>
+      <ellipse cx="60" cy="80" rx="36" ry="34" fill="#B8693A"/>
+      <ellipse cx="60" cy="97" rx="21" ry="15" fill="#F4E3C8"/>
+      <path d="M50 92q3 3 6 0M64 92q3 3 6 0M56 100q4 3 8 0" stroke="#C9A57E" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="45" cy="66" r="16" fill="#F7EAD5"/><circle cx="75" cy="66" r="16" fill="#F7EAD5"/>
+      <g class="owl-eyes"><circle cx="45" cy="66" r="8.5" fill="#2B1F17"/><circle cx="75" cy="66" r="8.5" fill="#2B1F17"/>
+      <circle cx="48" cy="63" r="2.8" fill="#fff"/><circle cx="78" cy="63" r="2.8" fill="#fff"/></g>
+      <circle cx="45" cy="66" r="14" fill="none" stroke="#C99A3B" stroke-width="3"/>
+      <circle cx="75" cy="66" r="14" fill="none" stroke="#C99A3B" stroke-width="3"/>
+      <path d="M59 64h2" stroke="#C99A3B" stroke-width="3" stroke-linecap="round"/>
+      <path d="M60 74l-6 6 6 8 6-8z" fill="#E08A3C"/>
+      <ellipse cx="50" cy="113" rx="6" ry="3" fill="#E08A3C"/><ellipse cx="70" cy="113" rx="6" ry="3" fill="#E08A3C"/>
+      <path d="M36 32h48v12q-24 9-48 0z" fill="#2B211B"/>
+      <path d="M60 10l45 16-45 16-45-16z" fill="#3A2C23"/>
+      <path d="M60 10l45 16-45 16-45-16z" fill="none" stroke="#2B211B" stroke-width="1.5"/>
+      <path d="M60 26L96 30v16" stroke="#D9A93F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M93 46h6l-1 9h-4z" fill="#D9A93F"/>
+      <circle cx="60" cy="26" r="3" fill="#D9A93F"/>
+      <g transform="translate(86 92) rotate(-20)"><use href="#leaf" width="22" height="22" color="#C8472D"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="app" id="app">
+  <aside class="side" aria-label="Navigasi utama">
+    <a class="brand" href="#beranda"><svg><use href="#owl"/></svg><span><b>Owl Nihongo</b><small>フクロウ日本語</small></span></a>
+    <nav id="sidenav"></nav>
+    <div class="goal" id="sidegoal"></div>
+  </aside>
+  <header class="top">
+    <a class="brand" href="#beranda"><svg><use href="#owl"/></svg><span><b>Owl Nihongo</b><small>フクロウ日本語</small></span></a>
+    <div style="display:flex;gap:6px;align-items:center" id="topstats"></div>
+  </header>
+  <main class="main"><div class="view" id="view"></div></main>
+  <nav class="tabs" id="tabs" aria-label="Navigasi"></nav>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===================== DATA MATERI ===================== */
+const HIRA=[...'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもや・ゆ・よらりるれろわ・・・をん・・・・'];
+const KATA=[...'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤ・ユ・ヨラリルレロワ・・・ヲン・・・・'];
+const ROMA='a i u e o ka ki ku ke ko sa shi su se so ta chi tsu te to na ni nu ne no ha hi fu he ho ma mi mu me mo ya - yu - yo ra ri ru re ro wa - - - wo n - - - -'.split(' ');
+
+const LEVELS=[
+ {id:'kana',tag:'かな',name:'Kana Dasar',sub:'Hiragana & Katakana',desc:'Titik nol: mengenal 46 huruf hiragana dan 46 katakana beserta bunyinya.',lessons:[
+  {id:'hira',kana:'hira',title:'Hiragana',jp:'ひらがな',sum:'Huruf dasar untuk kata asli Jepang dan partikel. Ketuk huruf untuk mendengar bunyinya.'},
+  {id:'kata',kana:'kata',title:'Katakana',jp:'カタカナ',sum:'Huruf untuk kata serapan asing, nama negara, dan nama orang asing.'}]},
+ {id:'n5',tag:'N5',name:'Pemula',sub:'Setara Minna no Nihongo I awal',desc:'Pola kalimat dasar, kata tunjuk, kata kerja ます, dan kata sifat.',lessons:[
+  {id:'n5-1',title:'Perkenalan Diri',jp:'自己紹介{じこしょうかい}',sum:'Menyatakan identitas dengan pola は〜です.',
+   points:[
+    {p:'N1 は N2 です',e:'"N1 adalah N2". Partikel は menandai topik dan dibaca <b>wa</b>.',ex:[['わたしは アンディです。','Saya Andi.'],['わたしは インドネシア人{じん}です。','Saya orang Indonesia.']]},
+    {p:'N1 は N2 じゃ ありません',e:'Bentuk negatif: "N1 bukan N2". Dalam tulisan formal: では ありません.',ex:[['わたしは 学生{がくせい}じゃ ありません。','Saya bukan pelajar.']]},
+    {p:'N1 は N2 ですか',e:'Tambahkan か di akhir untuk bertanya. Jawab dengan はい / いいえ.',ex:[['あなたは 先生{せんせい}ですか。','Apakah Anda guru?'],['はい、 先生{せんせい}です。','Ya, saya guru.']]}],
+   vocab:[['私{わたし}','saya'],['学生{がくせい}','pelajar'],['先生{せんせい}','guru'],['会社員{かいしゃいん}','karyawan perusahaan'],['〜人{じん}','orang (negara)'],['はじめまして','salam saat pertama bertemu'],['よろしく お願{ねが}いします','mohon bantuannya']],
+   quiz:[
+    {q:'わたし（　）アンディです。',o:['は','を','に'],a:0,x:'Partikel <b>は</b> menandai topik kalimat dan dibaca "wa".'},
+    {q:'"Saya bukan guru." yang benar adalah…',o:['わたしは 先生{せんせい}です。','わたしは 先生{せんせい}じゃ ありません。','わたしは 先生{せんせい}ですか。'],a:1,x:'Negatif dari です adalah <b>じゃ ありません</b>.'},
+    {q:'はじめまして diucapkan saat…',o:['pertama kali bertemu','berpamitan pulang','sebelum tidur'],a:0,x:'<b>はじめまして</b> = "salam kenal", hanya untuk pertemuan pertama.'}]},
+  {id:'n5-2',title:'Ini, Itu, dan Kepemilikan',jp:'これ・それ・あれ',sum:'Kata tunjuk benda dan partikel の.',
+   points:[
+    {p:'これ / それ / あれ は N です',e:'これ dekat pembicara, それ dekat lawan bicara, あれ jauh dari keduanya.',ex:[['これは 本{ほん}です。','Ini buku.'],['あれは 何{なん}ですか。','Itu (yang jauh) apa?']]},
+    {p:'この / その / あの + N',e:'Bentuk yang langsung diikuti kata benda.',ex:[['あの 人{ひと}は だれですか。','Orang itu siapa?']]},
+    {p:'N1 の N2',e:'の menyatakan kepemilikan atau keterangan: "N2 milik/dari N1".',ex:[['それは わたしの かさです。','Itu payung saya.'],['日本語{にほんご}の 本{ほん}','buku bahasa Jepang']]}],
+   vocab:[['本{ほん}','buku'],['かさ','payung'],['かばん','tas'],['時計{とけい}','jam'],['だれ','siapa'],['何{なん}','apa']],
+   quiz:[
+    {q:'Benda ada di tangan Anda: （　）は 何{なん}ですか。',o:['これ','それ','あれ'],a:0,x:'Benda dekat pembicara memakai <b>これ</b>.'},
+    {q:'"jam saya" dalam bahasa Jepang:',o:['わたし 時計{とけい}','わたしの 時計{とけい}','時計{とけい}の わたし'],a:1,x:'Pola <b>N1 の N2</b>: わたし<b>の</b> 時計.'},
+    {q:'あの（　）は だれですか。',o:['人{ひと}','本{ほん}','これ'],a:0,x:'だれ (siapa) dipakai untuk orang: あの <b>人</b>.'}]},
+  {id:'n5-3',title:'Kata Kerja Bentuk ます',jp:'動詞{どうし}の ます形{けい}',sum:'Kegiatan sehari-hari: sekarang, lampau, positif, negatif.',
+   points:[
+    {p:'V-ます / ません / ました / ませんでした',e:'Empat bentuk sopan: positif, negatif, lampau, lampau negatif.',ex:[['毎朝{まいあさ} パンを 食{た}べます。','Setiap pagi saya makan roti.'],['日曜日{にちようび}は 働{はたら}きません。','Hari Minggu saya tidak bekerja.']]},
+    {p:'N を V',e:'を menandai objek langsung, dibaca "o".',ex:[['水{みず}を 飲{の}みます。','Saya minum air.']]},
+    {p:'Tempat へ 行{い}きます',e:'へ (dibaca "e") menunjukkan arah tujuan.',ex:[['昨日{きのう} 学校{がっこう}へ 行{い}きました。','Kemarin saya pergi ke sekolah.']]}],
+   vocab:[['食{た}べます','makan'],['飲{の}みます','minum'],['行{い}きます','pergi'],['来{き}ます','datang'],['見{み}ます','melihat'],['働{はたら}きます','bekerja']],
+   quiz:[
+    {q:'水{みず}（　）飲{の}みます。',o:['を','へ','は'],a:0,x:'Objek langsung ditandai <b>を</b>.'},
+    {q:'"Kemarin saya tidak makan." → 昨日{きのう} 食{た}べ（　）。',o:['ません','ました','ませんでした'],a:2,x:'Lampau negatif: <b>ませんでした</b>.'},
+    {q:'日本{にほん}（　）行{い}きます。',o:['を','へ','の'],a:1,x:'Arah tujuan memakai <b>へ</b> (atau に).'}]},
+  {id:'n5-4',title:'Kata Sifat',jp:'形容詞{けいようし}',sum:'Kata sifat い dan な serta bentuk negatifnya.',
+   points:[
+    {p:'い-adj: 高{たか}い → 高{たか}くないです',e:'Negatif い-adj: buang い, tambah くない. Pengecualian: いい → よくない.',ex:[['この ラーメンは おいしいです。','Ramen ini enak.'],['日本語{にほんご}は あまり 難{むずか}しくないです。','Bahasa Jepang tidak terlalu sulit.']]},
+    {p:'な-adj: きれいな 山{やま} / きれいです',e:'Memakai な bila diikuti kata benda. Negatif: じゃ ありません.',ex:[['富士山{ふじさん}は きれいな 山{やま}です。','Gunung Fuji adalah gunung yang indah.']]},
+    {p:'とても / あまり〜ない',e:'とても = sangat. あまり selalu berpasangan dengan bentuk negatif.',ex:[['今日{きょう}は とても 寒{さむ}いです。','Hari ini sangat dingin.']]}],
+   vocab:[['高{たか}い','mahal / tinggi'],['安{やす}い','murah'],['寒{さむ}い','dingin'],['きれい（な）','indah / bersih'],['静{しず}か（な）','tenang'],['元気{げんき}（な）','sehat / bersemangat']],
+   quiz:[
+    {q:'Negatif dari 寒{さむ}いです adalah…',o:['寒{さむ}いじゃ ありません','寒{さむ}くないです','寒{さむ}くです'],a:1,x:'い-adj: buang い → <b>くない</b>です.'},
+    {q:'静{しず}か（　）町{まち}',o:['な','の','い'],a:0,x:'な-adj sebelum kata benda memakai <b>な</b>.'},
+    {q:'あまり harus diikuti bentuk…',o:['positif','negatif','lampau'],a:1,x:'<b>あまり〜ない</b> = "tidak terlalu".'}]}]},
+ {id:'n4',tag:'N4',name:'Dasar Lanjut',sub:'Setara Minna no Nihongo I–II',desc:'Bentuk て, keinginan, kemampuan, dan pengalaman.',lessons:[
+  {id:'n4-1',title:'Bentuk て',jp:'て形{けい}',sum:'Meminta, izin, larangan, dan kegiatan yang sedang berlangsung.',
+   points:[
+    {p:'Vて ください',e:'Meminta orang lain melakukan sesuatu dengan sopan.',ex:[['ちょっと 待{ま}って ください。','Tolong tunggu sebentar.']]},
+    {p:'Vて います',e:'Kegiatan yang sedang berlangsung, atau keadaan.',ex:[['今{いま} 雨{あめ}が 降{ふ}って います。','Sekarang sedang hujan.']]},
+    {p:'Vても いいです / Vては いけません',e:'Meminta/memberi izin dan menyatakan larangan.',ex:[['写真{しゃしん}を 撮{と}っても いいですか。','Bolehkah saya memotret?'],['ここで たばこを 吸{す}っては いけません。','Dilarang merokok di sini.']]}],
+   vocab:[['書{か}く → 書{か}いて','menulis'],['飲{の}む → 飲{の}んで','minum'],['待{ま}つ → 待{ま}って','menunggu'],['見{み}る → 見{み}て','melihat'],['する → して','melakukan'],['行{い}く → 行{い}って','pergi (pengecualian)']],
+   quiz:[
+    {q:'Bentuk て dari 書{か}く:',o:['書{か}って','書{か}いて','書{か}んで'],a:1,x:'Akhiran く → <b>いて</b>.'},
+    {q:'Bentuk て dari 行{い}く:',o:['行{い}いて','行{い}って','行{い}んで'],a:1,x:'行く adalah pengecualian → <b>行って</b>.'},
+    {q:'"Bolehkah saya duduk?"',o:['座{すわ}っても いいですか。','座{すわ}っては いけません。','座{すわ}って います。'],a:0,x:'Minta izin: <b>Vても いいですか</b>.'}]},
+  {id:'n4-2',title:'Keinginan, Kemampuan, Pengalaman',jp:'〜たい・できる・〜たことがある',sum:'Bercerita tentang diri sendiri lebih lengkap.',
+   points:[
+    {p:'V-ます → Vたいです',e:'"Ingin melakukan". Ganti ます dengan たい.',ex:[['日本{にほん}で 働{はたら}きたいです。','Saya ingin bekerja di Jepang.']]},
+    {p:'V辞書形{じしょけい} ことが できます',e:'"Bisa melakukan". Memakai bentuk kamus.',ex:[['日本語{にほんご}を 話{はな}す ことが できます。','Saya bisa berbicara bahasa Jepang.']]},
+    {p:'Vた ことが あります',e:'"Pernah melakukan". Memakai bentuk た.',ex:[['納豆{なっとう}を 食{た}べた ことが あります。','Saya pernah makan natto.']]}],
+   vocab:[['話{はな}す','berbicara'],['泳{およ}ぐ','berenang'],['運転{うんてん}する','menyetir'],['経験{けいけん}','pengalaman'],['夢{ゆめ}','mimpi / cita-cita']],
+   quiz:[
+    {q:'"Saya pernah pergi ke Jepang."',o:['日本{にほん}へ 行{い}く ことが あります。','日本{にほん}へ 行{い}った ことが あります。','日本{にほん}へ 行{い}きたいです。'],a:1,x:'Pengalaman: <b>Vた ことが あります</b>.'},
+    {q:'"Ingin minum kopi" → コーヒーが 飲{の}み（　）です。',o:['たい','ます','たら'],a:0,x:'Keinginan: <b>〜たい</b>です.'},
+    {q:'車{くるま}を 運転{うんてん}する ことが（　）。',o:['あります','できます','します'],a:1,x:'Kemampuan: <b>ことが できます</b>.'}]}]},
+ {id:'jft',tag:'A2',name:'JFT A2 · SSW',sub:'Bahasa Jepang di tempat kerja',desc:'Instruksi atasan, tanda keselamatan, dan pengumuman di lingkungan kerja.',lessons:[
+  {id:'jft-1',title:'Instruksi di Tempat Kerja',jp:'職場{しょくば}の 指示{しじ}',sum:'Memahami perintah, larangan, dan kewajiban.',
+   points:[
+    {p:'Vて おいて ください',e:'Meminta sesuatu disiapkan/diselesaikan lebih dulu.',ex:[['道具{どうぐ}を 片付{かたづ}けて おいて ください。','Tolong rapikan alat-alatnya.']]},
+    {p:'Vないで ください',e:'Larangan yang sopan: "tolong jangan…".',ex:[['機械{きかい}に 触{さわ}らないで ください。','Tolong jangan sentuh mesin.']]},
+    {p:'Vなければ なりません',e:'Kewajiban: "harus…".',ex:[['ヘルメットを かぶらなければ なりません。','Harus memakai helm.']]}],
+   vocab:[['安全{あんぜん}','keselamatan'],['危険{きけん}','bahaya'],['確認{かくにん}','pengecekan'],['報告{ほうこく}','laporan'],['休憩{きゅうけい}','istirahat'],['禁止{きんし}','dilarang']],
+   quiz:[
+    {q:'"Tolong jangan sentuh." → 触{さわ}（　）ください。',o:['らないで','って','らなくて'],a:0,x:'Larangan sopan: <b>Vないで ください</b> → 触らないで.'},
+    {q:'禁止{きんし} artinya…',o:['diizinkan','dilarang','darurat'],a:1,x:'<b>禁止</b> = dilarang, contoh: 喫煙禁止 (dilarang merokok).'},
+    {q:'"Harus memakai helm."',o:['ヘルメットを かぶっても いいです。','ヘルメットを かぶらなければ なりません。','ヘルメットを かぶらないで ください。'],a:1,x:'Kewajiban: <b>なければ なりません</b>.'}]},
+  {id:'jft-2',title:'Tanda dan Pengumuman',jp:'掲示{けいじ}と お知{し}らせ',sum:'Membaca tanda keselamatan dan alasan sopan.',
+   points:[
+    {p:'Tanda penting',e:'立入禁止{たちいりきんし} dilarang masuk · 非常口{ひじょうぐち} pintu darurat · 足元{あしもと}注意{ちゅうい} awas langkah.',ex:[['足元{あしもと}に 注意{ちゅうい}して ください。','Hati-hati dengan langkah Anda.']]},
+    {p:'〜ので',e:'"Karena…", terdengar lebih sopan dari から saat memberi alasan.',ex:[['熱{ねつ}が あるので、 休{やす}みます。','Karena demam, saya izin istirahat.']]},
+    {p:'Vたら',e:'"Setelah/kalau…". Urutan kerja yang umum.',ex:[['終{お}わったら、 報告{ほうこく}して ください。','Setelah selesai, tolong laporkan.']]}],
+   vocab:[['立入禁止{たちいりきんし}','dilarang masuk'],['非常口{ひじょうぐち}','pintu darurat'],['注意{ちゅうい}','perhatian / awas'],['工事中{こうじちゅう}','sedang konstruksi'],['消火器{しょうかき}','alat pemadam api']],
+   quiz:[
+    {q:'非常口{ひじょうぐち} artinya…',o:['pintu darurat','pintu masuk','toilet'],a:0,x:'<b>非常口</b> = pintu darurat.'},
+    {q:'Tanda 立入禁止{たちいりきんし} berarti…',o:['silakan masuk','dilarang masuk','pintu keluar'],a:1,x:'立入 = masuk, 禁止 = dilarang.'},
+    {q:'終{お}わったら、 報告{ほうこく}して ください。 Kapan harus melapor?',o:['sebelum mulai','setelah selesai','saat istirahat'],a:1,x:'<b>〜たら</b> di sini berarti "setelah".'}]}]},
+ {id:'n3',tag:'N3',name:'Menengah',sub:'Ekspresi sehari-hari yang lebih alami',desc:'Tujuan, perubahan, perkiraan, dan kabar.',lessons:[
+  {id:'n3-1',title:'Tujuan dan Perubahan',jp:'〜ように・〜ことにする',sum:'Menyatakan tujuan, perubahan kemampuan, dan keputusan.',
+   points:[
+    {p:'〜ように (agar)',e:'Dipakai dengan bentuk negatif, potensial, atau kata kerja non-kehendak.',ex:[['忘{わす}れないように、 メモします。','Saya mencatat agar tidak lupa.']]},
+    {p:'〜ように なりました',e:'Perubahan: "sekarang jadi bisa…".',ex:[['日本語{にほんご}が 話{はな}せるように なりました。','Sekarang saya jadi bisa berbicara bahasa Jepang.']]},
+    {p:'V辞書形{じしょけい} ことに しました',e:'Keputusan diri sendiri.',ex:[['来年{らいねん}、 日本{にほん}へ 行{い}く ことに しました。','Saya memutuskan pergi ke Jepang tahun depan.']]}],
+   vocab:[['忘{わす}れる','lupa'],['決{き}める','memutuskan'],['続{つづ}ける','melanjutkan'],['目標{もくひょう}','target'],['習慣{しゅうかん}','kebiasaan']],
+   quiz:[
+    {q:'忘{わす}れない（　）、 手帳{てちょう}に 書{か}きます。',o:['ように','ために','ことに'],a:0,x:'Bentuk negatif + tujuan memakai <b>ように</b>. ために dipakai dengan kata kerja berkehendak.'},
+    {q:'"Saya memutuskan berhenti merokok."',o:['たばこを やめる ことに しました。','たばこを やめるように なりました。','たばこを やめそうです。'],a:0,x:'Keputusan: <b>ことに しました</b>.'},
+    {q:'漢字{かんじ}が 読{よ}める（　）なりました。',o:['ように','ことに','そうに'],a:0,x:'Perubahan kemampuan: <b>ように なりました</b>.'}]},
+  {id:'n3-2',title:'Perkiraan dan Kabar',jp:'〜そう・〜らしい・〜はず',sum:'Menyampaikan dugaan dengan tingkat keyakinan berbeda.',
+   points:[
+    {p:'V-ます stem + そうです',e:'"Kelihatannya akan…" berdasarkan apa yang dilihat.',ex:[['雨{あめ}が 降{ふ}りそうです。','Kelihatannya akan hujan.']]},
+    {p:'〜らしいです',e:'"Katanya / sepertinya" berdasarkan informasi yang didengar.',ex:[['店長{てんちょう}は 来月{らいげつ} 結婚{けっこん}するらしいです。','Katanya manajer toko akan menikah bulan depan.']]},
+    {p:'〜はずです',e:'"Seharusnya" berdasarkan alasan yang logis.',ex:[['会議{かいぎ}は 3時{さんじ}に 終{お}わるはずです。','Rapat seharusnya selesai jam 3.']]}],
+   vocab:[['予定{よてい}','rencana / jadwal'],['結婚{けっこん}','pernikahan'],['天気{てんき}','cuaca'],['噂{うわさ}','kabar burung']],
+   quiz:[
+    {q:'空{そら}が 暗{くら}いです。 雨{あめ}が（　）そうです。',o:['降{ふ}り','降{ふ}る','降{ふ}った'],a:0,x:'Dugaan visual: stem ます + <b>そう</b> → 降りそう.'},
+    {q:'"Katanya" (info yang didengar) paling tepat memakai…',o:['はず','らしい','ように'],a:1,x:'<b>らしい</b> = berdasarkan informasi dari orang lain.'},
+    {q:'Ia sudah berangkat jam 8, jadi （　） sudah sampai.',o:['もう 着{つ}いた はずです','もう 着{つ}きそうです','もう 着{つ}く ことに しました'],a:0,x:'Kesimpulan logis: <b>はずです</b>.'}]}]},
+ {id:'biz',tag:'ビジ',name:'Bahasa Jepang Bisnis',sub:'Keigo, telepon, email, wawancara',desc:'Komunikasi profesional di perusahaan Jepang.',lessons:[
+  {id:'biz-1',title:'Dasar Keigo',jp:'敬語{けいご}の 基本{きほん}',sum:'Tiga jenis bahasa hormat dan kapan memakainya.',
+   points:[
+    {p:'尊敬語{そんけいご} (meninggikan orang lain)',e:'Untuk tindakan atasan atau klien: いらっしゃる (ada/datang/pergi), おっしゃる (berkata), ご覧{らん}に なる (melihat), 召{め}し上{あ}がる (makan).',ex:[['社長{しゃちょう}は 会議室{かいぎしつ}に いらっしゃいます。','Direktur ada di ruang rapat.']]},
+    {p:'謙譲語{けんじょうご} (merendahkan diri)',e:'Untuk tindakan diri sendiri: 参{まい}る (pergi/datang), 申{もう}す (berkata), 拝見{はいけん}する (melihat), いただく (menerima/makan).',ex:[['わたくしは アンディと 申{もう}します。','Nama saya Andi.'],['資料{しりょう}を 拝見{はいけん}しました。','Saya sudah melihat dokumennya.']]},
+    {p:'丁寧語{ていねいご} (bahasa sopan)',e:'です・ます dan ございます untuk semua orang dalam situasi formal.',ex:[['こちらが 新{あたら}しい 資料{しりょう}で ございます。','Ini dokumen yang baru.']]}],
+   vocab:[['いらっしゃる','ada / datang (hormat)'],['おっしゃる','berkata (hormat)'],['申{もう}す','berkata (rendah hati)'],['参{まい}る','pergi/datang (rendah hati)'],['拝見{はいけん}する','melihat (rendah hati)'],['かしこまりました','baik, saya mengerti']],
+   quiz:[
+    {q:'Menyebut nama sendiri: アンディと（　）。',o:['申{もう}します','おっしゃいます','いらっしゃいます'],a:0,x:'Tindakan diri sendiri → 謙譲語 <b>申します</b>.'},
+    {q:'Bertanya apakah atasan sudah melihat: 部長{ぶちょう}、 資料{しりょう}を（　）か。',o:['拝見{はいけん}しました','ご覧{らん}に なりました','参{まい}りました'],a:1,x:'Tindakan atasan → 尊敬語 <b>ご覧になりました</b>. 拝見 hanya untuk diri sendiri.'},
+    {q:'"Saya akan datang besok" (ke klien): 明日{あした}（　）。',o:['いらっしゃいます','参{まい}ります','おっしゃいます'],a:1,x:'Diri sendiri datang → <b>参ります</b>.'}]},
+  {id:'biz-2',title:'Telepon dan Email',jp:'電話{でんわ}・メール',sum:'Ungkapan baku untuk telepon kantor dan email bisnis.',
+   points:[
+    {p:'いつも お世話{せわ}に なって おります',e:'Salam pembuka standar ke klien di telepon maupun email.',ex:[['いつも お世話{せわ}に なって おります。 ABC社{しゃ}の 山田{やまだ}です。','Terima kasih atas kerja samanya selama ini. Saya Yamada dari ABC.']]},
+    {p:'少々{しょうしょう} お待{ま}ち ください',e:'"Mohon tunggu sebentar", saat memindahkan telepon.',ex:[['少々{しょうしょう} お待{ま}ち ください。','Mohon tunggu sebentar.']]},
+    {p:'Vさせて いただきます',e:'Melakukan sesuatu dengan izin pihak lain, sangat sopan.',ex:[['本日{ほんじつ}は 休{やす}ませて いただきます。','Hari ini saya mohon izin libur.']]}],
+   vocab:[['御社{おんしゃ}','perusahaan Anda (lisan)'],['貴社{きしゃ}','perusahaan Anda (tulisan)'],['弊社{へいしゃ}','perusahaan kami'],['承知{しょうち}しました','baik, dimengerti'],['申{もう}し訳{わけ}ございません','mohon maaf sekali']],
+   quiz:[
+    {q:'Kalimat pembuka email ke klien yang paling umum:',o:['いつも お世話{せわ}に なって おります。','おはよう。','ごちそうさまでした。'],a:0,x:'<b>いつも お世話に なって おります</b> adalah salam baku bisnis.'},
+    {q:'"Perusahaan Anda" dalam email (tulisan):',o:['御社{おんしゃ}','貴社{きしゃ}','弊社{へいしゃ}'],a:1,x:'Tulisan: <b>貴社</b>. Lisan: 御社. Perusahaan sendiri: 弊社.'},
+    {q:'Saat memindahkan telepon Anda berkata…',o:['少々{しょうしょう} お待{ま}ち ください。','お疲{つか}れさまでした。','いただきます。'],a:0,x:'<b>少々お待ちください</b> = mohon tunggu sebentar.'}]}]}
+];
+
+const KAIWA=[
+ {id:'k1',lv:'N5',title:'Perkenalan',jp:'自己紹介{じこしょうかい}',place:'Hari pertama di kelas',a:'田中{たなか}',lines:[
+  ['a','はじめまして。 田中{たなか}です。','Salam kenal. Saya Tanaka.'],
+  ['b','はじめまして。 アンディです。 インドネシアから 来{き}ました。','Salam kenal. Saya Andi. Saya datang dari Indonesia.',['おやすみなさい。 アンディです。','いただきます。 インドネシアです。']],
+  ['a','アンディさんは 学生{がくせい}ですか。','Andi seorang pelajar?'],
+  ['b','いいえ、 会社員{かいしゃいん}です。','Bukan, saya karyawan perusahaan.',['はい、 会社員{かいしゃいん}じゃ ありません。','いいえ、 学生{がくせい}ですか。']],
+  ['a','そうですか。 どうぞ よろしく。','Begitu ya. Senang berkenalan.'],
+  ['b','こちらこそ、 よろしく お願{ねが}いします。','Saya juga, mohon bantuannya.',['ごちそうさまでした。','いってきます。']]],
+  notes:['Saat menyebut diri sendiri jangan memakai さん. さん hanya untuk orang lain.','こちらこそ berarti "saya juga / justru saya", jawaban sopan untuk よろしく.']},
+ {id:'k2',lv:'N5',title:'Di Minimarket',jp:'コンビニで',place:'Membeli minuman di konbini',a:'店員{てんいん}',lines:[
+  ['a','いらっしゃいませ。','Selamat datang.'],
+  ['b','すみません、 お茶{ちゃ}は どこですか。','Permisi, teh ada di mana?',['すみません、 お茶{ちゃ}は 何{なん}ですか。','ありがとう、 お茶{ちゃ}です。']],
+  ['a','あちらです。','Di sebelah sana.'],
+  ['b','これを ください。','Saya beli ini.',['これは ください。','これを いりません。']],
+  ['a','150円{ひゃくごじゅうえん}です。 袋{ふくろ}は ご利用{りよう}ですか。','150 yen. Apakah perlu kantong plastik?'],
+  ['b','いいえ、 けっこうです。','Tidak, terima kasih.',['いいえ、 けっこうですか。','はい、 いりません。']],
+  ['a','ありがとうございました。','Terima kasih.']],
+  notes:['いらっしゃいませ tidak perlu dijawab; cukup mengangguk.','けっこうです di sini berarti menolak dengan sopan: "tidak usah, terima kasih".']},
+ {id:'k3',lv:'N4',title:'Menanyakan Jalan',jp:'道{みち}を 聞{き}く',place:'Mencari stasiun',a:'通行人{つうこうにん}',lines:[
+  ['b','すみません、 駅{えき}は どこですか。','Permisi, stasiun di mana?',['すみません、 駅{えき}は だれですか。','おはよう、 駅{えき}を 行{い}きますか。']],
+  ['a','この 道{みち}を まっすぐ 行{い}って、 二{ふた}つ目{め}の 信号{しんごう}を 右{みぎ}に 曲{ま}がって ください。','Jalan lurus di jalan ini, lalu belok kanan di lampu merah kedua.'],
+  ['b','二{ふた}つ目{め}の 信号{しんごう}を 右{みぎ}ですね。','Lampu merah kedua belok kanan, ya.',['一{ひと}つ目{め}の 信号{しんごう}を 左{ひだり}ですね。','信号{しんごう}は どこですか。']],
+  ['a','はい。 すぐ 左{ひだり}に 駅{えき}が あります。','Ya. Stasiunnya langsung ada di sebelah kiri.'],
+  ['b','ありがとうございます。 助{たす}かりました。','Terima kasih. Sangat membantu.',['すみません、 わかりません。','いってらっしゃい。']]],
+  notes:['Mengulang instruksi (〜ですね) adalah kebiasaan baik untuk memastikan pemahaman.','Bentuk て menyambung urutan tindakan: 行って、曲がって.']},
+ {id:'k4',lv:'A2',title:'Melapor ke Atasan',jp:'職場{しょくば}で 報告{ほうこく}',place:'Mesin di pabrik bermasalah',a:'課長{かちょう}',lines:[
+  ['b','課長{かちょう}、 今{いま} よろしいですか。','Pak Kepala, apakah sekarang ada waktu?',['課長{かちょう}、 今{いま} 何時{なんじ}ですか。','課長{かちょう}、 お疲{つか}れさまでした。']],
+  ['a','はい、 何{なん}ですか。','Ya, ada apa?'],
+  ['b','機械{きかい}の 調子{ちょうし}が おかしいです。 変{へん}な 音{おと}が します。','Kondisi mesinnya aneh. Ada suara yang tidak biasa.',['機械{きかい}は とても きれいです。','機械{きかい}を 食{た}べました。']],
+  ['a','そうですか。 すぐ 止{と}めて ください。','Begitu. Segera matikan.'],
+  ['b','はい、 止{と}めました。 これから どう しますか。','Baik, sudah saya matikan. Selanjutnya bagaimana?',['いいえ、 止{と}めません。','はい、 動{うご}かします。']],
+  ['a','点検{てんけん}するので、 触{さわ}らないで ください。','Akan diperiksa, jadi jangan disentuh.'],
+  ['b','わかりました。','Baik, saya mengerti.',['だいじょうぶです、 触{さわ}ります。','知{し}りません。']]],
+  notes:['Prinsip 報連相 (ほうれんそう): 報告 lapor, 連絡 kabari, 相談 konsultasi. Sangat dinilai di perusahaan Jepang.','今 よろしいですか adalah cara sopan memulai pembicaraan dengan atasan.']},
+ {id:'k5',lv:'A2',title:'Izin Sakit',jp:'体調不良{たいちょうふりょう}で 休{やす}む',place:'Menelepon atasan pagi hari',a:'リーダー',lines:[
+  ['b','もしもし、 アンディです。 すみません、 熱{ねつ}が あるので、 今日{きょう}は 休{やす}んでも いいですか。','Halo, ini Andi. Maaf, karena demam, bolehkah hari ini saya izin?',['もしもし、 アンディです。 今日{きょう}は 休{やす}みます。 さようなら。','もしもし、 熱{ねつ}が ありません。']],
+  ['a','大丈夫{だいじょうぶ}ですか。 わかりました。 病院{びょういん}へ 行{い}って ください。','Tidak apa-apa? Baik. Silakan pergi ke rumah sakit.'],
+  ['b','はい、 ありがとうございます。 ご迷惑{めいわく}を おかけして すみません。','Baik, terima kasih. Maaf sudah merepotkan.',['はい、 いただきます。','いいえ、 行{い}きません。']],
+  ['a','ゆっくり 休{やす}んで ください。','Istirahatlah yang cukup.']],
+  notes:['Hubungi atasan sebelum jam kerja dimulai, sebaiknya lewat telepon.','ご迷惑を おかけして すみません menunjukkan rasa tanggung jawab kepada tim.']},
+ {id:'k6',lv:'Bisnis',title:'Menerima Telepon Kantor',jp:'電話応対{でんわおうたい}',place:'Klien mencari manajer',a:'山田{やまだ}（取引先{とりひきさき}）',lines:[
+  ['b','お電話{でんわ} ありがとうございます。 さくら商事{しょうじ}の アンディで ございます。','Terima kasih telah menelepon. Dengan Andi dari Sakura Shoji.',['もしもし、 だれですか。','はい、 アンディさんです。']],
+  ['a','いつも お世話{せわ}に なって おります。 ABC社{しゃ}の 山田{やまだ}と 申{もう}します。 佐藤{さとう}部長{ぶちょう}は いらっしゃいますか。','Terima kasih atas kerja samanya. Saya Yamada dari ABC. Apakah Manajer Sato ada?'],
+  ['b','申{もう}し訳{わけ}ございません。 佐藤{さとう}は ただいま 席{せき}を 外{はず}して おります。','Mohon maaf. Sato sedang tidak di tempat.',['佐藤{さとう}部長{ぶちょう}は いらっしゃいません。','佐藤{さとう}さんは いません。']],
+  ['a','そうですか。 では、 お戻{もど}りに なったら、 お電話{でんわ}を いただけますか。','Begitu. Kalau begitu, setelah beliau kembali bisa menelepon saya?'],
+  ['b','かしこまりました。 佐藤{さとう}に 申{もう}し伝{つた}えます。','Baik. Akan saya sampaikan kepada Sato.',['わかった。 言{い}って おく。','佐藤{さとう}部長{ぶちょう}に おっしゃいます。']]],
+  notes:['Kepada pihak luar, atasan sendiri disebut tanpa jabatan dan tanpa さん: "佐藤は…".','申し伝えます = "akan saya sampaikan" (rendah hati).']},
+ {id:'k7',lv:'Bisnis',title:'Wawancara Kerja',jp:'面接{めんせつ}',place:'Wawancara di perusahaan Jepang',a:'面接官{めんせつかん}',lines:[
+  ['a','どうぞ、 お入{はい}り ください。','Silakan masuk.'],
+  ['b','失礼{しつれい}いたします。','Permisi.',['ただいま。','お邪魔{じゃま}しました。']],
+  ['a','お名前{なまえ}を お願{ねが}いします。','Silakan sebutkan nama Anda.'],
+  ['b','アンディ・プラタマと 申{もう}します。 本日{ほんじつ}は よろしく お願{ねが}い いたします。','Nama saya Andi Pratama. Mohon bimbingannya hari ini.',['アンディさんです。 よろしく。','アンディと おっしゃいます。']],
+  ['a','弊社{へいしゃ}を 志望{しぼう}した 理由{りゆう}は 何{なん}ですか。','Apa alasan Anda melamar ke perusahaan kami?'],
+  ['b','御社{おんしゃ}の 技術{ぎじゅつ}を 学{まな}び、 将来{しょうらい} インドネシアで 役{やく}に 立{た}てたいと 思{おも}ったからです。','Karena saya ingin mempelajari teknologi perusahaan Anda dan kelak memanfaatkannya di Indonesia.',['弊社{へいしゃ}の 給料{きゅうりょう}が 高{たか}いからです。','特{とく}に ありません。']],
+  ['a','わかりました。 ありがとうございました。','Baik. Terima kasih.'],
+  ['b','ありがとうございました。 失礼{しつれい}いたします。','Terima kasih. Saya permisi.',['じゃあね。','おやすみなさい。']]],
+  notes:['Ketuk pintu 3 kali, ucapkan 失礼いたします saat masuk dan keluar.','Sebut perusahaan pewawancara 御社, bukan 弊社 (perusahaan sendiri).']}
+];
+
+const QB=[
+ // [level, kategori, soal, opsi, jawaban, penjelasan]
+ ['n5','kosa','「山」の 読{よ}み方{かた}は？',['やま','かわ','うみ','そら'],0,'山 = <b>やま</b> (gunung). 川 = かわ, 海 = うみ, 空 = そら.'],
+ ['n5','kosa','「水」の 読{よ}み方{かた}は？',['ひ','みず','き','つち'],1,'水 = <b>みず</b> (air). 火 = ひ, 木 = き, 土 = つち.'],
+ ['n5','kosa','「せんせい」を 漢字{かんじ}で 書{か}くと？',['先生','学生','先週','生先'],0,'せんせい = <b>先生</b> (guru). 学生 = がくせい.'],
+ ['n5','kosa','「たべます」の 意味{いみ}は？',['minum','makan','tidur','membaca'],1,'食べます = <b>makan</b>. Minum = 飲みます.'],
+ ['n5','kosa','「月曜日」の 読{よ}み方{かた}は？',['かようび','げつようび','にちようび','もくようび'],1,'月曜日 = <b>げつようび</b> (Senin).'],
+ ['n4','kosa','「会議」の 読{よ}み方{かた}は？',['かいぎ','かいき','あいぎ','かいご'],0,'会議 = <b>かいぎ</b> (rapat).'],
+ ['n4','kosa','「急{いそ}ぐ」の 意味{いみ}は？',['berhenti','bergegas','beristirahat','menunggu'],1,'急ぐ = <b>bergegas</b>.'],
+ ['jft','kosa','「危険」の 意味{いみ}は？',['aman','bahaya','dilarang','darurat'],1,'危険 (きけん) = <b>bahaya</b>. 安全 = aman.'],
+ ['jft','kosa','「休憩」の 意味{いみ}は？',['istirahat','lembur','rapat','pulang'],0,'休憩 (きゅうけい) = <b>istirahat</b>. 残業 = lembur.'],
+ ['jft','kosa','「非常口」の 意味{いみ}は？',['pintu masuk','pintu darurat','tempat parkir','gudang'],1,'非常口 (ひじょうぐち) = <b>pintu darurat</b>.'],
+ ['n3','kosa','「経験」の 読{よ}み方{かた}は？',['けんけい','けいけん','きょうけん','けいげん'],1,'経験 = <b>けいけん</b> (pengalaman).'],
+ ['biz','kosa','Lisan: "perusahaan Anda" =',['弊社{へいしゃ}','御社{おんしゃ}','貴社{きしゃ}','本社{ほんしゃ}'],1,'Lisan memakai <b>御社</b>, tulisan memakai 貴社. 弊社 = perusahaan sendiri.'],
+ ['n5','bunpo','毎朝{まいあさ} コーヒー（　）飲{の}みます。',['を','が','に','で'],0,'Objek langsung kata kerja ditandai <b>を</b>.'],
+ ['n5','bunpo','図書館{としょかん}（　）本{ほん}を 読{よ}みます。',['で','を','へ','が'],0,'Tempat berlangsungnya kegiatan memakai <b>で</b>.'],
+ ['n5','bunpo','あした 東京{とうきょう}（　）行{い}きます。',['を','へ','で','と'],1,'Arah tujuan memakai <b>へ</b>.'],
+ ['n5','bunpo','ここは 静{しず}か（　）町{まち}です。',['い','な','の','に'],1,'な-adj sebelum kata benda memakai <b>な</b>.'],
+ ['n4','bunpo','ここで 写真{しゃしん}を（　）も いいですか。',['撮{と}って','撮{と}る','撮{と}り','撮{と}った'],0,'Izin: <b>Vて</b> + も いいですか.'],
+ ['n4','bunpo','日本{にほん}へ 行{い}った（　）が あります。',['こと','もの','ところ','とき'],0,'Pengalaman: Vた <b>こと</b>が あります.'],
+ ['n4','bunpo','雨{あめ}が 降{ふ}って いる（　）、 かさを 持{も}って 行{い}きます。',['ので','のに','けど','まで'],0,'<b>ので</b> = karena. のに = padahal.'],
+ ['jft','bunpo','機械{きかい}に（　）ください。',['触{さわ}らないで','触{さわ}って ないで','触{さわ}らなくて','触{さわ}らず'],0,'Larangan sopan: <b>Vないで</b> ください.'],
+ ['jft','bunpo','仕事{しごと}が 終{お}わっ（　）、 報告{ほうこく}して ください。',['たら','ては','ても','たり'],0,'<b>〜たら</b> = setelah. ては = kalau (negatif), ても = meskipun.'],
+ ['n3','bunpo','忘{わす}れない（　）、 手帳{てちょう}に 書{か}きます。',['ように','ために','ことに','そうに'],0,'Negatif + tujuan memakai <b>ように</b>.'],
+ ['n3','bunpo','空{そら}が 暗{くら}いです。 雨{あめ}が（　）そうです。',['降{ふ}り','降{ふ}る','降{ふ}って','降{ふ}った'],0,'Dugaan visual: stem ます + <b>そう</b>.'],
+ ['biz','bunpo','部長{ぶちょう}、 この 資料{しりょう}を（　）か。',['ご覧{らん}に なりました','拝見{はいけん}しました','参{まい}りました','申{もう}しました'],0,'Tindakan atasan → 尊敬語 <b>ご覧になりました</b>.'],
+ ['biz','bunpo','わたくしは アンディと（　）。',['申{もう}します','おっしゃいます','言{い}われます','いらっしゃいます'],0,'Diri sendiri → 謙譲語 <b>申します</b>.'],
+ ['biz','bunpo','（電話{でんわ}で）佐藤{さとう}は ただいま 席{せき}を（　）おります。',['外{はず}して','外{はず}れて','外{はず}さないで','外{はず}したら'],0,'席を<b>外して</b>おります = sedang tidak di tempat.'],
+ ['n5','dokkai','Pertama kali bertemu seseorang, Anda berkata…',['はじめまして','おやすみなさい','いただきます','ごちそうさま'],0,'<b>はじめまして</b> = salam kenal.'],
+ ['n5','dokkai','Sebelum mulai makan, orang Jepang berkata…',['ごちそうさま','いただきます','いってきます','ただいま'],1,'<b>いただきます</b> sebelum makan, ごちそうさま setelah makan.'],
+ ['n4','dokkai','「田中{たなか}さんは 毎日{まいにち} 7時{しちじ}に 起{お}きて、 8時{はちじ}に 会社{かいしゃ}へ 行{い}きます。」田中さんは 何時{なんじ}に 会社へ 行きますか。',['7時','8時','9時','6時'],1,'起きる (bangun) jam 7, ke kantor jam <b>8</b>.'],
+ ['jft','dokkai','掲示{けいじ}：「この 先{さき} 工事中{こうじちゅう}。 立入禁止{たちいりきんし}」 Artinya…',['Boleh lewat','Dilarang masuk, ada konstruksi','Area parkir','Pintu keluar'],1,'工事中 = sedang konstruksi, 立入禁止 = <b>dilarang masuk</b>.'],
+ ['jft','dokkai','Atasan: 「これ、 明日{あした}までに やって おいて ください。」 Anda harus…',['menyelesaikannya paling lambat besok','mengerjakannya mulai besok','tidak mengerjakannya','menunggu instruksi lusa'],0,'までに = paling lambat; て おいて = selesaikan lebih dulu.'],
+ ['jft','dokkai','Anda terlambat masuk kerja. Ucapan yang tepat kepada atasan:',['遅{おく}れて 申{もう}し訳{わけ}ありません。','お疲{つか}れさまでした。','いってきます。','ごちそうさまでした。'],0,'Permintaan maaf resmi: <b>遅れて 申し訳ありません</b>.'],
+ ['n3','dokkai','「店長{てんちょう}に よると、 来週{らいしゅう}から 営業時間{えいぎょうじかん}が 変{か}わる らしい。」 Maksudnya…',['Jam operasional pasti tidak berubah','Katanya jam operasional berubah mulai minggu depan','Manajer akan pindah minggu depan','Toko tutup minggu depan'],1,'に よると + <b>らしい</b> = katanya (menurut info dari manajer).'],
+ ['biz','dokkai','Kalimat pertama email kepada klien:',['いつも お世話{せわ}に なって おります。','元気{げんき}？','おやすみなさい。','ただいま。'],0,'Salam pembuka baku: <b>いつも お世話に なって おります</b>.'],
+ ['biz','dokkai','Saat masuk ruang wawancara, Anda berkata…',['ただいま','失礼{しつれい}いたします','お邪魔{じゃま}しました','いってきます'],1,'<b>失礼いたします</b> saat masuk dan keluar ruangan.'],
+ ['biz','dokkai','Kepada klien luar, menyebut manajer sendiri bernama Sato: 「（　）は 外出{がいしゅつ}して おります。」',['佐藤{さとう}','佐藤{さとう}部長{ぶちょう}','佐藤{さとう}さん','佐藤{さとう}様{さま}'],0,'Kepada pihak luar, orang dalam perusahaan sendiri disebut <b>tanpa jabatan dan sebutan hormat</b>.']
+];
+const CATS={kosa:'Kosakata & Kanji',bunpo:'Tata Bahasa',dokkai:'Membaca & Situasi'};
+const CATJP={kosa:'文字・語彙',bunpo:'文法',dokkai:'読解・会話'};
+const LVNAME={n5:'N5',n4:'N4',jft:'JFT A2',n3:'N3',biz:'Bisnis'};
+
+const TRYOUTS=[
+ {id:'t-jft',title:'Simulasi JFT A2',jp:'JFT-Basic 模擬試験{もぎしけん}',lv:['n5','n4','jft'],n:15,min:12,desc:'Gabungan N5, N4, dan bahasa tempat kerja.'},
+ {id:'t-biz',title:'Tryout Bisnis & N3',jp:'ビジネス 模擬試験{もぎしけん}',lv:['n3','biz'],n:12,min:10,desc:'Keigo, telepon, email, dan pola N3.'},
+ {id:'t-all',title:'Tryout Lengkap',jp:'総合{そうごう} 模擬試験{もぎしけん}',lv:['n5','n4','jft','n3','biz'],n:20,min:15,desc:'Semua level, acak setiap kali dimulai.'}
+];
+
+const SENT=[
+ [['わたしは','毎朝{まいあさ}','パンを','食{た}べます'],'Saya makan roti setiap pagi.'],
+ [['これは','わたしの','かさ','です'],'Ini payung saya.'],
+ [['昨日{きのう}','友{とも}だちと','映画{えいが}を','見{み}ました'],'Kemarin saya menonton film bersama teman.'],
+ [['ここで','写真{しゃしん}を','撮{と}っても','いいですか'],'Bolehkah saya memotret di sini?'],
+ [['機械{きかい}に','触{さわ}らないで','ください'],'Tolong jangan sentuh mesin.'],
+ [['わたしは','日本{にほん}で','働{はたら}きたい','です'],'Saya ingin bekerja di Jepang.'],
+ [['仕事{しごと}が','終{お}わったら','報告{ほうこく}して','ください'],'Setelah pekerjaan selesai, tolong laporkan.'],
+ [['わたくしは','アンディと','申{もう}します'],'Nama saya Andi (sangat sopan).']
+];
+
+const RANKS=[[0,'ヒナ','Anak Burung Hantu'],[150,'見習{みなら}い','Murid Muda'],[400,'学生{がくせい}','Pelajar Tekun'],[800,'先輩{せんぱい}','Senior Berwawasan'],[1500,'先生{せんせい}','Sang Guru'],[2500,'博士{はかせ}','Profesor Owl']];
+const BADGES=[
+ ['first','一歩','Langkah Pertama','Selesaikan 1 pelajaran'],
+ ['kana','かな','Ahli Kana','Skor 15+ di Kuis Kilat'],
+ ['kaiwa','話','Pandai Bicara','Selesaikan 3 kaiwa'],
+ ['pass','合格','Lulus Tryout','Nilai tryout 80% ke atas'],
+ ['streak3','三日','3 Hari Beruntun','Belajar 3 hari berturut-turut'],
+ ['xp500','五百','500 XP','Kumpulkan 500 XP'],
+ ['biz','敬語','Profesional','Selesaikan level Bisnis'],
+ ['all','全','Tamat','Selesaikan semua pelajaran']
+];
+</script>
+
+<script>
+/* ===================== STATE ===================== */
+const KEY='owl-nihongo-v1';
+const DEF=()=>({name:'',xp:0,streak:0,last:null,days:{},done:{},kaiwa:{},best:{},tryouts:[],badges:{},set:{furi:true,fs:'l',tr:true,rate:.9}});
+function load(){try{const r=JSON.parse(localStorage.getItem(KEY));if(r)return Object.assign(DEF(),r,{set:Object.assign(DEF().set,r.set||{})})}catch(e){}return DEF()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+let S=load();
+const UI={route:'beranda',lesson:null,lq:{},kaiwa:null,kmode:'dengar',rp:null,quiz:null,pf:{lv:'all',cat:'all'},game:null,reset:false,rev:null,confirmSubmit:false};
+let timers=[];
+function stopTimers(){timers.forEach(clearInterval);timers=[];try{speechSynthesis.cancel()}catch(e){}}
+
+/* ===================== HELPERS ===================== */
+const $=s=>document.querySelector(s);
+const RB=/([々〆ヶ一-鿿0-9０-９]+)\{([^}]+)\}/g;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rb=t=>esc(t).replace(RB,'<ruby>$1<rt>$2</rt></ruby>');
+const rbh=t=>String(t).replace(RB,'<ruby>$1<rt>$2</rt></ruby>');
+const kana=t=>String(t).replace(RB,'$2').replace(/[\s　]/g,'');
+const ic=n=>`<svg aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const say=(t,label='Dengarkan')=>`<button class="iconbtn" data-say="${esc(t)}" aria-label="${label}">${ic('play')}</button>`;
+const dk=d=>{d=new Date(d);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const GOAL=60;
+const todayXP=()=>S.days[dk(Date.now())]||0;
+const curStreak=()=>{const t=dk(Date.now()),y=dk(Date.now()-864e5);return(S.last===t||S.last===y)?S.streak:0};
+const allLessons=()=>LEVELS.flatMap(l=>l.lessons.map(x=>Object.assign({lv:l},x)));
+const findLesson=id=>allLessons().find(x=>x.id===id);
+const allVocab=()=>LEVELS.flatMap(l=>l.lessons.flatMap(x=>x.vocab||[]));
+function rank(){let r=RANKS[0],nx=RANKS[1];RANKS.forEach((k,i)=>{if(S.xp>=k[0]){r=k;nx=RANKS[i+1]||null}});return{r,nx}}
+function ring(p,s=56,label=''){p=Math.max(0,Math.min(1,p));const r=s/2-6,c=2*Math.PI*r;
+ return `<svg width="${s}" height="${s}" viewBox="0 0 ${s} ${s}" style="flex:none" aria-hidden="true"><circle cx="${s/2}" cy="${s/2}" r="${r}" style="fill:none;stroke:var(--line)" stroke-width="7"/><circle cx="${s/2}" cy="${s/2}" r="${r}" style="fill:none;stroke:var(--maple)" stroke-width="7" stroke-linecap="round" stroke-dasharray="${c.toFixed(1)}" stroke-dashoffset="${(c*(1-p)).toFixed(1)}" transform="rotate(-90 ${s/2} ${s/2})"/>${label?`<text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" style="fill:var(--ink);font-weight:800;font-size:${Math.round(s/4.6)}px;font-family:var(--f-body)">${label}</text>`:''}</svg>`}
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2400)}
+
+/* ===================== SUARA ===================== */
+let jaVoice=null;
+function pickVoice(){try{const v=speechSynthesis.getVoices();jaVoice=v.find(x=>/ja[-_]JP/i.test(x.lang))||v.find(x=>/^ja/i.test(x.lang))||null}catch(e){}}
+if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+function speak(t,onend){
+ if(!('speechSynthesis' in window)){toast('Suara belum didukung di perangkat ini');onend&&onend();return}
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(kana(t));u.lang='ja-JP';if(jaVoice)u.voice=jaVoice;u.rate=S.set.rate;
+ let fired=false;const fin=()=>{if(!fired){fired=true;onend&&onend()}};u.onend=fin;u.onerror=fin;speechSynthesis.speak(u);
+ if(!jaVoice&&!speak.warned){speak.warned=true;setTimeout(()=>{pickVoice();if(!jaVoice)toast('Tip: pasang suara bahasa Jepang di pengaturan perangkat agar pelafalan lebih jelas')},600)}
+}
+
+/* ===================== XP & LENCANA ===================== */
+function addXP(n,why){if(n<=0)return;const t=dk(Date.now());
+ if(S.last!==t){S.streak=S.last===dk(Date.now()-864e5)?S.streak+1:1;S.last=t}
+ S.xp+=n;S.days[t]=(S.days[t]||0)+n;checkBadges();save();toast(`+${n} XP · ${why}`);paintChrome()}
+function checkBadges(){const B=S.badges;const give=k=>{if(!B[k]){B[k]=dk(Date.now());const b=BADGES.find(x=>x[0]===k);setTimeout(()=>toast('Lencana baru: '+b[2]),2600)}};
+ if(Object.keys(S.done).length>=1)give('first');if((S.best.kilat||0)>=15)give('kana');if(Object.keys(S.kaiwa).length>=3)give('kaiwa');
+ if(S.tryouts.some(t=>t.pct>=80))give('pass');if(S.streak>=3)give('streak3');if(S.xp>=500)give('xp500');
+ if(LEVELS.find(l=>l.id==='biz').lessons.every(x=>S.done[x.id]))give('biz');if(allLessons().every(x=>S.done[x.id]))give('all')}
+
+/* ===================== KERANGKA ===================== */
+const NAV=[['beranda','Beranda','ホーム','home'],['belajar','Belajar','学習','book'],['kaiwa','Kaiwa','会話','chat'],['soal','Soal','問題','pen'],['game','Game','ゲーム','game'],['profil','Profil','マイページ','user']];
+function paintChrome(){
+ $('#sidenav').innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${UI.route===n[0]?'on':''}">${ic(n[3])}<span>${n[1]}</span><span class="jpn">${n[2]}</span></a>`).join('');
+ $('#tabs').innerHTML=NAV.slice(0,5).map(n=>`<a href="#${n[0]}" class="${UI.route===n[0]?'on':''}">${ic(n[3])}<span>${n[1]}</span><span class="jpn">${n[2]}</span></a>`).join('');
+ $('#topstats').innerHTML=`<span class="chip-stat" title="Hari beruntun">${ic('fire')}<span class="num">${curStreak()}</span></span><span class="chip-stat num">${S.xp} XP</span><a class="iconbtn" href="#profil" aria-label="Profil">${ic('user')}</a>`;
+ $('#sidegoal').innerHTML=ring(todayXP()/GOAL,50)+`<div style="min-width:0"><b style="font-size:.9rem">Target harian</b><div class="muted num" style="font-size:.82rem">${Math.min(todayXP(),GOAL)}/${GOAL} XP · ${curStreak()} hari beruntun</div></div>`;
+ document.documentElement.style.setProperty('--rt',{m:'.5em',l:'.6em',xl:'.72em'}[S.set.fs]||'.6em');
+ document.body.classList.toggle('nofuri',!S.set.furi);document.body.classList.toggle('notr',!S.set.tr);
+}
+function render(keepScroll){const y=window.scrollY;const V={beranda:vHome,belajar:vLearn,kaiwa:vKaiwa,soal:vSoal,game:vGame,profil:vProfile}[UI.route];
+ $('#view').innerHTML=V();paintChrome();if(keepScroll)window.scrollTo(0,y)}
+function rerender(){render(true)}
+function go(){const h=location.hash.slice(1);UI.route=NAV.some(n=>n[0]===h)?h:'beranda';stopTimers();
+ Object.assign(UI,{lesson:UI.route==='belajar'&&UI.pending?UI.pending:null,pending:null,lq:{},kaiwa:null,rp:null,quiz:null,game:null,reset:false,rev:null,confirmSubmit:false});render();window.scrollTo(0,0)}
+function openSub(fn){stopTimers();fn();render();window.scrollTo(0,0)}
+
+/* ===================== BERANDA ===================== */
+function leaves(n){const c=['var(--maple)','var(--amber)','var(--gold)'];let s='';for(let i=0;i<n;i++)s+=`<svg style="left:${(i*97)%100}%;animation-duration:${9+i*1.6}s;animation-delay:-${i*2.1}s;color:${c[i%3]}"><use href="#leaf"/></svg>`;return s}
+function vHome(){
+ const h=new Date().getHours();const g=h<11?'おはようございます':h<18?'こんにちは':'こんばんは';
+ const {r}=rank();const next=allLessons().find(x=>!S.done[x.id]);const wl=allVocab();
+ const w=wl[Math.floor(Date.now()/864e5)%wl.length];const tx=todayXP();
+ const feats=[['belajar','book','Belajar','学習','Jalur 6 tahap dari kana sampai bahasa bisnis.',''],['kaiwa','chat','Kaiwa','会話','Dialog bersuara dan roleplay situasi nyata.','am'],['soal','pen','Soal & Tryout','問題','Latihan per kategori dan simulasi ujian berwaktu.',''],['game','game','Game','ゲーム','Kana match, kuis kilat, flashcard, susun kalimat.','am']];
+ return `
+ <section class="hero">
+  <div class="leaves" aria-hidden="true">${leaves(7)}</div>
+  <div class="hero-text">
+   <span class="greet">${g}${S.name?'、'+esc(S.name)+'さん':''}</span>
+   <h1>Belajar bahasa Jepang dari nol sampai siap kerja.</h1>
+   <p class="muted">Ikuti jalur dari hiragana hingga keigo bisnis, latih percakapan dengan suara asli, lalu ukur kemampuanmu lewat tryout bergaya JFT.</p>
+   <div class="stats">
+    <span class="chip-stat">${ic('fire')}<span class="num">${curStreak()} hari beruntun</span></span>
+    <span class="chip-stat">${ic('star')}<span class="num">${S.xp} XP</span></span>
+    <span class="chip-stat">${rb(r[1])} · ${r[2]}</span>
+   </div>
+   <div style="display:flex;gap:10px;flex-wrap:wrap">
+    ${next?`<button class="btn" data-act="openLesson" data-id="${next.id}">Lanjutkan: ${esc(next.title)}</button>`:`<a class="btn" href="#soal">Semua pelajaran selesai. Uji di tryout</a>`}
+    <a class="btn ghost" href="#kaiwa">Latihan kaiwa</a>
+   </div>
+  </div>
+  <svg class="owl-big owl-bob" role="img" aria-label="Maskot burung hantu bertoga"><use href="#owl"/></svg>
+ </section>
+
+ <section class="grid g2">
+  <div class="card" style="padding:20px;display:flex;gap:18px;align-items:center">
+   ${ring(tx/GOAL,92,Math.min(100,Math.round(tx/GOAL*100))+'%')}
+   <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+    <span class="eyebrow">Target harian · 今日の目標</span>
+    <b style="font-size:1.1rem" class="num">${Math.min(tx,GOAL)} / ${GOAL} XP</b>
+    <p class="muted" style="font-size:.9rem">${tx>=GOAL?'Target hari ini tercapai. すごい！':'Selesaikan 1 pelajaran dan 1 game untuk mencapai target.'}</p>
+   </div>
+  </div>
+  <div class="card wod">
+   <div style="min-width:0"><span class="eyebrow">Kata hari ini · 今日の言葉</span>
+    <div class="w">${rb(w[0])}</div><div class="muted">${esc(w[1])}</div></div>
+   ${say(w[0])}
+  </div>
+ </section>
+
+ <section style="display:flex;flex-direction:column;gap:14px">
+  <div class="sec-head"><h2>Fitur utama<span class="jpn">機能</span></h2></div>
+  <div class="grid g4">${feats.map(f=>`<a class="card tap feat" href="#${f[0]}" style="text-decoration:none;color:inherit"><span class="ico ${f[5]}">${ic(f[1])}</span><span><b>${f[2]}</b><span class="jpn">${f[3]}</span></span><span class="muted" style="font-size:.88rem">${f[4]}</span></a>`).join('')}</div>
+ </section>
+
+ <section style="display:flex;flex-direction:column;gap:14px">
+  <div class="sec-head"><h2>Progres jalur belajar<span class="jpn">進み具合</span></h2><a class="btn sm ghost" href="#belajar">Lihat semua</a></div>
+  <div class="card" style="padding:8px 18px">${LEVELS.map((l,i)=>{const d=l.lessons.filter(x=>S.done[x.id]).length;return `<div style="display:grid;grid-template-columns:44px 1fr 56px;gap:12px;align-items:center;padding:12px 0;${i?'border-top:1px solid var(--line)':''}"><b style="font-family:var(--f-display);color:var(--maple)">${l.tag}</b><div style="min-width:0"><div style="display:flex;justify-content:space-between;gap:8px"><b style="font-size:.92rem">${l.name}</b></div><div class="bar" style="margin-top:6px"><i style="width:${d/l.lessons.length*100}%"></i></div></div><span class="muted num" style="text-align:right;font-size:.85rem">${d}/${l.lessons.length}</span></div>`}).join('')}</div>
+ </section>`;
+}
+
+/* ===================== BELAJAR ===================== */
+function vLearn(){
+ if(UI.lesson)return vLesson();
+ const all=allLessons(),dn=all.filter(x=>S.done[x.id]).length;let curSet=false;
+ return `<div class="sec-head"><div><span class="eyebrow">Jalur belajar · 学習ロードマップ</span><h1>Dari nol sampai bisnis</h1></div><span class="pill maple num">${dn}/${all.length} pelajaran selesai</span></div>
+ <div class="road">${LEVELS.map((l,i)=>{const d=l.lessons.filter(x=>S.done[x.id]).length,full=d===l.lessons.length;let cur=false;if(!full&&!curSet){cur=true;curSet=true}
+  return `<div class="stage ${full?'done':''} ${cur?'cur':''}"><div class="badge">${l.tag}</div>
+  <div class="card stage-body"><header><div><span class="eyebrow">Tahap ${i+1}${cur?' · sedang dipelajari':''}</span><h2>${l.name}</h2><p class="muted" style="font-size:.9rem">${l.sub}</p></div><span class="pill ${full?'good':''} num">${d}/${l.lessons.length}</span></header>
+  <p style="margin-top:8px;font-size:.95rem">${l.desc}</p>
+  <div class="lessons">${l.lessons.map(x=>`<button class="lrow ${S.done[x.id]?'ok':''}" data-act="openLesson" data-id="${x.id}"><span class="chk">${S.done[x.id]?ic('check'):''}</span><span class="t"><b>${esc(x.title)}</b> <span style="font-size:.88rem;color:var(--ink-2)">${rb(x.jp)}</span><small>${esc(x.sum)}</small></span><span aria-hidden="true" style="color:var(--ink-3)">›</span></button>`).join('')}</div></div></div>`}).join('')}</div>`;
+}
+function vLesson(){
+ const x=findLesson(UI.lesson),lv=x.lv,done=!!S.done[x.id];
+ let body='';
+ if(x.kana){const arr=x.kana==='hira'?HIRA:KATA;
+  body=`<section class="card" style="padding:18px;display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Tabel ${x.title}<span class="jpn">五十音</span></h2><span class="muted" style="font-size:.88rem">Ketuk huruf untuk mendengar</span></div>
+  <div class="kana-grid">${arr.map((c,i)=>c==='・'?`<div class="kana empty"></div>`:`<button class="kana" data-say="${c}" aria-label="${c} ${ROMA[i]}"><b>${c}</b><small>${ROMA[i]}</small></button>`).join('')}</div></section>
+  <div class="note"><b>Tips belajar:</b> hafalkan per baris (あ, か, さ…), ucapkan keras-keras, lalu uji diri di <b>Kuis Kilat</b>. Perhatikan bunyi khusus: し = shi, ち = chi, つ = tsu, ふ = fu. ${x.kana==='hira'?'Partikel は, を, へ dibaca wa, o, e.':'Tanda ー memanjangkan bunyi, contoh: コーヒー (kōhī).'}</div>`;
+ }else{
+  const qs=x.quiz,ans=UI.lq;const answered=qs.every((q,i)=>ans[i]!==undefined);const score=qs.filter((q,i)=>ans[i]===q.a).length;
+  body=`<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Pola kalimat<span class="jpn">文型</span></h2></div>
+   ${x.points.map((p,pi)=>`<article class="card point"><span class="eyebrow">Pola ${pi+1}</span><div class="pattern">${rb(p.p)}</div><p>${rbh(p.e)}</p>
+    ${p.ex.map(e=>`<div class="ex">${say(e[0])}<div><div class="jp">${rb(e[0])}</div><div class="tr">${esc(e[1])}</div></div></div>`).join('')}</article>`).join('')}</section>
+  <section class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px"><div class="sec-head"><h2>Kosakata<span class="jpn">言葉</span></h2><span class="muted" style="font-size:.85rem">${x.vocab.length} kata</span></div>
+   <div class="tblwrap"><table class="vtab"><tbody>${x.vocab.map(v=>`<tr><td>${rb(v[0])}</td><td class="muted">${esc(v[1])}</td><td>${say(v[0])}</td></tr>`).join('')}</tbody></table></div></section>
+  <section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Latihan mini<span class="jpn">練習</span></h2>${answered?`<span class="pill ${score===qs.length?'good':'maple'} num">Skor ${score}/${qs.length}</span>`:''}</div>
+   ${qs.map((q,i)=>{const a=ans[i],lock=a!==undefined;return `<article class="card q"><span class="eyebrow">Soal ${i+1}</span><div class="stem">${rb(q.q)}</div>
+    <div class="opts ${lock?'locked':''}">${q.o.map((o,j)=>`<button class="opt ${lock&&j===q.a?'right':''} ${lock&&j===a&&a!==q.a?'wrong':''}" data-act="lq" data-q="${i}" data-o="${j}"><span class="k">${'ABCD'[j]}</span><span>${rb(o)}</span></button>`).join('')}</div>
+    ${lock?`<div class="expl pop"><b>${a===q.a?'Benar.':'Belum tepat.'}</b> ${rbh(q.x)}</div>`:''}</article>`}).join('')}</section>`;
+ }
+ const canDone=x.kana||x.quiz.every((q,i)=>UI.lq[i]!==undefined);
+ return `<button class="back" data-act="backLearn">${ic('left').replace('<svg','<svg width="18" height="18"')} Jalur belajar</button>
+ <header style="display:flex;flex-direction:column;gap:8px"><span class="eyebrow">${lv.tag} · ${lv.name}</span><h1>${esc(x.title)}</h1><div class="jp" style="color:var(--maple);font-size:1.4rem">${rb(x.jp)}</div><p class="muted">${esc(x.sum)}</p></header>
+ ${body}
+ <div class="card" style="padding:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+  <div><b>${done?'Pelajaran ini sudah selesai':'Selesaikan pelajaran'}</b><p class="muted" style="font-size:.88rem">${done?'Kamu bisa mengulang kapan saja.':canDone?'Dapatkan 30 XP dan buka pelajaran berikutnya.':'Jawab semua latihan mini terlebih dahulu.'}</p></div>
+  ${done?`<button class="btn ghost" data-act="nextLesson">Pelajaran berikutnya</button>`:`<button class="btn" data-act="doneLesson" ${canDone?'':'disabled'}>Tandai selesai · +30 XP</button>`}
+ </div>`;
+}
+
+/* ===================== KAIWA ===================== */
+function vKaiwa(){
+ if(UI.kaiwa)return vScene();
+ return `<div class="sec-head"><div><span class="eyebrow">Percakapan · 会話</span><h1>Kaiwa situasi nyata</h1></div><span class="pill maple num">${Object.keys(S.kaiwa).length}/${KAIWA.length} selesai</span></div>
+ <p class="muted" style="max-width:62ch">Dengarkan dialog dengan furigana dan terjemahan, lalu masuk mode roleplay: kamu memerankan tokoh アンディ dan memilih jawaban yang tepat.</p>
+ <div class="grid g2">${KAIWA.map(k=>`<button class="card tap" style="padding:18px;display:flex;flex-direction:column;gap:8px" data-act="openKaiwa" data-id="${k.id}">
+  <div style="display:flex;justify-content:space-between;width:100%;gap:8px"><span class="pill">${k.lv}</span>${S.kaiwa[k.id]?`<span class="pill good">${ic('check').replace('<svg','<svg width="12" height="12"')} Selesai</span>`:''}</div>
+  <h3>${esc(k.title)}</h3><div class="jp" style="font-size:1.1rem;line-height:2;color:var(--maple)">${rb(k.jp)}</div>
+  <span class="muted" style="font-size:.88rem">${esc(k.place)} · ${k.lines.length} baris</span></button>`).join('')}</div>`;
+}
+function bubble(l,i,k){const me=l[0]==='b';return `<div class="bub ${me?'me':''} pop" id="bub-${i}"><span class="av">${me?'ア':kana(k.a).slice(0,1)}</span><div class="msg"><div class="who">${me?'アンディ (kamu)':rb(k.a)}</div><div class="jp">${rb(l[1])}</div><div class="tr">${esc(l[2])}</div></div>${say(l[1])}</div>`}
+function vScene(){
+ const k=KAIWA.find(x=>x.id===UI.kaiwa);const mode=UI.kmode;let main='';
+ if(mode==='dengar'){
+  main=`<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" data-act="playAll">${ic('play').replace('<svg','<svg width="18" height="18"')} Putar semua</button><button class="btn ghost" data-act="kmode" data-m="roleplay">Lanjut ke roleplay</button></div>
+  <div class="chat">${k.lines.map((l,i)=>bubble(l,i,k)).join('')}</div>`;
+ }else{
+  const rp=UI.rp;const shown=k.lines.slice(0,rp.i);const cur=k.lines[rp.i];
+  main=`<div class="chat">${shown.map((l,i)=>bubble(l,i,k)).join('')}</div>`;
+  if(cur){main+=`<div class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px"><span class="eyebrow">Giliranmu · あなたの番</span><p class="muted" style="font-size:.9rem">Pilih ucapan アンディ yang paling tepat.</p>
+   <div class="opts" style="grid-template-columns:1fr">${rp.order.map(o=>`<button class="opt" data-act="rpPick" data-o="${o}"><span class="jp" style="font-size:1.1rem;line-height:2">${rb(o===0?cur[1]:cur[3][o-1])}</span></button>`).join('')}</div>
+   <button class="btn sm ghost" style="align-self:flex-start" data-act="rpHint">Lihat petunjuk arti</button>${rp.hint?`<div class="expl">Maksud yang ingin disampaikan: <b>${esc(cur[2])}</b></div>`:''}</div>`}
+  else{main+=`<div class="card pop" style="padding:22px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg width="72" height="72"><use href="#owl"/></svg><div style="flex:1;min-width:200px"><h2>よくできました！</h2><p class="muted">Roleplay selesai dengan ${rp.wrong} kesalahan.</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn ghost" data-act="kmode" data-m="roleplay">Ulangi</button><button class="btn" data-act="backKaiwa">Kaiwa lain</button></div></div>`}
+ }
+ return `<button class="back" data-act="backKaiwa">${ic('left').replace('<svg','<svg width="18" height="18"')} Semua kaiwa</button>
+ <header style="display:flex;flex-direction:column;gap:6px"><span class="eyebrow">${k.lv} · ${esc(k.place)}</span><h1>${esc(k.title)}</h1><div class="jp" style="color:var(--maple);font-size:1.35rem">${rb(k.jp)}</div></header>
+ <div class="seg" role="tablist"><button class="${mode==='dengar'?'on':''}" data-act="kmode" data-m="dengar">Dengar & baca</button><button class="${mode==='roleplay'?'on':''}" data-act="kmode" data-m="roleplay">Roleplay</button></div>
+ ${main}
+ <section style="display:flex;flex-direction:column;gap:10px"><h2>Catatan sensei<span class="jpn" style="font-size:.85rem;color:var(--ink-3);margin-left:8px">ポイント</span></h2>${k.notes.map(n=>`<div class="note">${rbh(esc(n))}</div>`).join('')}</section>`;
+}
+function rpAdvance(){const k=KAIWA.find(x=>x.id===UI.kaiwa),rp=UI.rp;let last=null;
+ while(rp.i<k.lines.length&&k.lines[rp.i][0]==='a'){last=k.lines[rp.i];rp.i++}
+ rp.hint=false;const cur=k.lines[rp.i];rp.order=cur?shuffle([0,1,2]):[];
+ if(!cur){const first=!S.kaiwa[k.id];S.kaiwa[k.id]=dk(Date.now());save();addXP(first?20:5,'Kaiwa selesai')}return last}
+
+/* ===================== SOAL & TRYOUT ===================== */
+function pool(lv,cat){return QB.map((q,i)=>i).filter(i=>(lv==='all'||QB[i][0]===lv)&&(cat==='all'||QB[i][1]===cat))}
+function vSoal(){
+ if(UI.quiz)return vQuiz();
+ const pf=UI.pf,n=pool(pf.lv,pf.cat).length;
+ const lvs=[['all','Semua']].concat(Object.entries(LVNAME));const cats=[['all','Semua']].concat(Object.entries(CATS));
+ return `<div class="sec-head"><div><span class="eyebrow">Soal & tryout · 問題・模擬試験</span><h1>Latihan soal</h1></div><span class="pill maple num">${QB.length} soal di bank soal</span></div>
+ <section class="card" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+  <h2>Latihan per kategori</h2><p class="muted" style="font-size:.92rem">Jawaban langsung dinilai dan disertai penjelasan.</p>
+  <div class="field"><label>Level</label><div class="seg">${lvs.map(l=>`<button class="${pf.lv===l[0]?'on':''}" data-act="pf" data-k="lv" data-v="${l[0]}">${l[1]}</button>`).join('')}</div></div>
+  <div class="field"><label>Kategori</label><div class="seg">${cats.map(c=>`<button class="${pf.cat===c[0]?'on':''}" data-act="pf" data-k="cat" data-v="${c[0]}">${c[1]}</button>`).join('')}</div></div>
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><button class="btn" data-act="startPractice" ${n?'':'disabled'}>Mulai latihan · ${Math.min(10,n)} soal</button><span class="muted num" style="font-size:.88rem">${n} soal tersedia</span></div>
+ </section>
+ <section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Tryout berwaktu<span class="jpn">模擬試験</span></h2></div>
+  <div class="grid g3">${TRYOUTS.map(t=>`<div class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px"><span class="eyebrow">${t.lv.map(l=>LVNAME[l]).join(' · ')}</span><h3>${t.title}</h3><div style="color:var(--maple);font-weight:500">${rb(t.jp)}</div><p class="muted" style="font-size:.9rem">${t.desc}</p>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill num">${t.n} soal</span><span class="pill num">${t.min} menit</span>${S.best[t.id]!==undefined?`<span class="pill good num">Terbaik ${S.best[t.id]}%</span>`:''}</div>
+   <button class="btn" style="margin-top:6px" data-act="startTryout" data-id="${t.id}">Mulai tryout</button></div>`).join('')}</div></section>
+ ${S.tryouts.length?`<section class="card" style="padding:8px 18px"><h3 style="padding:12px 0 4px">Riwayat tryout</h3>${S.tryouts.slice(-5).reverse().map(t=>`<div style="display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line)"><span>${esc(t.title)} <small class="muted">· ${t.date}</small></span><b class="num" style="color:${t.pct>=80?'var(--good)':'var(--maple)'}">${t.pct}%</b></div>`).join('')}</section>`:''}`;
+}
+function makeQs(ids){return ids.map(k=>({k,p:shuffle(QB[k][3].map((_,j)=>j))}))}
+function startQuiz(mode,ids,title,tid,min){stopTimers();UI.quiz={mode,title,tid,qs:makeQs(ids),i:0,ans:{},done:false,end:min?Date.now()+min*60000:null,xp:0};UI.rev=null;UI.confirmSubmit=false;
+ if(min)timers.push(setInterval(()=>{const el=$('#timer');const left=UI.quiz.end-Date.now();if(left<=0){finishQuiz();return}if(el)el.textContent=fmt(left)},1000));render();window.scrollTo(0,0)}
+const fmt=ms=>{const s=Math.max(0,Math.ceil(ms/1000));return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')};
+const isRight=(q,a)=>a!==undefined&&q.p[a]===QB[q.k][4];
+function finishQuiz(){const Q=UI.quiz;if(!Q||Q.done)return;stopTimers();Q.done=true;const c=Q.qs.filter((q,i)=>isRight(q,Q.ans[i])).length;Q.correct=c;Q.pct=Math.round(c/Q.qs.length*100);
+ if(Q.mode==='tryout'){Q.xp=c*4+(Q.pct>=80?20:0);S.tryouts.push({id:Q.tid,title:Q.title,pct:Q.pct,date:dk(Date.now())});S.best[Q.tid]=Math.max(S.best[Q.tid]||0,Q.pct)}else Q.xp=c*3;
+ save();addXP(Q.xp,Q.mode==='tryout'?'Tryout selesai':'Latihan selesai');render();window.scrollTo(0,0)}
+function qCard(q,i,a,mode,reveal){const d=QB[q.k];
+ return `<article class="card q"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><span class="eyebrow">Soal ${i+1} · ${CATS[d[1]]}</span><span class="pill">${LVNAME[d[0]]}</span></div>
+ <div class="stem">${rb(d[2])}</div>
+ <div class="opts ${reveal?'locked':''}">${q.p.map((oi,j)=>{let c='';if(reveal){if(oi===d[4])c='right';else if(j===a)c='wrong'}else if(j===a)c='sel';
+  return `<button class="opt ${c}" data-act="qPick" data-o="${j}"><span class="k">${'ABCD'[j]}</span><span>${rb(d[3][oi])}</span></button>`}).join('')}</div>
+ ${reveal?`<div class="expl pop"><b>${isRight(q,a)?'Benar.':a===undefined?'Tidak dijawab.':'Belum tepat.'}</b> Jawaban: <b>${'ABCD'[q.p.indexOf(d[4])]}</b>. ${rbh(d[5])}</div>`:''}</article>`}
+function vQuiz(){const Q=UI.quiz;const back=`<button class="back" data-act="exitQuiz">${ic('left').replace('<svg','<svg width="18" height="18"')} Keluar</button>`;
+ if(Q.done){const msg=Q.pct>=80?'すばらしい！ Siap ujian.':Q.pct>=60?'いいですね！ Sedikit lagi.':'がんばって！ Ulangi materi yang salah.';
+  return `${back}<section class="card" style="padding:24px;display:flex;gap:22px;align-items:center;flex-wrap:wrap">${ring(Q.pct/100,140,Q.pct+'%')}<div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:8px"><span class="eyebrow">Hasil ${Q.mode==='tryout'?'tryout':'latihan'}</span><h1>${esc(Q.title)}</h1><p class="num"><b>${Q.correct}</b> dari ${Q.qs.length} benar · +${Q.xp} XP</p><p class="muted">${msg}</p>
+   <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-act="retryQuiz">Ulangi</button><button class="btn ghost" data-act="exitQuiz">Kembali</button></div></div></section>
+  <section style="display:flex;flex-direction:column;gap:12px"><div class="sec-head"><h2>Pembahasan<span class="jpn">解説</span></h2><span class="muted" style="font-size:.88rem">Klik nomor untuk melihat jawaban dan penjelasan</span></div>
+   <div class="qnav">${Q.qs.map((q,i)=>`<button class="${isRight(q,Q.ans[i])?'r':'w'} ${UI.rev===i?'cur':''} num" data-act="rev" data-i="${i}">${i+1}</button>`).join('')}</div>
+   ${UI.rev!==null?qCard(Q.qs[UI.rev],UI.rev,Q.ans[UI.rev],Q.mode,true):''}</section>`}
+ const q=Q.qs[Q.i],a=Q.ans[Q.i];const prac=Q.mode==='latihan';const reveal=prac&&a!==undefined;const last=Q.i===Q.qs.length-1;
+ const answered=Object.keys(Q.ans).length;
+ return `${back}<header style="display:flex;justify-content:space-between;align-items:end;gap:12px;flex-wrap:wrap"><div><span class="eyebrow">${prac?'Latihan':'Tryout'} · soal ${Q.i+1}/${Q.qs.length}</span><h1>${esc(Q.title)}</h1></div>${Q.end?`<span class="chip-stat timer">${ic('clock')}<span id="timer">${fmt(Q.end-Date.now())}</span></span>`:''}</header>
+ <div class="bar"><i style="width:${(prac?Q.i+(reveal?1:0):answered)/Q.qs.length*100}%"></i></div>
+ ${qCard(q,Q.i,a,Q.mode,reveal)}
+ <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+  ${prac?`<span></span><button class="btn" data-act="${last?'finish':'qNext'}" ${reveal?'':'disabled'}>${last?'Lihat hasil':'Soal berikutnya'}</button>`
+  :`<button class="btn ghost" data-act="qPrev" ${Q.i?'':'disabled'}>Sebelumnya</button><div style="display:flex;gap:8px;flex-wrap:wrap">${last?'':`<button class="btn ghost" data-act="qNext">Berikutnya</button>`}<button class="btn" data-act="askSubmit">Kumpulkan</button></div>`}
+ </div>
+ ${UI.confirmSubmit?`<div class="confirm pop"><span style="flex:1;min-width:200px">${answered<Q.qs.length?`Masih ada <b>${Q.qs.length-answered}</b> soal belum dijawab. Tetap kumpulkan?`:'Kumpulkan jawaban sekarang?'}</span><button class="btn sm" data-act="finish">Ya, kumpulkan</button><button class="btn sm ghost" data-act="cancelSubmit">Batal</button></div>`:''}
+ ${prac?'':`<div class="qnav">${Q.qs.map((x,i)=>`<button class="${Q.ans[i]!==undefined?'ans':''} ${i===Q.i?'cur':''} num" data-act="qGo" data-i="${i}" aria-label="Soal ${i+1}">${i+1}</button>`).join('')}</div>`}`;
+}
+
+/* ===================== GAME ===================== */
+const KPOOL=ROMA.map((r,i)=>i).filter(i=>ROMA[i]!=='-');
+function vGame(){
+ if(UI.game)return({match:vMatch,kilat:vKilat,flash:vFlash,susun:vSusun})[UI.game.t]();
+ const G=[['match','かなマッチ','Kana Match','Pasangkan kartu huruf kana dengan cara bacanya.',S.best.match?`Terbaik ${S.best.match} langkah`:'Belum dimainkan'],
+  ['kilat','スピードクイズ','Kuis Kilat','60 detik: tebak bacaan kana sebanyak mungkin.',S.best.kilat?`Rekor ${S.best.kilat} benar`:'Belum dimainkan'],
+  ['flash','単語カード','Flashcard','Kartu bolak-balik untuk menghafal kosakata semua level.',S.best.flash?`Terakhir ${S.best.flash} kata hafal`:'Belum dimainkan'],
+  ['susun','文づくり','Susun Kalimat','Urutkan potongan kata menjadi kalimat yang benar.',S.best.susun?`Terbaik ${S.best.susun}/${SENT.length}`:'Belum dimainkan']];
+ return `<div class="sec-head"><div><span class="eyebrow">Game · ゲーム</span><h1>Belajar sambil bermain</h1></div></div>
+ <div class="grid g2">${G.map(g=>`<button class="card tap" style="padding:20px;display:flex;flex-direction:column;gap:8px" data-act="startGame" data-g="${g[0]}"><span style="font-family:var(--f-display);color:var(--maple);font-weight:700">${g[1]}</span><h3>${g[2]}</h3><span class="muted" style="font-size:.9rem">${g[3]}</span><span class="pill" style="margin-top:4px">${g[4]}</span></button>`).join('')}</div>`;
+}
+const gBack=t=>`<button class="back" data-act="exitGame">${ic('left').replace('<svg','<svg width="18" height="18"')} Semua game</button><header style="display:flex;flex-direction:column;gap:4px"><span class="eyebrow">Game</span><h1>${t}</h1></header>`;
+function initGame(t){const set=Math.random()<.5?HIRA:KATA;
+ if(t==='match'){const pick=shuffle(KPOOL).slice(0,6);const cards=shuffle(pick.flatMap(i=>[{id:i,f:set[i],jp:1},{id:i,f:ROMA[i]}]));return{t,cards,open:[],got:[],moves:0,start:Date.now(),busy:false}}
+ if(t==='kilat')return{t,set,score:0,left:60,run:false,over:false,q:null};
+ if(t==='flash')return{t,deck:shuffle(allVocab()).slice(0,12),i:0,flip:false,known:0};
+ if(t==='susun')return{t,order:shuffle(SENT.map((_,i)=>i)),i:0,pick:[],bank:null,res:null,score:0};}
+function vMatch(){const g=UI.game;const win=g.got.length===12;
+ if(win&&!g.fin){g.fin=true;const sec=Math.round((Date.now()-g.start)/1000);g.sec=sec;if(!S.best.match||g.moves<S.best.match)S.best.match=g.moves;save();setTimeout(()=>addXP(15,'Kana Match selesai'),100)}
+ return `${gBack('Kana Match')}<p class="muted">Buka dua kartu. Jika huruf dan bacaannya cocok, kartu tetap terbuka.</p>
+ <div style="display:flex;gap:8px"><span class="chip-stat num">Langkah: ${g.moves}</span><span class="chip-stat num">Pasangan: ${g.got.length/2}/6</span></div>
+ <div class="mgrid">${g.cards.map((c,i)=>{const up=g.open.includes(i)||g.got.includes(i);return `<button class="mcard ${up?'up':''} ${g.got.includes(i)?'got':''}" data-act="mFlip" data-i="${i}" aria-label="${up?c.f:'Kartu tertutup'}">${up?`<span style="${c.jp?'':'font-size:1.15rem'}">${c.f}</span>`:`<svg width="34" height="34" style="opacity:.45"><use href="#leaf"/></svg>`}</button>`}).join('')}</div>
+ ${win?`<div class="card pop" style="padding:20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap"><svg width="64" height="64"><use href="#owl"/></svg><div style="flex:1;min-width:180px"><h2>おめでとう！</h2><p class="muted num">${g.moves} langkah · ${g.sec} detik</p></div><button class="btn" data-act="startGame" data-g="match">Main lagi</button></div>`:''}`}
+function kilatQ(g){const i=KPOOL[Math.floor(Math.random()*KPOOL.length)];const opts=shuffle([i].concat(shuffle(KPOOL.filter(x=>x!==i)).slice(0,3)));g.q={i,opts}}
+function vKilat(){const g=UI.game;
+ if(!g.run&&!g.over)return `${gBack('Kuis Kilat')}<div class="card" style="padding:24px;display:flex;flex-direction:column;gap:12px;align-items:flex-start"><p>Tebak cara baca huruf ${g.set===HIRA?'hiragana':'katakana'} sebanyak mungkin dalam <b>60 detik</b>. Rekor saat ini: <b class="num">${S.best.kilat||0}</b>.</p>
+  <div class="seg"><button class="${g.set===HIRA?'on':''}" data-act="kSet" data-s="h">Hiragana</button><button class="${g.set===KATA?'on':''}" data-act="kSet" data-s="k">Katakana</button></div><button class="btn" data-act="kStart">Mulai</button></div>`;
+ if(g.over)return `${gBack('Kuis Kilat')}<div class="card pop" style="padding:24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg width="64" height="64"><use href="#owl"/></svg><div style="flex:1;min-width:180px"><h2 class="num">${g.score} benar</h2><p class="muted">${g.score>=(S.best.kilat||0)?'Rekor baru!':'Rekor: '+S.best.kilat}</p></div><button class="btn" data-act="startGame" data-g="kilat">Main lagi</button></div>`;
+ return `${gBack('Kuis Kilat')}<div style="display:flex;gap:8px"><span class="chip-stat timer">${ic('clock')}<span id="ktime" class="num">${g.left}</span>s</span><span class="chip-stat num">Skor ${g.score}</span></div>
+ <div class="card" style="padding:18px;max-width:520px"><div class="bigkana">${g.set[g.q.i]}</div><div class="opts" style="grid-template-columns:1fr 1fr">${g.q.opts.map(o=>`<button class="opt" style="justify-content:center;font-weight:700" data-act="kAns" data-o="${o}">${ROMA[o]}</button>`).join('')}</div></div>`}
+function vFlash(){const g=UI.game;const c=g.deck[g.i];
+ if(!c)return `${gBack('Flashcard')}<div class="card pop" style="padding:24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg width="64" height="64"><use href="#owl"/></svg><div style="flex:1;min-width:180px"><h2 class="num">${g.known} kata hafal</h2><p class="muted">Ulangi besok agar ingatan makin kuat.</p></div><button class="btn" data-act="startGame" data-g="flash">Kartu baru</button></div>`;
+ return `${gBack('Flashcard')}<div style="display:flex;gap:8px;align-items:center"><span class="chip-stat num">Kartu ${g.i+1}/${g.deck.length}</span><span class="chip-stat num">Hafal ${g.known}</span></div>
+ <div style="max-width:560px;display:flex;flex-direction:column;gap:12px"><button class="card flash" data-act="fFlip">${g.flip?`<span class="eyebrow">Arti</span><div class="big" style="font-size:1.6rem;line-height:1.5">${esc(c[1])}</div><div class="muted">${rb(c[0])}</div>`:`<span class="eyebrow">Ketuk untuk melihat arti</span><div class="big">${rb(c[0])}</div>`}</button>
+ <div style="display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap">${say(c[0])}<div style="display:flex;gap:8px"><button class="btn ghost" data-act="fNext" data-k="0">Belum hafal</button><button class="btn" data-act="fNext" data-k="1">Hafal</button></div></div></div>`}
+function vSusun(){const g=UI.game;const si=g.order[g.i];
+ if(si===undefined)return `${gBack('Susun Kalimat')}<div class="card pop" style="padding:24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><svg width="64" height="64"><use href="#owl"/></svg><div style="flex:1;min-width:180px"><h2 class="num">${g.score}/${SENT.length} benar</h2><p class="muted">Struktur dasar: topik は → keterangan → objek を → predikat.</p></div><button class="btn" data-act="startGame" data-g="susun">Main lagi</button></div>`;
+ const s=SENT[si];if(!g.bank){let b;do{b=shuffle(s[0].map((_,i)=>i))}while(s[0].length>1&&b.every((v,i)=>v===i));g.bank=b}
+ return `${gBack('Susun Kalimat')}<span class="chip-stat num" style="align-self:flex-start">Kalimat ${g.i+1}/${SENT.length} · Benar ${g.score}</span>
+ <div class="card" style="padding:20px;display:flex;flex-direction:column;gap:14px"><span class="eyebrow">Terjemahkan ke bahasa Jepang</span><b style="font-size:1.15rem">${esc(s[1])}</b>
+  <div class="slots">${g.pick.length?g.pick.map((ti,pi)=>`<button class="tok" data-act="sDel" data-i="${pi}" ${g.res?'disabled':''}>${rb(s[0][ti])}</button>`).join(''):'<span class="muted" style="font-size:.9rem">Ketuk kata di bawah sesuai urutan</span>'}</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px">${g.bank.map(ti=>`<button class="tok ${g.pick.includes(ti)?'used':''}" data-act="sAdd" data-t="${ti}" ${g.res?'disabled':''}>${rb(s[0][ti])}</button>`).join('')}</div>
+  ${g.res?`<div class="expl pop"><b>${g.res==='ok'?'正解！ Benar.':'Belum tepat.'}</b> <span class="jp" style="font-size:1.1rem">${rb(s[0].join(' '))}</span></div>`:''}
+  <div style="display:flex;gap:8px;flex-wrap:wrap">${g.res?`<button class="btn" data-act="sNext">Berikutnya</button>${say(s[0].join(''))}`:`<button class="btn" data-act="sCheck" ${g.pick.length===s[0].length?'':'disabled'}>Periksa</button><button class="btn ghost" data-act="sClear">Ulang</button>`}</div></div>`}
+
+/* ===================== PROFIL ===================== */
+function vProfile(){const {r,nx}=rank();const pr=nx?(S.xp-r[0])/(nx[0]-r[0]):1;const L=allLessons();const dn=L.filter(x=>S.done[x.id]).length;
+ const best=S.tryouts.length?Math.max(...S.tryouts.map(t=>t.pct))+'%':'–';const days=[...Array(7)].map((_,i)=>{const d=new Date(Date.now()-(6-i)*864e5);return{k:dk(d),l:['Min','Sen','Sel','Rab','Kam','Jum','Sab'][d.getDay()]}});
+ const mx=Math.max(GOAL,...days.map(d=>S.days[d.k]||0));const st=S.set;const sw=(k,on,label,sub)=>`<div class="setrow"><div><b>${label}</b><div class="muted" style="font-size:.85rem">${sub}</div></div><button class="switch ${on?'on':''}" role="switch" aria-checked="${on}" aria-label="${label}" data-act="setT" data-k="${k}"></button></div>`;
+ return `<section class="card" style="padding:22px;display:flex;gap:18px;align-items:center;flex-wrap:wrap"><svg width="96" height="96" role="img" aria-label="Avatar burung hantu"><use href="#owl"/></svg>
+  <div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:6px"><span class="eyebrow">Peringkat · ランク</span><h1>${S.name?esc(S.name):'Pelajar Owl'}</h1><div><b style="color:var(--maple)">${rb(r[1])}</b> · ${r[2]}</div>
+  <div class="bar" style="max-width:360px"><i style="width:${pr*100}%"></i></div><span class="muted num" style="font-size:.85rem">${nx?`${nx[0]-S.xp} XP lagi menuju ${nx[2]}`:'Peringkat tertinggi tercapai'}</span></div></section>
+ <section class="grid g4">${[['Total XP',S.xp],['Hari beruntun',curStreak()],['Pelajaran',dn+'/'+L.length],['Kaiwa selesai',Object.keys(S.kaiwa).length+'/'+KAIWA.length],['Tryout terbaik',best]].map(s=>`<div class="card" style="padding:16px"><span class="eyebrow">${s[0]}</span><div class="num" style="font-size:1.6rem;font-weight:800;font-family:var(--f-display)">${s[1]}</div></div>`).join('')}</section>
+ <section class="card" style="padding:20px;display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>XP 7 hari terakhir</h2><span class="muted" style="font-size:.85rem">Target harian ${GOAL} XP</span></div>
+  <div>
+  <div class="weekbars">${days.map((d,i)=>{const v=S.days[d.k]||0;return `<div class="${i===6?'today':''}"><span>${v||''}</span><i style="height:calc(${v/mx} * (100% - 40px))"></i><small>${i===6?'Hari ini':d.l}</small></div>`}).join('')}</div></div></section>
+ <section style="display:flex;flex-direction:column;gap:12px"><h2>Lencana<span class="jpn" style="font-size:.85rem;color:var(--ink-3);margin-left:8px">バッジ</span></h2>
+  <div class="badges">${BADGES.map(b=>`<div class="bdg ${S.badges[b[0]]?'on':''}"><span class="medal">${b[1]}</span><b>${b[2]}</b><small>${b[3]}</small></div>`).join('')}</div></section>
+ <section class="card" style="padding:8px 20px 20px"><h2 style="padding-top:14px">Pengaturan<span class="jpn" style="font-size:.85rem;color:var(--ink-3);margin-left:8px">設定</span></h2>
+  <div class="setrow"><div class="field" style="flex:1;min-width:220px"><label for="nm">Nama panggilan</label><input id="nm" class="input" maxlength="24" placeholder="Contoh: Rina" value="${esc(S.name)}"></div></div>
+  ${sw('furi',st.furi,'Tampilkan furigana','Bacaan hiragana di atas kanji')}
+  <div class="setrow"><div><b>Ukuran furigana</b><div class="jp" style="font-size:1.2rem">${rb('日本語{にほんご}を 勉強{べんきょう}します')}</div></div><div class="seg">${[['m','Sedang'],['l','Besar'],['xl','Ekstra']].map(o=>`<button class="${st.fs===o[0]?'on':''}" data-act="setV" data-k="fs" data-v="${o[0]}">${o[1]}</button>`).join('')}</div></div>
+  ${sw('tr',st.tr,'Tampilkan terjemahan','Arti bahasa Indonesia di bawah contoh kalimat')}
+  <div class="setrow"><div><b>Kecepatan suara</b><div class="muted" style="font-size:.85rem">Untuk semua tombol dengar</div></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><div class="seg">${[[.7,'Lambat'],[.9,'Normal'],[1.1,'Cepat']].map(o=>`<button class="${st.rate===o[0]?'on':''}" data-act="setV" data-k="rate" data-v="${o[0]}">${o[1]}</button>`).join('')}</div>${say('こんにちは。 フクロウ日本語{にほんご}へ ようこそ。','Tes suara')}</div></div>
+  <div class="setrow" style="border:0"><div><b>Atur ulang progres</b><div class="muted" style="font-size:.85rem">Menghapus XP, lencana, dan riwayat di perangkat ini</div></div>${UI.reset?`<div style="display:flex;gap:8px"><button class="btn sm" data-act="resetYes">Ya, hapus</button><button class="btn sm ghost" data-act="resetNo">Batal</button></div>`:`<button class="btn sm line" data-act="resetAsk">Atur ulang</button>`}</div>
+ </section>
+ <p class="muted" style="font-size:.8rem;text-align:center">Owl Nihongo · フクロウ日本語 — progres tersimpan otomatis di perangkat ini.</p>`;
+}
+
+/* ===================== AKSI ===================== */
+function playAll(i=0){const k=KAIWA.find(x=>x.id===UI.kaiwa);document.querySelectorAll('.bub.playing').forEach(b=>b.classList.remove('playing'));if(!k||UI.kmode!=='dengar'||i>=k.lines.length)return;
+ const el=$('#bub-'+i);if(el){el.classList.add('playing');el.scrollIntoView({block:'nearest',behavior:'smooth'})}speak(k.lines[i][1],()=>setTimeout(()=>playAll(i+1),350))}
+const ACT={
+ openLesson:d=>{if(UI.route!=='belajar'){UI.pending=d.id;location.hash='belajar';return}openSub(()=>{UI.lesson=d.id;UI.lq={}})},
+ backLearn:()=>openSub(()=>{UI.lesson=null}),
+ lq:d=>{const x=findLesson(UI.lesson),i=+d.q;if(UI.lq[i]!==undefined)return;UI.lq[i]=+d.o;if(+d.o===x.quiz[i].a)addXP(5,'Jawaban benar');rerender()},
+ doneLesson:()=>{const x=findLesson(UI.lesson);if(S.done[x.id])return;S.done[x.id]=dk(Date.now());save();addXP(30,'Pelajaran selesai');rerender()},
+ nextLesson:()=>{const L=allLessons(),i=L.findIndex(x=>x.id===UI.lesson);const n=L.slice(i+1).find(x=>!S.done[x.id])||L[i+1];openSub(()=>{UI.lesson=n?n.id:null;UI.lq={}})},
+ openKaiwa:d=>openSub(()=>{UI.kaiwa=d.id;UI.kmode='dengar';UI.rp=null}),
+ backKaiwa:()=>openSub(()=>{UI.kaiwa=null}),
+ kmode:d=>{stopTimers();UI.kmode=d.m;if(d.m==='roleplay'){UI.rp={i:0,wrong:0,order:[]};const l=rpAdvance();if(l)setTimeout(()=>speak(l[1]),300)}render();window.scrollTo(0,0)},
+ playAll:()=>playAll(0),
+ rpPick:(d,el)=>{const k=KAIWA.find(x=>x.id===UI.kaiwa),rp=UI.rp;if(+d.o===0){const line=k.lines[rp.i][1];rp.i++;const l=rpAdvance();speak(line,()=>{if(l&&UI.rp===rp)setTimeout(()=>speak(l[1]),250)});rerender();const c=document.querySelectorAll('.bub');c.length&&c[c.length-1].scrollIntoView({block:'center',behavior:'smooth'})}
+  else{rp.wrong++;el.classList.add('wrong','shake');el.disabled=true;toast('Belum tepat, perhatikan konteks percakapan')}},
+ rpHint:()=>{UI.rp.hint=true;rerender()},
+ pf:d=>{UI.pf[d.k]=d.v;rerender()},
+ startPractice:()=>{const ids=shuffle(pool(UI.pf.lv,UI.pf.cat)).slice(0,10);const t='Latihan '+(UI.pf.lv==='all'?'semua level':LVNAME[UI.pf.lv])+(UI.pf.cat==='all'?'':' · '+CATS[UI.pf.cat]);startQuiz('latihan',ids,t,null,0)},
+ startTryout:d=>{const t=TRYOUTS.find(x=>x.id===d.id);const ids=shuffle(QB.map((q,i)=>i).filter(i=>t.lv.includes(QB[i][0]))).slice(0,t.n);startQuiz('tryout',ids,t.title,t.id,t.min)},
+ qPick:d=>{const Q=UI.quiz;if(Q.done)return;if(Q.mode==='latihan'&&Q.ans[Q.i]!==undefined)return;Q.ans[Q.i]=+d.o;UI.confirmSubmit=false;rerender()},
+ qNext:()=>{UI.quiz.i=Math.min(UI.quiz.i+1,UI.quiz.qs.length-1);UI.confirmSubmit=false;rerender()},
+ qPrev:()=>{UI.quiz.i=Math.max(0,UI.quiz.i-1);UI.confirmSubmit=false;rerender()},
+ qGo:d=>{UI.quiz.i=+d.i;UI.confirmSubmit=false;rerender()},
+ askSubmit:()=>{UI.confirmSubmit=true;rerender()},cancelSubmit:()=>{UI.confirmSubmit=false;rerender()},
+ finish:()=>finishQuiz(),
+ rev:d=>{UI.rev=UI.rev===+d.i?null:+d.i;rerender()},
+ retryQuiz:()=>{const Q=UI.quiz;const t=Q.tid&&TRYOUTS.find(x=>x.id===Q.tid);if(t)ACT.startTryout({id:t.id});else startQuiz('latihan',shuffle(Q.qs.map(q=>q.k)),Q.title,null,0)},
+ exitQuiz:()=>openSub(()=>{UI.quiz=null}),
+ startGame:d=>openSub(()=>{UI.game=initGame(d.g)}),
+ exitGame:()=>openSub(()=>{UI.game=null}),
+ mFlip:d=>{const g=UI.game,i=+d.i;if(g.busy||g.open.includes(i)||g.got.includes(i))return;g.open.push(i);
+  if(g.open.length===2){g.moves++;const[a,b]=g.open;if(g.cards[a].id===g.cards[b].id&&a!==b){g.got.push(a,b);g.open=[];speak(HIRA[g.cards[a].id])}else{g.busy=true;setTimeout(()=>{g.open=[];g.busy=false;if(UI.game===g)rerender()},750)}}rerender()},
+ kSet:d=>{UI.game.set=d.s==='h'?HIRA:KATA;rerender()},
+ kStart:()=>{const g=UI.game;g.run=true;g.left=60;g.score=0;kilatQ(g);render();timers.push(setInterval(()=>{g.left--;const el=$('#ktime');if(el)el.textContent=g.left;if(g.left<=0){stopTimers();g.run=false;g.over=true;const best=S.best.kilat||0;if(g.score>best)S.best.kilat=g.score;save();addXP(Math.min(30,g.score*2),'Kuis Kilat');render()}},1000))},
+ kAns:(d,el)=>{const g=UI.game;if(!g.run)return;if(+d.o===g.q.i){g.score++;kilatQ(g);rerender()}else{el.classList.add('wrong','shake');const ok=document.querySelector(`[data-act="kAns"][data-o="${g.q.i}"]`);ok&&ok.classList.add('right');setTimeout(()=>{if(g.run){kilatQ(g);rerender()}},450)}},
+ fFlip:()=>{UI.game.flip=!UI.game.flip;rerender()},
+ fNext:d=>{const g=UI.game;if(+d.k)g.known++;else if(!g.deck[g.i].again){g.deck.push(Object.assign([...g.deck[g.i]],{again:1}))}g.i++;g.flip=false;
+  if(!g.deck[g.i]){S.best.flash=g.known;save();addXP(10,'Flashcard selesai')}rerender()},
+ sAdd:d=>{const g=UI.game,t=+d.t;if(!g.pick.includes(t)){g.pick.push(t);rerender()}},
+ sDel:d=>{UI.game.pick.splice(+d.i,1);rerender()},
+ sClear:()=>{UI.game.pick=[];rerender()},
+ sCheck:()=>{const g=UI.game;const ok=g.pick.every((v,i)=>v===i);g.res=ok?'ok':'no';if(ok){g.score++;addXP(5,'Kalimat benar')}rerender()},
+ sNext:()=>{const g=UI.game;g.i++;g.pick=[];g.bank=null;g.res=null;if(g.i>=SENT.length){S.best.susun=Math.max(S.best.susun||0,g.score);save()}rerender()},
+ setT:d=>{S.set[d.k]=!S.set[d.k];save();rerender()},
+ setV:d=>{S.set[d.k]=d.k==='rate'?+d.v:d.v;save();rerender()},
+ resetAsk:()=>{UI.reset=true;rerender()},resetNo:()=>{UI.reset=false;rerender()},
+ resetYes:()=>{const set=S.set,name=S.name;S=DEF();S.set=set;S.name=name;save();UI.reset=false;toast('Progres sudah diatur ulang');render()}
+};
+document.addEventListener('click',e=>{const s=e.target.closest('[data-say]');if(s){e.preventDefault();speak(s.dataset.say);return}
+ const a=e.target.closest('[data-act]');if(a&&ACT[a.dataset.act]){e.preventDefault();ACT[a.dataset.act](a.dataset,a)}});
+document.addEventListener('change',e=>{if(e.target.id==='nm'){S.name=e.target.value.trim().slice(0,24);save();toast('Nama disimpan')}});
+window.addEventListener('hashchange',go);
+go();
+</script>
+<script>if('serviceWorker' in navigator&&location.protocol.startsWith('http')){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}</script>
+</body>
+</html>
