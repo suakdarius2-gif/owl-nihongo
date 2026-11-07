@@ -340,6 +340,57 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .vlist[open] summary{margin-bottom:8px}
 .vtab .vbab{display:flex;width:max-content;margin-top:4px;line-height:1.6}
 .vtab td:last-child{width:54px}
+.scene{margin:0;display:flex;flex-direction:column;gap:12px}
+.scene-art{position:relative;width:100%;aspect-ratio:400/240;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#FBF1E2}
+.cnt-art{aspect-ratio:400/170}
+.scene-art svg{display:block;width:100%;height:100%}
+.scene-art svg text{font-family:var(--f-body)}
+.sb{position:absolute;transform:translate(calc(-50% + var(--dx,0px)),calc(-100% - 8px + var(--dy,0px)));transition:transform .2s;background:#FFFDF8;color:#3B2A20;border:1.5px solid #E7D8C4;border-radius:14px;padding:0 8px;font-size:clamp(.56rem,.36rem + 1.1vw,.95rem);line-height:2.05;white-space:nowrap;width:max-content;box-shadow:0 4px 12px rgba(59,42,32,.14);text-align:center;font-weight:500}
+.sb::after{content:"";position:absolute;left:calc(50% - var(--dx,0px));bottom:-6px;width:10px;height:10px;background:#FFFDF8;border-right:1.5px solid #E7D8C4;border-bottom:1.5px solid #E7D8C4;transform:translateX(-50%) rotate(45deg)}
+.sb rt{color:#8A6E58}
+.sb:hover{border-color:#D9802F}
+.hot{position:absolute;border-radius:14px;border:2px dashed transparent;background:transparent;padding:0}
+.hot i{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#B5462F;border:2px solid #FFFDF8;animation:hotp 1.8s infinite}
+.hot:hover,.hot:focus-visible,.hot.on{border-color:rgba(181,70,47,.7);background:rgba(255,253,248,.22)}
+.hot.on i{background:#3E7D4F;animation:none}
+@keyframes hotp{0%{box-shadow:0 0 0 0 rgba(181,70,47,.55)}70%{box-shadow:0 0 0 12px rgba(181,70,47,0)}100%{box-shadow:0 0 0 0 rgba(181,70,47,0)}}
+.scene-cap{padding:12px 14px;border-radius:14px;background:var(--surface-2);display:flex;gap:12px;align-items:center;min-height:58px}
+.scene-cap .jp{font-size:1.1rem;line-height:2}
+.scene-cap.flash{animation:pop .35s}
+.sc-tr{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px;font-size:.92rem}
+.sc-tr .jp{font-size:1rem}
+.floaty{animation:floaty 3s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.twinkle{animation:twinkle 2.4s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.25}}
+.rain line{animation:rainf .9s linear infinite}
+.rain line:nth-child(3n){animation-delay:.3s}.rain line:nth-child(3n+1){animation-delay:.6s}
+@keyframes rainf{0%{transform:translateY(-8px);opacity:0}30%{opacity:1}100%{transform:translateY(12px);opacity:0}}
+.fleaves use{animation:leaff 8s linear infinite}
+@keyframes leaff{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(-30px,270px) rotate(360deg)}}
+.dash{animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-22}}
+.spin{animation:spin 18s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.speed{animation:floaty 1s ease-in-out infinite}
+.formula{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fx-slot{padding:2px 10px;border-radius:10px;background:var(--amber-soft);border:1.5px dashed var(--amber);font-weight:700;font-size:.92rem;line-height:1.9}
+.fx-part{padding:0 10px;border-radius:10px;background:var(--maple);color:var(--maple-ink);font-weight:700;font-size:1.12rem;line-height:2.1}
+.fx-part rt{color:inherit;opacity:.85}
+.fx-op{color:var(--ink-3);font-weight:800}
+.cnt-ctrl{display:flex;align-items:center;justify-content:center;gap:18px}
+.iconbtn.cnt-b{width:52px;height:52px;font-size:1.6rem;font-weight:800}
+.cnt-big{text-align:center;min-width:140px}
+.cnt-big .jp{font-size:2rem;line-height:2.2;color:var(--maple)}
+.cj{padding:20px;display:flex;flex-direction:column;gap:14px}
+.cj-verbs{display:flex;flex-wrap:wrap;gap:8px}
+.tok.on{border-color:var(--maple);background:var(--maple-soft)}
+.cj-card{padding:18px;border-radius:16px;background:linear-gradient(160deg,var(--surface),var(--amber-soft));display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.cj-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cj-w{font-size:1.7rem;line-height:2.2;font-weight:500}
+.cj-ans{color:var(--maple);font-weight:700}
+.cj-arrow{font-size:1.6rem;color:var(--ink-3)}
+.cj-rule{margin:0;padding:8px 12px;border-radius:10px;background:var(--surface);font-weight:700}
 </style>
 </head>
 <body>
@@ -407,51 +458,470 @@ const HIRA=[...'あいうえおかきくけこさしすせそたちつてとな�
 const KATA=[...'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤ・ユ・ヨラリルレロワ・・・ヲン・・・・'];
 const ROMA='a i u e o ka ki ku ke ko sa shi su se so ta chi tsu te to na ni nu ne no ha hi fu he ho ma mi mu me mo ya - yu - yo ra ri ru re ro wa - - - wo n - - - -'.split(' ');
 
+/* ===================== ILUSTRASI N5 ===================== */
+const IG=(x,y,s,inner,fl)=>`<g transform="translate(${x} ${y}) scale(${fl?-s:s} ${s})">${inner}</g>`;
+function P(x,y,s=1,o={}){const c=o.c||'#4F7CAC',h=o.h||'#3B2A20',k=o.k||'#F2C9A0',lg=o.lg||'#3B3F4A';
+ const hand=(cx,cy)=>`<circle cx="${cx}" cy="${cy}" r="3.6" fill="${k}"/>`;
+ const armL=`<path d="M-13 -55 L-18 -33" stroke="${c}" stroke-width="7" stroke-linecap="round"/>${hand(-18,-31)}`;
+ const armR=o.arm==='wave'?`<path d="M13 -55 L22 -74" stroke="${c}" stroke-width="7" stroke-linecap="round"/>${hand(23,-77)}`
+  :o.arm==='point'?`<path d="M13 -55 L30 -58" stroke="${c}" stroke-width="7" stroke-linecap="round"/>${hand(33,-58)}`
+  :o.arm==='hold'?`<path d="M13 -55 L20 -42 L12 -38" stroke="${c}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>${hand(11,-38)}`
+  :`<path d="M13 -55 L18 -33" stroke="${c}" stroke-width="7" stroke-linecap="round"/>${hand(18,-31)}`;
+ const back=o.long?`<path d="M-14 -76 Q-15 -93 0 -93 Q15 -93 14 -76 L15 -57 L-15 -57Z" fill="${h}"/>`:'';
+ const top=o.long?`<path d="M-12.5 -75 Q-11 -89 0 -88 Q11 -89 12.5 -75 Q4 -83 -12.5 -75Z" fill="${h}"/>`:`<path d="M-12.6 -73 Q-13.5 -91 0 -90 Q13.5 -91 12.6 -73 Q10 -83 0 -82 Q-9 -83 -12.6 -73Z" fill="${h}"/>`;
+ const gl=o.gl?`<g fill="none" stroke="#2B1F17" stroke-width="1.3"><circle cx="-4.6" cy="-74" r="3.8"/><circle cx="4.6" cy="-74" r="3.8"/><path d="M-0.8 -74h1.6"/></g>`:'';
+ const hat=o.hat?`<path d="M-13 -80 Q-13 -97 0 -97 Q13 -97 13 -80Z" fill="${o.hat}"/><rect x="-18" y="-82" width="36" height="4" rx="2" fill="${o.hat}"/>`:'';
+ const tie=o.tie?`<path d="M0 -59 l-2.5 5 2.5 12 2.5-12z" fill="${o.tie}"/>`:'';
+ const mouth=o.talk?`<ellipse cx="0" cy="-67.5" rx="2.2" ry="1.9" fill="#8E3B2A"/>`:`<path d="M-3 -68.5 Q0 -65.5 3 -68.5" stroke="#8E3B2A" stroke-width="1.4" fill="none" stroke-linecap="round"/>`;
+ return IG(x,y,s,`<ellipse cx="0" cy="0" rx="17" ry="3.5" fill="#000" opacity=".1"/>${back}<rect x="-9" y="-30" width="7.5" height="30" rx="3" fill="${lg}"/><rect x="1.5" y="-30" width="7.5" height="30" rx="3" fill="${lg}"/><path d="M-15 -28 L-14 -55 Q0 -62 14 -55 L15 -28Z" fill="${c}"/>${tie}${armL}${armR}<rect x="-3" y="-64" width="6" height="5" fill="${k}"/><circle cx="0" cy="-74" r="12.5" fill="${k}"/>${top}<circle cx="-4.6" cy="-74" r="1.6" fill="#2B1F17"/><circle cx="4.6" cy="-74" r="1.6" fill="#2B1F17"/><circle cx="-8" cy="-69.5" r="2" fill="#E89A8A" opacity=".55"/><circle cx="8" cy="-69.5" r="2" fill="#E89A8A" opacity=".55"/>${mouth}${gl}${hat}`,o.flip)}
+const OWL=(x,y,s=1)=>`<use href="#owl" x="${x-30*s}" y="${y-58*s}" width="${60*s}" height="${60*s}"/>`;
+const BOOK=(x,y,s=1,c='#B5462F')=>IG(x,y,s,`<rect x="-11" y="-15" width="22" height="15" rx="1.5" fill="${c}"/><rect x="-11" y="-15" width="3" height="15" fill="#000" opacity=".15"/><rect x="-6" y="-11" width="13" height="2" rx="1" fill="#fff" opacity=".7"/>`);
+const UMB=(x,y,s=1,c='#4F7CAC')=>IG(x,y,s,`<path d="M0 -40 V-6 q0 5 -5 5" stroke="#3B2A20" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M-22 -38 Q0 -64 22 -38 Q15 -42 7.5 -38 Q0 -42 -7.5 -38 Q-15 -42 -22 -38Z" fill="${c}"/>`);
+const BAG=(x,y,s=1,c='#8E4E28')=>IG(x,y,s,`<path d="M-7 -16 Q0 -27 7 -16" stroke="${c}" stroke-width="2.6" fill="none"/><rect x="-12" y="-17" width="24" height="17" rx="3.5" fill="${c}"/><rect x="-12" y="-11" width="24" height="2" fill="#000" opacity=".15"/>`);
+const TREE=(x,y,s=1,c1='#D9802F',c2='#B5462F')=>IG(x,y,s,`<rect x="-4" y="-40" width="8" height="40" rx="2" fill="#7A4B2A"/><circle cx="-14" cy="-48" r="17" fill="${c2}"/><circle cx="12" cy="-50" r="18" fill="${c1}"/><circle cx="0" cy="-66" r="18" fill="${c1}"/><circle cx="-4" cy="-58" r="9" fill="#E9B04A" opacity=".7"/>`);
+const FUJI=(x,y,s=1)=>IG(x,y,s,`<path d="M-95 0 L-22 -92 Q0 -104 22 -92 L95 0Z" fill="#6F8FB8"/><path d="M-22 -92 Q0 -104 22 -92 L34 -76 L23 -80 L12 -71 L0 -80 L-12 -71 L-23 -80 L-34 -76Z" fill="#FFFFFF"/>`);
+const SUN=(x,y,r=16)=>`<g transform="translate(${x} ${y})"><g class="spin" stroke="#E9A23B" stroke-width="3" stroke-linecap="round">${[0,45,90,135,180,225,270,315].map(a=>{const c=Math.cos(a*Math.PI/180),s=Math.sin(a*Math.PI/180);return `<line x1="${((r+5)*c).toFixed(1)}" y1="${((r+5)*s).toFixed(1)}" x2="${((r+11)*c).toFixed(1)}" y2="${((r+11)*s).toFixed(1)}"/>`}).join('')}</g><circle r="${r}" fill="#F4B642"/></g>`;
+const CLOUD=(x,y,s=1,c='#FFFFFF')=>IG(x,y,s,`<ellipse cx="0" cy="0" rx="26" ry="11" fill="${c}"/><circle cx="-10" cy="-6" r="11" fill="${c}"/><circle cx="8" cy="-9" r="14" fill="${c}"/>`);
+const RAIN=(x,y,w=80,h=60)=>{let s='';for(let i=0;i<16;i++){const xx=x+((i*37)%w),yy=y+((i*23)%h);s+=`<line x1="${xx}" y1="${yy}" x2="${xx-4}" y2="${yy+10}"/>`}return `<g class="rain" stroke="#6F9FD8" stroke-width="2" stroke-linecap="round">${s}</g>`};
+const TRAIN=(x,y,s=1,c='#2F6F8F')=>IG(x,y,s,`<rect x="-58" y="-40" width="112" height="32" rx="8" fill="${c}"/><path d="M54 -40 Q70 -36 70 -18 L70 -8 L54 -8Z" fill="${c}"/><rect x="-58" y="-20" width="128" height="4" fill="#F4B642"/>${[-46,-26,-6,14,34].map(a=>`<rect x="${a}" y="-35" width="14" height="11" rx="2" fill="#DCEFF7"/>`).join('')}<path d="M57 -35 Q66 -33 66 -24 L57 -24Z" fill="#DCEFF7"/>${[-38,-18,30,50].map(a=>`<circle cx="${a}" cy="-6" r="6" fill="#333"/>`).join('')}`);
+const BUS=(x,y,s=1,c='#E0A23C')=>IG(x,y,s,`<rect x="-42" y="-42" width="84" height="34" rx="7" fill="${c}"/>${[-34,-16,2].map(a=>`<rect x="${a}" y="-37" width="14" height="12" rx="2" fill="#DCEFF7"/>`).join('')}<rect x="22" y="-37" width="14" height="24" rx="2" fill="#DCEFF7"/><circle cx="-24" cy="-7" r="7" fill="#333"/><circle cx="24" cy="-7" r="7" fill="#333"/>`);
+const CAR=(x,y,s=1,c='#B5462F')=>IG(x,y,s,`<path d="M-34 -10 L-34 -22 Q-30 -28 -20 -29 L-12 -40 Q-8 -44 0 -44 L14 -44 Q20 -44 24 -38 L30 -29 Q36 -28 36 -20 L36 -10Z" fill="${c}"/><path d="M-9 -38 L-4 -42 L8 -42 L8 -30 L-14 -30Z M12 -42 L19 -42 L25 -30 L12 -30Z" fill="#DCEFF7"/><circle cx="-20" cy="-8" r="7" fill="#333"/><circle cx="22" cy="-8" r="7" fill="#333"/>`);
+const BIKE=(x,y,s=1,c='#3E7D4F')=>IG(x,y,s,`<g fill="none" stroke="#333" stroke-width="2.5"><circle cx="-18" cy="-12" r="11"/><circle cx="18" cy="-12" r="11"/></g><path d="M-18 -12 L-4 -12 L10 -30 L-8 -30 Z M10 -30 L18 -12 M-8 -30 L-10 -36 M10 -30 L8 -38 L15 -38" stroke="${c}" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`);
+const PLANE=(x,y,s=1)=>IG(x,y,s,`<path d="M-40 0 Q-40 -8 -30 -8 L30 -8 Q44 -6 46 0 Q44 6 30 6 L-30 6 Q-40 6 -40 0Z" fill="#FFFFFF" stroke="#9AB" stroke-width="1"/><path d="M-6 -6 L-20 -26 L-10 -26 L12 -6Z M-6 6 L-18 22 L-8 22 L12 6Z M-34 -6 L-42 -20 L-34 -20 L-24 -6Z" fill="#B5462F"/>${[-18,-8,2,12,22].map(a=>`<circle cx="${a}" cy="-1" r="2" fill="#6F8FB8"/>`).join('')}`);
+const CLOCK=(x,y,r,h,m)=>{const rad=a=>a*Math.PI/180,ha=((h%12)+m/60)*30-90,ma=m*6-90,f=n=>n.toFixed(1);return `<g transform="translate(${x} ${y})"><circle r="${r+3}" fill="#B5462F"/><circle r="${r}" fill="#FFFDF8"/>${[...Array(12)].map((_,i)=>`<circle cx="${f((r-4)*Math.cos(rad(i*30)))}" cy="${f((r-4)*Math.sin(rad(i*30)))}" r="${i%3?1:1.8}" fill="#3B2A20"/>`).join('')}<line x2="${f(r*.5*Math.cos(rad(ha)))}" y2="${f(r*.5*Math.sin(rad(ha)))}" stroke="#3B2A20" stroke-width="3" stroke-linecap="round"/><line x2="${f(r*.78*Math.cos(rad(ma)))}" y2="${f(r*.78*Math.sin(rad(ma)))}" stroke="#B5462F" stroke-width="2" stroke-linecap="round"/><circle r="2.5" fill="#3B2A20"/></g>`};
+const DESK=(x,y,s=1)=>IG(x,y,s,`<rect x="-55" y="-46" width="110" height="7" rx="2" fill="#B07A4A"/><rect x="-50" y="-39" width="6" height="39" fill="#8E5E35"/><rect x="44" y="-39" width="6" height="39" fill="#8E5E35"/>`);
+const BOX=(x,y,s=1,open=false)=>IG(x,y,s,`${open?`<path d="M-24 -32 L-34 -44 L-6 -44 L0 -32Z" fill="#E6B877"/>`:''}<rect x="-24" y="-32" width="48" height="32" rx="2" fill="#D9A766"/><rect x="-24" y="-32" width="48" height="5" fill="#C48E4E"/>${open?`<path d="M24 -32 L34 -44 L6 -44 L0 -32Z" fill="#E6B877"/>`:'<rect x="-3" y="-32" width="6" height="32" fill="#E9C48E"/>'}`);
+const CAT=(x,y,s=1,c='#E8A15A')=>IG(x,y,s,`<path d="M14 -6 Q30 -8 26 -26" stroke="${c}" stroke-width="5" fill="none" stroke-linecap="round"/><ellipse cx="0" cy="-12" rx="15" ry="13" fill="${c}"/><circle cx="-2" cy="-30" r="11" fill="${c}"/><path d="M-11 -35 L-12 -47 L-4 -39Z M3 -39 L9 -47 L9 -35Z" fill="${c}"/><circle cx="-6" cy="-31" r="1.5" fill="#2B1F17"/><circle cx="2" cy="-31" r="1.5" fill="#2B1F17"/><path d="M-4 -27 q2 2 4 0" stroke="#2B1F17" stroke-width="1" fill="none"/>`);
+const DOG=(x,y,s=1,c='#B98A5A')=>IG(x,y,s,`<path d="M18 -20 Q28 -26 26 -34" stroke="${c}" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="-16" y="-24" width="36" height="16" rx="8" fill="${c}"/><rect x="-14" y="-12" width="6" height="12" rx="2" fill="${c}"/><rect x="10" y="-12" width="6" height="12" rx="2" fill="${c}"/><circle cx="-18" cy="-30" r="11" fill="${c}"/><ellipse cx="-12" cy="-32" rx="5" ry="9" fill="#8E5E35"/><circle cx="-21" cy="-32" r="1.5" fill="#2B1F17"/><circle cx="-28" cy="-27" r="2" fill="#2B1F17"/>`);
+const BALL=(x,y,r=9,c='#4F7CAC')=>`<circle cx="${x}" cy="${y-r}" r="${r}" fill="${c}"/><path d="M${x-r} ${y-r} Q${x} ${y-r-6} ${x+r} ${y-r}" stroke="#fff" stroke-width="1.5" fill="none"/>`;
+const APPLE=(x,y,s=1)=>IG(x,y,s,`<path d="M0 -18 Q-2 -24 2 -27" stroke="#6B4226" stroke-width="2" fill="none"/><path d="M2 -22 Q8 -27 11 -22 Q6 -19 2 -22Z" fill="#5E9B4F"/><path d="M0 -17 Q-12 -22 -12 -10 Q-11 0 0 0 Q11 0 12 -10 Q12 -22 0 -17Z" fill="#D9472F"/>`);
+const SHOE=(x,y,s=1,c='#3B3F4A')=>IG(x,y,s,`<path d="M-14 0 L-14 -10 Q-12 -14 -6 -12 L2 -8 Q14 -8 16 -3 L16 0Z" fill="${c}"/>`);
+const BREAD=(x,y,s=1)=>IG(x,y,s,`<path d="M-14 0 L-14 -10 Q-14 -18 0 -18 Q14 -18 14 -10 L14 0Z" fill="#D9A766"/><path d="M-8 -14 l4 3 M0 -15 l4 3 M8 -14 l-2 4" stroke="#B07A4A" stroke-width="1.5"/>`);
+const CAMERA=(x,y,s=1)=>IG(x,y,s,`<rect x="-13" y="-18" width="26" height="17" rx="3" fill="#3B3F4A"/><rect x="-6" y="-22" width="10" height="5" rx="1" fill="#3B3F4A"/><circle cx="0" cy="-9.5" r="6" fill="#9AB8D6" stroke="#fff" stroke-width="1.5"/>`);
+const FLOWER=(x,y,s=1,c='#E85D75')=>IG(x,y,s,`<path d="M0 0 V-22" stroke="#4E8A47" stroke-width="2.5"/><path d="M0 -8 q8 -2 9 -8 q-8 0 -9 8" fill="#5E9B4F"/>${[0,72,144,216,288].map(a=>`<circle cx="${(6*Math.cos(a*Math.PI/180)).toFixed(1)}" cy="${(-26+6*Math.sin(a*Math.PI/180)).toFixed(1)}" r="4.5" fill="${c}"/>`).join('')}<circle cx="0" cy="-26" r="3" fill="#F4B642"/>`);
+const HOUSE=(x,y,s=1,c='#F6E7CF',r='#B5462F')=>IG(x,y,s,`<rect x="-30" y="-40" width="60" height="40" fill="${c}"/><path d="M-38 -38 L0 -66 L38 -38Z" fill="${r}"/><rect x="-8" y="-24" width="16" height="24" fill="#8E5E35"/><rect x="-24" y="-32" width="12" height="10" fill="#9AC6E0"/><rect x="12" y="-32" width="12" height="10" fill="#9AC6E0"/>`);
+const BLD=(x,y,w,h,c='#C9B39D',label='')=>{let win='';for(let yy=-h+10;yy<-22;yy+=16)for(let xx=-w/2+8;xx<w/2-12;xx+=16)win+=`<rect x="${xx}" y="${yy}" width="9" height="9" rx="1" fill="#E8F1F6"/>`;return `<g transform="translate(${x} ${y})"><rect x="${-w/2}" y="${-h}" width="${w}" height="${h}" fill="${c}"/>${win}<rect x="-7" y="-16" width="14" height="16" fill="#6B4E3A"/>${label?`<rect x="${-w/2+2}" y="${-h-15}" width="${w-4}" height="14" rx="4" fill="#FFFDF8" stroke="#E7D8C4"/><text x="0" y="${-h-4.5}" text-anchor="middle" font-size="9.5" font-weight="700" fill="#3B2A20">${label}</text>`:''}</g>`};
+const SIGN=(x,y,type,ok)=>{const ic={smoke:`<rect x="-12" y="-2" width="20" height="5" rx="1" fill="#3B2A20"/><rect x="8" y="-2" width="4" height="5" fill="#E9A23B"/><path d="M10 -5 q3 -4 0 -9" stroke="#999" stroke-width="1.5" fill="none"/>`,camera:`<rect x="-11" y="-7" width="22" height="15" rx="3" fill="#3B2A20"/><circle cx="0" cy="0.5" r="5" fill="#9AB8D6"/>`,food:`<path d="M-8 9 L-8 -9 M-11 -9 v6 q3 3 6 0 v-6 M5 9 L5 -9 q6 3 0 9" stroke="#3B2A20" stroke-width="2.2" fill="none" stroke-linecap="round"/>`}[type];
+ return `<g transform="translate(${x} ${y})"><rect x="-2" y="0" width="4" height="120" fill="#B8A898"/><circle r="22" fill="#fff" stroke="${ok?'#3E7D4F':'#C8372D'}" stroke-width="4"/>${ic}${ok?'':'<line x1="-15" y1="-15" x2="15" y2="15" stroke="#C8372D" stroke-width="4"/>'}</g>`};
+const TLIGHT=(x,y,s=1)=>IG(x,y,s,`<rect x="-2" y="-70" width="4" height="70" fill="#666"/><rect x="-9" y="-96" width="18" height="34" rx="4" fill="#333"/><circle cx="0" cy="-87" r="5" fill="#555"/><circle cx="0" cy="-72" r="5" fill="#4CC36A"/>`);
+const VEND=(x,y,s=1)=>IG(x,y,s,`<rect x="-26" y="-92" width="52" height="92" rx="4" fill="#C8372D"/><rect x="-20" y="-84" width="40" height="40" rx="2" fill="#DCEFF7"/>${[-14,-4,6].map(a=>[-78,-62].map(b=>`<rect x="${a}" y="${b}" width="7" height="12" rx="2" fill="${b<-70?'#F4B642':'#5E9B4F'}"/>`).join('')).join('')}${[-14,-4,6].map(a=>`<circle cx="${a+3.5}" cy="-38" r="2.6" fill="#F4B642"/>`).join('')}<rect x="12" y="-32" width="8" height="12" rx="1" fill="#333"/><rect x="-18" y="-14" width="30" height="8" rx="2" fill="#333"/>`);
+const PIANO=(x,y,s=1)=>IG(x,y,s,`<rect x="-40" y="-56" width="80" height="44" rx="4" fill="#2B2B33"/><rect x="-36" y="-26" width="72" height="12" fill="#fff"/>${[...Array(7)].map((_,i)=>`<rect x="${-30+i*10}" y="-26" width="5" height="7" fill="#2B2B33"/>`).join('')}<rect x="-36" y="-12" width="5" height="12" fill="#2B2B33"/><rect x="31" y="-12" width="5" height="12" fill="#2B2B33"/>`);
+const NOTE=(x,y,s=1,c='#B5462F')=>`<text x="${x}" y="${y}" font-size="${18*s}" fill="${c}" class="floaty">♪</text>`;
+const HEART=(x,y,s=1,c='#E85D75')=>IG(x,y,s,`<path d="M0 6 C-14 -4 -10 -16 0 -9 C10 -16 14 -4 0 6Z" fill="${c}"/>`);
+const THINK=(x,y,w,h,inner='')=>`<g><ellipse cx="${x}" cy="${y}" rx="${w/2}" ry="${h/2}" fill="#FFFFFF" stroke="#E7D8C4" stroke-width="1.5"/><circle cx="${x-w/5}" cy="${y+h/2+8}" r="5" fill="#fff" stroke="#E7D8C4"/><circle cx="${x-w/4}" cy="${y+h/2+18}" r="3" fill="#fff" stroke="#E7D8C4"/>${inner}</g>`;
+const TXT=(x,y,t,sz=10,c='#3B2A20',w=700)=>`<text x="${x}" y="${y}" text-anchor="middle" font-size="${sz}" font-weight="${w}" fill="${c}">${t}</text>`;
+const ARROW=(x1,y1,x2,y2,c='#B5462F')=>{const a=Math.atan2(y2-y1,x2-x1),L=9,f=n=>n.toFixed(1);return `<g stroke="${c}" stroke-width="3" stroke-linecap="round" fill="none"><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke-dasharray="6 5" class="dash"/><path d="M${f(x2-L*Math.cos(a-0.5))} ${f(y2-L*Math.sin(a-0.5))} L${x2} ${y2} L${f(x2-L*Math.cos(a+0.5))} ${f(y2-L*Math.sin(a+0.5))}"/></g>`};
+const MED=(x,y,s=1)=>IG(x,y,s,`<rect x="-9" y="-26" width="18" height="26" rx="3" fill="#FFFDF8" stroke="#6F8FB8" stroke-width="1.5"/><rect x="-7" y="-31" width="14" height="6" rx="1.5" fill="#6F8FB8"/><path d="M-4 -13 h8 M0 -17 v8" stroke="#C8372D" stroke-width="2.5"/>`);
+const TUB=(x,y,s=1)=>IG(x,y,s,`<path d="M-30 -22 H30 V-10 Q30 0 18 0 H-18 Q-30 0 -30 -10Z" fill="#FFFDF8" stroke="#9AB8D6" stroke-width="2"/><path d="M-26 -22 q6 -6 12 0 q6 -6 12 0 q6 -6 12 0 q6 -6 12 0" fill="#9AC6E0"/><path d="M-10 -32 q-3 -5 0 -9 M0 -32 q-3 -5 0 -9 M10 -32 q-3 -5 0 -9" stroke="#C9B39D" stroke-width="1.5" fill="none"/>`);
+const THERMO=(x,y,s=1,lvl=.25)=>IG(x,y,s,`<rect x="-5" y="-50" width="10" height="44" rx="5" fill="#fff" stroke="#9AB" stroke-width="1.5"/><circle cx="0" cy="-6" r="8" fill="#4F7CAC"/><rect x="-2.5" y="${-6-38*lvl}" width="5" height="${38*lvl}" fill="#4F7CAC"/>`);
+const CAKE=(x,y,s=1)=>IG(x,y,s,`<rect x="-16" y="-16" width="32" height="16" rx="3" fill="#F6E0D6"/><rect x="-16" y="-20" width="32" height="6" rx="3" fill="#FFFDF8"/><circle cx="-6" cy="-23" r="3" fill="#D9472F"/><circle cx="6" cy="-23" r="3" fill="#D9472F"/><rect x="-16" y="-9" width="32" height="3" fill="#E8A15A"/>`);
+const SHIRT=(x,y,s=1,c='#4F7CAC')=>IG(x,y,s,`<path d="M-12 0 V-16 L-18 -12 L-22 -20 L-10 -28 Q0 -24 10 -28 L22 -20 L18 -12 L12 -16 V0Z" fill="${c}"/>`);
+const BENTO=(x,y,s=1)=>IG(x,y,s,`<rect x="-16" y="-10" width="32" height="10" rx="3" fill="#B5462F"/><ellipse cx="0" cy="-10" rx="16" ry="4" fill="#FFFDF8"/><circle cx="-6" cy="-11" r="2.5" fill="#D9472F"/><path d="M-10 -26 L8 -12 M-6 -27 L12 -13" stroke="#8E5E35" stroke-width="2" stroke-linecap="round"/>`);
+const JUICE=(x,y,s=1)=>IG(x,y,s,`<rect x="-6" y="-18" width="12" height="18" rx="2" fill="#F4B642"/><rect x="-6" y="-13" width="12" height="6" fill="#D9802F"/>`);
+const SUSHI=(x,y,s=1)=>IG(x,y,s,`<ellipse cx="0" cy="-5" rx="14" ry="6" fill="#FFFDF8" stroke="#E7D8C4"/><path d="M-15 -8 Q0 -18 15 -8 Q0 -12 -15 -8Z" fill="#F08A5D"/><path d="M-8 -13 l3 3 M0 -14 l3 3 M8 -13 l-3 3" stroke="#FFFDF8" stroke-width="1.2"/>`);
+const BED=(x,y,s=1)=>IG(x,y,s,`<rect x="-50" y="-26" width="100" height="18" rx="4" fill="#8E5E35"/><rect x="-46" y="-34" width="92" height="12" rx="5" fill="#9AC6E0"/><rect x="-46" y="-41" width="24" height="10" rx="4" fill="#FFFDF8"/><rect x="-50" y="-8" width="6" height="8" fill="#6B4226"/><rect x="44" y="-8" width="6" height="8" fill="#6B4226"/>`);
+const STARS=n=>[...Array(n)].map((_,i)=>`<circle cx="${(i*71+23)%390}" cy="${(i*37+12)%90}" r="${1.2+(i%3)*.5}" fill="#FFF3C4" class="twinkle" style="animation-delay:${(i%5)*.4}s"/>`).join('');
+const FLEAVES=n=>`<g class="fleaves">${[...Array(n)].map((_,i)=>`<use href="#leaf" x="${(i*61+30)%380}" y="${-10-(i*17)%40}" width="12" height="12" style="color:${['#B5462F','#D9802F','#C99A3B'][i%3]};animation-delay:${(i*.7).toFixed(1)}s"/>`).join('')}</g>`;
+const BG={
+ sky:()=>`<defs><linearGradient id="g-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFE5F0"/><stop offset="1" stop-color="#FBF1E2"/></linearGradient></defs><rect width="400" height="240" fill="url(#g-sky)"/><path d="M0 172 Q80 146 160 166 T320 160 T400 166 V240 H0Z" fill="#E9D4B4" opacity=".7"/><rect y="205" width="400" height="35" fill="#E2C9A4"/>`,
+ autumn:()=>`<defs><linearGradient id="g-aut" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7DDBF"/><stop offset="1" stop-color="#FBF1E2"/></linearGradient></defs><rect width="400" height="240" fill="url(#g-aut)"/><path d="M0 175 Q100 145 200 170 T400 162 V240 H0Z" fill="#E7B98A" opacity=".55"/><rect y="205" width="400" height="35" fill="#E2C9A4"/>`,
+ rain:()=>`<rect width="400" height="240" fill="#D9E2E8"/><rect y="205" width="400" height="35" fill="#C9C2B4"/>`,
+ room:()=>`<rect width="400" height="240" fill="#F7EBDA"/><rect x="292" y="30" width="80" height="70" rx="4" fill="#CFE5F0" stroke="#FFFDF8" stroke-width="5"/><line x1="332" y1="30" x2="332" y2="100" stroke="#FFFDF8" stroke-width="4"/><rect y="186" width="400" height="54" fill="#D9B58A"/>${[0,1,2,3,4,5,6,7,8].map(i=>`<line x1="${i*55}" y1="190" x2="${i*55-22}" y2="240" stroke="#C49A6C" stroke-width="1.5"/>`).join('')}<rect y="184" width="400" height="5" fill="#C49A6C"/>`,
+ nightroom:()=>`<rect width="400" height="240" fill="#EADFCF"/><rect x="292" y="30" width="80" height="70" rx="4" fill="#2E3557" stroke="#FFFDF8" stroke-width="5"/><circle cx="352" cy="52" r="9" fill="#FFF3C4"/><circle cx="356" cy="49" r="8" fill="#2E3557"/><circle cx="310" cy="45" r="1.5" fill="#FFF3C4" class="twinkle"/><circle cx="322" cy="80" r="1.2" fill="#FFF3C4" class="twinkle"/><rect y="186" width="400" height="54" fill="#C9A47A"/><rect y="184" width="400" height="5" fill="#B48C5E"/>`,
+ klass:sc=>`${BG.room()}<rect x="110" y="22" width="180" height="68" rx="4" fill="#2F4A3A" stroke="#8E5E35" stroke-width="5"/>${TXT(200,62,sc.board||'',16,'#F4F0E6',500)}`,
+ clinic:()=>`<rect width="400" height="240" fill="#E8F1F4"/><rect x="180" y="26" width="40" height="40" rx="8" fill="#FFFDF8"/><path d="M200 34 v24 M188 46 h24" stroke="#C8372D" stroke-width="7"/><rect y="186" width="400" height="54" fill="#CFD8DC"/><rect y="184" width="400" height="5" fill="#B0BEC5"/>`,
+ street:()=>`${BG.sky()}<rect y="196" width="400" height="44" fill="#8A8F98"/><g fill="#FFFDF8">${[0,1,2,3,4,5,6,7].map(i=>`<rect x="${i*55+10}" y="215" width="28" height="4" rx="2" opacity=".8"/>`).join('')}</g>`,
+ day:()=>`<defs><linearGradient id="g-day" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FDE3B8"/><stop offset=".45" stop-color="#CFE5F0"/><stop offset=".75" stop-color="#F3B98C"/><stop offset="1" stop-color="#2E3557"/></linearGradient></defs><rect width="400" height="240" fill="url(#g-day)"/><rect y="205" width="400" height="35" fill="#E2C9A4" opacity=".9"/>`,
+ wall:()=>`<rect width="400" height="240" fill="#EFE5D6"/><rect y="40" width="400" height="6" fill="#E2D3BE"/><rect y="186" width="400" height="54" fill="#D2BFA5"/><rect y="184" width="400" height="5" fill="#BFA98C"/>`,
+ plain:()=>`<rect width="400" height="240" fill="#FBF1E2"/>`
+};
+/* ===================== MATERI N5 · BAB 1–25 ===================== */
+const N5B=[
+ {id:'n5-b1',bab:1,title:'Bab 1 · Perkenalan Diri',jp:'自己紹介{じこしょうかい}',sum:'Pola dasar は〜です, negatif, pertanyaan, も, dan の.',
+  scene:{bg:'klass',board:'じこしょうかい',alt:'Andi dan Pak Tanaka saling berkenalan di kelas',
+   art:()=>P(130,215,1.15,{c:'#4F7CAC',arm:'wave',talk:1})+P(270,215,1.15,{c:'#6B4E3A',h:'#555',gl:1,tie:'#B5462F',flip:1})+OWL(200,215,.55),
+   bub:[[118,108,'はじめまして。 アンディです。','Salam kenal. Saya Andi.'],[285,108,'どうぞ よろしく。','Senang berkenalan.']]},
+  points:[
+   {p:'N1 は N2 です',e:'"N1 adalah N2". Partikel は dibaca <b>wa</b> dan menandai topik kalimat.',ex:[['わたしは アンディです。','Saya Andi.'],['わたしは インドネシア人{じん}です。','Saya orang Indonesia.']]},
+   {p:'N1 は N2 じゃ ありません',e:'Bentuk negatif. Dalam tulisan resmi memakai では ありません.',ex:[['リナさんは 先生{せんせい}じゃ ありません。','Rina bukan guru.']]},
+   {p:'N1 は N2 ですか',e:'Tambahkan か di akhir untuk bertanya. Jawab dengan はい atau いいえ.',ex:[['田中{たなか}さんは 医者{いしゃ}ですか。','Apakah Pak Tanaka dokter?'],['いいえ、 医者{いしゃ}じゃ ありません。','Bukan, beliau bukan dokter.']]},
+   {p:'N1 も N2 です',e:'も berarti "juga" dan menggantikan は.',ex:[['わたしも 学生{がくせい}です。','Saya juga pelajar.']]},
+   {p:'N1 の N2',e:'の menghubungkan dua kata benda: N1 menerangkan N2.',ex:[['ふじ大学{だいがく}の 学生{がくせい}です。','Saya pelajar Universitas Fuji.']]}],
+  note:'Jangan memakai さん untuk diri sendiri. Menanyakan usia: 何歳{なんさい}ですか, atau yang lebih sopan おいくつですか.',
+  vx:[['わたし','saya',1],['学生{がくせい}','pelajar',1],['先生{せんせい}','guru',1],['会社員{かいしゃいん}','karyawan perusahaan',1],['〜人{じん}','orang (negara)',1],['はじめまして','salam kenal',1]],
+  quiz:[
+   {q:'わたし（　）アンディです。',o:['は','も','の'],a:0,x:'Topik kalimat ditandai <b>は</b>.'},
+   {q:'"Saya juga pelajar."',o:['わたしも 学生{がくせい}です。','わたしは 学生{がくせい}ですか。','わたしの 学生{がくせい}です。'],a:0,x:'"Juga" = <b>も</b>.'},
+   {q:'ふじ大学{だいがく}（　）先生{せんせい}',o:['の','は','か'],a:0,x:'Dua kata benda dihubungkan dengan <b>の</b>.'}]},
+ {id:'n5-b2',bab:2,title:'Bab 2 · Ini dan Itu',jp:'これ・それ・あれ',sum:'Kata tunjuk benda, この/その/あの, そうです, dan pertanyaan pilihan.',
+  scene:{bg:'sky',alt:'Andi memegang buku, Rina di dekat payung, sekolah di kejauhan',
+   art:()=>`<rect y="205" width="150" height="35" fill="#F3D9B8"/><rect x="150" y="205" width="130" height="35" fill="#EAD0AB"/><rect x="280" y="205" width="120" height="35" fill="#E0C49C"/>${TXT(75,228,'これ · dekat saya',10)}${TXT(215,228,'それ · dekat kamu',10)}${TXT(340,228,'あれ · jauh',10)}`+BLD(342,200,62,78,'#C9B39D','がっこう')+TREE(388,200,.6)+P(70,203,1.05,{arm:'hold',c:'#4F7CAC'})+BOOK(84,168,1.05)+P(205,203,1.05,{c:'#D9802F',long:1,flip:1})+UMB(236,203,.85),
+   hot:[[62,146,44,28,'これは 本{ほん}です。','Ini buku. (dekat saya)'],[212,146,48,58,'それは 傘{かさ}です。','Itu payung. (dekat kamu)'],[306,100,74,100,'あれは 学校{がっこう}です。','Itu sekolah. (jauh dari keduanya)']]},
+  points:[
+   {p:'これ / それ / あれ は N です',e:'これ dekat pembicara, それ dekat lawan bicara, あれ jauh dari keduanya.',ex:[['これは 辞書{じしょ}です。','Ini kamus.'],['あれは 何{なん}ですか。','Itu (yang jauh) apa?']]},
+   {p:'この / その / あの N',e:'Bentuk ini harus langsung diikuti kata benda.',ex:[['この 傘{かさ}は わたしのです。','Payung ini milik saya.']]},
+   {p:'そうです / そうじゃ ありません',e:'Jawaban singkat untuk pertanyaan kata benda: "benar" atau "bukan".',ex:[['それは 雑誌{ざっし}ですか。 …はい、 そうです。','Itu majalah? …Ya, benar.']]},
+   {p:'N1 ですか、 N2 ですか',e:'Pertanyaan pilihan. Jawab langsung tanpa はい atau いいえ.',ex:[['これは 「あ」ですか、 「お」ですか。','Ini "a" atau "o"?']]},
+   {p:'N の',e:'Kepemilikan. Jika bendanya sudah jelas, kata benda setelah の boleh dihilangkan.',ex:[['その かばんは 田中{たなか}さんのです。','Tas itu milik Pak Tanaka.']]}],
+  note:'Kata tanya: どれ (yang mana, berdiri sendiri) dan どの + N (… yang mana).',
+  vx:[['これ','ini (dekat saya)',2],['それ','itu (dekat kamu)',2],['あれ','itu (jauh)',2],['本{ほん}','buku',2],['傘{かさ}','payung',2],['かばん','tas',2]],
+  quiz:[
+   {q:'Benda ada di tangan lawan bicara: （　）は 何{なん}ですか。',o:['これ','それ','あれ'],a:1,x:'Benda dekat lawan bicara = <b>それ</b>.'},
+   {q:'（　）本{ほん}は わたしのです。',o:['この','これ','ここ'],a:0,x:'Langsung diikuti kata benda: <b>この</b> 本.'},
+   {q:'それは ノートですか。 (Ya, benar.)',o:['はい、 そうです。','はい、 ノートですか。','いいえ、 そうです。'],a:0,x:'Membenarkan: <b>はい、そうです</b>.'}]},
+ {id:'n5-b3',bab:3,title:'Bab 3 · Di Mana?',jp:'ここ・そこ・あそこ',sum:'Kata tunjuk tempat, menanyakan lokasi, negara, dan harga.',
+  scene:{bg:'sky',alt:'Penampang department store tiga lantai',
+   art:()=>`<rect x="130" y="58" width="210" height="150" fill="#F6E7CF" stroke="#C9B39D" stroke-width="3"/><line x1="130" y1="108" x2="340" y2="108" stroke="#C9B39D" stroke-width="3"/><line x1="130" y1="158" x2="340" y2="158" stroke="#C9B39D" stroke-width="3"/><path d="M118 60 L235 30 L352 60Z" fill="#B5462F"/>${TXT(235,52,'デパート',11,'#FFFDF8')}${TXT(148,88,'3F',13,'#B5462F',800)}${TXT(148,138,'2F',13,'#B5462F',800)}${TXT(148,188,'1F',13,'#B5462F',800)}${TXT(235,88,'レストラン',11)}<path d="M285 74 v20 M281 74 v7 q4 4 8 0 v-7 M300 74 v20 q7 -8 0 -20" stroke="#3B2A20" stroke-width="2" fill="none"/>${TXT(225,140,'とけい',11)}`+CLOCK(285,133,12,10,10)+TXT(205,190,'うけつけ',11)+`<rect x="300" y="170" width="30" height="34" rx="3" fill="#FFFDF8" stroke="#C9B39D"/>${TXT(315,184,'トイレ',8)}<path d="M308 194 h14" stroke="#B5462F" stroke-width="2"/>`+P(250,206,.72,{c:'#B5462F',tie:'#F4B642',arm:'point'})+P(60,210,1.05,{c:'#3E7D4F'}),
+   bub:[[70,108,'トイレは どこですか。','Toiletnya di mana?'],[262,136,'あそこです。','Di sana.']],
+   hot:[[160,62,175,42,'レストランは 3階{さんがい}です。','Restoran ada di lantai 3.'],[160,112,100,42,'時計{とけい}売{う}り場{ば}は 2階{にかい}です。','Bagian jam ada di lantai 2.'],[160,162,80,42,'受付{うけつけ}は 1階{いっかい}です。','Resepsionis ada di lantai 1.']]},
+  points:[
+   {p:'ここ / そこ / あそこ は N です',e:'Penunjuk tempat: ここ (sini), そこ (situ), あそこ (sana).',ex:[['ここは 教室{きょうしつ}です。','Ini ruang kelas.']]},
+   {p:'N は N(tempat) です',e:'Menyatakan letak benda, orang, atau tempat.',ex:[['トイレは あそこです。','Toiletnya di sana.'],['田中{たなか}さんは 事務所{じむしょ}です。','Pak Tanaka ada di kantor.']]},
+   {p:'どこ / どちら',e:'どこ = di mana. どちら lebih sopan, juga dipakai untuk menanyakan negara atau perusahaan.',ex:[['お国{くに}は どちらですか。','Anda berasal dari negara mana?']]},
+   {p:'N は いくらですか',e:'Menanyakan harga barang.',ex:[['この 時計{とけい}は いくらですか。 …三千円{さんぜんえん}です。','Jam ini berapa? …3.000 yen.']]}],
+  note:'Bentuk sopan: こちら・そちら・あちら・どちら. Lantai: 1階 いっかい, 3階 さんがい, 何階 なんがい.',
+  vx:[['ここ','sini',3],['そこ','situ',3],['あそこ','sana',3],['どこ','mana',3],['いくら','berapa (harga)',3]],
+  quiz:[
+   {q:'Tempat di dekat pembicara: （　）は 食堂{しょくどう}です。',o:['ここ','そこ','あそこ'],a:0,x:'Dekat pembicara = <b>ここ</b>.'},
+   {q:'"Toiletnya di mana?"',o:['トイレは どこですか。','トイレは だれですか。','トイレは いくらですか。'],a:0,x:'Menanyakan tempat: <b>どこ</b>.'},
+   {q:'この 傘{かさ}は （　）ですか。 (menanyakan harga)',o:['いくら','どこ','なん'],a:0,x:'Harga: <b>いくら</b>.'}]},
+ {id:'n5-b4',bab:4,title:'Bab 4 · Waktu dan Kegiatan',jp:'時間{じかん}と ます形{けい}',sum:'Menyebut jam, empat bentuk kata kerja ます, に waktu, dan から〜まで.',
+  scene:{bg:'day',alt:'Jadwal sehari dari pagi sampai malam',
+   art:()=>`<path d="M20 150 H380" stroke="#B5462F" stroke-width="3" stroke-dasharray="4 6"/>`+[[40,6,0,'6:00'],[120,9,0,'9:00'],[200,12,0,'12:00'],[280,5,0,'17:00'],[360,11,0,'23:00']].map(([x,h,m,t])=>CLOCK(x,62,19,h,m)+TXT(x,102,t,12,'#3B2A20',800)+`<circle cx="${x}" cy="150" r="6" fill="#B5462F"/>`).join('')+SUN(40,190,11)+BLD(120,205,46,44,'#C9B39D')+BENTO(200,200,1.3)+BLD(280,205,46,44,'#B9A48E')+`<path d="M266 168 l6 6 12 -12" stroke="#3E7D4F" stroke-width="4" fill="none"/>`+`<circle cx="356" cy="182" r="11" fill="#FFF3C4"/><circle cx="361" cy="178" r="10" fill="#2E3557"/>${TXT(372,200,'zzz',11,'#FFF3C4',800)}`,
+   hot:[[12,36,56,180,'6時{ろくじ}に 起{お}きます。','Bangun jam 6.'],[92,36,56,180,'9時{くじ}から 働{はたら}きます。','Mulai bekerja jam 9.'],[172,36,56,180,'12時{じゅうにじ}に 昼{ひる}ごはんを 食{た}べます。','Makan siang jam 12.'],[252,36,56,180,'5時{ごじ}に 仕事{しごと}が 終{お}わります。','Pekerjaan selesai jam 5 sore.'],[332,36,56,180,'11時{じゅういちじ}に 寝{ね}ます。','Tidur jam 11 malam.']]},
+  points:[
+   {p:'今{いま} 〜時{じ} 〜分{ふん}です',e:'Menyebut jam. 半{はん} = setengah. Bunyi khusus: 4時 よじ, 7時 しちじ, 9時 くじ.',ex:[['今{いま} 7時{しちじ}半{はん}です。','Sekarang jam setengah delapan.']]},
+   {p:'V-ます / ません / ました / ませんでした',e:'Empat bentuk sopan: sekarang/akan datang, negatif, lampau, dan lampau negatif.',ex:[['毎朝{まいあさ} 6時{ろくじ}に 起{お}きます。','Setiap pagi bangun jam 6.'],['きのう 勉強{べんきょう}しませんでした。','Kemarin tidak belajar.']]},
+   {p:'N(waktu) に V',e:'に dipakai untuk waktu yang memakai angka (jam, tanggal) dan hari. Kata waktu relatif seperti 今日 dan 毎朝 tanpa に.',ex:[['日曜日{にちようび}に 休{やす}みます。','Hari Minggu saya libur.']]},
+   {p:'N1 から N2 まで',e:'"Dari … sampai …" untuk waktu maupun tempat.',ex:[['9時{くじ}から 5時{ごじ}まで 働{はたら}きます。','Bekerja dari jam 9 sampai jam 5.']]},
+   {p:'N1 と N2',e:'と berarti "dan" untuk menghubungkan dua kata benda.',ex:[['休{やす}みは 土曜日{どようび}と 日曜日{にちようび}です。','Hari libur adalah Sabtu dan Minggu.']]}],
+  vx:[['今{いま}','sekarang',4],['〜時{じ}','jam …',4],['〜分{ふん}','… menit',4],['半{はん}','setengah',4],['働{はたら}きます','bekerja',4]],
+  quiz:[
+   {q:'Lampau negatif dari 寝{ね}ます:',o:['寝{ね}ませんでした','寝{ね}ました','寝{ね}ません'],a:0,x:'Lampau negatif: <b>ませんでした</b>.'},
+   {q:'9時{くじ}（　）5時{ごじ}まで 働{はたら}きます。',o:['から','に','と'],a:0,x:'"Dari … sampai": <b>から</b>〜まで.'},
+   {q:'7時{しちじ}（　）起{お}きます。',o:['に','で','を'],a:0,x:'Waktu dengan angka memakai <b>に</b>.'}]},
+ {id:'n5-b5',bab:5,title:'Bab 5 · Pergi, Datang, Pulang',jp:'行{い}きます・来{き}ます・帰{かえ}ります',sum:'Partikel へ, で untuk kendaraan, と untuk teman, dan kata tanya いつ.',
+  scene:{bg:'sky',alt:'Berbagai cara pergi ke stasiun',
+   art:()=>`<rect y="196" width="400" height="44" fill="#9AA0A8"/><g fill="#FFFDF8" opacity=".8">${[0,1,2,3,4,5,6].map(i=>`<rect x="${i*60+8}" y="216" width="30" height="4" rx="2"/>`).join('')}</g><line x1="0" y1="128" x2="400" y2="128" stroke="#6B4E3A" stroke-width="3"/>${[...Array(20)].map((_,i)=>`<rect x="${i*20+4}" y="127" width="8" height="5" fill="#8E7B6A"/>`).join('')}`+TRAIN(200,124,.8)+BLD(360,196,60,64,'#E9D9BF','えき')+P(60,214,.78,{c:'#D9802F',long:1})+BIKE(150,214,1)+BUS(255,214,.75),
+   hot:[[140,88,130,40,'電車{でんしゃ}で 行{い}きます。','Pergi naik kereta.'],[42,140,38,76,'歩{ある}いて 行{い}きます。','Pergi dengan berjalan kaki.'],[124,172,54,44,'自転車{じてんしゃ}で 行{い}きます。','Pergi naik sepeda.'],[222,176,66,40,'バスで 駅{えき}へ 行{い}きます。','Pergi ke stasiun naik bus.']]},
+  points:[
+   {p:'N(tempat) へ 行{い}きます / 来{き}ます / 帰{かえ}ります',e:'へ (dibaca <b>e</b>) menunjukkan arah tujuan.',ex:[['あした 京都{きょうと}へ 行{い}きます。','Besok pergi ke Kyoto.']]},
+   {p:'どこ[へ]も 行{い}きません',e:'Kata tanya + も + bentuk negatif = "tidak … sama sekali".',ex:[['日曜日{にちようび}は どこも 行{い}きませんでした。','Hari Minggu tidak pergi ke mana-mana.']]},
+   {p:'N(kendaraan) で 行{い}きます',e:'で menunjukkan alat transportasi. Berjalan kaki: 歩{ある}いて, tanpa で.',ex:[['電車{でんしゃ}で 会社{かいしゃ}へ 行{い}きます。','Pergi ke kantor naik kereta.']]},
+   {p:'N(orang) と V',e:'と berarti "bersama".',ex:[['友達{ともだち}と 日本{にほん}へ 来{き}ました。','Datang ke Jepang bersama teman.']]},
+   {p:'いつ / 〜よ',e:'いつ = kapan. よ di akhir kalimat memberi informasi baru kepada lawan bicara.',ex:[['いつ 日本{にほん}へ 来{き}ましたか。','Kapan datang ke Jepang?'],['この バスは 駅{えき}へ 行{い}きませんよ。','Bus ini tidak ke stasiun, lho.']]}],
+  vx:[['行{い}きます','pergi',5],['来{き}ます','datang',5],['駅{えき}','stasiun',5],['バス','bus',5],['いつ','kapan',5]],
+  quiz:[
+   {q:'電車{でんしゃ}（　）行{い}きます。',o:['で','へ','を'],a:0,x:'Kendaraan memakai <b>で</b>.'},
+   {q:'友達{ともだち}（　）帰{かえ}ります。',o:['と','で','に'],a:0,x:'"Bersama" = <b>と</b>.'},
+   {q:'"Tidak pergi ke mana pun."',o:['どこも 行{い}きません。','どこへ 行{い}きますか。','どこで 行{い}きません。'],a:0,x:'Kata tanya + <b>も</b> + negatif.'}]},
+ {id:'n5-b6',bab:6,title:'Bab 6 · Kegiatan dan Ajakan',jp:'〜を します・〜ませんか',sum:'Objek を, tempat kegiatan で, dan mengajak dengan ませんか / ましょう.',
+  scene:{bg:'autumn',alt:'Dua teman di taman, satu makan roti, satu memegang kamera',
+   art:()=>TREE(50,205,1.15)+TREE(360,205,.9,'#C99A3B','#D9802F')+FLEAVES(8)+P(140,212,1.05,{arm:'hold',c:'#3E7D4F'})+BREAD(152,176,.9)+P(262,212,1.05,{c:'#B5462F',long:1,arm:'hold',flip:1})+CAMERA(250,176,.9),
+   bub:[[275,106,'いっしょに 映画{えいが}を 見{み}ませんか。','Mau nonton film bersama?'],[125,106,'ええ、 見{み}ましょう。','Ya, ayo nonton.']],
+   hot:[[136,152,32,28,'パンを 食{た}べます。','Makan roti.'],[234,150,32,30,'公園{こうえん}で 写真{しゃしん}を 撮{と}ります。','Memotret di taman.']]},
+  points:[
+   {p:'N を V',e:'を (dibaca <b>o</b>) menandai objek langsung.',ex:[['コーヒーを 飲{の}みます。','Minum kopi.']]},
+   {p:'N を します',e:'します membentuk kegiatan: サッカーを します, 宿題{しゅくだい}を します.',ex:[['日曜日{にちようび}に テニスを します。','Hari Minggu main tenis.']]},
+   {p:'何{なに}を しますか',e:'Menanyakan kegiatan.',ex:[['週末{しゅうまつ}は 何{なに}を しますか。','Akhir pekan melakukan apa?']]},
+   {p:'N(tempat) で V',e:'で menandai tempat berlangsungnya kegiatan.',ex:[['図書館{としょかん}で 本{ほん}を 読{よ}みます。','Membaca buku di perpustakaan.']]},
+   {p:'V ませんか / V ましょう',e:'ませんか untuk mengajak dengan sopan. ましょう untuk menyambut ajakan atau mengajak bersama.',ex:[['いっしょに 昼{ひる}ごはんを 食{た}べませんか。','Mau makan siang bersama?'],['ええ、 食{た}べましょう。','Ya, ayo makan.']]}],
+  vx:[['食{た}べます','makan',6],['飲{の}みます','minum',6],['見{み}ます','melihat / menonton',6],['映画{えいが}','film',6],['昼{ひる}ごはん','makan siang',6]],
+  quiz:[
+   {q:'パン（　）食{た}べます。',o:['を','で','に'],a:0,x:'Objek langsung: <b>を</b>.'},
+   {q:'公園{こうえん}（　）写真{しゃしん}を 撮{と}ります。',o:['で','を','へ'],a:0,x:'Tempat kegiatan: <b>で</b>.'},
+   {q:'Mengajak dengan sopan: いっしょに 映画{えいが}を （　）。',o:['見{み}ませんか','見{み}ました','見{み}ません'],a:0,x:'Ajakan sopan: <b>ませんか</b>.'}]},
+ {id:'n5-b7',bab:7,title:'Bab 7 · Alat, Memberi, Menerima',jp:'〜で・あげます・もらいます',sum:'で untuk alat dan bahasa, あげます / もらいます, dan もう〜ました.',
+  scene:{bg:'room',alt:'Andi memberi bunga kepada Rina',
+   art:()=>P(110,215,1.1,{arm:'hold',c:'#4F7CAC'})+FLOWER(123,178,1.1)+FLOWER(127,180,.9,'#F4B642')+P(290,215,1.1,{long:1,c:'#D9802F',flip:1})+ARROW(150,132,250,132)+TXT(200,124,'あげます',11,'#B5462F',800)+ARROW(250,152,150,152,'#3E7D4F')+TXT(200,170,'もらいます',11,'#3E7D4F',800)+DESK(200,215,.42)+BENTO(200,195,.9),
+   hot:[[84,112,52,104,'アンディさんは リナさんに 花{はな}を あげました。','Andi memberi bunga kepada Rina.'],[264,112,52,104,'リナさんは アンディさんに 花{はな}を もらいました。','Rina menerima bunga dari Andi.'],[180,170,40,30,'はしで 食{た}べます。','Makan dengan sumpit.']]},
+  points:[
+   {p:'N(alat) で V',e:'で = "dengan / menggunakan" alat atau bahasa.',ex:[['はしで 食{た}べます。','Makan dengan sumpit.'],['日本語{にほんご}で レポートを 書{か}きます。','Menulis laporan dalam bahasa Jepang.']]},
+   {p:'「kata」は 〜語{ご}で 何{なん}ですか',e:'Menanyakan sebutan sebuah kata dalam bahasa lain.',ex:[['「Terima kasih」は 日本語{にほんご}で 何{なん}ですか。','"Terima kasih" dalam bahasa Jepang apa?']]},
+   {p:'N(orang) に あげます',e:'Memberi kepada orang lain. に menandai penerima.',ex:[['わたしは リナさんに 花{はな}を あげました。','Saya memberi bunga kepada Rina.']]},
+   {p:'N(orang) に もらいます',e:'Menerima dari orang lain. に (atau から) menandai pemberi.',ex:[['わたしは 父{ちち}に 時計{とけい}を もらいました。','Saya menerima jam dari ayah.']]},
+   {p:'もう V ました',e:'もう = sudah. Jawaban negatifnya: いいえ、 まだです.',ex:[['もう 昼{ひる}ごはんを 食{た}べましたか。 …いいえ、 まだです。','Sudah makan siang? …Belum.']]}],
+  vx:[['はし','sumpit',7],['花{はな}','bunga',7],['プレゼント','hadiah',7],['まだ','belum',7]],
+  quiz:[
+   {q:'はし（　）食{た}べます。',o:['で','を','に'],a:0,x:'Alat: <b>で</b>.'},
+   {q:'リナさん（　）プレゼントを あげました。',o:['に','で','を'],a:0,x:'Penerima ditandai <b>に</b>.'},
+   {q:'もう 宿題{しゅくだい}を しましたか。 (Belum.)',o:['いいえ、 まだです。','いいえ、 もうです。','はい、 まだです。'],a:0,x:'"Belum" = <b>まだです</b>.'}]},
+ {id:'n5-b8',bab:8,title:'Bab 8 · Kata Sifat',jp:'い形容詞{けいようし}・な形容詞{けいようし}',sum:'Kata sifat い dan な, bentuk negatif, とても / あまり, どう / どんな, dan が (tetapi).',
+  scene:{bg:'sky',alt:'Gunung Fuji, matahari terik, rumah kecil, dan bunga',
+   art:()=>FUJI(110,205,1.1)+SUN(330,48,17)+CLOUD(230,60,.8)+HOUSE(300,205,.62)+FLOWER(210,205,1)+FLOWER(228,205,.85,'#F4B642')+FLOWER(245,205,1,'#B5462F'),
+   hot:[[40,100,140,104,'富士山{ふじさん}は 高{たか}い 山{やま}です。','Gunung Fuji adalah gunung yang tinggi.'],[304,20,54,56,'今日{きょう}は 暑{あつ}いです。','Hari ini panas.'],[278,160,46,46,'小{ちい}さい 家{いえ}です。','Rumah yang kecil.'],[198,170,58,36,'この 花{はな}は きれいです。','Bunga ini indah.']]},
+  points:[
+   {p:'い-adj です / な-adj です',e:'Dua jenis kata sifat. い-adj berakhiran い (高い, 暑い). な-adj tidak (元気, 静か).',ex:[['富士山{ふじさん}は 高{たか}いです。','Gunung Fuji tinggi.'],['この 町{まち}は 静{しず}かです。','Kota ini tenang.']]},
+   {p:'い-adj くないです / な-adj じゃ ありません',e:'Bentuk negatif. Khusus いい → よくないです.',ex:[['この 本{ほん}は おもしろくないです。','Buku ini tidak menarik.']]},
+   {p:'な-adj な N / い-adj N',e:'Kata sifat di depan kata benda. な-adj memakai な.',ex:[['京都{きょうと}は きれいな 町{まち}です。','Kyoto adalah kota yang indah.']]},
+   {p:'とても / あまり 〜ない',e:'とても = sangat (positif). あまり = tidak terlalu (negatif).',ex:[['日本語{にほんご}は あまり 難{むずか}しくないです。','Bahasa Jepang tidak terlalu sulit.']]},
+   {p:'N は どうですか / どんな N',e:'どう menanyakan kesan. どんな menanyakan sifat kata benda.',ex:[['日本{にほん}の 生活{せいかつ}は どうですか。 …楽{たの}しいです。','Bagaimana hidup di Jepang? …Menyenangkan.']]},
+   {p:'〜が、 〜',e:'が = "tetapi", menghubungkan dua kalimat.',ex:[['日本{にほん}の 食{た}べ物{もの}は おいしいですが、 高{たか}いです。','Makanan Jepang enak, tetapi mahal.']]}],
+  vx:[['高{たか}い','tinggi / mahal',8],['静{しず}か','tenang',8],['きれい','indah / bersih',8],['おもしろい','menarik',8],['元気{げんき}','sehat / bersemangat',8],['小{ちい}さい','kecil',8]],
+  quiz:[
+   {q:'Negatif dari 暑{あつ}いです:',o:['暑{あつ}くないです','暑{あつ}いじゃ ありません','暑{あつ}かったです'],a:0,x:'い-adj: buang い → <b>くないです</b>.'},
+   {q:'静{しず}か（　）町{まち}',o:['な','の','い'],a:0,x:'な-adj sebelum kata benda: <b>な</b>.'},
+   {q:'Negatif dari いいです:',o:['よくないです','いくないです','いいじゃ ありません'],a:0,x:'Pengecualian: いい → <b>よくない</b>.'}]},
+ {id:'n5-b9',bab:9,title:'Bab 9 · Suka, Pandai, Mengerti',jp:'好{す}き・上手{じょうず}・わかります',sum:'Objek perasaan dengan が, kata keterangan derajat, dan alasan 〜から.',
+  scene:{bg:'room',alt:'Andi memikirkan sushi, Rina bernyanyi',
+   art:()=>THINK(80,46,96,52,SUSHI(68,56,1)+HEART(98,44,1))+P(110,215,1.1,{c:'#4F7CAC'})+P(290,215,1.1,{long:1,c:'#B5462F',talk:1,flip:1})+NOTE(320,90)+NOTE(340,118,.8,'#D9802F')+NOTE(250,96,.9),
+   bub:[[150,112,'すしが 大好{だいす}きです！','Saya suka sekali sushi!'],[282,112,'わたしは 歌{うた}が 好{す}きです。','Saya suka bernyanyi.']]},
+  points:[
+   {p:'N が 好{す}きです / 嫌{きら}いです',e:'Objek perasaan memakai が, bukan を.',ex:[['わたしは 日本料理{にほんりょうり}が 好{す}きです。','Saya suka masakan Jepang.']]},
+   {p:'N が 上手{じょうず}です / 下手{へた}です',e:'Pandai atau tidak pandai. 上手 dipakai untuk memuji orang lain, bukan diri sendiri.',ex:[['リナさんは 歌{うた}が 上手{じょうず}です。','Rina pandai menyanyi.']]},
+   {p:'N が わかります / あります',e:'わかります (mengerti) dan あります (punya) juga memakai が.',ex:[['カタカナが わかりますか。','Mengerti katakana?'],['今日{きょう}は 用事{ようじ}が あります。','Hari ini saya ada urusan.']]},
+   {p:'よく / 少{すこ}し / 全然{ぜんぜん} 〜ない',e:'よく (dengan baik), だいたい (kira-kira), 少し (sedikit), あまり〜ない (tidak terlalu), 全然〜ない (sama sekali tidak).',ex:[['英語{えいご}が よく わかります。','Sangat mengerti bahasa Inggris.'],['フランス語{ご}が 全然{ぜんぜん} わかりません。','Sama sekali tidak mengerti bahasa Prancis.']]},
+   {p:'どうして / 〜から',e:'どうして = mengapa. から di akhir alasan = karena.',ex:[['どうして 早{はや}く 帰{かえ}りますか。 …用事{ようじ}が ありますから。','Mengapa pulang cepat? …Karena ada urusan.']]}],
+  vx:[['日本料理{にほんりょうり}','masakan Jepang',9],['歌{うた}','lagu',9],['全然{ぜんぜん}','sama sekali (tidak)',9],['どうして','mengapa',9]],
+  quiz:[
+   {q:'すし（　）好{す}きです。',o:['が','を','で'],a:0,x:'Objek perasaan: <b>が</b>.'},
+   {q:'中国語{ちゅうごくご}が （　） わかりません。',o:['全然{ぜんぜん}','よく','だいたい'],a:0,x:'<b>全然</b> berpasangan dengan negatif.'},
+   {q:'"Karena ada urusan."',o:['用事{ようじ}が ありますから。','用事{ようじ}が ありますが。','用事{ようじ}が ありますか。'],a:0,x:'Alasan: <b>〜から</b>.'}]},
+ {id:'n5-b10',bab:10,title:'Bab 10 · Ada di Mana?',jp:'あります・います',sum:'Keberadaan benda dan makhluk hidup serta kata posisi.',
+  scene:{bg:'room',alt:'Kamar dengan meja, kucing, bola, kotak, anjing, dan sepatu',
+   art:()=>DESK(300,215,1)+BALL(300,215,10)+CAT(300,169,.85)+APPLE(132,190,.9)+APPLE(148,192,.8)+BOX(140,215,1.25,true)+DOG(212,215,.8)+SHOE(132,238,.9),
+   hot:[[278,126,46,44,'机{つくえ}の 上{うえ}に 猫{ねこ}が います。','Di atas meja ada kucing.'],[282,190,36,25,'机{つくえ}の 下{した}に ボールが あります。','Di bawah meja ada bola.'],[108,165,64,48,'箱{はこ}の 中{なか}に りんごが あります。','Di dalam kotak ada apel.'],[184,180,52,36,'箱{はこ}の 隣{となり}に 犬{いぬ}が います。','Di sebelah kotak ada anjing.'],[114,220,40,20,'箱{はこ}の 前{まえ}に 靴{くつ}が あります。','Di depan kotak ada sepatu.']]},
+  points:[
+   {p:'N(tempat) に N が あります / います',e:'あります untuk benda mati dan tumbuhan. います untuk manusia dan hewan.',ex:[['机{つくえ}の 上{うえ}に 本{ほん}が あります。','Di atas meja ada buku.'],['庭{にわ}に 猫{ねこ}が います。','Di halaman ada kucing.']]},
+   {p:'N は N(tempat) に あります / います',e:'Menjelaskan letak sesuatu yang sudah diketahui.',ex:[['鍵{かぎ}は かばんの 中{なか}に あります。','Kuncinya ada di dalam tas.']]},
+   {p:'N1 の 上{うえ} / 下{した} / 中{なか} / 隣{となり}',e:'Kata posisi: 上 atas, 下 bawah, 前 depan, 後ろ belakang, 中 dalam, 隣 sebelah, 間 antara.',ex:[['銀行{ぎんこう}は 郵便局{ゆうびんきょく}の 隣{となり}です。','Bank ada di sebelah kantor pos.']]},
+   {p:'N1 や N2 など',e:'や menyebut beberapa contoh saja, berbeda dengan と yang menyebut semuanya.',ex:[['箱{はこ}の 中{なか}に 手紙{てがみ}や 写真{しゃしん}などが あります。','Di dalam kotak ada surat, foto, dan lain-lain.']]}],
+  vx:[['中{なか}','dalam',10],['箱{はこ}','kotak',10],['猫{ねこ}','kucing',10],['犬{いぬ}','anjing',10],['机{つくえ}','meja',10]],
+  quiz:[
+   {q:'猫{ねこ}が （　）。',o:['います','あります','です'],a:0,x:'Hewan memakai <b>います</b>.'},
+   {q:'机{つくえ}の 上{うえ}（　）本{ほん}が あります。',o:['に','で','を'],a:0,x:'Tempat keberadaan: <b>に</b>.'},
+   {q:'"Di bawah meja"',o:['机{つくえ}の 下{した}','机{つくえ}の 上{うえ}','机{つくえ}の 中{なか}'],a:0,x:'Bawah = <b>下</b>.'}]},
+ {id:'n5-b11',bab:11,title:'Bab 11 · Menghitung',jp:'助数詞{じょすうし}',sum:'Kata bantu bilangan つ, 人, 枚, 台, 回, serta どのくらい dan だけ.',
+  scene:{widget:'counter'},
+  points:[
+   {p:'〜つ',e:'Bilangan umum untuk benda: ひとつ, ふたつ, みっつ, よっつ, いつつ, むっつ, ななつ, やっつ, ここのつ, とお.',ex:[['りんごを 四{よっ}つ 買{か}いました。','Membeli empat apel.']]},
+   {p:'〜人{にん}',e:'Untuk orang. Khusus: 1人 ひとり, 2人 ふたり.',ex:[['家族{かぞく}は 五人{ごにん}です。','Keluarga saya lima orang.']]},
+   {p:'〜枚{まい} / 〜台{だい} / 〜回{かい}',e:'枚 untuk benda tipis (kertas, kaos), 台 untuk mesin dan kendaraan, 回 untuk frekuensi.',ex:[['切手{きって}を 三枚{さんまい} ください。','Tolong perangko tiga lembar.'],['1週間{いっしゅうかん}に 2回{にかい} 泳{およ}ぎます。','Berenang dua kali seminggu.']]},
+   {p:'どのくらい / 〜だけ',e:'どのくらい menanyakan lama waktu. だけ = hanya.',ex:[['どのくらい 日本語{にほんご}を 勉強{べんきょう}しましたか。 …3か月{げつ}です。','Berapa lama belajar bahasa Jepang? …3 bulan.']]}],
+  vx:[['りんご','apel',11],['〜人{にん}','… orang',11],['〜枚{まい}','… lembar',11],['〜台{だい}','… unit (mesin)',11],['〜回{かい}','… kali',11]],
+  quiz:[
+   {q:'Dua orang:',o:['二人{ふたり}','二人{ににん}','二{ふた}つ'],a:0,x:'Khusus: 2人 = <b>ふたり</b>.'},
+   {q:'Kaos tiga lembar: Tシャツを 三（　）。',o:['枚{まい}','台{だい}','人{にん}'],a:0,x:'Benda tipis: <b>枚</b>.'},
+   {q:'Empat buah:',o:['四{よっ}つ','四{よん}つ','四{し}つ'],a:0,x:'4 benda = <b>よっつ</b>.'}]},
+ {id:'n5-b12',bab:12,title:'Bab 12 · Membandingkan',jp:'〜より・いちばん',sum:'Bentuk lampau kata sifat, perbandingan より / どちら, dan superlatif いちばん.',
+  scene:{bg:'autumn',alt:'Lomba antara kereta, bus, dan sepeda',
+   art:()=>`<g stroke="#E2C9A4" stroke-width="2">${[118,166,214].map(y=>`<line x1="0" y1="${y}" x2="400" y2="${y}"/>`).join('')}</g><rect x="370" y="60" width="4" height="156" fill="#3B2A20"/>${[0,1,2,3,4,5].map(i=>`<rect x="374" y="${60+i*8}" width="8" height="8" fill="${i%2?'#3B2A20':'#FFFDF8'}"/><rect x="382" y="${60+i*8}" width="8" height="8" fill="${i%2?'#FFFDF8':'#3B2A20'}"/>`).join('')}<g stroke="#B5462F" stroke-width="2.5" stroke-linecap="round" class="speed"><line x1="150" y1="90" x2="200" y2="90"/><line x1="140" y1="104" x2="185" y2="104"/><line x1="100" y1="142" x2="135" y2="142"/></g>`+TRAIN(270,118,.75)+BUS(185,164,.75)+BIKE(90,212,1)+FLEAVES(6),
+   hot:[[220,80,110,40,'電車{でんしゃ}が いちばん 速{はや}いです。','Kereta paling cepat.'],[150,128,72,38,'バスは 自転車{じてんしゃ}より 速{はや}いです。','Bus lebih cepat daripada sepeda.'],[64,176,54,38,'自転車{じてんしゃ}は 電車{でんしゃ}より 遅{おそ}いです。','Sepeda lebih lambat daripada kereta.']]},
+  points:[
+   {p:'N / な-adj でした ・ い-adj かったです',e:'Bentuk lampau. Negatif lampau: じゃ ありませんでした / くなかったです.',ex:[['きのうは 雨{あめ}でした。','Kemarin hujan.'],['旅行{りょこう}は 楽{たの}しかったです。','Perjalanannya menyenangkan.']]},
+   {p:'N1 は N2 より Adj です',e:'"N1 lebih … daripada N2".',ex:[['電車{でんしゃ}は バスより 速{はや}いです。','Kereta lebih cepat daripada bus.']]},
+   {p:'N1 と N2 と どちらが Adj ですか',e:'Membandingkan dua hal. Jawabannya: N の ほうが Adj です.',ex:[['肉{にく}と 魚{さかな}と どちらが 好{す}きですか。 …魚{さかな}の ほうが 好{す}きです。','Lebih suka daging atau ikan? …Lebih suka ikan.']]},
+   {p:'N で 何{なに} / どこ / だれ / いつ が いちばん Adj ですか',e:'Superlatif: "paling".',ex:[['季節{きせつ}で いつが いちばん 好{す}きですか。 …秋{あき}が いちばん 好{す}きです。','Musim apa yang paling disukai? …Paling suka musim gugur.']]}],
+  vx:[['より','daripada',12],['ほう','pihak (yang lebih)',12],['肉{にく}','daging',12],['魚{さかな}','ikan',12],['秋{あき}','musim gugur',12]],
+  quiz:[
+   {q:'Lampau dari 楽{たの}しいです:',o:['楽{たの}しかったです','楽{たの}しいでした','楽{たの}しくです'],a:0,x:'い-adj lampau: <b>かったです</b>.'},
+   {q:'東京{とうきょう}は 大阪{おおさか}（　）大{おお}きいです。',o:['より','ほう','いちばん'],a:0,x:'"Daripada" = <b>より</b>.'},
+   {q:'果物{くだもの}で 何{なに}が （　） 好{す}きですか。',o:['いちばん','より','ほう'],a:0,x:'"Paling" = <b>いちばん</b>.'}]},
+ {id:'n5-b13',bab:13,title:'Bab 13 · Keinginan dan Tujuan',jp:'欲{ほ}しい・〜たい・〜に 行{い}きます',sum:'Ingin memiliki, ingin melakukan, dan pergi untuk tujuan tertentu.',
+  scene:{bg:'room',alt:'Andi membayangkan mobil baru dan pesawat ke Jepang',
+   art:()=>THINK(250,62,200,84,CAR(205,86,.75)+PLANE(298,58,.6)+TXT(298,92,'にほん',10,'#B5462F',800))+P(110,215,1.1,{c:'#4F7CAC'})+OWL(330,215,.9),
+   bub:[[330,150,'何{なに}が 欲{ほ}しいですか。','Apa yang kamu inginkan?']],
+   hot:[[168,50,78,48,'新{あたら}しい 車{くるま}が 欲{ほ}しいです。','Ingin mobil baru.'],[256,32,86,60,'日本{にほん}へ 行{い}きたいです。','Ingin pergi ke Jepang.']]},
+  points:[
+   {p:'N が 欲{ほ}しいです',e:'Ingin memiliki suatu benda.',ex:[['新{あたら}しい パソコンが 欲{ほ}しいです。','Ingin komputer baru.']]},
+   {p:'V-ます stem + たいです',e:'Ingin melakukan sesuatu. Objek boleh memakai を atau が. Negatif: たくないです.',ex:[['日本{にほん}で 働{はたら}きたいです。','Ingin bekerja di Jepang.'],['今{いま} 何{なに}も 食{た}べたくないです。','Sekarang tidak ingin makan apa pun.']]},
+   {p:'N(tempat) へ V-ます stem / N に 行{い}きます',e:'Pergi untuk tujuan tertentu.',ex:[['デパートへ 靴{くつ}を 買{か}いに 行{い}きます。','Pergi ke department store untuk membeli sepatu.'],['京都{きょうと}へ 花見{はなみ}に 行{い}きます。','Pergi ke Kyoto untuk melihat bunga sakura.']]},
+   {p:'どこか / 何{なに}か',e:'"Ke suatu tempat" / "sesuatu".',ex:[['週末{しゅうまつ}は どこか 行{い}きましたか。','Akhir pekan pergi ke suatu tempat?']]}],
+  vx:[['パソコン','komputer',13],['靴{くつ}','sepatu',13],['花見{はなみ}','melihat bunga sakura',13],['どこか','suatu tempat',13]],
+  quiz:[
+   {q:'車{くるま}（　）欲{ほ}しいです。',o:['が','を','に'],a:0,x:'欲しい memakai <b>が</b>.'},
+   {q:'水{みず}が 飲{の}み（　）です。',o:['たい','ほしい','ます'],a:0,x:'Ingin melakukan: stem + <b>たい</b>.'},
+   {q:'映画{えいが}を 見{み}（　） 行{い}きます。',o:['に','へ','で'],a:0,x:'Tujuan: stem + <b>に</b> 行きます.'}]},
+ {id:'n5-b14',bab:14,title:'Bab 14 · Bentuk て (1)',jp:'て形{けい}',sum:'Golongan kata kerja, bentuk て, permintaan, kegiatan yang sedang berlangsung, dan menawarkan bantuan.',
+  scene:{bg:'rain',alt:'Hujan turun, guru meminta menunggu, teman menawarkan bantuan',
+   art:()=>CLOUD(120,40,1.3,'#9AA8B4')+CLOUD(280,34,1.5,'#9AA8B4')+RAIN(60,60,300,110)+P(100,215,1.05,{c:'#6B4E3A',h:'#555',gl:1,arm:'point'})+P(300,215,1.05,{c:'#3E7D4F',arm:'hold',flip:1})+BAG(289,182,.9),
+   bub:[[96,110,'ちょっと 待{ま}って ください。','Tolong tunggu sebentar.'],[300,110,'かばんを 持{も}ちましょうか。','Mau saya bawakan tasnya?']],
+   hot:[[150,20,120,80,'今{いま} 雨{あめ}が 降{ふ}って います。','Sekarang sedang hujan.']]},
+  cj:'te',
+  points:[
+   {p:'Golongan kata kerja',e:'Gol. I: bunyi sebelum ます berbaris い (書きます, 飲みます). Gol. II: bunyi baris え, dan beberapa baris い (食べます, 見ます, 起きます). Gol. III: します dan 来ます.',ex:[['書{か}きます・ 食{た}べます・ 来{き}ます','Gol. I, Gol. II, Gol. III']]},
+   {p:'V て ください',e:'Meminta dengan sopan.',ex:[['すみませんが、 ちょっと 待{ま}って ください。','Maaf, tolong tunggu sebentar.']]},
+   {p:'V て います',e:'Kegiatan yang sedang berlangsung.',ex:[['今{いま} 雨{あめ}が 降{ふ}って います。','Sekarang sedang hujan.']]},
+   {p:'V ましょうか',e:'Menawarkan bantuan.',ex:[['荷物{にもつ}を 持{も}ちましょうか。 …すみません。 お願{ねが}いします。','Mau saya bawakan barangnya? …Terima kasih, tolong ya.']]}],
+  vx:[['降{ふ}ります','turun (hujan)',14],['荷物{にもつ}','barang bawaan',14],['手伝{てつだ}います','membantu',14]],
+  quiz:[
+   {q:'Bentuk て dari 行{い}きます:',o:['行{い}って','行{い}いて','行{い}んで'],a:0,x:'Pengecualian: <b>行って</b>.'},
+   {q:'Bentuk て dari 飲{の}みます:',o:['飲{の}んで','飲{の}みて','飲{の}って'],a:0,x:'み → <b>んで</b>.'},
+   {q:'Menawarkan bantuan: 窓{まど}を 開{あ}け（　）。',o:['ましょうか','て います','ません'],a:0,x:'Menawarkan: <b>ましょうか</b>.'}]},
+ {id:'n5-b15',bab:15,title:'Bab 15 · Boleh dan Dilarang',jp:'〜ても いいです・〜ては いけません',sum:'Meminta izin, larangan, serta て います untuk keadaan dan pekerjaan.',
+  scene:{bg:'wall',alt:'Tanda larangan merokok, boleh memotret, dan larangan makan di museum',
+   art:()=>SIGN(90,82,'smoke')+SIGN(200,82,'camera',true)+SIGN(310,82,'food')+TXT(90,130,'だめ',13,'#C8372D',800)+TXT(200,130,'OK',13,'#3E7D4F',800)+TXT(310,130,'だめ',13,'#C8372D',800)+OWL(360,212,.7),
+   hot:[[64,56,52,52,'ここで たばこを 吸{す}っては いけません。','Dilarang merokok di sini.'],[174,56,52,52,'写真{しゃしん}を 撮{と}っても いいです。','Boleh memotret.'],[284,56,52,52,'ここで 食{た}べては いけません。','Dilarang makan di sini.']]},
+  points:[
+   {p:'V て も いいですか',e:'Meminta izin. Jawab: ええ、 いいですよ / すみません、 ちょっと….',ex:[['写真{しゃしん}を 撮{と}っても いいですか。','Bolehkah saya memotret?']]},
+   {p:'V て は いけません',e:'Larangan tegas, biasanya aturan.',ex:[['ここで たばこを 吸{す}っては いけません。','Dilarang merokok di sini.']]},
+   {p:'V て います (keadaan)',e:'Keadaan hasil suatu tindakan: 住んで います, 結婚して います, 知って います. Negatif dari 知っています adalah 知りません.',ex:[['わたしは 大阪{おおさか}に 住{す}んで います。','Saya tinggal di Osaka.'],['田中{たなか}さんの 電話番号{でんわばんごう}を 知{し}って いますか。 …いいえ、 知{し}りません。','Tahu nomor telepon Pak Tanaka? …Tidak tahu.']]},
+   {p:'V て います (pekerjaan)',e:'Menyatakan pekerjaan atau kebiasaan.',ex:[['姉{あね}は 銀行{ぎんこう}で 働{はたら}いて います。','Kakak perempuan saya bekerja di bank.']]}],
+  vx:[['住{す}みます','tinggal',15],['たばこ','rokok',15],['電話番号{でんわばんごう}','nomor telepon',15]],
+  quiz:[
+   {q:'座{すわ}って（　） いいですか。',o:['も','は','を'],a:0,x:'Izin: てもいいですか.'},
+   {q:'Dilarang masuk: 入{はい}って（　） いけません。',o:['は','も','が'],a:0,x:'Larangan: <b>てはいけません</b>.'},
+   {q:'知{し}って いますか。 (Tidak tahu.)',o:['いいえ、 知{し}りません。','いいえ、 知{し}って いません。','いいえ、 知{し}りませんでした。'],a:0,x:'Negatif 知っています = <b>知りません</b>.'}]},
+ {id:'n5-b16',bab:16,title:'Bab 16 · Merangkai Kegiatan',jp:'〜て、〜て・〜てから',sum:'Urutan kegiatan, menyambung kata sifat, てから, dan N1 は N2 が Adj.',
+  scene:{bg:'plain',alt:'Tiga gambar urutan pagi: jogging, mandi, berangkat ke kantor',
+   art:()=>[[10,'#F8E2C8'],[140,'#DCEFF7'],[270,'#EFE5D6']].map(([x,c],i)=>`<rect x="${x}" y="20" width="120" height="196" rx="14" fill="${c}"/><circle cx="${x+18}" cy="38" r="12" fill="#B5462F"/>${TXT(x+18,43,i+1,13,'#FFFDF8',800)}`).join('')+SUN(100,64,10)+P(70,196,.9,{c:'#3E7D4F',arm:'wave'})+`<path d="M182 52 h36 v6 h-36z" fill="#9AB"/>`+RAIN(180,62,40,70)+P(200,196,.9,{c:'#9AC6E0'})+BLD(330,206,70,96,'#C9B39D','かいしゃ')+P(300,206,.7,{c:'#4F7CAC',tie:'#B5462F'})+ARROW(122,120,146,120)+ARROW(252,120,276,120),
+   hot:[[10,20,120,196,'ジョギングを して、','1. Jogging, lalu…'],[140,20,120,196,'シャワーを 浴{あ}びて、','2. Mandi, lalu…'],[270,20,120,196,'会社{かいしゃ}へ 行{い}きます。','3. Berangkat ke kantor.']]},
+  points:[
+   {p:'V1 て、 V2 て、 V3',e:'Urutan kegiatan. Waktu (sekarang atau lampau) ditentukan oleh kata kerja terakhir.',ex:[['朝{あさ} ジョギングを して、 シャワーを 浴{あ}びて、 会社{かいしゃ}へ 行{い}きます。','Pagi jogging, mandi, lalu berangkat kerja.']]},
+   {p:'い-adj くて / な-adj・N で',e:'Menyambung kata sifat dan kata benda.',ex:[['この 部屋{へや}は 広{ひろ}くて、 明{あか}るいです。','Kamar ini luas dan terang.'],['リナさんは きれいで、 親切{しんせつ}です。','Rina cantik dan baik hati.']]},
+   {p:'V1 て から、 V2',e:'"Setelah V1, (baru) V2".',ex:[['仕事{しごと}が 終{お}わってから、 晩{ばん}ごはんを 食{た}べます。','Setelah pekerjaan selesai, makan malam.']]},
+   {p:'N1 は N2 が Adj',e:'Menerangkan bagian atau ciri dari N1.',ex:[['象{ぞう}は 鼻{はな}が 長{なが}いです。','Gajah hidungnya panjang.']]},
+   {p:'どうやって',e:'Menanyakan cara.',ex:[['駅{えき}まで どうやって 行{い}きますか。','Bagaimana cara pergi ke stasiun?']]}],
+  vx:[['浴{あ}びます','mandi (shower)',16],['広{ひろ}い','luas',16],['象{ぞう}','gajah',16],['鼻{はな}','hidung',16]],
+  quiz:[
+   {q:'この 公園{こうえん}は 広{ひろ}（　）、 きれいです。',o:['くて','いで','で'],a:0,x:'い-adj sambung: <b>くて</b>.'},
+   {q:'手{て}を 洗{あら}って（　）、 食{た}べます。',o:['から','まで','より'],a:0,x:'"Setelah": <b>てから</b>.'},
+   {q:'象{ぞう}は 鼻{はな}（　） 長{なが}いです。',o:['が','を','で'],a:0,x:'N1 は N2 <b>が</b> Adj.'}]},
+ {id:'n5-b17',bab:17,title:'Bab 17 · Bentuk ない',jp:'ない形{けい}',sum:'Bentuk ない, jangan, harus, tidak perlu, dan batas waktu までに.',
+  scene:{bg:'clinic',alt:'Dokter memberi nasihat kepada pasien',
+   art:()=>P(100,215,1.1,{c:'#FFFFFF',lg:'#6F8FB8',gl:1,h:'#555',talk:1})+DESK(190,215,.45)+MED(190,194,.9)+P(265,215,1.1,{c:'#D9802F',long:1,flip:1})+TUB(355,215,.65),
+   bub:[[100,108,'薬{くすり}を 飲{の}まなければ なりません。','Kamu harus minum obat.'],[268,108,'はい、 わかりました。','Baik, saya mengerti.']],
+   hot:[[176,158,28,38,'毎日{まいにち} 薬{くすり}を 飲{の}まなければ なりません。','Harus minum obat setiap hari.'],[334,186,44,30,'今日{きょう}は お風呂{ふろ}に 入{はい}らないで ください。','Hari ini tolong jangan mandi berendam.']]},
+  cj:'nai',
+  points:[
+   {p:'Bentuk ない',e:'Gol. I: bunyi い sebelum ます → baris あ + ない (書きます → 書かない, 買います → 買わない). Gol. II: ます → ない. Gol. III: しない, 来{こ}ない.',ex:[['行{い}きます → 行{い}かない','pergi → tidak pergi']]},
+   {p:'V ないで ください',e:'Meminta agar tidak melakukan sesuatu.',ex:[['ここに 車{くるま}を 止{と}めないで ください。','Tolong jangan parkir mobil di sini.']]},
+   {p:'V なければ なりません',e:'Kewajiban: "harus".',ex:[['毎日{まいにち} 薬{くすり}を 飲{の}まなければ なりません。','Harus minum obat setiap hari.']]},
+   {p:'V なくても いいです',e:'"Tidak perlu".',ex:[['あした 来{こ}なくても いいです。','Besok tidak perlu datang.']]},
+   {p:'N(waktu) までに V',e:'"Paling lambat". Berbeda dengan まで yang berarti terus berlangsung sampai.',ex:[['金曜日{きんようび}までに レポートを 出{だ}して ください。','Kumpulkan laporan paling lambat hari Jumat.']]}],
+  vx:[['薬{くすり}','obat',17],['止{と}めます','memarkir / menghentikan',17],['お風呂{ふろ}','bak mandi berendam',17]],
+  quiz:[
+   {q:'Bentuk ない dari 買{か}います:',o:['買{か}わない','買{か}あない','買{か}いない'],a:0,x:'い → <b>わ</b> + ない.'},
+   {q:'Harus belajar: 勉強{べんきょう}し（　）。',o:['なければ なりません','ないで ください','なくても いいです'],a:0,x:'Kewajiban: <b>なければなりません</b>.'},
+   {q:'5時{ごじ}（　） 帰{かえ}って ください。 (paling lambat)',o:['までに','まで','から'],a:0,x:'Batas waktu: <b>までに</b>.'}]},
+ {id:'n5-b18',bab:18,title:'Bab 18 · Bentuk Kamus',jp:'辞書形{じしょけい}',sum:'Bentuk kamus, ことが できます, hobi, dan まえに.',
+  scene:{bg:'nightroom',alt:'Rina bermain piano dan buku di atas tempat tidur',
+   art:()=>P(140,196,1,{c:'#B5462F',long:1})+PIANO(140,215,1.1)+NOTE(190,90)+NOTE(210,120,.8,'#D9802F')+NOTE(96,100,.9)+BED(310,215,1)+BOOK(320,180,.9,'#3E7D4F'),
+   bub:[[150,92,'ピアノを 弾{ひ}く ことが できます。','Saya bisa bermain piano.']],
+   hot:[[90,130,104,86,'わたしは ピアノを 弾{ひ}く ことが できます。','Saya bisa bermain piano.'],[262,166,100,48,'寝{ね}る まえに、 本{ほん}を 読{よ}みます。','Sebelum tidur, saya membaca buku.']]},
+  cj:'dict',
+  points:[
+   {p:'Bentuk kamus',e:'Gol. I: bunyi い → baris う (書きます → 書く). Gol. II: ます → る. Gol. III: する, 来{く}る.',ex:[['飲{の}みます → 飲{の}む','minum']]},
+   {p:'N / V る ことが できます',e:'Kemampuan atau kemungkinan.',ex:[['わたしは ピアノを 弾{ひ}く ことが できます。','Saya bisa bermain piano.'],['ここで カードで 払{はら}う ことが できます。','Di sini bisa membayar dengan kartu.']]},
+   {p:'趣味{しゅみ}は V る ことです',e:'Menyebut hobi.',ex:[['わたしの 趣味{しゅみ}は 写真{しゃしん}を 撮{と}る ことです。','Hobi saya memotret.']]},
+   {p:'V る / N の まえに、 V2',e:'"Sebelum …". Kata kerja di depan まえに selalu bentuk kamus.',ex:[['寝{ね}る まえに、 本{ほん}を 読{よ}みます。','Sebelum tidur, membaca buku.'],['食事{しょくじ}の まえに、 手{て}を 洗{あら}います。','Sebelum makan, mencuci tangan.']]}],
+  vx:[['カード','kartu',18],['まえに','sebelum',18]],
+  quiz:[
+   {q:'Bentuk kamus dari 書{か}きます:',o:['書{か}く','書{か}け','書{か}かない'],a:0,x:'き → <b>く</b>.'},
+   {q:'日本語{にほんご}を 話{はな}す（　）が できます。',o:['こと','もの','ところ'],a:0,x:'Kemampuan: V る <b>こと</b>が できます.'},
+   {q:'寝{ね}る（　）、 歯{は}を 磨{みが}きます。',o:['まえに','あとで','から'],a:0,x:'"Sebelum" = <b>まえに</b>.'}]},
+ {id:'n5-b19',bab:19,title:'Bab 19 · Bentuk た',jp:'た形{けい}',sum:'Bentuk た, pengalaman, menyebut beberapa kegiatan, dan perubahan なります.',
+  scene:{bg:'autumn',alt:'Pendaki di puncak Gunung Fuji, pohon momiji, dan termometer dingin',
+   art:()=>FUJI(130,205,1.3)+P(130,76,.34,{c:'#B5462F',arm:'wave'})+`<path d="M145 76 v-26" stroke="#3B2A20" stroke-width="1.5"/><path d="M145 50 l14 5 -14 5z" fill="#C8372D"/>`+TREE(310,205,1.05)+FLEAVES(9)+THERMO(368,200,1.1,.18),
+   bub:[[130,40,'登{のぼ}った ことが あります！','Saya pernah mendakinya!']],
+   hot:[[40,90,180,115,'富士山{ふじさん}に 登{のぼ}った ことが あります。','Saya pernah mendaki Gunung Fuji.'],[270,118,84,88,'葉{は}が 赤{あか}く なりました。','Daunnya menjadi merah.'],[354,140,30,64,'寒{さむ}く なりました。','Udara menjadi dingin.']]},
+  cj:'ta',
+  points:[
+   {p:'Bentuk た',e:'Sama seperti bentuk て, cukup ganti て → た dan で → だ (書いて → 書いた, 読んで → 読んだ).',ex:[['食{た}べます → 食{た}べた','makan → sudah makan']]},
+   {p:'V た ことが あります',e:'Pengalaman: "pernah …".',ex:[['富士山{ふじさん}に 登{のぼ}った ことが あります。','Pernah mendaki Gunung Fuji.']]},
+   {p:'V1 たり、 V2 たり します',e:'Menyebut beberapa contoh kegiatan.',ex:[['休{やす}みの 日{ひ}は 掃除{そうじ}したり、 買{か}い物{もの}したり します。','Di hari libur saya bersih-bersih, belanja, dan lain-lain.']]},
+   {p:'い-adj く / な-adj・N に なります',e:'Perubahan: "menjadi".',ex:[['寒{さむ}く なりました。','Udara menjadi dingin.'],['医者{いしゃ}に なりたいです。','Saya ingin menjadi dokter.']]}],
+  vx:[['寒{さむ}い','dingin',19],['葉{は}','daun',19],['赤{あか}い','merah',19]],
+  quiz:[
+   {q:'Bentuk た dari 読{よ}みます:',o:['読{よ}んだ','読{よ}みた','読{よ}った'],a:0,x:'読んで → <b>読んだ</b>.'},
+   {q:'日本{にほん}へ 行{い}った（　）が あります。',o:['こと','たり','まえ'],a:0,x:'Pengalaman: Vた <b>こと</b>が あります.'},
+   {q:'元気{げんき}（　） なりました。',o:['に','く','で'],a:0,x:'な-adj: <b>に</b> なります.'}]},
+ {id:'n5-b20',bab:20,title:'Bab 20 · Gaya Bahasa Biasa',jp:'普通形{ふつうけい}',sum:'Perbedaan gaya sopan dan gaya biasa dalam percakapan.',
+  scene:{bg:'room',alt:'Perbandingan percakapan sopan dan akrab',
+   modes:[
+    {label:'Sopan · です・ます',art:()=>P(120,215,1.1,{c:'#3B3F4A',tie:'#B5462F',h:'#555',gl:1,talk:1})+P(280,215,1.1,{c:'#4F7CAC',tie:'#2F6F8F',flip:1})+TXT(200,232,'atasan dan karyawan',11,'#6E5848'),
+     bub:[[120,110,'あした 会社{かいしゃ}に 来{き}ますか。','Besok datang ke kantor?'],[280,110,'はい、 来{き}ます。','Ya, saya datang.']]},
+    {label:'Biasa · teman',art:()=>P(120,215,1.1,{c:'#3E7D4F',arm:'wave',talk:1})+P(280,215,1.1,{c:'#D9802F',long:1,flip:1})+TXT(200,232,'teman akrab',11,'#6E5848'),
+     bub:[[120,110,'あした 学校{がっこう}に 来{く}る？','Besok datang ke sekolah?'],[280,110,'うん、 来{く}る。','Iya, datang.']]},
+    {label:'Biasa · lampau',art:()=>P(120,215,1.1,{c:'#3E7D4F',talk:1})+P(280,215,1.1,{c:'#D9802F',long:1,flip:1})+TXT(200,232,'teman akrab',11,'#6E5848'),
+     bub:[[120,110,'きのうの 映画{えいが}、 見{み}た？','Kemarin nonton filmnya?'],[280,110,'ううん、 見{み}なかった。','Nggak, nggak nonton.']]}]},
+  points:[
+   {p:'Gaya sopan dan gaya biasa',e:'Gaya biasa (普通形{ふつうけい}) dipakai dengan teman dekat dan keluarga. Gaya sopan (です・ます) dipakai dengan atasan, guru, dan orang yang baru dikenal.',ex:[['あした 来{く}る？ …うん、 来{く}る。','Besok datang? …Iya, datang.']]},
+   {p:'Kata kerja bentuk biasa',e:'行きます → 行く, 行きません → 行かない, 行きました → 行った, 行きませんでした → 行かなかった.',ex:[['きのう 映画{えいが}を 見{み}た。','Kemarin nonton film.']]},
+   {p:'Kata sifat dan kata benda',e:'い-adj: 高い / 高くない. な-adj dan N: 元気だ / 元気じゃない. Dalam percakapan, だ sering dihilangkan.',ex:[['今日{きょう}は 暇{ひま}？ …うん、 暇{ひま}。','Hari ini senggang? …Iya, senggang.']]},
+   {p:'Pertanyaan gaya biasa',e:'か dihilangkan dan intonasi naik. はい → うん, いいえ → ううん.',ex:[['コーヒー、 飲{の}む？ …ううん、 いらない。','Minum kopi? …Nggak, nggak usah.']]}],
+  vx:[['うん','iya (akrab)',20],['ううん','tidak (akrab)',20],['暇{ひま}','senggang',20]],
+  quiz:[
+   {q:'Bentuk biasa dari 行{い}きませんでした:',o:['行{い}かなかった','行{い}かない','行{い}った'],a:0,x:'Lampau negatif biasa: <b>なかった</b>.'},
+   {q:'Bentuk biasa dari 暇{ひま}です:',o:['暇{ひま}だ','暇{ひま}い','暇{ひま}な'],a:0,x:'な-adj: <b>だ</b>.'},
+   {q:'Jawaban "tidak" dalam gaya akrab:',o:['ううん','うん','ええ'],a:0,x:'<b>ううん</b> = tidak.'}]},
+ {id:'n5-b21',bab:21,title:'Bab 21 · Pendapat dan Kutipan',jp:'〜と 思{おも}います・〜と 言{い}います',sum:'Menyatakan pendapat, mengutip ucapan, でしょう, dan について.',
+  scene:{bg:'room',alt:'Andi menduga besok hujan, Rina mengutip ucapan guru',
+   art:()=>THINK(64,42,84,46,CLOUD(64,46,.75,'#9AA8B4')+RAIN(48,52,32,14))+P(120,215,1.1,{c:'#4F7CAC'})+P(290,215,1.1,{long:1,c:'#D9802F',flip:1,talk:1}),
+   bub:[[120,112,'あした 雨{あめ}が 降{ふ}ると 思{おも}います。','Saya pikir besok akan hujan.'],[292,112,'「がんばって」と 言{い}いました。','(Guru) bilang, "Semangat!"']]},
+  points:[
+   {p:'Bentuk biasa + と 思{おも}います',e:'Menyatakan pendapat atau dugaan.',ex:[['あした 雨{あめ}が 降{ふ}ると 思{おも}います。','Saya pikir besok akan hujan.'],['この 映画{えいが}は おもしろいと 思{おも}います。','Menurut saya film ini menarik.']]},
+   {p:'「kalimat」 / bentuk biasa + と 言{い}います',e:'Mengutip ucapan orang lain.',ex:[['寝{ね}る まえに 「おやすみなさい」と 言{い}います。','Sebelum tidur mengucapkan "oyasuminasai".'],['田中{たなか}さんは あした 休{やす}むと 言{い}いました。','Pak Tanaka bilang besok dia libur.']]},
+   {p:'Bentuk biasa + でしょう？',e:'Meminta persetujuan: "…kan?". Untuk な-adj dan N, だ dihilangkan.',ex:[['あした パーティーに 行{い}くでしょう？','Besok kamu ke pesta, kan?']]},
+   {p:'N に ついて',e:'"Tentang / mengenai".',ex:[['日本{にほん}の 文化{ぶんか}に ついて 話{はな}します。','Berbicara tentang budaya Jepang.']]}],
+  vx:[['〜に ついて','tentang …',21],['パーティー','pesta',21],['文化{ぶんか}','budaya',21]],
+  quiz:[
+   {q:'あした 晴{は}れる（　） 思{おも}います。',o:['と','を','が'],a:0,x:'Pendapat: <b>と</b> 思います.'},
+   {q:'先生{せんせい}は 「がんばって」（　） 言{い}いました。',o:['と','を','に'],a:0,x:'Kutipan: <b>と</b> 言いました.'},
+   {q:'日本{にほん}の 夏{なつ}は 暑{あつ}い（　）？',o:['でしょう','ですか','と'],a:0,x:'Meminta persetujuan: <b>でしょう</b>?'}]},
+ {id:'n5-b22',bab:22,title:'Bab 22 · Menerangkan Kata Benda',jp:'名詞修飾{めいししゅうしょく}',sum:'Kalimat yang menerangkan kata benda, subjek が di dalamnya, dan V る 時間.',
+  scene:{bg:'room',alt:'Tiga orang: berkacamata, bertopi, dan membawa kue',
+   art:()=>P(90,215,1.05,{gl:1,c:'#6B4E3A',h:'#555'})+P(200,215,1.05,{hat:'#3E7D4F',c:'#D9802F',long:1})+P(310,215,1.05,{c:'#4F7CAC',arm:'hold'})+CAKE(322,180,.85),
+   hot:[[64,118,52,98,'眼鏡{めがね}を かけて いる 人{ひと}は 田中{たなか}さんです。','Orang yang memakai kacamata adalah Pak Tanaka.'],[174,112,52,104,'帽子{ぼうし}を かぶって いる 人{ひと}は リナさんです。','Orang yang memakai topi adalah Rina.'],[284,118,60,98,'ケーキを 持{も}って いる 人{ひと}は アンディさんです。','Orang yang membawa kue adalah Andi.']]},
+  points:[
+   {p:'Bentuk biasa + N',e:'Sebuah kalimat dapat menerangkan kata benda dan selalu diletakkan di depannya.',ex:[['これは 母{はは}が 作{つく}った ケーキです。','Ini kue yang dibuat ibu.'],['眼鏡{めがね}を かけて いる 人{ひと}は 田中{たなか}さんです。','Orang yang memakai kacamata adalah Pak Tanaka.']]},
+   {p:'Subjek dalam klausa memakai が',e:'Subjek di dalam kalimat penerang memakai が, bukan は.',ex:[['リナさんが 住{す}んで いる 町{まち}は 静{しず}かです。','Kota tempat Rina tinggal tenang.']]},
+   {p:'V る 時間{じかん} / 約束{やくそく} / 用事{ようじ}',e:'Menyatakan waktu, janji, atau urusan untuk melakukan sesuatu.',ex:[['朝{あさ}ごはんを 食{た}べる 時間{じかん}が ありません。','Tidak ada waktu untuk sarapan.']]}],
+  vx:[['ケーキ','kue',22],['帽子{ぼうし}','topi',22],['約束{やくそく}','janji',22]],
+  quiz:[
+   {q:'"Kue yang dibuat ibu"',o:['母{はは}が 作{つく}った ケーキ','ケーキが 作{つく}った 母{はは}','母{はは}は 作{つく}った ケーキ'],a:0,x:'Penerang di depan kata benda, subjek memakai <b>が</b>.'},
+   {q:'友達{ともだち}（　） 住{す}んで いる 町{まち}',o:['が','は','を'],a:0,x:'Subjek dalam klausa: <b>が</b>.'},
+   {q:'"Tidak ada waktu untuk membaca buku."',o:['本{ほん}を 読{よ}む 時間{じかん}が ありません。','時間{じかん}を 読{よ}む 本{ほん}が ありません。','本{ほん}を 読{よ}んで 時間{じかん}が ありません。'],a:0,x:'<b>V る 時間</b> = waktu untuk melakukan V.'}]},
+ {id:'n5-b23',bab:23,title:'Bab 23 · Saat dan Akibat Pasti',jp:'〜とき・〜と',sum:'Ketika (とき), akibat otomatis (と), dan を untuk tempat yang dilalui.',
+  scene:{bg:'street',alt:'Mesin penjual, orang menyeberang jalan, dan papan arah ke stasiun',
+   art:()=>VEND(66,205,1)+`<g fill="#FFFDF8">${[0,1,2,3,4].map(i=>`<rect x="${168+i*18}" y="200" width="10" height="36" rx="1"/>`).join('')}</g>`+P(205,222,1,{c:'#3E7D4F'})+TLIGHT(280,205,1)+`<rect x="352" y="104" width="4" height="100" fill="#8E7B6A"/><rect x="320" y="96" width="70" height="26" rx="5" fill="#2F6F8F"/>${TXT(352,114,'えき →',12,'#FFFDF8',800)}`,
+   hot:[[44,152,46,30,'この ボタンを 押{お}すと、 お釣{つ}りが 出{で}ます。','Kalau tombol ini ditekan, uang kembalian keluar.'],[166,122,96,104,'道{みち}を 渡{わた}る とき、 車{くるま}に 気{き}を つけます。','Saat menyeberang jalan, hati-hati dengan mobil.'],[318,92,74,34,'右{みぎ}へ 曲{ま}がると、 駅{えき}が あります。','Kalau belok kanan, ada stasiun.']]},
+  points:[
+   {p:'〜 とき、 〜',e:'"Ketika". Dipakai dengan V る / V た, い-adj, な-adj な, dan N の.',ex:[['道{みち}を 渡{わた}る とき、 車{くるま}に 気{き}を つけます。','Saat menyeberang jalan, hati-hati dengan mobil.'],['子{こ}どもの とき、 よく 川{かわ}で 泳{およ}ぎました。','Waktu kecil, saya sering berenang di sungai.']]},
+   {p:'V る と、 〜',e:'Akibat yang pasti atau otomatis terjadi.',ex:[['この ボタンを 押{お}すと、 お釣{つ}りが 出{で}ます。','Kalau tombol ini ditekan, uang kembalian keluar.'],['右{みぎ}へ 曲{ま}がると、 駅{えき}が あります。','Kalau belok kanan, ada stasiun.']]},
+   {p:'N(tempat) を V(gerak)',e:'を menandai tempat yang dilalui: 道を 渡ります, 公園を 散歩します.',ex:[['公園{こうえん}を 散歩{さんぽ}します。','Berjalan-jalan di taman.']]}],
+  vx:[['押{お}します','menekan',23],['お釣{つ}り','uang kembalian',23],['散歩{さんぽ}します','berjalan-jalan',23],['気{き}を つけます','berhati-hati',23]],
+  quiz:[
+   {q:'子{こ}ども（　） とき',o:['の','な','に'],a:0,x:'Kata benda + <b>の</b> とき.'},
+   {q:'春{はる}に なる（　）、 桜{さくら}が 咲{さ}きます。',o:['と','とき','から'],a:0,x:'Akibat pasti: <b>と</b>.'},
+   {q:'橋{はし}（　） 渡{わた}ります。',o:['を','に','で'],a:0,x:'Tempat yang dilalui: <b>を</b>.'}]},
+ {id:'n5-b24',bab:24,title:'Bab 24 · Memberi dan Menerima Kebaikan',jp:'くれます・〜て あげます・〜て もらいます',sum:'くれます, serta melakukan kebaikan dengan てあげます, てもらいます, dan てくれます.',
+  scene:{bg:'room',alt:'Teman membantu pindahan dan Andi membelikan jus',
+   art:()=>BOX(60,215,1)+BOX(60,183,.82)+BOX(100,215,.8)+P(200,215,1.05,{c:'#3E7D4F',arm:'hold'})+BOX(214,174,.55)+P(320,215,1.05,{c:'#4F7CAC',arm:'hold',flip:1})+JUICE(309,180,1)+ARROW(296,150,236,150,'#3E7D4F'),
+   hot:[[174,120,60,96,'友達{ともだち}が 荷物{にもつ}を 運{はこ}んで くれました。','Teman membawakan barang untuk saya.'],[294,118,54,98,'わたしは 友達{ともだち}に ジュースを 買{か}って あげました。','Saya membelikan jus untuk teman.'],[30,150,96,66,'友達{ともだち}に 引{ひ}っ越{こ}しを 手伝{てつだ}って もらいました。','Saya dibantu teman saat pindahan.']]},
+  points:[
+   {p:'N(orang) が わたしに くれます',e:'Orang lain memberi kepada saya atau keluarga saya.',ex:[['リナさんは わたしに チョコレートを くれました。','Rina memberi saya cokelat.']]},
+   {p:'V て あげます',e:'Saya melakukan kebaikan untuk orang lain. Hindari kepada atasan karena terdengar menggurui.',ex:[['わたしは 弟{おとうと}に 本{ほん}を 読{よ}んで あげました。','Saya membacakan buku untuk adik.']]},
+   {p:'V て もらいます',e:'Saya menerima kebaikan dari orang lain.',ex:[['わたしは 田中{たなか}さんに 駅{えき}まで 送{おく}って もらいました。','Saya diantar Pak Tanaka sampai stasiun.']]},
+   {p:'V て くれます',e:'Orang lain berbuat baik untuk saya.',ex:[['友達{ともだち}が 引{ひ}っ越{こ}しを 手伝{てつだ}って くれました。','Teman membantu saya pindahan.']]}],
+  vx:[['チョコレート','cokelat',24],['引{ひ}っ越{こ}し','pindahan',24],['弟{おとうと}','adik laki-laki',24]],
+  quiz:[
+   {q:'リナさんは わたしに 花{はな}を （　）。',o:['くれました','あげました','もらいました'],a:0,x:'Orang lain memberi kepada saya: <b>くれました</b>.'},
+   {q:'Saya diajari teman: 友達{ともだち}に 教{おし}えて （　）。',o:['もらいました','あげました','くれました'],a:0,x:'Saya menerima kebaikan: <b>てもらいました</b>.'},
+   {q:'Teman membantu saya: 友達{ともだち}が 手伝{てつだ}って （　）。',o:['くれました','もらいました','あげました'],a:0,x:'Orang lain berbuat baik untuk saya: <b>てくれました</b>.'}]},
+ {id:'n5-b25',bab:25,title:'Bab 25 · Jika dan Meskipun',jp:'〜たら・〜ても',sum:'Pengandaian たら, たら untuk "setelah", ても, serta もし dan いくら.',
+  scene:{bg:'rain',alt:'Perbandingan tidak keluar saat hujan dan tetap keluar dengan payung',
+   modes:[
+    {label:'〜たら · jika',art:()=>CLOUD(150,40,1.3,'#9AA8B4')+CLOUD(300,34,1.4,'#9AA8B4')+RAIN(80,60,280,120)+HOUSE(110,205,1.2)+P(110,205,.62,{c:'#4F7CAC'})+`<circle cx="230" cy="150" r="22" fill="none" stroke="#C8372D" stroke-width="4"/><line x1="214" y1="134" x2="246" y2="166" stroke="#C8372D" stroke-width="4"/>`+TXT(230,190,'でかけません',11,'#C8372D',800),
+     bub:[[110,106,'雨{あめ}が 降{ふ}ったら、 出{で}かけません。','Kalau hujan, saya tidak keluar.']]},
+    {label:'〜ても · meskipun',art:()=>CLOUD(150,40,1.3,'#9AA8B4')+CLOUD(300,34,1.4,'#9AA8B4')+RAIN(80,60,280,120)+HOUSE(80,205,1)+P(250,215,1.05,{c:'#4F7CAC',arm:'hold'})+UMB(262,186,1.1,'#B5462F')+ARROW(290,190,360,190,'#3E7D4F'),
+     bub:[[250,100,'雨{あめ}が 降{ふ}っても、 出{で}かけます。','Meskipun hujan, saya tetap keluar.']]}]},
+  points:[
+   {p:'Bentuk lampau biasa + ら',e:'"Jika / kalau": 行ったら, 安かったら, 暇だったら, 雨だったら.',ex:[['雨{あめ}が 降{ふ}ったら、 出{で}かけません。','Kalau hujan, saya tidak keluar.'],['お金{かね}が あったら、 旅行{りょこう}します。','Kalau punya uang, saya akan berwisata.']]},
+   {p:'V たら (setelah)',e:'Untuk hal yang pasti terjadi, たら berarti "setelah".',ex:[['10時{じゅうじ}に なったら、 出{で}かけましょう。','Setelah jam 10, ayo berangkat.']]},
+   {p:'V て も / い-adj くても / な-adj・N でも',e:'"Meskipun".',ex:[['雨{あめ}が 降{ふ}っても、 出{で}かけます。','Meskipun hujan, saya tetap keluar.'],['高{たか}くても、 買{か}います。','Meskipun mahal, saya tetap membeli.']]},
+   {p:'もし / いくら',e:'もし (seandainya) menguatkan たら. いくら (sekeras / semahal apa pun) menguatkan ても.',ex:[['もし 1億円{いちおくえん}が あったら、 何{なに}を しますか。','Seandainya punya 100 juta yen, apa yang akan kamu lakukan?']]}],
+  vx:[['お金{かね}','uang',25],['旅行{りょこう}','wisata',25]],
+  quiz:[
+   {q:'Jika murah: 安{やす}（　）、 買{か}います。',o:['かったら','くても','いたら'],a:0,x:'い-adj: <b>かったら</b>.'},
+   {q:'雨{あめ}が 降{ふ}って（　）、 行{い}きます。 (meskipun)',o:['も','たら','から'],a:0,x:'"Meskipun" = <b>ても</b>.'},
+   {q:'暇{ひま}（　）、 来{き}て ください。 (jika)',o:['だったら','かったら','でも'],a:0,x:'な-adj: <b>だったら</b>.'}]}
+];
 const LEVELS=[
  {id:'kana',tag:'かな',name:'Kana Dasar',sub:'Hiragana & Katakana',desc:'Titik nol: mengenal 46 huruf hiragana dan 46 katakana beserta bunyinya.',lessons:[
   {id:'hira',kana:'hira',title:'Hiragana',jp:'ひらがな',sum:'Huruf dasar untuk kata asli Jepang dan partikel. Ketuk huruf untuk mendengar bunyinya.'},
   {id:'kata',kana:'kata',title:'Katakana',jp:'カタカナ',sum:'Huruf untuk kata serapan asing, nama negara, dan nama orang asing.'}]},
- {id:'n5',tag:'N5',name:'Pemula',sub:'Setara Minna no Nihongo I awal',desc:'Pola kalimat dasar, kata tunjuk, kata kerja ます, dan kata sifat.',lessons:[
-  {id:'n5-1',title:'Perkenalan Diri',jp:'自己紹介{じこしょうかい}',sum:'Menyatakan identitas dengan pola は〜です.',
-   points:[
-    {p:'N1 は N2 です',e:'"N1 adalah N2". Partikel は menandai topik dan dibaca <b>wa</b>.',ex:[['わたしは アンディです。','Saya Andi.'],['わたしは インドネシア人{じん}です。','Saya orang Indonesia.']]},
-    {p:'N1 は N2 じゃ ありません',e:'Bentuk negatif: "N1 bukan N2". Dalam tulisan formal: では ありません.',ex:[['わたしは 学生{がくせい}じゃ ありません。','Saya bukan pelajar.']]},
-    {p:'N1 は N2 ですか',e:'Tambahkan か di akhir untuk bertanya. Jawab dengan はい / いいえ.',ex:[['あなたは 先生{せんせい}ですか。','Apakah Anda guru?'],['はい、 先生{せんせい}です。','Ya, saya guru.']]}],
-   vocab:[['私{わたし}','saya'],['学生{がくせい}','pelajar'],['先生{せんせい}','guru'],['会社員{かいしゃいん}','karyawan perusahaan'],['〜人{じん}','orang (negara)'],['はじめまして','salam saat pertama bertemu'],['よろしく お願{ねが}いします','mohon bantuannya']],
-   quiz:[
-    {q:'わたし（　）アンディです。',o:['は','を','に'],a:0,x:'Partikel <b>は</b> menandai topik kalimat dan dibaca "wa".'},
-    {q:'"Saya bukan guru." yang benar adalah…',o:['わたしは 先生{せんせい}です。','わたしは 先生{せんせい}じゃ ありません。','わたしは 先生{せんせい}ですか。'],a:1,x:'Negatif dari です adalah <b>じゃ ありません</b>.'},
-    {q:'はじめまして diucapkan saat…',o:['pertama kali bertemu','berpamitan pulang','sebelum tidur'],a:0,x:'<b>はじめまして</b> = "salam kenal", hanya untuk pertemuan pertama.'}]},
-  {id:'n5-2',title:'Ini, Itu, dan Kepemilikan',jp:'これ・それ・あれ',sum:'Kata tunjuk benda dan partikel の.',
-   points:[
-    {p:'これ / それ / あれ は N です',e:'これ dekat pembicara, それ dekat lawan bicara, あれ jauh dari keduanya.',ex:[['これは 本{ほん}です。','Ini buku.'],['あれは 何{なん}ですか。','Itu (yang jauh) apa?']]},
-    {p:'この / その / あの + N',e:'Bentuk yang langsung diikuti kata benda.',ex:[['あの 人{ひと}は だれですか。','Orang itu siapa?']]},
-    {p:'N1 の N2',e:'の menyatakan kepemilikan atau keterangan: "N2 milik/dari N1".',ex:[['それは わたしの かさです。','Itu payung saya.'],['日本語{にほんご}の 本{ほん}','buku bahasa Jepang']]}],
-   vocab:[['本{ほん}','buku'],['かさ','payung'],['かばん','tas'],['時計{とけい}','jam'],['だれ','siapa'],['何{なん}','apa']],
-   quiz:[
-    {q:'Benda ada di tangan Anda: （　）は 何{なん}ですか。',o:['これ','それ','あれ'],a:0,x:'Benda dekat pembicara memakai <b>これ</b>.'},
-    {q:'"jam saya" dalam bahasa Jepang:',o:['わたし 時計{とけい}','わたしの 時計{とけい}','時計{とけい}の わたし'],a:1,x:'Pola <b>N1 の N2</b>: わたし<b>の</b> 時計.'},
-    {q:'あの（　）は だれですか。',o:['人{ひと}','本{ほん}','これ'],a:0,x:'だれ (siapa) dipakai untuk orang: あの <b>人</b>.'}]},
-  {id:'n5-3',title:'Kata Kerja Bentuk ます',jp:'動詞{どうし}の ます形{けい}',sum:'Kegiatan sehari-hari: sekarang, lampau, positif, negatif.',
-   points:[
-    {p:'V-ます / ません / ました / ませんでした',e:'Empat bentuk sopan: positif, negatif, lampau, lampau negatif.',ex:[['毎朝{まいあさ} パンを 食{た}べます。','Setiap pagi saya makan roti.'],['日曜日{にちようび}は 働{はたら}きません。','Hari Minggu saya tidak bekerja.']]},
-    {p:'N を V',e:'を menandai objek langsung, dibaca "o".',ex:[['水{みず}を 飲{の}みます。','Saya minum air.']]},
-    {p:'Tempat へ 行{い}きます',e:'へ (dibaca "e") menunjukkan arah tujuan.',ex:[['昨日{きのう} 学校{がっこう}へ 行{い}きました。','Kemarin saya pergi ke sekolah.']]}],
-   vocab:[['食{た}べます','makan'],['飲{の}みます','minum'],['行{い}きます','pergi'],['来{き}ます','datang'],['見{み}ます','melihat'],['働{はたら}きます','bekerja']],
-   quiz:[
-    {q:'水{みず}（　）飲{の}みます。',o:['を','へ','は'],a:0,x:'Objek langsung ditandai <b>を</b>.'},
-    {q:'"Kemarin saya tidak makan." → 昨日{きのう} 食{た}べ（　）。',o:['ません','ました','ませんでした'],a:2,x:'Lampau negatif: <b>ませんでした</b>.'},
-    {q:'日本{にほん}（　）行{い}きます。',o:['を','へ','の'],a:1,x:'Arah tujuan memakai <b>へ</b> (atau に).'}]},
-  {id:'n5-4',title:'Kata Sifat',jp:'形容詞{けいようし}',sum:'Kata sifat い dan な serta bentuk negatifnya.',
-   points:[
-    {p:'い-adj: 高{たか}い → 高{たか}くないです',e:'Negatif い-adj: buang い, tambah くない. Pengecualian: いい → よくない.',ex:[['この ラーメンは おいしいです。','Ramen ini enak.'],['日本語{にほんご}は あまり 難{むずか}しくないです。','Bahasa Jepang tidak terlalu sulit.']]},
-    {p:'な-adj: きれいな 山{やま} / きれいです',e:'Memakai な bila diikuti kata benda. Negatif: じゃ ありません.',ex:[['富士山{ふじさん}は きれいな 山{やま}です。','Gunung Fuji adalah gunung yang indah.']]},
-    {p:'とても / あまり〜ない',e:'とても = sangat. あまり selalu berpasangan dengan bentuk negatif.',ex:[['今日{きょう}は とても 寒{さむ}いです。','Hari ini sangat dingin.']]}],
-   vocab:[['高{たか}い','mahal / tinggi'],['安{やす}い','murah'],['寒{さむ}い','dingin'],['きれい（な）','indah / bersih'],['静{しず}か（な）','tenang'],['元気{げんき}（な）','sehat / bersemangat']],
-   quiz:[
-    {q:'Negatif dari 寒{さむ}いです adalah…',o:['寒{さむ}いじゃ ありません','寒{さむ}くないです','寒{さむ}くです'],a:1,x:'い-adj: buang い → <b>くない</b>です.'},
-    {q:'静{しず}か（　）町{まち}',o:['な','の','い'],a:0,x:'な-adj sebelum kata benda memakai <b>な</b>.'},
-    {q:'あまり harus diikuti bentuk…',o:['positif','negatif','lampau'],a:1,x:'<b>あまり〜ない</b> = "tidak terlalu".'}]}]},
+ {id:'n5',tag:'N5',name:'Pemula',sub:'Minna no Nihongo I · Bab 1–25',desc:'25 bab pola kalimat dasar dengan ilustrasi interaktif, contoh bersuara, kosakata per bab, dan latihan.',lessons:N5B},
  {id:'n4',tag:'N4',name:'Dasar Lanjut',sub:'Setara Minna no Nihongo I–II',desc:'Bentuk て, keinginan, kemampuan, dan pengalaman.',lessons:[
   {id:'n4-1',title:'Bentuk て',jp:'て形{けい}',sum:'Meminta, izin, larangan, dan kegiatan yang sedang berlangsung.',
    points:[
@@ -829,6 +1299,7 @@ const VOCAB_X={
   ['携{たずさ}わる','terlibat dalam'],['損{そこ}なう','merusak'],['培{つちか}う','memupuk / membina'],['怠{おこた}る','melalaikan'],['賄{まかな}う','menutupi biaya'],['覆{くつがえ}す','membalikkan / membatalkan'],['遂{と}げる','mencapai'],['阻{はば}む','menghalangi'],['蓄{たくわ}える','menyimpan / menimbun'],['漠然{ばくぜん}','samar-samar'],
   ['円滑{えんかつ}','lancar'],['煩雑{はんざつ}','ruwet'],['綿密{めんみつ}','cermat'],['潔{いさぎよ}い','berlapang dada'],['紛{まぎ}らわしい','membingungkan'],['甚{はなは}だしい','berlebihan / luar biasa'],['あらかじめ','sebelumnya'],['いささか','agak / sedikit'],['ひたすら','dengan tekun / semata-mata'],['おのずと','dengan sendirinya']]
 };
+N5B.forEach(x=>{x.vocab=(x.vx||[]).concat(VOCAB_X.n5.filter(v=>v[2]===x.bab));x.quiz.forEach((q,i)=>{const n=q.o.length,k=(x.bab+i)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
 </script>
 
 <script>
@@ -895,7 +1366,7 @@ function paintChrome(){
  document.body.classList.toggle('nofuri',!S.set.furi);document.body.classList.toggle('notr',!S.set.tr);
 }
 function render(keepScroll){const y=window.scrollY;const V={beranda:vHome,belajar:vLearn,bisnis:vBisnis,kaiwa:vKaiwa,soal:vSoal,game:vGame,profil:vProfile}[UI.route];
- $('#view').innerHTML=V();paintChrome();if(keepScroll)window.scrollTo(0,y)}
+ $('#view').innerHTML=V();paintChrome();fixBubbles();if(keepScroll)window.scrollTo(0,y)}
 function rerender(){render(true)}
 function go(){const h=location.hash.slice(1);UI.route=NAV.some(n=>n[0]===h)?h:'beranda';stopTimers();
  Object.assign(UI,{lesson:(UI.route==='belajar'||UI.route==='bisnis')&&UI.pending?UI.pending:null,pending:null,lq:{},kaiwa:UI.route==='kaiwa'&&UI.pendingK?UI.pendingK:null,pendingK:null,kmode:'dengar',rp:null,quiz:null,game:null,reset:false,rev:null,confirmSubmit:false});render();window.scrollTo(0,0);
@@ -1005,9 +1476,10 @@ function vLesson(){
   <div class="note"><b>Tips belajar:</b> hafalkan per baris (あ, か, さ…), ucapkan keras-keras, lalu uji diri di game <b>Kilat Kana</b>. Perhatikan bunyi khusus: し = shi, ち = chi, つ = tsu, ふ = fu. ${x.kana==='hira'?'Partikel は, を, へ dibaca wa, o, e.':'Tanda ー memanjangkan bunyi, contoh: コーヒー (kōhī).'}</div>`;
  }else{
   const qs=x.quiz,ans=UI.lq;const answered=qs.every((q,i)=>ans[i]!==undefined);const score=qs.filter((q,i)=>ans[i]===q.a).length;
-  body=`<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Pola kalimat<span class="jpn">文型</span></h2></div>
-   ${x.points.map((p,pi)=>`<article class="card point"><span class="eyebrow">Pola ${pi+1}</span><div class="pattern">${rb(p.p)}</div><p>${rbh(p.e)}</p>
+  body=`${sceneHTML(x)}<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Pola kalimat<span class="jpn">文型</span></h2></div>
+   ${x.points.map((p,pi)=>`<article class="card point"><span class="eyebrow">Pola ${pi+1}</span>${x.bab?fm(p.p):`<div class="pattern">${rb(p.p)}</div>`}<p>${rbh(p.e)}</p>
     ${p.ex.map(e=>`<div class="ex">${say(e[0])}<div><div class="jp">${rb(e[0])}</div><div class="tr">${esc(e[1])}</div></div></div>`).join('')}</article>`).join('')}</section>
+  ${x.note?`<div class="note"><b>Catatan sensei:</b> ${rbh(x.note)}</div>`:''}${x.cj?cjHTML(x):''}
   <section class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px"><div class="sec-head"><h2>Kosakata<span class="jpn">言葉</span></h2><span class="muted" style="font-size:.85rem">${x.vocab.length} kata</span></div>
    <div class="tblwrap"><table class="vtab"><tbody>${x.vocab.map(v=>`<tr><td>${rb(v[0])}</td><td class="muted">${esc(v[1])}</td><td>${say(v[0])}</td></tr>`).join('')}</tbody></table></div></section>
   <section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Latihan mini<span class="jpn">練習</span></h2>${answered?`<span class="pill ${score===qs.length?'good':'maple'} num">Skor ${score}/${qs.length}</span>`:''}</div>
@@ -1024,6 +1496,62 @@ function vLesson(){
   ${done?`<button class="btn ghost" data-act="nextLesson">Pelajaran berikutnya</button>`:`<button class="btn" data-act="doneLesson" ${canDone?'':'disabled'}>Tandai selesai · +30 XP</button>`}
  </div>`;
 }
+
+/* ===================== ILUSTRASI & WIDGET MATERI ===================== */
+UI.scHot={};UI.scMode={};UI.cnt={t:'tsu',n:3};UI.cj={};
+function fm(p){if(!/[぀-ヿ一-鿿]/.test(p))return `<div class="pattern">${rb(p)}</div>`;
+ const out=[];p.split(' ').filter(Boolean).forEach(t=>{const lat=/[A-Za-z]/.test(t)&&!/[぀-ヿ一-鿿]/.test(t.replace(/\{[^}]*\}/g,''))||/^(N|V|Adj)/.test(t);
+  const k=t==='/'||t==='+'||t==='・'||t==='→'?'op':lat?'slot':'part';const last=out[out.length-1];
+  if(k==='slot'&&last&&last.k==='slot'&&!/[぀-ヿ一-鿿]/.test(t))last.t+=' '+t;else out.push({k,t})});
+ return `<div class="formula" aria-label="Rumus: ${esc(kana(p))}">${out.map(o=>`<span class="fx-${o.k}">${rb(o.t)}</span>`).join('')}</div>`}
+function scCap(sc,id){const h=sc.hot&&UI.scHot[id]!==undefined?sc.hot[UI.scHot[id]]:null;
+ if(h)return `${say(h[4])}<div style="min-width:0"><div class="jp">${rb(h[4])}</div><div class="tr muted" style="font-size:.9rem">${esc(h[5])}</div></div>`;
+ const m=sc.modes?sc.modes[UI.scMode[id]||0]:null,B=(sc.bub||[]).concat(m&&m.bub||[]);
+ return `<div style="display:flex;flex-direction:column;gap:6px;min-width:0"><span class="muted" style="font-size:.88rem">${sc.hot?'Ketuk titik merah yang berkedip pada gambar untuk melihat kalimatnya.':'Ketuk balon kata untuk mendengar pengucapannya.'}</span>${B.length?`<ul class="sc-tr tr">${B.map(b=>`<li><span class="jp">${rb(b[2])}</span> <span class="muted">— ${esc(b[3])}</span></li>`).join('')}</ul>`:''}</div>`}
+function sceneHTML(x){const sc=x.scene,id=x.id;if(!sc)return '';
+ if(sc.widget==='counter')return counterHTML();
+ const mi=UI.scMode[id]||0,m=sc.modes?sc.modes[mi]:null,B=(sc.bub||[]).concat(m&&m.bub||[]);
+ const art=(sc.art?sc.art():'')+(m&&m.art?m.art():'');
+ return `<figure class="scene" id="sc-${id}"><div class="sec-head"><h2>Ilustrasi<span class="jpn">イラスト</span></h2>${sc.modes?`<div class="seg">${sc.modes.map((mm,i)=>`<button class="${i===mi?'on':''}" data-act="scMode" data-id="${id}" data-i="${i}">${esc(mm.label)}</button>`).join('')}</div>`:''}</div>
+ <div class="scene-art"><svg viewBox="0 0 400 240" role="img" aria-label="${esc(sc.alt||'')}">${BG[sc.bg](sc)}${art}</svg>
+ ${(sc.hot||[]).map((h,i)=>`<button class="hot ${UI.scHot[id]===i?'on':''}" style="left:${h[0]/4}%;top:${h[1]/2.4}%;width:${h[2]/4}%;height:${h[3]/2.4}%" data-act="scHot" data-id="${id}" data-i="${i}" aria-label="${esc(kana(h[4]))}"><i></i></button>`).join('')}
+ ${B.map(b=>`<button class="sb" style="left:${b[0]/4}%;top:${b[1]/2.4}%" data-say="${esc(b[2])}" aria-label="Dengarkan: ${esc(b[3])}"><span>${rb(b[2])}</span></button>`).join('')}</div>
+ <figcaption class="scene-cap" id="cap-${id}">${scCap(sc,id)}</figcaption></figure>`}
+const CNT={
+ tsu:{label:'〜つ · benda',jp:['一{ひと}つ','二{ふた}つ','三{みっ}つ','四{よっ}つ','五{いつ}つ','六{むっ}つ','七{なな}つ','八{やっ}つ','九{ここの}つ','十{とお}'],ic:(x,y)=>APPLE(x,y,1.35),s:j=>`りんごが ${j} あります。`,tr:'apel'},
+ nin:{label:'〜人 · orang',jp:['一人{ひとり}','二人{ふたり}','三人{さんにん}','四人{よにん}','五人{ごにん}','六人{ろくにん}','七人{ななにん}','八人{はちにん}','九人{きゅうにん}','十人{じゅうにん}'],ic:(x,y,i)=>P(x,y+4,.4,{c:['#4F7CAC','#B5462F','#3E7D4F','#D9802F'][i%4],long:i%2}),s:j=>`学生{がくせい}が ${j} います。`,tr:'pelajar'},
+ mai:{label:'〜枚 · benda tipis',jp:['一枚{いちまい}','二枚{にまい}','三枚{さんまい}','四枚{よんまい}','五枚{ごまい}','六枚{ろくまい}','七枚{ななまい}','八枚{はちまい}','九枚{きゅうまい}','十枚{じゅうまい}'],ic:(x,y,i)=>SHIRT(x,y,1.05,['#4F7CAC','#B5462F','#3E7D4F','#D9802F'][i%4]),s:j=>`Tシャツが ${j} あります。`,tr:'kaos'},
+ dai:{label:'〜台 · mesin',jp:['一台{いちだい}','二台{にだい}','三台{さんだい}','四台{よんだい}','五台{ごだい}','六台{ろくだい}','七台{ななだい}','八台{はちだい}','九台{きゅうだい}','十台{じゅうだい}'],ic:(x,y,i)=>CAR(x,y,.62,['#B5462F','#4F7CAC','#3E7D4F','#E0A23C'][i%4]),s:j=>`車{くるま}が ${j} あります。`,tr:'mobil'}};
+function counterHTML(){const c=UI.cnt,d=CNT[c.t],j=d.jp[c.n-1],sent=d.s(j);
+ let art='';for(let i=0;i<c.n;i++)art+=d.ic(48+(i%5)*76,i<5?78:150,i);
+ return `<section class="scene"><div class="sec-head"><h2>Ayo menghitung<span class="jpn">かぞえよう</span></h2><div class="seg">${Object.entries(CNT).map(([k,v])=>`<button class="${c.t===k?'on':''}" data-act="cntT" data-v="${k}">${v.label}</button>`).join('')}</div></div>
+ <div class="scene-art cnt-art"><svg viewBox="0 0 400 170" role="img" aria-label="${c.n} ${d.tr}"><rect width="400" height="170" fill="#FBF1E2"/><rect y="84" width="400" height="4" fill="#E7D8C4"/><rect y="156" width="400" height="4" fill="#E7D8C4"/>${art}</svg></div>
+ <div class="cnt-ctrl"><button class="iconbtn cnt-b" data-act="cntN" data-v="-1" aria-label="Kurangi">−</button><div class="cnt-big"><div class="jp">${rb(j)}</div><span class="muted num">${c.n} ${d.tr}</span></div><button class="iconbtn cnt-b" data-act="cntN" data-v="1" aria-label="Tambah">+</button></div>
+ <figcaption class="scene-cap">${say(sent)}<div style="min-width:0"><div class="jp">${rb(sent)}</div><div class="tr muted" style="font-size:.9rem">Ada ${c.n} ${d.tr}. Tekan + atau − untuk mengganti jumlah.</div></div></figcaption></section>`}
+const VB=[['書{か}きます','書{か}いて','書{か}かない','書{か}く','書{か}いた','I'],['行{い}きます','行{い}って','行{い}かない','行{い}く','行{い}った','I'],['急{いそ}ぎます','急{いそ}いで','急{いそ}がない','急{いそ}ぐ','急{いそ}いだ','I'],['飲{の}みます','飲{の}んで','飲{の}まない','飲{の}む','飲{の}んだ','I'],['遊{あそ}びます','遊{あそ}んで','遊{あそ}ばない','遊{あそ}ぶ','遊{あそ}んだ','I'],['待{ま}ちます','待{ま}って','待{ま}たない','待{ま}つ','待{ま}った','I'],['買{か}います','買{か}って','買{か}わない','買{か}う','買{か}った','I'],['帰{かえ}ります','帰{かえ}って','帰{かえ}らない','帰{かえ}る','帰{かえ}った','I'],['話{はな}します','話{はな}して','話{はな}さない','話{はな}す','話{はな}した','I'],['食{た}べます','食{た}べて','食{た}べない','食{た}べる','食{た}べた','II'],['見{み}ます','見{み}て','見{み}ない','見{み}る','見{み}た','II'],['起{お}きます','起{お}きて','起{お}きない','起{お}きる','起{お}きた','II'],['来{き}ます','来{き}て','来{こ}ない','来{く}る','来{き}た','III'],['勉強{べんきょう}します','勉強{べんきょう}して','勉強{べんきょう}しない','勉強{べんきょう}する','勉強{べんきょう}した','III']];
+const CJF={te:[1,'bentuk て','て形'],nai:[2,'bentuk ない','ない形'],dict:[3,'bentuk kamus','辞書形'],ta:[4,'bentuk た','た形']};
+function cjRule(v,f){const g=v[5],st=kana(v[0]).replace(/ます$/,''),e=st.slice(-1);
+ if(g==='III')return 'Golongan III berubah tidak beraturan, jadi perlu dihafalkan.';
+ if(g==='II')return {te:'Golongan II: cukup ganti ます → て.',ta:'Golongan II: cukup ganti ます → た.',nai:'Golongan II: cukup ganti ます → ない.',dict:'Golongan II: cukup ganti ます → る.'}[f];
+ if(f==='te'||f==='ta'){const T=f==='te'?['って','んで','いて','いで','して']:['った','んだ','いた','いだ','した'];
+  if(st==='いき')return `Pengecualian: 行きます → 行${T[0]}.`;if('いちり'.includes(e))return `Golongan I: い・ち・り → ${T[0]}.`;
+  if('みびに'.includes(e))return `Golongan I: み・び・に → ${T[1]}.`;if(e==='き')return `Golongan I: き → ${T[2]}.`;if(e==='ぎ')return `Golongan I: ぎ → ${T[3]}.`;return `Golongan I: し → ${T[4]}.`}
+ if(f==='nai')return e==='い'?'Golongan I: bunyi い berubah menjadi わ (bukan あ), lalu + ない.':`Golongan I: bunyi ${e} → baris あ, lalu + ない.`;
+ return `Golongan I: bunyi ${e} → baris う.`}
+function cjHTML(x){const f=x.cj,st=UI.cj[x.id]||{i:0,show:false},v=VB[st.i],F=CJF[f];
+ return `<section class="card cj"><div class="sec-head"><div><h2>Latihan ${F[1]}<span class="jpn">${F[2]}</span></h2><p class="muted" style="font-size:.88rem">Pilih kata kerja, tebak dulu dalam hati, lalu ketuk untuk melihat jawabannya.</p></div></div>
+ <div class="cj-verbs">${VB.map((w,i)=>`<button class="tok ${i===st.i?'on':''}" data-act="cjSel" data-id="${x.id}" data-i="${i}">${rb(w[0])}</button>`).join('')}</div>
+ <div class="cj-card"><span class="pill ${v[5]==='I'?'maple':v[5]==='II'?'':'good'}">Golongan ${v[5]}</span>
+  <div class="cj-row"><span class="cj-w">${rb(v[0])}</span><span class="cj-arrow" aria-hidden="true">→</span>${st.show?`<span class="cj-w cj-ans pop">${rb(v[F[0]])}</span>`:`<button class="btn" data-act="cjShow" data-id="${x.id}">Lihat ${F[1]}</button>`}</div>
+  ${st.show?`<p class="cj-rule pop">${cjRule(v,f)}</p><div style="display:flex;gap:8px;align-items:center">${say(v[F[0]])}<button class="btn sm ghost" data-act="cjNext" data-id="${x.id}">Kata kerja berikutnya</button></div>`:''}</div></section>`}
+function fixBubbles(){document.querySelectorAll('.scene-art').forEach(a=>{const A=a.getBoundingClientRect(),bs=[...a.querySelectorAll('.sb')],placed=[];
+ bs.forEach(b=>{b.style.setProperty('--dx','0px');b.style.setProperty('--dy','0px')});
+ bs.forEach(b=>{const r=b.getBoundingClientRect();let dx=0,dy=0;if(r.left<A.left+4)dx=A.left+4-r.left;else if(r.right>A.right-4)dx=A.right-4-r.right;
+  const q={l:r.left+dx,r:r.right+dx,t:r.top,b:r.bottom};let moved=true,guard=0;
+  while(moved&&guard++<6){moved=false;for(const p of placed)if(q.l<p.r+2&&p.l<q.r+2&&q.t<p.b+2&&p.t<q.b+2){const s=q.b-p.t+4;dy-=s;q.t-=s;q.b-=s;moved=true}}
+  if(q.t<A.top+2){const s=A.top+2-q.t;dy+=s}
+  b.style.setProperty('--dx',dx.toFixed(1)+'px');b.style.setProperty('--dy',dy.toFixed(1)+'px');placed.push(q)})})}
+let fbT;addEventListener('resize',()=>{clearTimeout(fbT);fbT=setTimeout(fixBubbles,120)});if(document.fonts)document.fonts.ready.then(()=>fixBubbles());
 
 /* ===================== KAIWA ===================== */
 function vKaiwa(){
@@ -1134,7 +1662,7 @@ const gList=lv=>lv==='kana'?['fc','vq','pm']:lv==='biz'?['km','fc','vq','pm','gc
 const lvOf=id=>LEVELS.find(x=>x.id===id);
 const lvName=lv=>{const x=GLV.find(v=>v[0]===lv);return x?x[1]+' · '+x[2]:''};
 const gPool=lv=>lv==='kana'?KPOOL.flatMap(i=>[[HIRA[i],ROMA[i]],[KATA[i],ROMA[i]]]):lvOf(lv).lessons.flatMap(x=>x.vocab||[]).concat(VOCAB_X[lv]||[]);
-const lvSent=lv=>lvOf(lv).lessons.flatMap(x=>(x.points||[]).flatMap(p=>p.ex)).map(e=>[e[0].split(' ').filter(Boolean),e[1]]).filter(e=>e[0].length>=3&&e[0].length<=7);
+const lvSent=lv=>lvOf(lv).lessons.flatMap(x=>(x.points||[]).flatMap(p=>p.ex)).filter(e=>!/[…→？]/.test(e[0])).map(e=>[e[0].split(' ').filter(Boolean),e[1]]).filter(e=>e[0].length>=3&&e[0].length<=7);
 const lvQs=lv=>lvOf(lv).lessons.flatMap(x=>x.quiz||[]).map(q=>({q:q.q,o:q.o,a:q.a,x:q.x})).concat(QB.filter(q=>q[0]===lv).map(q=>({q:q[2],o:q[3],a:q[4],x:q[5]})));
 const starKey=(t,lv)=>t+'-'+lv;
 const getStars=(t,lv)=>(S.stars||{})[starKey(t,lv)]||0;
@@ -1285,6 +1813,13 @@ const ACT={
  openLesson:d=>{const x=findLesson(d.id),dest=x.lv.id==='biz'?'bisnis':'belajar';if(dest==='belajar')UI.lvTab=x.lv.id;if(UI.route!==dest){UI.pending=d.id;location.hash=dest;return}openSub(()=>{UI.lesson=d.id;UI.lq={}})},
  backLearn:()=>openSub(()=>{const x=findLesson(UI.lesson);if(x&&x.lv.id!=='biz')UI.lvTab=x.lv.id;UI.lesson=null}),
  lvTab:d=>{UI.lvTab=d.id;rerender()},
+ scHot:d=>{const x=findLesson(d.id),h=x.scene.hot[+d.i];UI.scHot[d.id]=+d.i;document.querySelectorAll(`#sc-${d.id} .hot`).forEach((b,i)=>b.classList.toggle('on',i===+d.i));const c=document.getElementById('cap-'+d.id);if(c){c.innerHTML=scCap(x.scene,d.id);c.classList.remove('flash');void c.offsetWidth;c.classList.add('flash')}speak(h[4])},
+ scMode:d=>{UI.scMode[d.id]=+d.i;rerender()},
+ cntT:d=>{UI.cnt.t=d.v;rerender();speak(CNT[d.v].jp[UI.cnt.n-1])},
+ cntN:d=>{UI.cnt.n=Math.max(1,Math.min(10,UI.cnt.n+ +d.v));rerender();speak(CNT[UI.cnt.t].jp[UI.cnt.n-1])},
+ cjSel:d=>{UI.cj[d.id]={i:+d.i,show:false};rerender()},
+ cjShow:d=>{const s=UI.cj[d.id]=UI.cj[d.id]||{i:0};s.show=true;rerender();speak(VB[s.i][CJF[findLesson(d.id).cj][0]])},
+ cjNext:d=>{const s=UI.cj[d.id]=UI.cj[d.id]||{i:0};s.i=(s.i+1)%VB.length;s.show=false;rerender()},
  goFlash:d=>{UI.pendingG={g:'fc',lv:d.lv};location.hash='game'},
  startTryoutX:d=>{UI.pendingT=d.id;location.hash='soal'},
  lq:d=>{const x=findLesson(UI.lesson),i=+d.q;if(UI.lq[i]!==undefined)return;UI.lq[i]=+d.o;if(+d.o===x.quiz[i].a)addXP(5,'Jawaban benar');rerender()},
