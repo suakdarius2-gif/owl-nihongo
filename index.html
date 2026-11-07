@@ -1747,6 +1747,27 @@ const LEVELS=[
   {id:'kata',kana:'kata',title:'Katakana',jp:'カタカナ',sum:'Huruf untuk kata serapan asing, nama negara, dan nama orang asing.'}]},
  {id:'n5',tag:'N5',name:'Pemula',sub:'Minna no Nihongo I · Bab 1–25',desc:'25 bab pola kalimat dasar dengan ilustrasi interaktif, contoh bersuara, kosakata per bab, dan latihan.',lessons:N5B},
  {id:'n4',tag:'N4',name:'Dasar Lanjut',sub:'Minna no Nihongo II · Bab 26–50',desc:'25 bab dengan ilustrasi interaktif, nuansa dan tingkat kesopanan, kaiwa kerja dan sehari-hari, serta latihan.',lessons:N4B},
+ {id:'jft',tag:'A2',name:'JFT A2 · SSW',sub:'Bahasa Jepang di tempat kerja',desc:'Instruksi atasan, tanda keselamatan, dan pengumuman di lingkungan kerja.',lessons:[
+  {id:'jft-1',title:'Instruksi di Tempat Kerja',jp:'職場{しょくば}の 指示{しじ}',sum:'Memahami perintah, larangan, dan kewajiban.',
+   points:[
+    {p:'Vて おいて ください',e:'Meminta sesuatu disiapkan/diselesaikan lebih dulu.',ex:[['道具{どうぐ}を 片付{かたづ}けて おいて ください。','Tolong rapikan alat-alatnya.']]},
+    {p:'Vないで ください',e:'Larangan yang sopan: "tolong jangan…".',ex:[['機械{きかい}に 触{さわ}らないで ください。','Tolong jangan sentuh mesin.']]},
+    {p:'Vなければ なりません',e:'Kewajiban: "harus…".',ex:[['ヘルメットを かぶらなければ なりません。','Harus memakai helm.']]}],
+   vocab:[['安全{あんぜん}','keselamatan'],['危険{きけん}','bahaya'],['確認{かくにん}','pengecekan'],['報告{ほうこく}','laporan'],['休憩{きゅうけい}','istirahat'],['禁止{きんし}','dilarang']],
+   quiz:[
+    {q:'"Tolong jangan sentuh." → 触{さわ}（　）ください。',o:['らないで','って','らなくて'],a:0,x:'Larangan sopan: <b>Vないで ください</b> → 触らないで.'},
+    {q:'禁止{きんし} artinya…',o:['diizinkan','dilarang','darurat'],a:1,x:'<b>禁止</b> = dilarang, contoh: 喫煙禁止 (dilarang merokok).'},
+    {q:'"Harus memakai helm."',o:['ヘルメットを かぶっても いいです。','ヘルメットを かぶらなければ なりません。','ヘルメットを かぶらないで ください。'],a:1,x:'Kewajiban: <b>なければ なりません</b>.'}]},
+  {id:'jft-2',title:'Tanda dan Pengumuman',jp:'掲示{けいじ}と お知{し}らせ',sum:'Membaca tanda keselamatan dan alasan sopan.',
+   points:[
+    {p:'Tanda penting',e:'立入禁止{たちいりきんし} dilarang masuk · 非常口{ひじょうぐち} pintu darurat · 足元{あしもと}注意{ちゅうい} awas langkah.',ex:[['足元{あしもと}に 注意{ちゅうい}して ください。','Hati-hati dengan langkah Anda.']]},
+    {p:'〜ので',e:'"Karena…", terdengar lebih sopan dari から saat memberi alasan.',ex:[['熱{ねつ}が あるので、 休{やす}みます。','Karena demam, saya izin istirahat.']]},
+    {p:'Vたら',e:'"Setelah/kalau…". Urutan kerja yang umum.',ex:[['終{お}わったら、 報告{ほうこく}して ください。','Setelah selesai, tolong laporkan.']]}],
+   vocab:[['立入禁止{たちいりきんし}','dilarang masuk'],['非常口{ひじょうぐち}','pintu darurat'],['注意{ちゅうい}','perhatian / awas'],['工事中{こうじちゅう}','sedang konstruksi'],['消火器{しょうかき}','alat pemadam api']],
+   quiz:[
+    {q:'非常口{ひじょうぐち} artinya…',o:['pintu darurat','pintu masuk','toilet'],a:0,x:'<b>非常口</b> = pintu darurat.'},
+    {q:'Tanda 立入禁止{たちいりきんし} berarti…',o:['silakan masuk','dilarang masuk','pintu keluar'],a:1,x:'立入 = masuk, 禁止 = dilarang.'},
+    {q:'終{お}わったら、 報告{ほうこく}して ください。 Kapan harus melapor?',o:['sebelum mulai','setelah selesai','saat istirahat'],a:1,x:'<b>〜たら</b> di sini berarti "setelah".'}]}]},
  {id:'n3',tag:'N3',name:'Menengah',sub:'Ekspresi sehari-hari yang lebih alami',desc:'Tujuan, perubahan, perkiraan, dan kabar.',lessons:[
   {id:'n3-1',title:'Tujuan dan Perubahan',jp:'〜ように・〜ことにする',sum:'Menyatakan tujuan, perubahan kemampuan, dan keputusan.',
    points:[
