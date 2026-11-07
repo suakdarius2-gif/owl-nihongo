@@ -338,6 +338,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .chip-stat.fc-ok{color:var(--good)}
 .vlist summary{cursor:pointer;font-weight:700;color:var(--maple);padding:6px 0}
 .vlist[open] summary{margin-bottom:8px}
+.vtab .vbab{display:flex;width:max-content;margin-top:4px;line-height:1.6}
+.vtab td:last-child{width:54px}
 </style>
 </head>
 <body>
@@ -782,6 +784,31 @@ const KEIGO=[
  ['menerima','もらう','—','いただく']
 ];
 const VOCAB_X={
+ n5:[['医者{いしゃ}','dokter',1],['銀行員{ぎんこういん}','pegawai bank',1],['研究者{けんきゅうしゃ}','peneliti',1],['大学{だいがく}','universitas',1],['病院{びょういん}','rumah sakit',1],['〜歳{さい}','… tahun (usia)',1],
+  ['辞書{じしょ}','kamus',2],['雑誌{ざっし}','majalah',2],['新聞{しんぶん}','koran',2],['手帳{てちょう}','buku agenda',2],['名刺{めいし}','kartu nama',2],['鍵{かぎ}','kunci',2],['車{くるま}','mobil',2],['お土産{みやげ}','oleh-oleh',2],
+  ['教室{きょうしつ}','ruang kelas',3],['食堂{しょくどう}','kantin',3],['事務所{じむしょ}','kantor',3],['受付{うけつけ}','resepsionis',3],['トイレ','toilet',3],['階段{かいだん}','tangga',3],['売{う}り場{ば}','bagian penjualan',3],['〜階{かい}','lantai …',3],
+  ['起{お}きます','bangun tidur',4],['寝{ね}ます','tidur',4],['休{やす}みます','beristirahat / libur',4],['勉強{べんきょう}します','belajar',4],['終{お}わります','selesai',4],['午前{ごぜん}','pagi (a.m.)',4],['午後{ごご}','siang / sore (p.m.)',4],['毎晩{まいばん}','setiap malam',4],
+  ['帰{かえ}ります','pulang',5],['電車{でんしゃ}','kereta listrik',5],['飛行機{ひこうき}','pesawat',5],['自転車{じてんしゃ}','sepeda',5],['歩{ある}いて','dengan berjalan kaki',5],['友達{ともだち}','teman',5],['誕生日{たんじょうび}','hari ulang tahun',5],
+  ['吸{す}います','mengisap (rokok)',6],['書{か}きます','menulis',6],['読{よ}みます','membaca',6],['聞{き}きます','mendengar',6],['撮{と}ります','memotret',6],['買{か}います','membeli',6],['会{あ}います','bertemu',6],['一緒{いっしょ}に','bersama-sama',6],
+  ['切{き}ります','memotong',7],['送{おく}ります','mengirim',7],['あげます','memberi',7],['もらいます','menerima',7],['貸{か}します','meminjamkan',7],['借{か}ります','meminjam',7],['教{おし}えます','mengajar',7],['習{なら}います','belajar (dari seseorang)',7],
+  ['有名{ゆうめい}','terkenal',8],['新{あたら}しい','baru',8],['古{ふる}い','lama / tua (benda)',8],['暑{あつ}い','panas (cuaca)',8],['難{むずか}しい','sulit',8],['易{やさ}しい','mudah',8],['忙{いそが}しい','sibuk',8],['楽{たの}しい','menyenangkan',8],
+  ['分{わ}かります','mengerti',9],['好{す}き','suka',9],['嫌{きら}い','tidak suka',9],['上手{じょうず}','pandai',9],['下手{へた}','tidak pandai',9],['料理{りょうり}','masakan',9],['時間{じかん}','waktu',9],['用事{ようじ}','urusan',9],
+  ['います','ada (makhluk hidup)',10],['上{うえ}','atas',10],['下{した}','bawah',10],['前{まえ}','depan',10],['後{うし}ろ','belakang',10],['隣{となり}','sebelah',10],['近{ちか}く','dekat / sekitar',10],['間{あいだ}','antara',10],
+  ['一{ひと}つ','satu (buah)',11],['二{ふた}つ','dua (buah)',11],['切手{きって}','perangko',11],['封筒{ふうとう}','amplop',11],['兄弟{きょうだい}','saudara kandung',11],['外国{がいこく}','luar negeri',11],['かかります','memakan (waktu / biaya)',11],['〜ヶ月{かげつ}','… bulan (lamanya)',11],
+  ['近{ちか}い','dekat',12],['遠{とお}い','jauh',12],['速{はや}い','cepat',12],['遅{おそ}い','lambat / terlambat',12],['多{おお}い','banyak',12],['少{すく}ない','sedikit',12],['季節{きせつ}','musim',12],['一番{いちばん}','paling',12],
+  ['遊{あそ}びます','bermain',13],['泳{およ}ぎます','berenang',13],['迎{むか}えます','menjemput',13],['疲{つか}れます','lelah',13],['結婚{けっこん}します','menikah',13],['買{か}い物{もの}','belanja',13],['食事{しょくじ}','makan (bersantap)',13],['欲{ほ}しい','ingin (memiliki)',13],
+  ['つけます','menyalakan',14],['消{け}します','mematikan',14],['開{あ}けます','membuka',14],['閉{し}めます','menutup',14],['急{いそ}ぎます','bergegas',14],['待{ま}ちます','menunggu',14],['持{も}ちます','membawa / memegang',14],['呼{よ}びます','memanggil',14],
+  ['立{た}ちます','berdiri',15],['座{すわ}ります','duduk',15],['使{つか}います','memakai / menggunakan',15],['置{お}きます','meletakkan',15],['作{つく}ります','membuat',15],['売{う}ります','menjual',15],['知{し}ります','mengetahui',15],['住{す}みます','tinggal / menetap',15],
+  ['乗{の}ります','naik (kendaraan)',16],['降{お}ります','turun (kendaraan)',16],['浴{あ}びます','mandi (shower)',16],['入{い}れます','memasukkan',16],['出{だ}します','mengeluarkan / mengirim',16],['長{なが}い','panjang',16],['短{みじか}い','pendek',16],['明{あか}るい','terang',16],
+  ['覚{おぼ}えます','menghafal',17],['忘{わす}れます','lupa',17],['なくします','menghilangkan',17],['払{はら}います','membayar',17],['返{かえ}します','mengembalikan',17],['出{で}かけます','pergi keluar',17],['脱{ぬ}ぎます','melepas (pakaian)',17],['心配{しんぱい}します','khawatir',17],
+  ['できます','bisa / dapat',18],['洗{あら}います','mencuci',18],['弾{ひ}きます','memainkan (alat musik)',18],['歌{うた}います','bernyanyi',18],['捨{す}てます','membuang',18],['換{か}えます','menukar',18],['趣味{しゅみ}','hobi',18],['ピアノ','piano',18],
+  ['登{のぼ}ります','mendaki',19],['泊{と}まります','menginap',19],['掃除{そうじ}します','membersihkan',19],['洗濯{せんたく}します','mencuci pakaian',19],['なります','menjadi',19],['眠{ねむ}い','mengantuk',19],['強{つよ}い','kuat',19],['弱{よわ}い','lemah',19],
+  ['要{い}ります','perlu',20],['調{しら}べます','memeriksa / mencari tahu',20],['修理{しゅうり}します','memperbaiki',20],['電話{でんわ}します','menelepon',20],['僕{ぼく}','aku (pria)',20],['君{きみ}','kamu',20],['言葉{ことば}','kata / bahasa',20],
+  ['思{おも}います','berpikir / merasa',21],['言{い}います','berkata',21],['足{た}ります','cukup',21],['勝{か}ちます','menang',21],['負{ま}けます','kalah',21],['役{やく}に立{た}ちます','berguna',21],['試合{しあい}','pertandingan',21],
+  ['着{き}ます','memakai (baju)',22],['履{は}きます','memakai (sepatu / celana)',22],['被{かぶ}ります','memakai (topi)',22],['眼鏡{めがね}','kacamata',22],['生{う}まれます','lahir',22],['家賃{やちん}','sewa rumah',22],
+  ['回{まわ}します','memutar',23],['引{ひ}きます','menarik',23],['変{か}えます','mengubah',23],['触{さわ}ります','menyentuh',23],['渡{わた}ります','menyeberang',23],['曲{ま}がります','berbelok',23],['歩{ある}きます','berjalan',23],['信号{しんごう}','lampu lalu lintas',23],
+  ['くれます','memberi (kepada saya)',24],['直{なお}します','memperbaiki / membetulkan',24],['連{つ}れて行{い}きます','mengajak pergi',24],['案内{あんない}します','memandu',24],['説明{せつめい}します','menjelaskan',24],['祖父{そふ}','kakek',24],['祖母{そぼ}','nenek',24],
+  ['考{かんが}えます','memikirkan',25],['着{つ}きます','tiba',25],['留学{りゅうがく}します','belajar di luar negeri',25],['田舎{いなか}','desa / kampung halaman',25],['大使館{たいしかん}','kedutaan besar',25],['転勤{てんきん}','mutasi kerja',25],['もし','seandainya',25]],
  n4:[['会議{かいぎ}','rapat'],['準備{じゅんび}','persiapan'],['説明{せつめい}','penjelasan'],['予約{よやく}','reservasi'],['約束{やくそく}','janji'],['練習{れんしゅう}','latihan'],['復習{ふくしゅう}','mengulang pelajaran'],['予習{よしゅう}','belajar sebelum pelajaran'],['趣味{しゅみ}','hobi'],['興味{きょうみ}','minat'],
   ['意見{いけん}','pendapat'],['関係{かんけい}','hubungan'],['世界{せかい}','dunia'],['社会{しゃかい}','masyarakat'],['文化{ぶんか}','budaya'],['生活{せいかつ}','kehidupan sehari-hari'],['交通{こうつう}','lalu lintas'],['事故{じこ}','kecelakaan'],['危{あぶ}ない','berbahaya'],['必要{ひつよう}','perlu'],
   ['大切{たいせつ}','penting / berharga'],['簡単{かんたん}','mudah'],['複雑{ふくざつ}','rumit'],['丁寧{ていねい}','sopan / teliti'],['親切{しんせつ}','ramah / baik hati'],['熱心{ねっしん}','tekun / bersemangat'],['調{しら}べる','mencari tahu / memeriksa'],['届{とど}ける','mengantarkan'],['集{あつ}める','mengumpulkan'],['比{くら}べる','membandingkan'],
@@ -932,10 +959,10 @@ function vHome(){
 
 /* ===================== BELAJAR ===================== */
 const lessonRows=l=>`<div class="lessons">${l.lessons.map(x=>`<button class="lrow ${S.done[x.id]?'ok':''}" data-act="openLesson" data-id="${x.id}"><span class="chk">${S.done[x.id]?ic('check'):''}</span><span class="t"><b>${esc(x.title)}</b> <span style="font-size:.88rem;color:var(--ink-2)">${rb(x.jp)}</span><small>${esc(x.sum)}</small></span><span aria-hidden="true" style="color:var(--ink-3)">›</span></button>`).join('')}</div>`;
-const lvVocabAll=id=>{const seen=new Set();return LEVELS.find(x=>x.id===id).lessons.flatMap(x=>x.vocab||[]).concat(VOCAB_X[id]||[]).filter(v=>!seen.has(v[0])&&seen.add(v[0]))};
+const lvVocabAll=id=>{const seen=new Set();return LEVELS.find(x=>x.id===id).lessons.flatMap(x=>x.vocab||[]).concat(VOCAB_X[id]||[]).filter(v=>!seen.has(v[0])&&seen.add(v[0])).sort((a,b)=>(a[2]||99)-(b[2]||99))};
 function vocabBlock(id){const V=lvVocabAll(id),lv=LEVELS.find(x=>x.id===id),canGame=GLV.some(v=>v[0]===id);
- return `<section class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px"><div class="sec-head"><div><h2>Kosakata ${lv.tag}<span class="jpn">語彙</span></h2><p class="muted num" style="font-size:.88rem">${V.length} kata · ketuk ikon suara untuk mendengar</p></div>${canGame?`<button class="btn sm" data-act="goFlash" data-lv="${id}">Latih dengan flashcard</button>`:''}</div>
- <details class="vlist"><summary>Tampilkan daftar kosakata</summary><div class="tblwrap"><table class="vtab"><tbody>${V.map(v=>`<tr><td>${rb(v[0])}</td><td class="muted">${esc(v[1])}</td><td>${say(v[0])}</td></tr>`).join('')}</tbody></table></div></details></section>`}
+ return `<section class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px"><div class="sec-head"><div><h2>Kosakata ${lv.tag}<span class="jpn">語彙</span></h2><p class="muted num" style="font-size:.88rem">${V.length} kata${id==='n5'?' · urut sesuai Minna no Nihongo I Bab 1–25':''} · ketuk ikon suara untuk mendengar</p></div>${canGame?`<button class="btn sm" data-act="goFlash" data-lv="${id}">Latih dengan flashcard</button>`:''}</div>
+ <details class="vlist"><summary>Tampilkan daftar kosakata</summary><div class="tblwrap"><table class="vtab"><tbody>${V.map(v=>`<tr><td>${rb(v[0])}</td><td class="muted">${esc(v[1])}${v[2]?`<span class="pill vbab">Bab ${v[2]}</span>`:''}</td><td>${say(v[0])}</td></tr>`).join('')}</tbody></table></div></details></section>`}
 function vLearn(){
  if(UI.lesson)return vLesson();
  const lvls=JLPT_ORDER.map(id=>LEVELS.find(l=>l.id===id));
@@ -1119,7 +1146,7 @@ function initGame(t,lv){const g={t,lv,over:false,stars:0};
  if(t==='pm'){const pick=[],seen=new Set();for(const v of shuffle(gPool(lv))){if(!seen.has(v[1])){seen.add(v[1]);pick.push(v)}if(pick.length===6)break}
   return Object.assign(g,{cards:shuffle(pick.flatMap((v,i)=>[{id:i,f:v[0],jp:1},{id:i,f:v[1]}])),open:[],got:[],moves:0,start:Date.now(),busy:false})}
  if(t==='gc')return Object.assign(g,{qs:shuffle(lvQs(lv)).slice(0,10).map(q=>Object.assign({p:shuffle(q.o.map((_,j)=>j))},q)),i:0,lives:3,correct:0,ans:null});
- if(t==='fc'){const n=fcUnique(lv).length;return Object.assign(g,{dir:'jp',size:n>10?10:0,run:false})}
+ if(t==='fc'){const n=fcUnique(lv).length;return Object.assign(g,{dir:'jp',size:n>10?10:0,bab:0,run:false})}
  if(t==='ss')return Object.assign(g,{sents:shuffle(lvSent(lv)).slice(0,5),i:0,pick:[],bank:null,res:null,correct:0});
 }
 function vqQ(g){const P=g.pool;let k;do{k=Math.floor(Math.random()*P.length)}while(P.length>1&&g.q&&P[k][0]===g.q.w);
@@ -1189,7 +1216,8 @@ const bare=t=>String(t).replace(RB,'$1');
 const fcUnique=lv=>{const seen=new Set();return gPool(lv).filter(v=>!seen.has(v[0])&&seen.add(v[0]))};
 const fcMastered=lv=>Object.keys((S.fcm||{})[lv]||{}).length;
 let fcSuppress=false,fcDrag=null;
-function fcStart(g){const P=fcUnique(g.lv);g.deck=shuffle(P).slice(0,g.size||P.length);g.queue=g.deck.map((_,i)=>i);g.failed=new Set();
+const fcFiltered=g=>fcUnique(g.lv).filter(v=>!g.bab||(v[2]>=g.bab&&v[2]<=g.bab+4));
+function fcStart(g){const P=fcFiltered(g);g.deck=shuffle(P).slice(0,g.size||P.length);g.queue=g.deck.map((_,i)=>i);g.failed=new Set();
  Object.assign(g,{run:true,flip:false,hint:false,known:0,first:0,again:0,busy:false,start:Date.now()});render();window.scrollTo(0,0)}
 function fcAnswer(ok){const g=UI.game;if(!g||g.t!=='fc'||!g.run||g.busy||g.over)return;g.busy=true;
  const sc=document.querySelector('.fc-scene');if(sc){sc.classList.remove('drag');sc.style.transform='';sc.classList.add(ok?'out-r':'out-l')}
@@ -1198,14 +1226,15 @@ function fcAnswer(ok){const g=UI.game;if(!g||g.t!=='fc'||!g.run||g.busy||g.over)
   else{g.again++;g.failed.add(k);g.queue.splice(Math.min(g.queue.length,3),0,k)}
   g.flip=false;g.hint=false;g.busy=false;
   if(!g.queue.length){g.run=false;g.sec=Math.round((Date.now()-g.start)/1000);const r=g.first/g.deck.length;gFinish(g,r>=.9?3:r>=.7?2:1,g.first*10,gd(g.t,g.lv).name)}else rerender()},240)}
-function vFC(){const g=UI.game,P=fcUnique(g.lv),kanaLv=g.lv==='kana';
+function vFC(){const g=UI.game,P=fcFiltered(g),PA=fcUnique(g.lv),kanaLv=g.lv==='kana';
  if(g.over)return gBack(g.t,g.lv)+gResult(g,`${g.first} dari ${g.deck.length} hafal di percobaan pertama · ${g.again} kali diulang · ${g.sec} detik`);
  if(!g.run){const m=fcMastered(g.lv),sizes=[10,20].filter(n=>n<P.length).concat([0]);
   return `${gBack(g.t,g.lv)}<div class="card gintro">
   <p>Balik kartu untuk melihat jawabannya, lalu nilai diri sendiri: <b>Hafal</b> atau <b>Belum hafal</b>. Kartu yang belum hafal akan muncul lagi sampai kamu menguasainya. Hafal 90% kartu di percobaan pertama = tiga bintang.</p>
   <div class="field"><label>Sisi depan kartu</label><div class="seg"><button class="${g.dir==='jp'?'on':''}" data-act="fcDir" data-v="jp">${kanaLv?'Huruf → Bacaan':'Jepang → Arti'}</button><button class="${g.dir==='id'?'on':''}" data-act="fcDir" data-v="id">${kanaLv?'Bacaan → Huruf':'Arti → Jepang'}</button></div></div>
+  ${g.lv==='n5'?`<div class="field"><label>Materi Minna no Nihongo I</label><div class="seg">${[0,1,6,11,16,21].map(b=>`<button class="${g.bab===b?'on':''}" data-act="fcBab" data-v="${b}">${b?'Bab '+b+'–'+(b+4):'Semua bab'}</button>`).join('')}</div></div>`:''}
   <div class="field"><label>Jumlah kartu</label><div class="seg">${sizes.map(n=>`<button class="${g.size===n?'on':''}" data-act="fcSize" data-v="${n}">${n?n+' kartu':'Semua ('+P.length+')'}</button>`).join('')}</div></div>
-  <div style="width:100%;max-width:360px;display:flex;flex-direction:column;gap:6px"><span class="muted num" style="font-size:.88rem">Dikuasai ${m} dari ${P.length} kata</span><div class="bar"><i style="width:${m/P.length*100}%"></i></div></div>
+  <div style="width:100%;max-width:360px;display:flex;flex-direction:column;gap:6px"><span class="muted num" style="font-size:.88rem">Dikuasai ${m} dari ${PA.length} kata</span><div class="bar"><i style="width:${m/PA.length*100}%"></i></div></div>
   <div style="display:flex;gap:8px;align-items:center"><span class="muted" style="font-size:.88rem">Bintang terbaik</span>${starsHtml(getStars(g.t,g.lv),18)}</div>
   <button class="btn" data-act="gStart">Mulai</button></div>`}
  const w=g.deck[g.queue[0]],hasK=/\{/.test(w[0]),read=kanaLv?'':`<span class="muted fc-read">${esc(kana(w[0]))}</span>`;
@@ -1286,6 +1315,7 @@ const ACT={
  gStart:()=>UI.game.t==='fc'?fcStart(UI.game):gRun(UI.game),
  fcDir:d=>{UI.game.dir=d.v;rerender()},
  fcSize:d=>{UI.game.size=+d.v;rerender()},
+ fcBab:d=>{const g=UI.game;g.bab=+d.v;const n=fcFiltered(g).length;g.size=n>10?10:0;rerender()},
  fcFlip:()=>{const g=UI.game;if(fcSuppress||!g||g.busy||!g.run)return;g.flip=!g.flip;const c=document.querySelector('.fc-card');if(c)c.classList.toggle('flip',g.flip);if(g.flip)speak(g.deck[g.queue[0]][0])},
  fcHint:()=>{UI.game.hint=true;rerender()},
  fcAns:d=>fcAnswer(d.v==='1'),
