@@ -336,6 +336,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .fc-stamp.no{left:18px;color:var(--bad);opacity:var(--l);transform:rotate(-10deg)}
 .fc-actions{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;width:100%;align-items:center}
 .chip-stat.fc-ok{color:var(--good)}
+.vlist summary{cursor:pointer;font-weight:700;color:var(--maple);padding:6px 0}
+.vlist[open] summary{margin-bottom:8px}
 </style>
 </head>
 <body>
@@ -779,6 +781,27 @@ const KEIGO=[
  ['memberi (kepada saya)','くれる','くださる','—'],
  ['menerima','もらう','—','いただく']
 ];
+const VOCAB_X={
+ n4:[['会議{かいぎ}','rapat'],['準備{じゅんび}','persiapan'],['説明{せつめい}','penjelasan'],['予約{よやく}','reservasi'],['約束{やくそく}','janji'],['練習{れんしゅう}','latihan'],['復習{ふくしゅう}','mengulang pelajaran'],['予習{よしゅう}','belajar sebelum pelajaran'],['趣味{しゅみ}','hobi'],['興味{きょうみ}','minat'],
+  ['意見{いけん}','pendapat'],['関係{かんけい}','hubungan'],['世界{せかい}','dunia'],['社会{しゃかい}','masyarakat'],['文化{ぶんか}','budaya'],['生活{せいかつ}','kehidupan sehari-hari'],['交通{こうつう}','lalu lintas'],['事故{じこ}','kecelakaan'],['危{あぶ}ない','berbahaya'],['必要{ひつよう}','perlu'],
+  ['大切{たいせつ}','penting / berharga'],['簡単{かんたん}','mudah'],['複雑{ふくざつ}','rumit'],['丁寧{ていねい}','sopan / teliti'],['親切{しんせつ}','ramah / baik hati'],['熱心{ねっしん}','tekun / bersemangat'],['調{しら}べる','mencari tahu / memeriksa'],['届{とど}ける','mengantarkan'],['集{あつ}める','mengumpulkan'],['比{くら}べる','membandingkan'],
+  ['選{えら}ぶ','memilih'],['間{ま}に合{あ}う','sempat / tepat waktu'],['手伝{てつだ}う','membantu'],['運{はこ}ぶ','mengangkut'],['壊{こわ}れる','rusak'],['汚{よご}れる','menjadi kotor'],['片付{かたづ}ける','merapikan'],['謝{あやま}る','meminta maaf'],['褒{ほ}める','memuji'],['叱{しか}る','memarahi'],
+  ['急{きゅう}に','tiba-tiba'],['だんだん','lambat laun'],['必{かなら}ず','pasti / selalu'],['たぶん','mungkin']],
+ n3:[['状態{じょうたい}','keadaan'],['状況{じょうきょう}','situasi'],['機会{きかい}','kesempatan'],['理由{りゆう}','alasan'],['効果{こうか}','efek / hasil guna'],['判断{はんだん}','penilaian'],['解決{かいけつ}','penyelesaian masalah'],['我慢{がまん}','menahan diri / sabar'],['遠慮{えんりょ}','sungkan'],['緊張{きんちょう}','gugup / tegang'],
+  ['自信{じしん}','percaya diri'],['苦労{くろう}','susah payah'],['経済{けいざい}','ekonomi'],['環境{かんきょう}','lingkungan'],['技術{ぎじゅつ}','teknologi / teknik'],['情報{じょうほう}','informasi'],['制度{せいど}','sistem / aturan'],['責任{せきにん}','tanggung jawab'],['給料{きゅうりょう}','gaji'],['残業{ざんぎょう}','lembur'],
+  ['募集{ぼしゅう}','lowongan / rekrutmen'],['応募{おうぼ}','melamar / mendaftar'],['増{ふ}える','bertambah'],['減{へ}る','berkurang'],['伝{つた}える','menyampaikan'],['迷{まよ}う','bingung / tersesat'],['似{に}る','mirip'],['守{まも}る','menjaga / menaati'],['認{みと}める','mengakui'],['預{あず}ける','menitipkan'],
+  ['断{ことわ}る','menolak'],['貯{た}める','menabung'],['失{うしな}う','kehilangan'],['落{お}ち着{つ}く','tenang'],['偶然{ぐうぜん}','kebetulan'],['突然{とつぜん}','mendadak'],['やっと','akhirnya'],['ほとんど','hampir semua'],['正確{せいかく}','akurat'],['豊{ゆた}か','kaya / makmur'],
+  ['素直{すなお}','jujur / penurut']],
+ n2:[['傾向{けいこう}','kecenderungan'],['範囲{はんい}','cakupan'],['規模{きぼ}','skala'],['条件{じょうけん}','syarat'],['対象{たいしょう}','sasaran / objek'],['手段{しゅだん}','cara / sarana'],['方針{ほうしん}','kebijakan / arah'],['効率{こうりつ}','efisiensi'],['需要{じゅよう}','permintaan (ekonomi)'],['供給{きょうきゅう}','pasokan'],
+  ['価値{かち}','nilai'],['証拠{しょうこ}','bukti'],['現象{げんしょう}','fenomena'],['契約{けいやく}','kontrak'],['交渉{こうしょう}','negosiasi'],['改善{かいぜん}','perbaikan'],['維持{いじ}','mempertahankan'],['削減{さくげん}','pengurangan'],['拡大{かくだい}','perluasan'],['把握{はあく}','memahami (situasi)'],
+  ['提出{ていしゅつ}','penyerahan dokumen'],['延期{えんき}','penundaan'],['承認{しょうにん}','persetujuan'],['補{おぎな}う','melengkapi kekurangan'],['促{うなが}す','mendorong'],['避{さ}ける','menghindari'],['招{まね}く','mengundang / menimbulkan'],['訴{うった}える','mengadukan / menuntut'],['支{ささ}える','menopang / mendukung'],['備{そな}える','bersiap untuk'],
+  ['優{すぐ}れる','unggul'],['険{けわ}しい','curam / keras'],['詳{くわ}しい','rinci'],['著{いちじる}しい','mencolok / signifikan'],['曖昧{あいまい}','ambigu'],['深刻{しんこく}','serius / gawat'],['柔軟{じゅうなん}','fleksibel'],['慎重{しんちょう}','hati-hati'],['徐々{じょじょ}に','perlahan-lahan'],['一斉{いっせい}に','serentak'],
+  ['ますます','semakin']],
+ n1:[['概要{がいよう}','ikhtisar'],['示唆{しさ}','isyarat / saran tersirat'],['顕著{けんちょ}','nyata / menonjol'],['妥協{だきょう}','kompromi'],['是正{ぜせい}','koreksi / pembetulan'],['抜本的{ばっぽんてき}','mendasar / radikal'],['喚起{かんき}','membangkitkan (perhatian)'],['措置{そち}','tindakan / langkah'],['打診{だしん}','menjajaki pendapat'],['斡旋{あっせん}','perantaraan / penyaluran'],
+  ['逸材{いつざい}','talenta luar biasa'],['推移{すいい}','perkembangan / perubahan'],['根拠{こんきょ}','dasar / landasan'],['見解{けんかい}','pandangan'],['弊害{へいがい}','dampak buruk'],['趣旨{しゅし}','maksud pokok'],['均衡{きんこう}','keseimbangan'],['委託{いたく}','pengalihan tugas'],['撤退{てったい}','penarikan diri'],['発足{ほっそく}','peresmian / dimulainya'],
+  ['携{たずさ}わる','terlibat dalam'],['損{そこ}なう','merusak'],['培{つちか}う','memupuk / membina'],['怠{おこた}る','melalaikan'],['賄{まかな}う','menutupi biaya'],['覆{くつがえ}す','membalikkan / membatalkan'],['遂{と}げる','mencapai'],['阻{はば}む','menghalangi'],['蓄{たくわ}える','menyimpan / menimbun'],['漠然{ばくぜん}','samar-samar'],
+  ['円滑{えんかつ}','lancar'],['煩雑{はんざつ}','ruwet'],['綿密{めんみつ}','cermat'],['潔{いさぎよ}い','berlapang dada'],['紛{まぎ}らわしい','membingungkan'],['甚{はなは}だしい','berlebihan / luar biasa'],['あらかじめ','sebelumnya'],['いささか','agak / sedikit'],['ひたすら','dengan tekun / semata-mata'],['おのずと','dengan sendirinya']]
+};
 </script>
 
 <script>
@@ -849,7 +872,8 @@ function render(keepScroll){const y=window.scrollY;const V={beranda:vHome,belaja
 function rerender(){render(true)}
 function go(){const h=location.hash.slice(1);UI.route=NAV.some(n=>n[0]===h)?h:'beranda';stopTimers();
  Object.assign(UI,{lesson:(UI.route==='belajar'||UI.route==='bisnis')&&UI.pending?UI.pending:null,pending:null,lq:{},kaiwa:UI.route==='kaiwa'&&UI.pendingK?UI.pendingK:null,pendingK:null,kmode:'dengar',rp:null,quiz:null,game:null,reset:false,rev:null,confirmSubmit:false});render();window.scrollTo(0,0);
- if(UI.route==='soal'&&UI.pendingT){const id=UI.pendingT;UI.pendingT=null;ACT.startTryout({id})}}
+ if(UI.route==='soal'&&UI.pendingT){const id=UI.pendingT;UI.pendingT=null;ACT.startTryout({id})}
+ if(UI.route==='game'&&UI.pendingG){const p=UI.pendingG;UI.pendingG=null;UI.gLv=p.lv;UI.game=initGame(p.g,p.lv);render()}}
 function openSub(fn){stopTimers();fn();render();window.scrollTo(0,0)}
 
 /* ===================== BERANDA ===================== */
@@ -908,6 +932,10 @@ function vHome(){
 
 /* ===================== BELAJAR ===================== */
 const lessonRows=l=>`<div class="lessons">${l.lessons.map(x=>`<button class="lrow ${S.done[x.id]?'ok':''}" data-act="openLesson" data-id="${x.id}"><span class="chk">${S.done[x.id]?ic('check'):''}</span><span class="t"><b>${esc(x.title)}</b> <span style="font-size:.88rem;color:var(--ink-2)">${rb(x.jp)}</span><small>${esc(x.sum)}</small></span><span aria-hidden="true" style="color:var(--ink-3)">›</span></button>`).join('')}</div>`;
+const lvVocabAll=id=>{const seen=new Set();return LEVELS.find(x=>x.id===id).lessons.flatMap(x=>x.vocab||[]).concat(VOCAB_X[id]||[]).filter(v=>!seen.has(v[0])&&seen.add(v[0]))};
+function vocabBlock(id){const V=lvVocabAll(id),lv=LEVELS.find(x=>x.id===id),canGame=GLV.some(v=>v[0]===id);
+ return `<section class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px"><div class="sec-head"><div><h2>Kosakata ${lv.tag}<span class="jpn">語彙</span></h2><p class="muted num" style="font-size:.88rem">${V.length} kata · ketuk ikon suara untuk mendengar</p></div>${canGame?`<button class="btn sm" data-act="goFlash" data-lv="${id}">Latih dengan flashcard</button>`:''}</div>
+ <details class="vlist"><summary>Tampilkan daftar kosakata</summary><div class="tblwrap"><table class="vtab"><tbody>${V.map(v=>`<tr><td>${rb(v[0])}</td><td class="muted">${esc(v[1])}</td><td>${say(v[0])}</td></tr>`).join('')}</tbody></table></div></details></section>`}
 function vLearn(){
  if(UI.lesson)return vLesson();
  const lvls=JLPT_ORDER.map(id=>LEVELS.find(l=>l.id===id));
@@ -918,6 +946,7 @@ function vLearn(){
  <div class="lvtabs" role="tablist">${lvls.map(x=>{const dd=x.lessons.filter(y=>S.done[y.id]).length;return `<button class="lvtab ${x.id===l.id?'on':''}" role="tab" aria-selected="${x.id===l.id}" data-act="lvTab" data-id="${x.id}"><b>${x.tag}</b><span style="font-weight:700;font-size:.88rem">${x.name}</span><div class="bar"><i style="width:${dd/x.lessons.length*100}%"></i></div><small class="num">${dd}/${x.lessons.length} pelajaran</small></button>`}).join('')}</div>
  <section class="card stage-body" style="padding:20px"><header><div><span class="eyebrow">Tahap ${i+1} dari ${lvls.length}</span><h2>${l.tag} · ${l.name}</h2><p class="muted" style="font-size:.9rem">${l.sub}</p></div><span class="pill ${d===l.lessons.length?'good':''} num">${d}/${l.lessons.length}</span></header>
  <p style="margin-top:8px;font-size:.95rem">${l.desc}</p>${lessonRows(l)}</section>
+ ${l.id==='kana'?'':vocabBlock(l.id)}
  <a class="card tap" href="#bisnis" style="padding:18px;display:flex;gap:14px;align-items:center;text-decoration:none;color:inherit"><span class="iconbtn" style="width:44px;height:44px">${ic('brief')}</span><span style="flex:1;min-width:0"><b>Bahasa Jepang Bisnis</b><span class="muted" style="display:block;font-size:.88rem">Keigo, telepon, email, rapat, dan wawancara kerja.</span></span><span aria-hidden="true" style="color:var(--ink-3)">›</span></a>`;
 }
 function vBisnis(){
@@ -1077,7 +1106,7 @@ const gd=(t,lv)=>(lv==='kana'&&GDEF_K[t])||GDEF[t];
 const gList=lv=>lv==='kana'?['fc','vq','pm']:lv==='biz'?['km','fc','vq','pm','gc','ss']:['fc','vq','pm','gc','ss'];
 const lvOf=id=>LEVELS.find(x=>x.id===id);
 const lvName=lv=>{const x=GLV.find(v=>v[0]===lv);return x?x[1]+' · '+x[2]:''};
-const gPool=lv=>lv==='kana'?KPOOL.flatMap(i=>[[HIRA[i],ROMA[i]],[KATA[i],ROMA[i]]]):lvOf(lv).lessons.flatMap(x=>x.vocab||[]);
+const gPool=lv=>lv==='kana'?KPOOL.flatMap(i=>[[HIRA[i],ROMA[i]],[KATA[i],ROMA[i]]]):lvOf(lv).lessons.flatMap(x=>x.vocab||[]).concat(VOCAB_X[lv]||[]);
 const lvSent=lv=>lvOf(lv).lessons.flatMap(x=>(x.points||[]).flatMap(p=>p.ex)).map(e=>[e[0].split(' ').filter(Boolean),e[1]]).filter(e=>e[0].length>=3&&e[0].length<=7);
 const lvQs=lv=>lvOf(lv).lessons.flatMap(x=>x.quiz||[]).map(q=>({q:q.q,o:q.o,a:q.a,x:q.x})).concat(QB.filter(q=>q[0]===lv).map(q=>({q:q[2],o:q[3],a:q[4],x:q[5]})));
 const starKey=(t,lv)=>t+'-'+lv;
@@ -1227,6 +1256,7 @@ const ACT={
  openLesson:d=>{const x=findLesson(d.id),dest=x.lv.id==='biz'?'bisnis':'belajar';if(dest==='belajar')UI.lvTab=x.lv.id;if(UI.route!==dest){UI.pending=d.id;location.hash=dest;return}openSub(()=>{UI.lesson=d.id;UI.lq={}})},
  backLearn:()=>openSub(()=>{const x=findLesson(UI.lesson);if(x&&x.lv.id!=='biz')UI.lvTab=x.lv.id;UI.lesson=null}),
  lvTab:d=>{UI.lvTab=d.id;rerender()},
+ goFlash:d=>{UI.pendingG={g:'fc',lv:d.lv};location.hash='game'},
  startTryoutX:d=>{UI.pendingT=d.id;location.hash='soal'},
  lq:d=>{const x=findLesson(UI.lesson),i=+d.q;if(UI.lq[i]!==undefined)return;UI.lq[i]=+d.o;if(+d.o===x.quiz[i].a)addXP(5,'Jawaban benar');rerender()},
  doneLesson:()=>{const x=findLesson(UI.lesson);if(S.done[x.id])return;S.done[x.id]=dk(Date.now());save();addXP(30,'Pelajaran selesai');rerender()},

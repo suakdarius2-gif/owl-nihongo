@@ -1,6 +1,6 @@
 // Owl Nihongo service worker
 // Saat merilis update, naikkan angka VERSI agar semua siswa mendapat versi terbaru.
-const VERSI = 'owl-v4';
+const VERSI = 'owl-v5';
 const FILES = ['./', './index.html', './manifest.webmanifest', './favicon.svg', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {
