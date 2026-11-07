@@ -401,6 +401,25 @@ mark.kwk{background:var(--amber-soft);color:inherit;border-radius:6px;padding:0 
 .kw-turn.r{align-self:flex-end}
 .kw-turn p{margin:0;font-size:.88rem;color:var(--ink-2)}
 .kw-id{font-weight:700;font-size:1.05rem}
+.nu{padding:20px;display:flex;flex-direction:column;gap:14px}
+.pm{display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.pm i{width:14px;height:8px;border-radius:4px;background:var(--line)}
+.pm i.on.l1{background:#C8372D}.pm i.on.l2{background:#E0A23C}.pm i.on.l3{background:#5E9B4F}.pm i.on.l4{background:#2F6F8F}.pm i.on.l5{background:#6B4E9A}
+.pm b{font-size:.78rem;margin-left:6px;color:var(--ink-2)}
+.pm-legend{display:flex;flex-wrap:wrap;gap:6px 16px;padding:10px 12px;border-radius:12px;background:var(--surface-2)}
+.nu-card{border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
+.nu-card p{margin:0;line-height:1.7}
+.nu-pair{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch}
+.nu-side{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-radius:12px;background:var(--surface-2);min-width:0}
+.nu-side.b{background:var(--maple-soft)}
+.nu-tag{font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
+.nu-tag.n4{color:var(--maple)}
+.nu-ex{display:flex;gap:8px;align-items:center}
+.nu-ex .jp{font-size:1.08rem;line-height:2}
+.nu-ex .iconbtn{width:30px;height:30px;flex:none}
+.nu-vs{align-self:center;font-size:1.3rem;color:var(--ink-3);font-weight:800}
+.nu-warn{padding:12px 14px;border-radius:14px;border:1.5px solid #C8372D;background:rgba(200,55,45,.07);line-height:1.7}
+@media (max-width:560px){.nu-pair{grid-template-columns:1fr}.nu-vs{transform:rotate(90deg);justify-self:center}}
 .kw-done{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:14px 16px;border-radius:16px;background:linear-gradient(160deg,var(--surface),var(--amber-soft))}
 </style>
 </head>
@@ -928,53 +947,806 @@ const N5B=[
    {q:'雨{あめ}が 降{ふ}って（　）、 行{い}きます。 (meskipun)',o:['も','たら','から'],a:0,x:'"Meskipun" = <b>ても</b>.'},
    {q:'暇{ひま}（　）、 来{き}て ください。 (jika)',o:['だったら','かったら','でも'],a:0,x:'な-adj: <b>だったら</b>.'}]}
 ];
+/* ===================== ILUSTRASI N4 ===================== */
+const DOOR=(x,y,s=1,open=false)=>IG(x,y,s,`<rect x="-30" y="-120" width="60" height="120" fill="#5B3A26"/><rect x="-26" y="-116" width="52" height="116" fill="${open?'#2E2620':'#E7D2B4'}"/>${open?`<path d="M-26 -116 L-4 -108 L-4 6 L-26 0Z" fill="#B98A5A"/><circle cx="-9" cy="-55" r="2.6" fill="#E0A23C"/>`:`<rect x="-20" y="-108" width="40" height="44" rx="3" fill="none" stroke="#C9AE8A" stroke-width="2"/><rect x="-20" y="-56" width="40" height="48" rx="3" fill="none" stroke="#C9AE8A" stroke-width="2"/><circle cx="18" cy="-58" r="3" fill="#E0A23C"/>`}`);
+const LAMP=(x,y,s=1,on=false)=>IG(x,y,s,`${on?'<path d="M-30 -40 L30 -40 L52 40 L-52 40Z" fill="#FFE9A6" opacity=".55"/>':''}<rect x="-1.5" y="-110" width="3" height="58" fill="#7A6A5A"/><path d="M-22 -40 Q-22 -58 0 -58 Q22 -58 22 -40Z" fill="${on?'#F4B642':'#9C8E80'}"/><circle cx="0" cy="-38" r="7" fill="${on?'#FFF4C8':'#D8D2CA'}"/>`);
+const WIN=(x,y,s=1,st='shut')=>IG(x,y,s,`<rect x="-42" y="-34" width="84" height="68" rx="3" fill="#CFE5F0" stroke="#FFFDF8" stroke-width="5"/>${st==='open'?'<rect x="-40" y="-31" width="38" height="62" fill="#FFFDF8" opacity=".85"/><path d="M8 -20 q10 8 0 16 q-10 8 0 16" stroke="#9AC6E0" stroke-width="2" fill="none"/>':st==='broken'?'<path d="M0 -31 L-6 -10 L8 2 L-4 20 L2 31 M-6 -10 L-24 -4 M8 2 L28 -6 M-4 20 L-22 26" stroke="#5A6B78" stroke-width="2" fill="none"/>':'<rect x="-2" y="-31" width="4" height="62" fill="#FFFDF8"/>'}`);
+const PC=(x,y,s=1)=>IG(x,y,s,`<rect x="-30" y="-44" width="60" height="38" rx="3" fill="#3B3F4A"/><rect x="-26" y="-40" width="52" height="30" fill="#9AC6E0"/><path d="M-36 -6 L36 -6 L40 0 L-40 0Z" fill="#7A808C"/>`);
+const PHONE=(x,y,s=1)=>IG(x,y,s,`<rect x="-8" y="-28" width="16" height="28" rx="3" fill="#3B3F4A"/><rect x="-6" y="-25" width="12" height="20" fill="#9AC6E0"/>`);
+const TV=(x,y,s=1,inner='')=>IG(x,y,s,`<rect x="-60" y="-80" width="120" height="76" rx="6" fill="#3B3F4A"/><rect x="-54" y="-74" width="108" height="64" fill="#DCEFF7"/>${inner}<rect x="-20" y="-4" width="40" height="6" fill="#7A808C"/>`);
+const POOL=(x,y,w=180)=>`<rect x="${x}" y="${y}" width="${w}" height="40" rx="6" fill="#7EC4E3"/><path d="M${x+10} ${y+14} q12 -6 24 0 t24 0 t24 0 t24 0 t24 0 t24 0" stroke="#FFFDF8" stroke-width="2" fill="none" opacity=".8"/>`;
+const STOP=(x,y,s=1,t='とまれ')=>IG(x,y,s,`<rect x="-2" y="-10" width="4" height="100" fill="#B8A898"/><path d="M-30 -52 L30 -52 L0 -2Z" fill="#C8372D" stroke="#FFFDF8" stroke-width="3"/><text x="0" y="-34" text-anchor="middle" font-size="11" font-weight="800" fill="#FFFDF8">${t}</text>`);
+const PIG=(x,y,s=1)=>IG(x,y,s,`<ellipse cx="0" cy="-18" rx="26" ry="18" fill="#F2A7B5"/><circle cx="22" cy="-22" r="7" fill="#F7C1CB"/><circle cx="10" cy="-28" r="2" fill="#3B2A20"/><rect x="-6" y="-37" width="12" height="3" rx="1" fill="#8E3B2A"/><rect x="-18" y="-4" width="6" height="6" fill="#F2A7B5"/><rect x="10" y="-4" width="6" height="6" fill="#F2A7B5"/>`);
+const BOARD=(x,y,w,h,t,sz=14)=>`<rect x="${x-w/2}" y="${y}" width="${w}" height="${h}" rx="4" fill="#2F4A3A" stroke="#8E5E35" stroke-width="5"/><text x="${x}" y="${y+h/2+sz/3}" text-anchor="middle" font-size="${sz}" font-weight="700" fill="#FFFDF8">${t}</text>`;
+const QMARK=(x,y,s=1)=>IG(x,y,s,`<circle r="12" fill="#F4B642"/><text y="5" text-anchor="middle" font-size="15" font-weight="800" fill="#3B2A20">?</text>`);
+BG.office=()=>`<rect width="400" height="240" fill="#EEF0EC"/><rect y="40" width="400" height="5" fill="#DADFD8"/><rect x="300" y="26" width="76" height="60" rx="3" fill="#CFE5F0" stroke="#FFFDF8" stroke-width="4"/><rect y="205" width="400" height="35" fill="#C8BFAE"/>`;
+const N4B=[
+ {id:'n4-b26',bab:26,title:'Bab 26 · Menjelaskan dengan んです',jp:'〜んです・〜て いただけませんか',sum:'Memberi penekanan atau penjelasan dengan んです, meminta tolong dengan sangat halus, dan meminta saran dengan 〜たら いいですか.',
+  scene:{bg:'room',alt:'Rina bertanya kepada Andi yang terlihat tidak enak badan',
+   art:()=>P(120,215,1.1,{c:'#4F7CAC'})+THERMO(150,170,.8,.8)+P(290,215,1.1,{long:1,c:'#D9802F',flip:1,talk:1})+DESK(210,215,.42)+MED(210,194,.8),
+   bub:[[290,108,'どう したんですか。','Kamu kenapa?'],[115,108,'頭{あたま}が 痛{いた}いんです。','Kepala saya sakit.']],
+   hot:[[136,140,30,40,'ちょっと 熱{ねつ}が あるんです。','Saya agak demam.'],[192,170,36,30,'薬{くすり}は どこで 買{か}ったら いいですか。','Sebaiknya beli obat di mana?']]},
+  points:[
+   {p:'Bentuk biasa + んです',e:'Memberi penekanan: meminta penjelasan, memberi alasan, atau menunjukkan rasa ingin tahu. な-adj dan kata benda memakai な: 好きなんです, 病気なんです.',ex:[['どう したんですか。 …頭{あたま}が 痛{いた}いんです。','Kenapa? …Kepala saya sakit.'],['どこへ 行{い}くんですか。','Mau pergi ke mana?']]},
+   {p:'〜んですが、〜',e:'Membuka pembicaraan sebelum meminta tolong atau meminta saran. Kalimat sesudahnya sering tidak diucapkan karena lawan bicara sudah paham.',ex:[['日本語{にほんご}で 手紙{てがみ}を 書{か}いたんですが、 見{み}て いただけませんか。','Saya menulis surat dalam bahasa Jepang, bisakah Anda memeriksanya?']]},
+   {p:'V て いただけませんか',e:'Meminta tolong dengan sangat halus. Lebih sopan daripada 〜て ください.',ex:[['もう 少{すこ}し ゆっくり 話{はな}して いただけませんか。','Bisakah Anda berbicara sedikit lebih pelan?']]},
+   {p:'V たら いいですか',e:'Meminta saran atau petunjuk: "sebaiknya …?".',ex:[['どこで 切符{きっぷ}を 買{か}ったら いいですか。','Sebaiknya beli tiket di mana?']]}],
+  nu:[
+   {a:'行{い}きますか。',b:'行{い}くんですか。',la:3,lb:3,t:'Keduanya sopan. 〜ますか hanya bertanya fakta. 〜んですか menunjukkan rasa ingin tahu karena melihat sesuatu (misalnya orang itu membawa koper). Jangan terlalu sering dipakai kepada atasan karena bisa terdengar mendesak.'},
+   {a:'待{ま}って ください。',b:'待{ま}って いただけませんか。',la:3,lb:5,t:'〜てください (N5) masih terdengar seperti perintah halus. Kepada atasan, pelanggan, atau orang yang baru dikenal, pakai 〜ていただけませんか.'}],
+  vx:[['頭{あたま}','kepala',26],['熱{ねつ}','demam',26],['切符{きっぷ}','tiket',26],['ゆっくり','pelan-pelan',26]],
+  quiz:[
+   {q:'Melihat teman memakai jas: どこへ （　）か。',o:['行{い}くんです','行{い}くです','行{い}きんです'],a:0,x:'Bentuk biasa + <b>んです</b>.'},
+   {q:'Paling sopan untuk meminta atasan memeriksa laporan:',o:['見{み}て いただけませんか。','見{み}て ください。','見{み}て。'],a:0,x:'<b>〜ていただけませんか</b> adalah yang paling halus.'},
+   {q:'Bentuk benar dari 好{す}き + んです:',o:['好{す}きなんです','好{す}きんです','好{す}きだんです'],a:0,x:'な-adj memakai <b>な</b> sebelum んです.'}],
+  kw:[{k:'k',p:'Kantor · meminta atasan memeriksa',sp:['アンディ','田中{たなか}'],l:[
+   [0,'田中{たなか}さん、 今{いま} よろしいですか。','Pak Tanaka, apakah sekarang ada waktu?'],
+   [1,'ええ、 どう *したんですか*。','Ya, ada apa?'],
+   [0,'日報{にっぽう}を 日本語{にほんご}で *書{か}いたんですが*、 *見{み}て いただけませんか*。','Saya menulis laporan harian dalam bahasa Jepang. Bisakah Bapak memeriksanya?'],
+   [1,'いいですよ。 そこに 置{お}いて ください。','Boleh. Taruh di situ.'],
+   [0,'ありがとう ございます。 来週{らいしゅう}の 会議{かいぎ}の 資料{しりょう}は どう *したら いいですか*。','Terima kasih. Untuk bahan rapat minggu depan, sebaiknya bagaimana?']],
+   tip:'Sebelum berbicara dengan atasan yang sedang sibuk, tanyakan dulu 今{いま}よろしいですか.'},
+   {k:'h',p:'Kampus · teman membawa koper',sp:['リナ','アンディ'],l:[
+   [0,'大{おお}きい かばんですね。 どこかへ *行{い}くんですか*。','Tasnya besar ya. Mau pergi ke suatu tempat?'],
+   [1,'ええ、 あした 北海道{ほっかいどう}へ *行{い}くんです*。','Ya, besok saya pergi ke Hokkaido.'],
+   [0,'いいですね。 何{なに}を するんですか。','Asyik. Mau apa di sana?'],
+   [1,'スキーを *したいんです*。 でも、 初{はじ}めてなんです。','Ingin main ski. Tapi ini pertama kali.']],
+   tip:'んです sering dipakai saat menanggapi sesuatu yang dilihat langsung, seperti tas besar atau wajah yang lelah.'}]},
+ {id:'n4-b27',bab:27,title:'Bab 27 · Bentuk Potensial',jp:'可能形{かのうけい}',sum:'Menyatakan kemampuan dengan bentuk potensial, 見える / 聞こえる, dan できる (jadi / selesai).',
+  scene:{bg:'room',alt:'Papan tulis bertuliskan kanji, Andi bisa membacanya',
+   art:()=>BOARD(200,24,180,64,'日本語 能力試験',16)+P(110,215,1.1,{c:'#4F7CAC',arm:'point'})+P(300,215,1.1,{c:'#6B4E3A',h:'#555',gl:1,flip:1,talk:1})+WIN(340,70,.6),
+   bub:[[300,110,'この 漢字{かんじ}が 読{よ}めますか。','Bisa membaca kanji ini?'],[110,110,'はい、 読{よ}めます。','Ya, bisa.']],
+   hot:[[110,26,180,60,'日本語{にほんご}能力{のうりょく}試験{しけん}と 読{よ}めます。','Bisa dibaca "Nihongo Nouryoku Shiken".'],[312,46,56,46,'窓{まど}から 山{やま}が 見{み}えます。','Dari jendela terlihat gunung.']]},
+  cj:'pot',
+  points:[
+   {p:'Bentuk potensial',e:'Gol. I: bunyi い → baris え + る (書きます → 書ける). Gol. II: ます → られる (食べられる). Gol. III: できる, 来{こ}られる. Bentuk potensial berubah seperti kata kerja Gol. II.',ex:[['わたしは 日本語{にほんご}が 話{はな}せます。','Saya bisa berbicara bahasa Jepang.']]},
+   {p:'N が V(potensial)',e:'Objek biasanya berubah dari を menjadi が.',ex:[['漢字{かんじ}が 読{よ}めます。','Bisa membaca kanji.']]},
+   {p:'見{み}えます / 聞{き}こえます',e:'"Terlihat / terdengar" secara alami. Berbeda dengan 見られます / 聞けます yang berarti "ada kesempatan untuk melihat / mendengar".',ex:[['部屋{へや}から 海{うみ}が 見{み}えます。','Dari kamar terlihat laut.'],['駅{えき}で 映画{えいが}が 見{み}られます。','Di stasiun bisa menonton film.']]},
+   {p:'N が できます',e:'Selain "bisa", できます juga berarti "jadi / selesai / dibangun".',ex:[['駅{えき}の 前{まえ}に 大{おお}きい スーパーが できました。','Di depan stasiun dibangun supermarket besar.']]}],
+  nu:[
+   {a:'話{はな}す ことが できます',b:'話{はな}せます',la:3,lb:3,t:'Artinya sama, "bisa berbicara". 〜ことができます (N5) terdengar lebih formal dan kaku, cocok untuk tulisan atau wawancara. Bentuk potensial lebih alami dalam percakapan sehari-hari.'},
+   {a:'見{み}られます',b:'見{み}えます',la:3,lb:3,t:'見えます berarti terlihat dengan sendirinya. 見られます berarti ada kesempatan atau kemampuan untuk melihat.'}],
+  vx:[['読{よ}めます','bisa membaca',27],['見{み}えます','terlihat',27],['聞{き}こえます','terdengar',27],['できます','jadi / dibangun',27]],
+  quiz:[
+   {q:'Potensial dari 書{か}きます:',o:['書{か}けます','書{か}かれます','書{か}けられます'],a:0,x:'Gol. I: き → <b>け</b> + ます.'},
+   {q:'Potensial dari 来{き}ます:',o:['来{こ}られます','来{き}れます','来{く}れます'],a:0,x:'Gol. III: <b>来{こ}られます</b>.'},
+   {q:'Dari jendela "terlihat" gunung:',o:['見{み}えます','見{み}られます','見{み}ます'],a:0,x:'Terlihat dengan sendirinya: <b>見えます</b>.'}],
+  kw:[{k:'k',p:'Wawancara kerja · kemampuan',sp:['面接官{めんせつかん}','アンディ'],l:[
+   [0,'アンディさんは 漢字{かんじ}が *読{よ}めますか*。','Andi bisa membaca kanji?'],
+   [1,'はい、 簡単{かんたん}な 漢字{かんじ}なら *読{よ}めます*。','Ya, kalau kanji yang mudah, bisa.'],
+   [0,'フォークリフトは *運転{うんてん}できますか*。','Bisa mengemudikan forklift?'],
+   [1,'はい、 免許{めんきょ}が ありますから、 *運転{うんてん}できます*。','Ya, saya punya lisensi, jadi bisa.'],
+   [0,'夜勤{やきん}も *できますか*。','Shift malam juga bisa?'],
+   [1,'はい、 *できます*。','Ya, bisa.']],
+   tip:'Jawab dengan jujur dan konkret. Jika belum bisa, katakan まだできませんが、練習{れんしゅう}しています.'},
+   {k:'h',p:'Apartemen · pemandangan baru',sp:['リナ','アンディ'],l:[
+   [0,'新{あたら}しい アパートは どうですか。','Apartemen barunya bagaimana?'],
+   [1,'いいですよ。 窓{まど}から 富士山{ふじさん}が *見{み}えます*。','Bagus. Dari jendela terlihat Gunung Fuji.'],
+   [0,'すごい！ 近{ちか}くに 何{なに}か ありますか。','Hebat! Di dekat sana ada apa?'],
+   [1,'先月{せんげつ}、 駅{えき}の 前{まえ}に コンビニが *できました*。','Bulan lalu dibangun konbini di depan stasiun.']],
+   tip:'できました juga berarti "sudah jadi", misalnya ごはんができました (makanan sudah siap).'}]},
+ {id:'n4-b28',bab:28,title:'Bab 28 · Sambil dan Kebiasaan',jp:'〜ながら・〜て います・〜し、〜し',sum:'Dua kegiatan bersamaan, kebiasaan dengan ています, dan menyebut beberapa alasan dengan 〜し.',
+  scene:{bg:'nightroom',alt:'Andi belajar sambil mendengarkan musik',
+   art:()=>DESK(170,215,1)+BOOK(160,170,.9,'#3E7D4F')+P(110,215,1.05,{c:'#4F7CAC',arm:'hold'})+NOTE(90,80)+NOTE(130,70,.8,'#D9802F')+NOTE(60,96,.9)+PC(300,215,1),
+   bub:[[110,112,'音楽{おんがく}を 聞{き}きながら 勉強{べんきょう}します。','Saya belajar sambil mendengarkan musik.']],
+   hot:[[46,52,100,56,'音楽{おんがく}を 聞{き}きながら、','Sambil mendengarkan musik,'],[262,160,76,56,'毎晩{まいばん} 日本語{にほんご}の ニュースを 見{み}て います。','Setiap malam saya menonton berita bahasa Jepang.']]},
+  points:[
+   {p:'V1(ます) ながら V2',e:'"Sambil". Kegiatan utama ada di V2. Subjek kedua kegiatan sama.',ex:[['音楽{おんがく}を 聞{き}きながら 食事{しょくじ}します。','Makan sambil mendengarkan musik.']]},
+   {p:'V て います (kebiasaan)',e:'Kegiatan yang dilakukan berulang. Untuk masa lalu: 〜ていました.',ex:[['毎朝{まいあさ} ジョギングを して います。','Setiap pagi saya jogging.']]},
+   {p:'Bentuk biasa し、 〜し',e:'Menyebut beberapa hal atau alasan yang setara. Nuansanya "selain itu juga…".',ex:[['ここは 値段{ねだん}も 安{やす}いし、 魚{さかな}も 新{あたら}しいし、 よく 来{き}ます。','Di sini harganya murah, ikannya juga segar, jadi saya sering datang.']]},
+   {p:'それで / それに',e:'それで = "makanya, oleh karena itu". それに = "lagi pula, selain itu".',ex:[['ここは コーヒーも おいしいし、 食事{しょくじ}も できます。 …それで 人気{にんき}が あるんですね。','Kopinya enak dan bisa makan juga. …Makanya populer ya.']]}],
+  nu:[
+   {a:'〜から',b:'〜し、〜し',la:3,lb:3,t:'から (N5) memberi satu alasan dengan tegas. 〜し menyebut beberapa alasan dan terdengar lebih halus, seolah masih ada alasan lain.'},
+   {a:'V て、 V',b:'V ながら V',la:3,lb:3,t:'〜て (N5) menyatakan urutan kegiatan. 〜ながら menyatakan dua kegiatan yang terjadi bersamaan.'}],
+  vx:[['音楽{おんがく}','musik',28],['値段{ねだん}','harga',28],['人気{にんき}','populer',28],['それに','lagi pula',28]],
+  quiz:[
+   {q:'"Bekerja sambil kuliah":',o:['大学{だいがく}に 通{かよ}いながら 働{はたら}いて います。','大学{だいがく}に 通{かよ}って 働{はたら}いて います。','大学{だいがく}に 通{かよ}うながら 働{はたら}きます。'],a:0,x:'Bentuk ます + <b>ながら</b>.'},
+   {q:'安{やす}いし、 近{ちか}い（　）、 この 店{みせ}が 好{す}きです。',o:['し','から','て'],a:0,x:'Menyebut beberapa alasan: <b>〜し、〜し</b>.'},
+   {q:'"Lagi pula" =',o:['それに','それで','でも'],a:0,x:'<b>それに</b> = lagi pula.'}],
+  kw:[{k:'k',p:'Pabrik · bertanya tentang rekan',sp:['田中{たなか}','アンディ'],l:[
+   [0,'アンディさんは 毎朝{まいあさ} 早{はや}いですね。','Andi setiap pagi datang cepat ya.'],
+   [1,'ええ、 寮{りょう}から 歩{ある}いて 来{き}て *います*。','Ya, saya datang jalan kaki dari asrama.'],
+   [0,'山田{やまだ}さんは どうですか。','Bagaimana dengan Pak Yamada?'],
+   [1,'山田{やまだ}さんは 親切{しんせつ}*だし*、 説明{せつめい}も 上手{じょうず}*だし*、 *それに* いつも 笑顔{えがお}です。','Pak Yamada baik, pandai menjelaskan, lagi pula selalu tersenyum.'],
+   [0,'*それで* みんなに 人気{にんき}が あるんですね。','Makanya beliau disukai semua orang ya.']],
+   tip:'Memuji rekan kerja di depan atasan adalah cara baik menjaga suasana kerja.'},
+   {k:'h',p:'Kafe · alasan memilih tempat',sp:['リナ','アンディ'],l:[
+   [0,'アンディさんは よく この 店{みせ}に 来{き}ますね。','Andi sering datang ke toko ini ya.'],
+   [1,'ええ。 Wi-Fiも *あるし*、 静{しず}か*だし*。','Ya. Ada Wi-Fi, lagi pula tenang.'],
+   [0,'いつも 何{なに}を して いるんですか。','Biasanya kamu melakukan apa?'],
+   [1,'コーヒーを *飲{の}みながら* 日本語{にほんご}を 勉強{べんきょう}して います。','Belajar bahasa Jepang sambil minum kopi.']],
+   tip:'〜し、〜し sering diakhiri tanpa kalimat penutup karena maksudnya sudah jelas.'}]},
+ {id:'n4-b29',bab:29,title:'Bab 29 · Transitif dan Intransitif',jp:'他動詞{たどうし}・自動詞{じどうし}',sum:'Kata kerja transitif (を) dan intransitif (が), keadaan 〜て います, dan 〜て しまいます.',
+  scene:{bg:'room',alt:'Perbandingan orang menyalakan lampu dan lampu menyala',
+   modes:[
+    {label:'Transitif · を',art:()=>LAMP(110,150,1,true)+P(170,215,1.05,{c:'#4F7CAC',arm:'point'})+DOOR(320,205,.9,true)+P(270,215,1,{c:'#3E7D4F',arm:'hold',flip:1}),
+     bub:[[110,40,'電気{でんき}を つけます。','Saya menyalakan lampu.'],[290,110,'ドアを 開{あ}けます。','Saya membuka pintu.']]},
+    {label:'Intransitif · が',art:()=>LAMP(110,150,1,true)+DOOR(320,205,.9,true)+TXT(110,190,'ついて います',11,'#3E7D4F',800)+TXT(320,226,'開{あ}いて います'.replace(/\{[^}]*\}/g,''),11,'#3E7D4F',800),
+     bub:[[110,60,'電気{でんき}が ついて います。','Lampunya menyala.'],[320,70,'ドアが 開{あ}いて います。','Pintunya terbuka.']]},
+    {label:'てしまいました',art:()=>WIN(200,110,1.2,'broken')+BALL(250,200,10)+P(110,215,1.05,{c:'#D9802F',arm:'point'}),
+     bub:[[110,108,'窓{まど}が 割{わ}れて しまいました。','Jendelanya pecah… (menyesal)']]}]},
+  points:[
+   {p:'N を V(transitif) / N が V(intransitif)',e:'Transitif: ada pelaku yang melakukan (つけます, 開けます, 閉めます). Intransitif: hal itu terjadi dengan sendirinya (つきます, 開きます, 閉まります).',ex:[['電気{でんき}を つけます。','Menyalakan lampu.'],['電気{でんき}が つきます。','Lampu menyala.']]},
+   {p:'N が V(intransitif) て います',e:'Menyatakan keadaan hasil suatu perubahan.',ex:[['窓{まど}が 割{わ}れて います。','Jendelanya dalam keadaan pecah.']]},
+   {p:'V て しまいました',e:'"Sudah selesai / habis", atau menyatakan rasa menyesal.',ex:[['電車{でんしゃ}に 傘{かさ}を 忘{わす}れて しまいました。','Payung saya ketinggalan di kereta.'],['ワインは みんなで 飲{の}んで しまいました。','Anggurnya sudah habis kami minum.']]}],
+  nu:[
+   {a:'忘{わす}れました',b:'忘{わす}れて しまいました',la:3,lb:3,t:'Keduanya sopan. 〜ました (N5) hanya menyampaikan fakta. 〜てしまいました menambah rasa menyesal, sehingga terdengar lebih bertanggung jawab saat meminta maaf di tempat kerja.'},
+   {a:'V て います (sedang)',b:'N が V(intransitif) て います (keadaan)',la:3,lb:3,t:'Di N5, 〜ています menyatakan kegiatan yang sedang berlangsung. Dengan kata kerja intransitif, ています menyatakan keadaan: ドアが開いています = pintunya dalam keadaan terbuka.'}],
+  vx:[['つけます','menyalakan',29],['つきます','menyala',29],['開{あ}きます','terbuka',29],['閉{し}まります','tertutup',29],['割{わ}れます','pecah',29]],
+  quiz:[
+   {q:'ドア（　） 開{あ}いて います。',o:['が','を','で'],a:0,x:'Intransitif memakai <b>が</b>.'},
+   {q:'Pasangan transitif dari 消{き}えます:',o:['消{け}します','消{き}えさせます','消{け}えます'],a:0,x:'消えます (padam) ↔ <b>消します</b> (memadamkan).'},
+   {q:'Ungkapan menyesal:',o:['財布{さいふ}を 落{お}として しまいました。','財布{さいふ}を 落{お}として あります。','財布{さいふ}を 落{お}として おきました。'],a:0,x:'Penyesalan: <b>〜てしまいました</b>.'}],
+  kw:[{k:'k',p:'Pabrik · melapor kerusakan',sp:['アンディ','田中{たなか}'],l:[
+   [0,'田中{たなか}さん、 すみません。 機械{きかい}が *止{と}まって しまいました*。','Pak Tanaka, maaf. Mesinnya berhenti.'],
+   [1,'え、 どの 機械{きかい}ですか。','Hah, mesin yang mana?'],
+   [0,'3番{さんばん}の 機械{きかい}です。 ランプが *ついて います*。','Mesin nomor 3. Lampunya menyala.'],
+   [1,'わかりました。 電源{でんげん}を *切{き}って* ください。 すぐ 行{い}きます。','Baik. Tolong matikan listriknya. Saya segera ke sana.']],
+   tip:'Laporkan kerusakan apa adanya dan segera. Mengatakan 〜てしまいました menunjukkan rasa tanggung jawab.'},
+   {k:'h',p:'Kereta · barang tertinggal',sp:['駅員{えきいん}','アンディ'],l:[
+   [0,'どう しましたか。','Ada apa?'],
+   [1,'電車{でんしゃ}に 傘{かさ}を *忘{わす}れて しまったんです*。','Payung saya ketinggalan di kereta.'],
+   [0,'どんな 傘{かさ}ですか。','Payung seperti apa?'],
+   [1,'青{あお}い 傘{かさ}です。 名前{なまえ}が *書{か}いて あります*。','Payung biru. Ada namanya.']],
+   tip:'Di Jepang, barang yang tertinggal di kereta biasanya disimpan di kantor stasiun.'}]},
+ {id:'n4-b30',bab:30,title:'Bab 30 · Persiapan dan Hasil',jp:'〜て あります・〜て おきます',sum:'Keadaan hasil tindakan yang disengaja dengan てあります, persiapan dengan ておきます, dan bedanya dengan ています.',
+  scene:{bg:'wall',alt:'Dinding pos dengan peta, kalender, dan jendela yang dibuka',
+   art:()=>`<rect x="40" y="56" width="120" height="86" rx="3" fill="#FFFDF8" stroke="#C9B39D" stroke-width="3"/><path d="M52 80 h40 v30 h30 M70 70 v60 M110 66 l30 60" stroke="#9AC6E0" stroke-width="5" fill="none"/><circle cx="118" cy="100" r="6" fill="#C8372D"/>`+TXT(100,152,'ちず',11,'#6E5848')+`<rect x="186" y="56" width="80" height="86" rx="3" fill="#FFFDF8" stroke="#C9B39D" stroke-width="3"/><rect x="186" y="56" width="80" height="18" fill="#B5462F"/>${[0,1,2,3].map(r=>[0,1,2,3].map(c=>`<rect x="${194+c*17}" y="${82+r*14}" width="12" height="9" fill="#EFE5D6"/>`).join('')).join('')}<circle cx="217" cy="100" r="9" fill="none" stroke="#C8372D" stroke-width="2.5"/>`+WIN(330,100,.9,'open')+P(330,226,.6,{c:'#3E7D4F'}),
+   hot:[[40,56,120,86,'交番{こうばん}に 地図{ちず}が はって あります。','Di pos polisi terpasang peta.'],[186,56,80,86,'カレンダーに 会議{かいぎ}の 日{ひ}が 書{か}いて あります。','Di kalender tertulis tanggal rapat.'],[290,66,80,70,'窓{まど}が 開{あ}けて あります。','Jendelanya sengaja dibuka.']]},
+  points:[
+   {p:'N が V(transitif) て あります',e:'Keadaan hasil tindakan seseorang yang dilakukan dengan tujuan tertentu.',ex:[['交番{こうばん}に 町{まち}の 地図{ちず}が はって あります。','Di pos polisi terpasang peta kota.']]},
+   {p:'V て おきます',e:'Melakukan sesuatu sebagai persiapan, atau membiarkan keadaan tetap. Dalam percakapan sering menjadi 〜ときます.',ex:[['旅行{りょこう}の まえに、 ホテルを 予約{よやく}して おきます。','Sebelum berwisata, saya memesan hotel dulu.'],['窓{まど}は 開{あ}けて おいて ください。','Tolong biarkan jendelanya terbuka.']]},
+   {p:'まだ V て います',e:'"Masih …".',ex:[['まだ 雨{あめ}が 降{ふ}って います。','Hujan masih turun.']]}],
+  nu:[
+   {a:'窓{まど}が 開{あ}いて います',b:'窓{まど}が 開{あ}けて あります',la:3,lb:3,t:'開いています hanya menggambarkan jendela dalam keadaan terbuka. 開けてあります menyiratkan ada orang yang sengaja membukanya, misalnya untuk ventilasi.'},
+   {a:'予約{よやく}しました',b:'予約{よやく}して おきました',la:3,lb:3,t:'〜ておきました memberi kesan "sudah disiapkan sebelumnya". Di tempat kerja, ungkapan ini menunjukkan inisiatif yang baik.'}],
+  vx:[['地図{ちず}','peta',30],['はります','menempel',30],['予約{よやく}','pemesanan',30],['片付{かたづ}けます','merapikan',30]],
+  quiz:[
+   {q:'壁{かべ}に ポスターが はって （　）。',o:['あります','います','おきます'],a:0,x:'Hasil tindakan disengaja: <b>てあります</b>.'},
+   {q:'Persiapan rapat: 資料{しりょう}を コピーして （　）。',o:['おきます','あります','しまいます'],a:0,x:'Persiapan: <b>ておきます</b>.'},
+   {q:'Bentuk lisan dari 置{お}いて おきます:',o:['置{お}いときます','置{お}いちゃいます','置{お}いてます'],a:0,x:'〜ておきます → <b>〜ときます</b>.'}],
+  kw:[{k:'k',p:'Kantor · persiapan rapat',sp:['田中{たなか}','アンディ'],l:[
+   [0,'あしたの 会議{かいぎ}の 準備{じゅんび}は できましたか。','Persiapan rapat besok sudah selesai?'],
+   [1,'はい。 資料{しりょう}は もう *コピーして おきました*。','Ya. Materinya sudah saya fotokopi.'],
+   [0,'会議室{かいぎしつ}は？','Ruang rapatnya?'],
+   [1,'*予約{よやく}して あります*。 机{つくえ}も *並{なら}べて おきます*。','Sudah dipesan. Mejanya juga akan saya susun.'],
+   [0,'助{たす}かります。','Sangat membantu.']],
+   tip:'Melapor dengan 〜ておきました menunjukkan bahwa kamu sudah bersiap tanpa harus disuruh.'},
+   {k:'h',p:'Asrama · membersihkan kamar',sp:['リナ','アンディ'],l:[
+   [0,'窓{まど}が *開{あ}けて あります*ね。','Jendelanya dibuka ya.'],
+   [1,'ええ、 掃除{そうじ}を しましたから。','Ya, karena tadi bersih-bersih.'],
+   [0,'あしたの パーティーの 飲{の}み物{もの}は？','Minuman untuk pesta besok?'],
+   [1,'もう *買{か}って おきました*。 冷蔵庫{れいぞうこ}に *入{い}れて あります*。','Sudah saya beli. Sudah saya taruh di kulkas.']],
+   tip:'Dalam percakapan santai, 〜ておきます sering terdengar seperti 〜ときます.'}]},
+ {id:'n4-b31',bab:31,title:'Bab 31 · Bentuk Maksud',jp:'意向形{いこうけい}・〜つもり・〜予定{よてい}',sum:'Bentuk maksud (ayo / akan), 〜と 思って います, つもり, dan 予定.',
+  scene:{bg:'autumn',alt:'Dua teman merencanakan pergi ke onsen',
+   art:()=>THINK(200,52,130,62,TUB(200,74,.7)+TXT(200,40,'おんせん',10,'#B5462F',800))+P(120,215,1.1,{c:'#3E7D4F',arm:'wave',talk:1})+P(290,215,1.1,{long:1,c:'#D9802F',flip:1})+FLEAVES(6),
+   bub:[[118,110,'週末{しゅうまつ}、 温泉{おんせん}に 行{い}こう！','Akhir pekan, ayo ke onsen!'],[290,110,'うん、 行{い}こう。','Ayo.']],
+   hot:[[136,22,128,64,'家族{かぞく}と 温泉{おんせん}に 行{い}こうと 思{おも}って います。','Saya berniat pergi ke onsen bersama keluarga.']]},
+  cj:'vol',
+  points:[
+   {p:'Bentuk maksud',e:'Gol. I: bunyi い → baris お + う (行こう). Gol. II: ます → よう (食べよう). Gol. III: しよう, 来{こ}よう. Ini bentuk biasa dari 〜ましょう.',ex:[['ちょっと 休{やす}もう。','Ayo istirahat sebentar.']]},
+   {p:'V(maksud) と 思{おも}って います',e:'Menyatakan niat pembicara. 思っています menunjukkan niat itu sudah ada sejak beberapa waktu.',ex:[['来年{らいねん} 日本{にほん}で 働{はたら}こうと 思{おも}って います。','Saya berniat bekerja di Jepang tahun depan.']]},
+   {p:'V(kamus / ない) つもりです',e:'Niat yang lebih kuat dan pasti.',ex:[['国{くに}へ 帰{かえ}っても、 日本語{にほんご}の 勉強{べんきょう}を 続{つづ}ける つもりです。','Meski pulang, saya bertekad meneruskan belajar bahasa Jepang.']]},
+   {p:'V(kamus) / N の 予定{よてい}です',e:'Sesuatu yang sudah dijadwalkan, bukan sekadar keinginan.',ex:[['来週{らいしゅう}の 金曜日{きんようび}に 帰{かえ}る 予定{よてい}です。','Dijadwalkan pulang Jumat minggu depan.']]}],
+  nu:[
+   {a:'行{い}きましょう',b:'行{い}こう',la:3,lb:2,t:'Artinya sama, "ayo pergi". 行こう adalah gaya akrab untuk teman. Kepada atasan tetap pakai 行きましょう.'},
+   {a:'〜たいです',b:'〜(よ)うと 思{おも}って います / 〜つもりです / 〜予定{よてい}です',la:3,lb:3,t:'Urutan kepastian: たい (keinginan) < ようと思っています (niat) < つもり (tekad) < 予定 (sudah dijadwalkan). Saat melapor ke atasan, 予定です paling jelas.'}],
+  vx:[['温泉{おんせん}','onsen (pemandian air panas)',31],['続{つづ}けます','meneruskan',31],['予定{よてい}','rencana / jadwal',31],['つもり','niat',31]],
+  quiz:[
+   {q:'Bentuk maksud dari 飲{の}みます:',o:['飲{の}もう','飲{の}みよう','飲{の}まう'],a:0,x:'Gol. I: み → <b>も</b> + う.'},
+   {q:'Bentuk maksud dari 来{き}ます:',o:['来{こ}よう','来{き}よう','来{く}よう'],a:0,x:'Gol. III: <b>来{こ}よう</b>.'},
+   {q:'Jadwal yang sudah pasti: 3時{さんじ}に 着{つ}く （　）です。',o:['予定{よてい}','つもり','よう'],a:0,x:'Sudah dijadwalkan: <b>予定</b>.'}],
+  kw:[{k:'k',p:'Kantor · rencana cuti',sp:['田中{たなか}','アンディ'],l:[
+   [0,'アンディさん、 夏休{なつやす}みは どう しますか。','Andi, liburan musim panas mau apa?'],
+   [1,'インドネシアへ *帰{かえ}ろうと 思{おも}って います*。','Saya berniat pulang ke Indonesia.'],
+   [0,'いつから いつまでですか。','Dari kapan sampai kapan?'],
+   [1,'8月{はちがつ}10日{とおか}から 20日{はつか}まで 休{やす}む *予定{よてい}です*。','Dijadwalkan cuti dari tanggal 10 sampai 20 Agustus.'],
+   [0,'わかりました。 気{き}を つけて。','Baik. Hati-hati ya.']],
+   tip:'Ajukan rencana cuti jauh hari dan sebutkan tanggal yang pasti dengan 〜予定{よてい}です.'},
+   {k:'h',p:'Asrama · ajakan santai',sp:['ブディ','アンディ'],l:[
+   [0,'アンディ、 今晩{こんばん} カレー *作{つく}ろう*か。','Andi, malam ini bikin kari yuk?'],
+   [1,'いいね。 じゃ、 スーパーへ *行{い}こう*。','Boleh. Kalau begitu ayo ke supermarket.'],
+   [0,'来月{らいげつ}は 何{なに}か する *つもり*？','Bulan depan ada rencana apa?'],
+   [1,'大阪{おおさか}へ 遊{あそ}びに 行{い}く *つもり*。','Rencananya main ke Osaka.']],
+   tip:'Bentuk maksud adalah gaya akrab. Pakai hanya kepada teman sebaya.'}]},
+ {id:'n4-b32',bab:32,title:'Bab 32 · Saran dan Perkiraan',jp:'〜ほうが いい・〜でしょう・〜かも しれません',sum:'Memberi saran dengan ほうがいい, perkiraan dengan でしょう, dan kemungkinan dengan かもしれません.',
+  scene:{bg:'clinic',alt:'Dokter memberi saran kepada pasien',
+   art:()=>P(100,215,1.1,{c:'#FFFFFF',lg:'#6F8FB8',gl:1,h:'#555',talk:1})+DESK(190,215,.45)+MED(190,194,.9)+P(270,215,1.1,{c:'#4F7CAC',flip:1})+THERMO(310,170,.8,.75)+TV(345,120,.5,CLOUD(0,-50,.5,'#9AA8B4')+RAIN(-20,-44,40,24)),
+   bub:[[100,108,'ゆっくり 休{やす}んだ ほうが いいですよ。','Sebaiknya istirahat yang cukup.']],
+   hot:[[296,130,30,44,'かぜ かも しれません。','Mungkin flu.'],[316,74,60,44,'あしたは 雨{あめ}が 降{ふ}る でしょう。','Besok kemungkinan besar hujan.'],[176,160,30,38,'この 薬{くすり}を 飲{の}んだ ほうが いいです。','Sebaiknya minum obat ini.']]},
+  points:[
+   {p:'V た ほうが いいです',e:'Saran yang cukup kuat: "sebaiknya".',ex:[['毎日{まいにち} 運動{うんどう}した ほうが いいです。','Sebaiknya berolahraga setiap hari.']]},
+   {p:'V ない ほうが いいです',e:'"Sebaiknya tidak".',ex:[['暗{くら}い ところで 本{ほん}を 読{よ}まない ほうが いいですよ。','Sebaiknya jangan membaca di tempat gelap.']]},
+   {p:'Bentuk biasa + でしょう',e:'Perkiraan yang hampir pasti, sering dengan きっと. な-adj dan kata benda tanpa だ.',ex:[['あしたは 雪{ゆき}が 降{ふ}る でしょう。','Besok kemungkinan besar turun salju.']]},
+   {p:'Bentuk biasa + かも しれません',e:'Kemungkinan yang lebih kecil: "mungkin".',ex:[['約束{やくそく}の 時間{じかん}に 間{ま}に 合{あ}わない かも しれません。','Mungkin saya tidak keburu pada jam yang dijanjikan.']]}],
+  nu:[
+   {a:'V たら いいですよ',b:'V た ほうが いいですよ',la:3,lb:3,t:'〜たらいい hanya rekomendasi ringan. 〜たほうがいい lebih kuat dan menyiratkan akibat buruk jika tidak dilakukan. Kepada atasan, lebih aman memakai 〜たほうがいいと思います.'},
+   {a:'でしょう？ (N5, naik ↗)',b:'でしょう (N4, turun ↘)',la:3,lb:3,t:'Di N5, でしょう？ dengan intonasi naik meminta persetujuan ("…kan?"). Di N4, でしょう dengan intonasi turun menyatakan perkiraan, seperti pada ramalan cuaca.'},
+   {a:'でしょう',b:'かも しれません',la:3,lb:3,t:'でしょう = hampir pasti (sekitar 80%). かもしれません = mungkin saja (sekitar 50% atau kurang).'}],
+  vx:[['運動{うんどう}','olahraga',32],['雪{ゆき}','salju',32],['間{ま}に 合{あ}います','keburu / tepat waktu',32],['きっと','pasti',32]],
+  quiz:[
+   {q:'Sebaiknya tidak minum alkohol: お酒{さけ}を 飲{の}ま（　） ほうが いいです。',o:['ない','なかった','ず'],a:0,x:'<b>Vない</b> ほうがいい.'},
+   {q:'Perkiraan hampir pasti: きっと 晴{は}れる （　）。',o:['でしょう','かも しれません','ほうが いい'],a:0,x:'Dengan きっと: <b>でしょう</b>.'},
+   {q:'暇{ひま}（　） かも しれません。',o:['(tanpa だ)','だ','な'],a:0,x:'な-adj langsung + かもしれません: 暇かもしれません.'}],
+  kw:[{k:'k',p:'Pabrik · rekan kurang sehat',sp:['山田{やまだ}','アンディ'],l:[
+   [0,'アンディさん、 顔色{かおいろ}が 悪{わる}いですよ。','Andi, wajahmu pucat lho.'],
+   [1,'ちょっと 熱{ねつ}が ある *かも しれません*。','Mungkin saya agak demam.'],
+   [0,'無理{むり}しない *ほうが いいですよ*。 田中{たなか}さんに 言{い}った *ほうが いい*。','Sebaiknya jangan memaksakan diri. Sebaiknya bilang ke Pak Tanaka.'],
+   [1,'そうですね。 今{いま} 相談{そうだん}して きます。','Benar juga. Saya konsultasi sekarang.']],
+   tip:'Di Jepang, memaksakan diri saat sakit justru bisa merepotkan tim. Laporkan kondisi badan lebih awal.'},
+   {k:'h',p:'Asrama · rencana piknik',sp:['リナ','アンディ'],l:[
+   [0,'あした 雨{あめ}が *降{ふ}る でしょう*か。','Kira-kira besok hujan ya?'],
+   [1,'天気予報{てんきよほう}では、 午後{ごご}は *降{ふ}る かも しれません*。','Menurut ramalan cuaca, sore mungkin hujan.'],
+   [0,'じゃ、 傘{かさ}を *持{も}って 行{い}った ほうが いいですね*。','Kalau begitu, sebaiknya bawa payung ya.'],
+   [1,'ええ、 そうしましょう。','Ya, ayo begitu.']],
+   tip:'Payung plastik murah dijual di hampir semua konbini saat hujan tiba-tiba.'}]},
+ {id:'n4-b33',bab:33,title:'Bab 33 · Perintah dan Larangan',jp:'命令形{めいれいけい}・禁止形{きんしけい}',sum:'Bentuk perintah dan larangan, arti tanda, serta menyampaikan pesan orang lain.',
+  scene:{bg:'street',alt:'Tanda berhenti, tanda dilarang masuk, dan pelatih memberi semangat',
+   art:()=>STOP(80,150,1.1)+`<rect x="160" y="96" width="80" height="44" rx="4" fill="#FFFDF8" stroke="#C8372D" stroke-width="3"/>`+TXT(200,124,'立入禁止',14,'#C8372D',800)+`<rect x="198" y="140" width="4" height="60" fill="#B8A898"/>`+P(320,215,1.05,{c:'#3E7D4F',arm:'wave',talk:1}),
+   bub:[[320,108,'がんばれ！','Ayo semangat!']],
+   hot:[[46,94,70,56,'「止{と}まれ」は 止{と}まって くださいと いう 意味{いみ}です。','"Tomare" artinya berhentilah.'],[160,96,80,44,'「立入禁止{たちいりきんし}」は 入{はい}るなと いう 意味{いみ}です。','"Tachiiri kinshi" artinya jangan masuk.']]},
+  cj:'imp',
+  points:[
+   {p:'Bentuk perintah',e:'Gol. I: bunyi い → baris え (急げ). Gol. II: ます → ろ (食べろ). Gol. III: しろ, 来{こ}い. Terdengar kasar, umumnya dipakai laki-laki, pada tanda, atau saat darurat dan olahraga.',ex:[['急{いそ}げ！','Cepat!']]},
+   {p:'V(kamus) な',e:'Larangan kasar: "jangan …!".',ex:[['触{さわ}るな。','Jangan sentuh!']]},
+   {p:'X は Y と いう 意味{いみ}です',e:'Menjelaskan arti suatu kata atau tanda.',ex:[['「禁煙{きんえん}」は たばこを 吸{す}うなと いう 意味{いみ}です。','"Kin\'en" artinya dilarang merokok.']]},
+   {p:'〜と 言{い}って いました / 〜と 伝{つた}えて いただけませんか',e:'Menyampaikan ucapan orang lain, dan meminta tolong menyampaikan pesan.',ex:[['田中{たなか}さんは あした 休{やす}むと 言{い}って いました。','Pak Tanaka bilang besok dia libur.'],['会議{かいぎ}は 3時{さんじ}からだと 伝{つた}えて いただけませんか。','Bisakah Anda sampaikan bahwa rapat mulai jam 3?']]}],
+  nu:[
+   {a:'待{ま}って ください / 待{ま}たないで ください',b:'待{ま}て / 待{ま}つな',la:3,lb:1,t:'Bentuk perintah dan larangan N4 sangat kasar. Jangan pernah dipakai kepada atasan atau pelanggan. Cukup dipahami saat muncul di tanda, berita, atau dalam keadaan darurat.'},
+   {a:'書{か}きなさい',b:'書{か}け',la:2,lb:1,t:'〜なさい adalah perintah yang lebih halus, biasanya dari orang tua atau guru kepada anak atau murid. Juga sering muncul pada petunjuk soal ujian.'},
+   {a:'〜と 言{い}いました',b:'〜と 言{い}って いました',la:3,lb:3,t:'言いました hanya melaporkan fakta. 言っていました dipakai saat menyampaikan pesan orang lain kepada pihak ketiga.'}],
+  vx:[['止{と}まれ','berhenti! (tanda)',33],['立入禁止{たちいりきんし}','dilarang masuk',33],['意味{いみ}','arti',33],['伝{つた}えます','menyampaikan',33]],
+  quiz:[
+   {q:'Bentuk perintah dari 急{いそ}ぎます:',o:['急{いそ}げ','急{いそ}ぎろ','急{いそ}ごう'],a:0,x:'Gol. I: ぎ → <b>げ</b>.'},
+   {q:'Bentuk perintah dari 来{き}ます:',o:['来{こ}い','来{き}ろ','来{く}れ'],a:0,x:'Gol. III: <b>来{こ}い</b>.'},
+   {q:'Menyampaikan ucapan atasan kepada rekan: 部長{ぶちょう}は 遅{おく}れると （　）。',o:['言{い}って いました','言{い}って ください','言{い}うな'],a:0,x:'Menyampaikan pesan: <b>言っていました</b>.'}],
+  kw:[{k:'k',p:'Kantor · menyampaikan pesan',sp:['アンディ','山田{やまだ}'],l:[
+   [0,'山田{やまだ}さん、 田中{たなか}さんが 会議{かいぎ}は 3時{さんじ}からだと *言{い}って いました*。','Pak Yamada, Pak Tanaka bilang rapat mulai jam 3.'],
+   [1,'わかりました。 ありがとう。','Baik. Terima kasih.'],
+   [0,'それから、 あの 「関係者以外{かんけいしゃいがい}立入禁止{たちいりきんし}」は どういう *意味{いみ}ですか*。','Lalu, tulisan itu artinya apa?'],
+   [1,'関係{かんけい}ない 人{ひと}は *入{はい}るな と いう 意味{いみ}です*。','Artinya orang yang tidak berkepentingan jangan masuk.']],
+   tip:'Tanda dengan 禁止{きんし} selalu berarti larangan. Hafalkan juga 注意{ちゅうい} (hati-hati) dan 危険{きけん} (berbahaya).'},
+   {k:'h',p:'Lapangan · menonton sepak bola',sp:['ブディ','アンディ'],l:[
+   [0,'行{い}け！ *走{はし}れ*！','Maju! Lari!'],
+   [1,'がんばれ！ *負{ま}けるな*！','Semangat! Jangan kalah!'],
+   [0,'あ、 ゴール！','Ah, gol!'],
+   [1,'やった！','Yes!']],
+   tip:'Bentuk perintah wajar dipakai untuk menyemangati saat olahraga. Dalam keadaan lain, terdengar kasar.'}]},
+ {id:'n4-b34',bab:34,title:'Bab 34 · Sesuai dan Setelah',jp:'〜とおりに・〜あとで・〜ないで',sum:'Melakukan sesuai contoh, urutan dengan あとで, dan "dengan / tanpa" memakai 〜て / 〜ないで.',
+  scene:{bg:'room',alt:'Guru memperagakan dan murid mengikuti',
+   art:()=>BOARD(140,24,170,60,'① → ② → ③',16)+P(90,215,1.05,{c:'#6B4E3A',h:'#555',gl:1,arm:'point',talk:1})+P(220,215,1.05,{c:'#4F7CAC'})+DESK(330,215,.5)+JUICE(330,190,1),
+   bub:[[90,108,'わたしが やった とおりに、 やって ください。','Lakukan sesuai yang saya peragakan.']],
+   hot:[[56,24,170,60,'説明書{せつめいしょ}の とおりに 組{く}み立{た}てます。','Merakit sesuai buku panduan.'],[310,160,40,40,'コーヒーは 砂糖{さとう}を 入{い}れないで 飲{の}みます。','Saya minum kopi tanpa gula.']]},
+  points:[
+   {p:'V た / N の とおりに、 V',e:'"Sesuai dengan".',ex:[['先生{せんせい}が 言{い}った とおりに、 書{か}いて ください。','Tulislah sesuai yang dikatakan guru.'],['説明書{せつめいしょ}の とおりに 組{く}み立{た}てました。','Saya merakit sesuai buku panduan.']]},
+   {p:'V た / N の あとで、 V',e:'"Setelah …".',ex:[['仕事{しごと}が 終{お}わった あとで、 飲{の}みに 行{い}きませんか。','Setelah kerja selesai, mau pergi minum?']]},
+   {p:'V て / V ないで、 V2',e:'〜て = "dengan" keadaan itu. 〜ないで = "tanpa", atau memilih tidak melakukan yang satu.',ex:[['傘{かさ}を 持{も}たないで 出{で}かけました。','Saya pergi tanpa membawa payung.'],['エレベーターに 乗{の}らないで、 階段{かいだん}を 使{つか}います。','Saya tidak naik lift, tapi pakai tangga.']]}],
+  nu:[
+   {a:'V て から',b:'V た あとで',la:3,lb:3,t:'〜てから (N5) menekankan urutan yang tidak boleh dibalik dan langsung bersambung (cuci tangan dulu, baru makan). 〜たあとで hanya menyatakan waktu sesudahnya, tanpa penekanan urutan.'},
+   {a:'V ないで ください',b:'V ないで V2',la:3,lb:3,t:'Di N5, 〜ないでください berarti "jangan". Di N4, 〜ないで juga dipakai untuk menyatakan cara atau keadaan: "tanpa …".'}],
+  vx:[['説明書{せつめいしょ}','buku panduan',34],['組{く}み立{た}てます','merakit',34],['砂糖{さとう}','gula',34],['階段{かいだん}','tangga',34]],
+  quiz:[
+   {q:'地図{ちず}の （　） 行{い}って ください。',o:['とおりに','あとで','ないで'],a:0,x:'Kata benda + の <b>とおりに</b>.'},
+   {q:'Setelah makan: 食{た}べた （　）、 薬{くすり}を 飲{の}みます。',o:['あとで','とおりに','ながら'],a:0,x:'<b>Vた あとで</b>.'},
+   {q:'"Tanpa sarapan pergi ke kantor":',o:['朝{あさ}ごはんを 食{た}べないで 会社{かいしゃ}へ 行{い}きました。','朝{あさ}ごはんを 食{た}べなくて 会社{かいしゃ}へ 行{い}きました。','朝{あさ}ごはんを 食{た}べて 会社{かいしゃ}へ 行{い}きました。'],a:0,x:'"Tanpa": <b>〜ないで</b>.'}],
+  kw:[{k:'k',p:'Pabrik · mengikuti prosedur',sp:['田中{たなか}','アンディ'],l:[
+   [0,'この 部品{ぶひん}は マニュアル*の とおりに* 組{く}み立{た}てて ください。','Rakit komponen ini sesuai manual.'],
+   [1,'はい。 組{く}み立{た}てた *あとで*、 検査{けんさ}を しますか。','Baik. Setelah merakit, apakah perlu diperiksa?'],
+   [0,'ええ。 手袋{てぶくろ}を *外{はず}さないで* 検査{けんさ}して ください。','Ya. Periksa tanpa melepas sarung tangan.'],
+   [1,'わかりました。 わたしが やった とおりで いいか、 見{み}て いただけませんか。','Baik. Bisakah Bapak melihat apakah cara saya sudah sesuai?']],
+   tip:'Di pabrik Jepang, bekerja persis sesuai prosedur (手順{てじゅん}) lebih dihargai daripada cara sendiri yang lebih cepat.'},
+   {k:'h',p:'Kafe · memesan kopi',sp:['店員{てんいん}','アンディ'],l:[
+   [0,'コーヒーに 砂糖{さとう}と ミルクは お使{つか}いですか。','Apakah memakai gula dan susu?'],
+   [1,'砂糖{さとう}は *入{い}れないで*、 ミルクだけ お願{ねが}いします。','Tanpa gula, susu saja.'],
+   [0,'かしこまりました。','Baik.'],
+   [1,'食{た}べた *あとで* 払{はら}っても いいですか。','Boleh bayar setelah makan?']],
+   tip:'Di banyak kafe Jepang, pembayaran dilakukan di depan saat memesan. Bertanya dulu itu sopan.'}]},
+ {id:'n4-b35',bab:35,title:'Bab 35 · Kalimat Bersyarat ば',jp:'条件形{じょうけんけい}・〜なら',sum:'Syarat dengan ば dan なら, perbedaan dengan と / たら, dan どうすれば いいですか.',
+  scene:{bg:'street',alt:'Mesin penjual otomatis dan Andi yang bingung',
+   art:()=>VEND(110,205,1.1)+P(220,215,1.05,{c:'#4F7CAC',arm:'point'})+QMARK(240,90)+P(320,215,1.05,{c:'#3E7D4F',flip:1,talk:1}),
+   bub:[[200,56,'どう すれば いいですか。','Sebaiknya bagaimana?'],[320,110,'ボタンを 押{お}せば、 出{で}ますよ。','Kalau tombolnya ditekan, keluar kok.']],
+   hot:[[82,104,56,40,'お金{かね}を 入{い}れれば、 ボタンが 光{ひか}ります。','Kalau uang dimasukkan, tombolnya menyala.'],[84,168,52,30,'安{やす}ければ、 二{ふた}つ 買{か}います。','Kalau murah, saya beli dua.']]},
+  cj:'ba',
+  points:[
+   {p:'Bentuk ば',e:'Gol. I: bunyi い → baris え + ば (行けば). Gol. II: ます → れば (見れば). Gol. III: すれば, 来{く}れば. い-adj: い → ければ (高ければ). Negatif: ない → なければ.',ex:[['ボタンを 押{お}せば、 水{みず}が 出{で}ます。','Kalau tombolnya ditekan, air keluar.']]},
+   {p:'な-adj / N なら',e:'"Kalau …". Juga dipakai untuk menanggapi topik dari lawan bicara.',ex:[['あした 雨{あめ}なら、 行{い}きません。','Kalau besok hujan, saya tidak pergi.'],['温泉{おんせん}なら、 箱根{はこね}が いいですよ。','Kalau soal onsen, Hakone bagus.']]},
+   {p:'どう すれば いいですか',e:'Meminta petunjuk cara. Sama artinya dengan どうしたらいいですか.',ex:[['本{ほん}を 借{か}りたいんですが、 どう すれば いいですか。','Saya ingin meminjam buku, sebaiknya bagaimana?']]},
+   {p:'N は ありませんか',e:'Pertanyaan negatif untuk meminta dengan halus, memudahkan lawan bicara menjawab "tidak ada".',ex:[['どこか いい 所{ところ}は ありませんか。','Apakah ada tempat yang bagus?']]}],
+  nu:[
+   {a:'〜たら (N5)',b:'〜ば',la:3,lb:3,t:'たら paling luas pemakaiannya dan bisa berarti "setelah". ば menekankan syarat: hasil bergantung pada syarat itu. ば tidak bisa dipakai untuk "setelah" (10時になったら, bukan 10時になれば).'},
+   {a:'〜と (N5)',b:'〜ば / 〜なら',la:3,lb:3,t:'と untuk akibat otomatis (tombol ditekan → air keluar). なら untuk menanggapi topik dari lawan bicara dan memberi saran.'}],
+  vx:[['押{お}します','menekan',35],['光{ひか}ります','menyala / bersinar',35],['借{か}ります','meminjam',35],['受付{うけつけ}','resepsionis',35]],
+  quiz:[
+   {q:'Bentuk ば dari 行{い}きます:',o:['行{い}けば','行{い}きれば','行{い}かば'],a:0,x:'Gol. I: き → <b>け</b> + ば.'},
+   {q:'Bentuk ば dari 高{たか}い:',o:['高{たか}ければ','高{たか}いれば','高{たか}いなら'],a:0,x:'い-adj: <b>ければ</b>.'},
+   {q:'"Setelah jam 10, ayo berangkat":',o:['10時{じゅうじ}に なったら、 出{で}かけましょう。','10時{じゅうじ}に なれば、 出{で}かけましょう。','10時{じゅうじ}なら、 出{で}かけましょう。'],a:0,x:'Arti "setelah" hanya bisa dengan <b>たら</b>.'}],
+  kw:[{k:'k',p:'Kantor · prosedur cuti',sp:['アンディ','事務{じむ}の 人{ひと}'],l:[
+   [0,'有給休暇{ゆうきゅうきゅうか}を 取{と}りたいんですが、 *どう すれば いいですか*。','Saya ingin mengambil cuti berbayar, sebaiknya bagaimana?'],
+   [1,'この 用紙{ようし}に 書{か}いて、 部長{ぶちょう}の はんこを もらって ください。','Isi formulir ini, lalu minta cap dari kepala bagian.'],
+   [0,'部長{ぶちょう}が *いなければ*、 どう しますか。','Kalau kepala bagian tidak ada, bagaimana?'],
+   [1,'部長{ぶちょう}が いない *なら*、 田中{たなか}さんでも 大丈夫{だいじょうぶ}ですよ。','Kalau beliau tidak ada, Pak Tanaka juga tidak apa-apa.']],
+   tip:'有給休暇{ゆうきゅうきゅうか} (cuti berbayar) adalah hak pekerja. Ajukan dengan formulir sesuai prosedur kantor.'},
+   {k:'h',p:'Asrama · mencari tempat wisata',sp:['アンディ','鈴木{すずき}'],l:[
+   [0,'週末{しゅうまつ}、 旅行{りょこう}しようと 思{おも}って いるんですが、 どこか いい 所{ところ}は *ありませんか*。','Akhir pekan saya ingin berwisata. Apakah ada tempat yang bagus?'],
+   [1,'紅葉{こうよう}*なら*、 京都{きょうと}が いいですよ。','Kalau soal daun momiji, Kyoto bagus.'],
+   [0,'電車{でんしゃ}で 行{い}けますか。','Bisa naik kereta?'],
+   [1,'新幹線{しんかんせん}に *乗{の}れば*、 2時間{にじかん}ぐらいです。','Kalau naik shinkansen, sekitar 2 jam.']],
+   tip:'紅葉{こうよう} (daun musim gugur) paling indah sekitar November di Kyoto.'}]},
+ {id:'n4-b36',bab:36,title:'Bab 36 · Supaya dan Menjadi Bisa',jp:'〜ように・〜ように なります・〜ように します',sum:'Tujuan dengan ように, perubahan kemampuan dengan ようになります, dan usaha dengan ようにします.',
+  scene:{bg:'sky',alt:'Andi berenang di kolam dan jam weker',
+   art:()=>POOL(110,180,200)+`<g transform="translate(210 190)"><circle cx="0" cy="-6" r="9" fill="#F2C9A0"/><path d="M-9 -12 Q0 -20 9 -12" fill="#3B2A20"/><path d="M8 -4 L28 -14" stroke="#F2C9A0" stroke-width="5" stroke-linecap="round"/><path d="M-8 -4 L-26 2" stroke="#F2C9A0" stroke-width="5" stroke-linecap="round"/></g>`+CLOCK(350,60,22,7,0)+P(60,215,.9,{c:'#3E7D4F',arm:'wave'}),
+   bub:[[210,150,'泳{およ}げるように なりました！','Saya jadi bisa berenang!']],
+   hot:[[326,36,48,48,'遅{おく}れないように、 早{はや}く 起{お}きます。','Supaya tidak terlambat, saya bangun pagi.'],[40,120,44,96,'毎日{まいにち} 練習{れんしゅう}するように して います。','Saya mengusahakan berlatih setiap hari.']]},
+  points:[
+   {p:'V(kamus / ない) ように、 V2',e:'"Supaya". Kata kerja sebelum ように biasanya bukan kehendak: potensial, ない, atau kata kerja seperti わかる / 見える.',ex:[['早{はや}く 泳{およ}げるように、 毎日{まいにち} 練習{れんしゅう}して います。','Supaya cepat bisa berenang, saya berlatih setiap hari.'],['忘{わす}れないように、 メモします。','Supaya tidak lupa, saya catat.']]},
+   {p:'V(kamus) ように なります',e:'Perubahan dari tidak bisa menjadi bisa, atau kebiasaan baru.',ex:[['やっと 自転車{じてんしゃ}に 乗{の}れるように なりました。','Akhirnya saya jadi bisa naik sepeda.']]},
+   {p:'V(kamus / ない) ように して います',e:'Berusaha membiasakan sesuatu.',ex:[['毎日{まいにち} 日記{にっき}を 書{か}くように して います。','Saya membiasakan menulis buku harian setiap hari.']]},
+   {p:'V ように して ください',e:'Permintaan halus agar seseorang membiasakan atau memperhatikan sesuatu.',ex:[['時間{じかん}を 守{まも}るように して ください。','Tolong usahakan selalu tepat waktu.']]}],
+  nu:[
+   {a:'V て ください',b:'V ように して ください',la:3,lb:4,t:'〜てください meminta satu tindakan sekarang. 〜ようにしてください meminta orang membiasakan atau memperhatikan sesuatu. Terdengar lebih halus dan sering dipakai atasan untuk aturan kerja.'},
+   {a:'〜く / 〜に なります (N5)',b:'V ように なります',la:3,lb:3,t:'Di N5, なります dipakai dengan kata sifat dan kata benda (寒くなります). Di N4, kata kerja memakai ようになります (話せるようになりました).'}],
+  vx:[['泳{およ}ぎます','berenang',36],['練習{れんしゅう}','latihan',36],['日記{にっき}','buku harian',36],['守{まも}ります','menepati / menjaga',36]],
+  quiz:[
+   {q:'Supaya tidak lupa: 忘{わす}れない （　）、 書{か}いて おきます。',o:['ように','ために','とおりに'],a:0,x:'Bukan kehendak (ない) → <b>ように</b>.'},
+   {q:'"Saya jadi bisa makan natto":',o:['納豆{なっとう}が 食{た}べられるように なりました。','納豆{なっとう}が 食{た}べられるに なりました。','納豆{なっとう}が 食{た}べるように しました。'],a:0,x:'Perubahan kemampuan: potensial + <b>ようになりました</b>.'},
+   {q:'Aturan kerja yang halus: 遅刻{ちこく}しない ように （　）。',o:['して ください','なって ください','あります'],a:0,x:'<b>ようにしてください</b>.'}],
+  kw:[{k:'k',p:'Pabrik · nasihat atasan',sp:['田中{たなか}','アンディ'],l:[
+   [0,'アンディさん、 日本語{にほんご}が 上手{じょうず}に なりましたね。','Andi, bahasa Jepangmu sudah makin pandai ya.'],
+   [1,'ありがとう ございます。 電話{でんわ}も 少{すこ}し *できるように なりました*。','Terima kasih. Sekarang saya juga sedikit bisa menelepon.'],
+   [0,'これからは 作業{さぎょう}の 前{まえ}に 必{かなら}ず 確認{かくにん}する *ように して ください*。','Mulai sekarang, usahakan selalu mengecek sebelum bekerja.'],
+   [1,'はい。 忘{わす}れない *ように*、 メモして おきます。','Baik. Supaya tidak lupa, akan saya catat.']],
+   tip:'Bila atasan berkata 〜ようにしてください, itu adalah aturan yang harus dibiasakan, bukan sekadar saran.'},
+   {k:'h',p:'Gym · cerita latihan',sp:['リナ','アンディ'],l:[
+   [0,'最近{さいきん} 元気{げんき}ですね。','Akhir-akhir ini kamu segar ya.'],
+   [1,'毎朝{まいあさ} 走{はし}る *ように して います*。','Saya membiasakan lari setiap pagi.'],
+   [0,'すごい！ 前{まえ}は 運動{うんどう}が 嫌{きら}いでしたよね。','Hebat! Dulu kamu tidak suka olahraga kan.'],
+   [1,'ええ。 でも、 今{いま}は 5キロ *走{はし}れるように なりました*。','Ya. Tapi sekarang saya jadi bisa lari 5 km.']],
+   tip:'Kebiasaan sehat seperti olahraga pagi membantu menjaga stamina saat bekerja di Jepang.'}]},
+ {id:'n4-b37',bab:37,title:'Bab 37 · Kalimat Pasif',jp:'受身形{うけみけい}',sum:'Kalimat pasif untuk dipuji, dimarahi, atau terganggu, serta pasif untuk fakta umum.',
+  scene:{bg:'room',alt:'Perbandingan kalimat aktif dan pasif',
+   modes:[
+    {label:'Aktif',art:()=>P(120,215,1.1,{c:'#6B4E3A',h:'#555',gl:1,arm:'point',talk:1})+P(290,215,1.1,{c:'#4F7CAC',flip:1})+ARROW(150,140,250,140)+TXT(200,130,'ほめました',11,'#B5462F',800),
+     bub:[[120,108,'先生{せんせい}が わたしを 褒{ほ}めました。','Guru memuji saya.']]},
+    {label:'Pasif',art:()=>P(120,215,1.1,{c:'#6B4E3A',h:'#555',gl:1})+P(290,215,1.1,{c:'#4F7CAC',flip:1,talk:1})+HEART(320,90)+ARROW(250,140,150,140,'#3E7D4F')+TXT(200,130,'ほめられました',11,'#3E7D4F',800),
+     bub:[[290,108,'わたしは 先生{せんせい}に 褒{ほ}められました。','Saya dipuji oleh guru.']]},
+    {label:'Pasif "terganggu"',art:()=>CLOUD(200,40,1.4,'#9AA8B4')+RAIN(120,56,160,120)+P(200,215,1.05,{c:'#D9802F'}),
+     bub:[[200,108,'雨{あめ}に 降{ふ}られました。','Saya kehujanan.']]}]},
+  cj:'pas',
+  points:[
+   {p:'Bentuk pasif',e:'Gol. I: bunyi い → baris あ + れる (い → わ: 言われる). Gol. II: ます → られる. Gol. III: される, 来{こ}られる.',ex:[['褒{ほ}めます → 褒{ほ}められます','memuji → dipuji']]},
+   {p:'N1(orang) は N2 に V(pasif)',e:'Orang yang terkena tindakan menjadi topik.',ex:[['わたしは 部長{ぶちょう}に 呼{よ}ばれました。','Saya dipanggil oleh kepala bagian.']]},
+   {p:'N1 は N2 に N3 を V(pasif)',e:'Barang milik seseorang terkena tindakan. Topiknya pemilik barang, bukan barangnya. Sering bernuansa terganggu.',ex:[['わたしは 弟{おとうと}に パソコンを 壊{こわ}されました。','Komputer saya dirusak oleh adik.']]},
+   {p:'N が / は V(pasif) (fakta umum)',e:'Untuk acara, produk, atau fakta umum tanpa menyebut pelaku.',ex:[['この お寺{てら}は 800年前{はっぴゃくねんまえ}に 建{た}てられました。','Kuil ini dibangun 800 tahun lalu.']]}],
+  nu:[
+   {a:'V て もらいました',b:'V(pasif) ました',la:3,lb:3,t:'Keduanya berarti "di-". 〜てもらいました mengandung rasa terima kasih. Pasif sering bernuansa terganggu atau netral. 友達に自転車を修理してもらいました = bersyukur.'},
+   {a:'V(pasif)',b:'V(potensial) Gol. II',la:3,lb:3,t:'Untuk Gol. II, bentuk pasif dan potensial sama (食べられる). Bedakan dari konteks: に + pelaku → pasif, が + objek → potensial.'}],
+  vx:[['褒{ほ}めます','memuji',37],['叱{しか}ります','memarahi',37],['壊{こわ}します','merusak',37],['建{た}てます','membangun',37]],
+  quiz:[
+   {q:'Pasif dari 言{い}います:',o:['言{い}われます','言{い}いられます','言{い}えます'],a:0,x:'い → <b>わ</b> + れます.'},
+   {q:'わたしは 母{はは}（　） 叱{しか}られました。',o:['に','を','が'],a:0,x:'Pelaku dalam pasif: <b>に</b>.'},
+   {q:'"Saya kecopetan dompet":',o:['わたしは 財布{さいふ}を 盗{ぬす}まれました。','わたしの 財布{さいふ}は 盗{ぬす}みました。','財布{さいふ}が わたしを 盗{ぬす}まれました。'],a:0,x:'Pemilik sebagai topik: <b>わたしは N を V(pasif)</b>.'}],
+  kw:[{k:'k',p:'Kantor · dipuji atasan',sp:['山田{やまだ}','アンディ'],l:[
+   [0,'アンディさん、 うれしそうですね。','Andi, kelihatannya senang ya.'],
+   [1,'ええ、 部長{ぶちょう}に 報告書{ほうこくしょ}を *褒{ほ}められたんです*。','Ya, laporan saya dipuji kepala bagian.'],
+   [0,'よかったですね。 わたしは きのう *叱{しか}られました*よ。','Syukurlah. Saya kemarin dimarahi lho.'],
+   [1,'え、 どうしてですか。','Hah, kenapa?'],
+   [0,'会議{かいぎ}に 遅{おく}れて しまったんです。','Saya terlambat rapat.']],
+   tip:'Saat dimarahi atasan, cukup jawab 申{もう}し訳{わけ}ありません dan jelaskan perbaikannya, bukan alasan panjang.'},
+   {k:'h',p:'Stasiun · hari sial',sp:['リナ','アンディ'],l:[
+   [0,'どう したんですか。 服{ふく}が ぬれて いますよ。','Kenapa? Bajumu basah lho.'],
+   [1,'途中{とちゅう}で *雨{あめ}に 降{ふ}られたんです*。','Saya kehujanan di jalan.'],
+   [0,'大変{たいへん}でしたね。','Repot ya.'],
+   [1,'それに、 電車{でんしゃ}で 足{あし}を *踏{ふ}まれました*。','Lagi pula, kaki saya terinjak di kereta.']],
+   tip:'雨{あめ}に降{ふ}られる adalah pasif khas bahasa Jepang untuk menyatakan "kehujanan" dengan rasa terganggu.'}]},
+ {id:'n4-b38',bab:38,title:'Bab 38 · Membendakan dengan の',jp:'〜のは・〜のが・〜のを',sum:'Mengubah kata kerja menjadi kata benda dengan の, dan memberi penekanan dengan 〜のは 〜です.',
+  scene:{bg:'autumn',alt:'Andi merawat bunga di taman',
+   art:()=>FLOWER(150,205,1.2)+FLOWER(175,205,1,'#F4B642')+FLOWER(200,205,1.2,'#B5462F')+P(100,215,1.05,{c:'#3E7D4F',arm:'hold'})+BOX(320,215,.9)+THINK(320,70,100,50,TXT(320,74,'ぎゅうにゅう',10,'#B5462F',800))+FLEAVES(5),
+   bub:[[100,108,'花{はな}を 育{そだ}てるのが 好{す}きです。','Saya suka merawat bunga.']],
+   hot:[[270,44,100,56,'牛乳{ぎゅうにゅう}を 買{か}うのを 忘{わす}れました。','Saya lupa membeli susu.'],[136,160,80,48,'花{はな}を 見{み}るのは 楽{たの}しいです。','Melihat bunga itu menyenangkan.']]},
+  points:[
+   {p:'V(biasa) のは Adj です',e:'Kegiatan dijadikan topik.',ex:[['テニスを するのは おもしろいです。','Bermain tenis itu menarik.']]},
+   {p:'V(biasa) のが Adj です',e:'Dengan 好き, 上手, 早い, dan sejenisnya.',ex:[['わたしは 絵{え}を 描{か}くのが 好{す}きです。','Saya suka menggambar.']]},
+   {p:'V(biasa) のを 忘{わす}れました / 知{し}って いますか',e:'Kegiatan sebagai objek.',ex:[['電気{でんき}を 消{け}すのを 忘{わす}れました。','Saya lupa mematikan lampu.'],['田中{たなか}さんが 結婚{けっこん}したのを 知{し}って いますか。','Tahu bahwa Pak Tanaka sudah menikah?']]},
+   {p:'〜のは N です',e:'Menekankan informasi penting di akhir kalimat.',ex:[['父{ちち}が 生{う}まれたのは 北海道{ほっかいどう}の 小{ちい}さな 村{むら}です。','Tempat ayah saya lahir adalah sebuah desa kecil di Hokkaido.']]}],
+  nu:[
+   {a:'V ことが 好{す}きです',b:'V のが 好{す}きです',la:3,lb:3,t:'Keduanya bisa dipakai. の lebih alami dalam percakapan. こと lebih formal dan wajib dipakai dalam ungkapan tetap seperti 〜ことができます dan 趣味は〜ことです.'},
+   {a:'忘{わす}れました',b:'〜のを 忘{わす}れました',la:3,lb:3,t:'Di N5, objek 忘れました hanya kata benda (傘を忘れました). Di N4, kegiatan juga bisa menjadi objek: 電気を消すのを忘れました.'}],
+  vx:[['育{そだ}てます','merawat / membesarkan',38],['牛乳{ぎゅうにゅう}','susu',38],['描{か}きます','menggambar',38],['村{むら}','desa',38]],
+  quiz:[
+   {q:'"Saya suka berenang": わたしは 泳{およ}ぐ （　） 好{す}きです。',o:['のが','のを','のは'],a:0,x:'Dengan 好き: <b>のが</b>.'},
+   {q:'鍵{かぎ}を かける （　） 忘{わす}れました。',o:['のを','のが','のに'],a:0,x:'Objek 忘れました: <b>のを</b>.'},
+   {q:'Ungkapan tetap: 日本語{にほんご}を 話{はな}す （　） が できます。',o:['こと','の','もの'],a:0,x:'〜<b>こと</b>ができます tidak bisa diganti の.'}],
+  kw:[{k:'k',p:'Kantor · lupa sesuatu',sp:['田中{たなか}','アンディ'],l:[
+   [0,'アンディさん、 倉庫{そうこ}の 鍵{かぎ}は？','Andi, kunci gudangnya?'],
+   [1,'あ、 すみません。 鍵{かぎ}を *かけるのを 忘{わす}れて しまいました*。','Ah, maaf. Saya lupa menguncinya.'],
+   [0,'今{いま}から かけて きて ください。','Tolong kunci sekarang.'],
+   [1,'はい。 これからは 帰{かえ}る 前{まえ}に 確認{かくにん}するように します。','Baik. Mulai sekarang saya akan mengecek sebelum pulang.']],
+   tip:'Saat lupa sesuatu, minta maaf lalu sebutkan pencegahannya dengan 〜ようにします.'},
+   {k:'h',p:'Taman · bicara soal hobi',sp:['鈴木{すずき}','アンディ'],l:[
+   [0,'アンディさんは 何{なに}を *するのが 好{す}きですか*。','Andi suka melakukan apa?'],
+   [1,'写真{しゃしん}を *撮{と}るのが 好{す}きです*。','Saya suka memotret.'],
+   [0,'いいですね。 日本{にほん}で いちばん よかった *のは* どこですか。','Bagus. Tempat yang paling bagus di Jepang di mana?'],
+   [1,'いちばん よかった *のは* 秋{あき}の 京都{きょうと}です。','Yang paling bagus adalah Kyoto di musim gugur.']],
+   tip:'〜のは〜です membuat jawabanmu terdengar jelas dan terarah.'}]},
+ {id:'n4-b39',bab:39,title:'Bab 39 · Sebab dan Alasan',jp:'〜て / 〜で（原因{げんいん}）・〜ので・〜途中{とちゅう}で',sum:'Sebab dengan 〜て / 〜で, alasan halus dengan ので, dan 途中で.',
+  scene:{bg:'street',alt:'Bus terlambat karena kecelakaan, Andi meminta izin pulang',
+   art:()=>BUS(120,180,.9)+`<path d="M200 160 l10 -18 l8 14 l10 -20 l6 24z" fill="#F4B642"/>`+CAR(240,196,.6)+P(330,215,1.05,{c:'#4F7CAC',tie:'#B5462F',talk:1,flip:1}),
+   bub:[[330,108,'用事{ようじ}が あるので、 お先{さき}に 失礼{しつれい}します。','Karena ada urusan, saya pamit duluan.']],
+   hot:[[60,120,140,80,'事故{じこ}で バスが 遅{おく}れました。','Bus terlambat karena kecelakaan.'],[196,140,60,60,'来{く}る 途中{とちゅう}で 事故{じこ}が ありました。','Di tengah perjalanan ada kecelakaan.']]},
+  points:[
+   {p:'V て / い-adj くて / な-adj で、 〜',e:'Sebab yang diikuti perasaan atau keadaan: kaget, senang, sedih, tidak bisa. Bagian belakang tidak boleh berupa keinginan, perintah, atau ajakan.',ex:[['ニュースを 聞{き}いて、 びっくりしました。','Saya kaget mendengar berita itu.'],['話{はなし}が 複雑{ふくざつ}で、 よく わかりませんでした。','Ceritanya rumit, jadi saya tidak begitu mengerti.']]},
+   {p:'N で、 〜',e:'Sebab dari kejadian alam atau peristiwa: 地震, 事故, 病気.',ex:[['地震{じしん}で ビルが 倒{たお}れました。','Gedung roboh karena gempa.']]},
+   {p:'Bentuk biasa + ので、 〜',e:'Alasan yang lebih halus dan objektif. な-adj dan N memakai な.',ex:[['日本語{にほんご}が わからないので、 英語{えいご}で 話{はな}して いただけませんか。','Karena saya tidak mengerti bahasa Jepang, bisakah Anda berbicara dalam bahasa Inggris?']]},
+   {p:'V(kamus) / N の 途中{とちゅう}で',e:'"Di tengah …".',ex:[['会社{かいしゃ}へ 来{く}る 途中{とちゅう}で、 雨{あめ}が 降{ふ}って きました。','Di tengah perjalanan ke kantor, hujan mulai turun.']]}],
+  nu:[
+   {a:'〜から',b:'〜ので',la:3,lb:4,t:'から (N5) terdengar subjektif dan tegas, bisa terkesan membela diri. ので lebih lembut dan objektif. Saat meminta izin atau minta maaf kepada atasan, pakai ので.'},
+   {a:'危{あぶ}ないですから、 触{さわ}らないで ください',b:'危{あぶ}なくて、 触{さわ}れません',la:3,lb:3,t:'〜て / 〜くて sebagai sebab tidak bisa diikuti permintaan atau larangan. Untuk itu tetap pakai から atau ので.'}],
+  vx:[['事故{じこ}','kecelakaan',39],['地震{じしん}','gempa bumi',39],['途中{とちゅう}','di tengah jalan',39],['失礼{しつれい}します','permisi / pamit',39]],
+  quiz:[
+   {q:'Paling sopan meminta izin pulang: 熱{ねつ}が ある （　）、 早退{そうたい}しても よろしいですか。',o:['ので','から','て'],a:0,x:'Halus dan objektif: <b>ので</b>.'},
+   {q:'台風{たいふう}（　） 電車{でんしゃ}が 止{と}まりました。',o:['で','に','を'],a:0,x:'Sebab kejadian: N + <b>で</b>.'},
+   {q:'Yang SALAH:',o:['危{あぶ}なくて、 触{さわ}らないで ください。','危{あぶ}ないので、 触{さわ}らないで ください。','危{あぶ}ないですから、 触{さわ}らないで ください。'],a:0,x:'〜くて tidak bisa diikuti larangan.'}],
+  kw:[{k:'k',p:'Telepon · terlambat masuk kerja',sp:['アンディ','田中{たなか}'],l:[
+   [0,'もしもし、 アンディです。 すみません、 *事故{じこ}で* 電車{でんしゃ}が 止{と}まって しまったんです。','Halo, ini Andi. Maaf, kereta berhenti karena kecelakaan.'],
+   [1,'そうですか。 今{いま} どこですか。','Begitu ya. Sekarang di mana?'],
+   [0,'会社{かいしゃ}へ 行{い}く *途中{とちゅう}で*、 駅{えき}に います。 30分{さんじゅっぷん}ぐらい 遅{おく}れる *ので*、 よろしく お願{ねが}いします。','Saya di stasiun dalam perjalanan ke kantor. Saya akan terlambat sekitar 30 menit, mohon pengertiannya.'],
+   [1,'わかりました。 気{き}を つけて 来{き}て ください。','Baik. Hati-hati di jalan.']],
+   tip:'Jika terlambat, telepon sebelum jam masuk. Minta 遅延証明書{ちえんしょうめいしょ} (surat keterangan keterlambatan) di stasiun.'},
+   {k:'h',p:'Asrama · kabar mengejutkan',sp:['リナ','アンディ'],l:[
+   [0,'ブディさんが 来月{らいげつ} 結婚{けっこん}するんですよ。','Budi menikah bulan depan lho.'],
+   [1,'えっ、 その ニュースを *聞{き}いて、 びっくりしました*。','Hah, saya kaget mendengar berita itu.'],
+   [0,'わたしも *うれしくて*、 すぐ 電話{でんわ}しました。','Saya juga senang sekali, jadi langsung menelepon.'],
+   [1,'お祝{いわ}いを 何{なに}か あげましょう。','Ayo kasih hadiah sesuatu.']],
+   tip:'〜て sebagai sebab cocok untuk mengungkapkan perasaan: 聞いて、うれしかったです.'}]},
+ {id:'n4-b40',bab:40,title:'Bab 40 · Pertanyaan dalam Kalimat',jp:'〜か、〜・〜か どうか・〜て みます',sum:'Memasukkan pertanyaan ke dalam kalimat, かどうか, mencoba dengan 〜てみます, dan kata sifat menjadi kata benda dengan さ.',
+  scene:{bg:'room',alt:'Andi bingung memikirkan jadwal rapat dan mencoba baju',
+   art:()=>THINK(130,46,120,54,TXT(130,52,'なんじ？',13,'#B5462F',800))+P(110,215,1.05,{c:'#4F7CAC'})+QMARK(160,110,.8)+SHIRT(290,120,1.6,'#3E7D4F')+P(300,215,1.05,{c:'#D9802F',long:1,arm:'hold',flip:1}),
+   bub:[[300,98,'この 服{ふく}を 着{き}て みても いいですか。','Boleh saya mencoba baju ini?']],
+   hot:[[70,20,120,60,'会議{かいぎ}が 何時{なんじ}に 始{はじ}まるか、 知{し}って いますか。','Tahu rapat mulai jam berapa?'],[150,98,24,24,'間違{まちが}いが ないか どうか、 確認{かくにん}して ください。','Tolong cek apakah ada kesalahan atau tidak.']]},
+  points:[
+   {p:'Kata tanya + bentuk biasa か、 〜',e:'Pertanyaan dengan kata tanya dimasukkan ke dalam kalimat.',ex:[['結婚{けっこん}の お祝{いわ}いは 何{なに}が いいか、 話{はな}して います。','Kami sedang membicarakan hadiah pernikahan apa yang bagus.']]},
+   {p:'Bentuk biasa + か どうか、 〜',e:'Pertanyaan ya / tidak: "apakah … atau tidak".',ex:[['その 話{はなし}が 本当{ほんとう}か どうか、 わかりません。','Saya tidak tahu apakah cerita itu benar atau tidak.']]},
+   {p:'V て みます',e:'"Mencoba melakukan".',ex:[['一度{いちど} 富士山{ふじさん}に 登{のぼ}って みたいです。','Saya ingin mencoba mendaki Gunung Fuji sekali.']]},
+   {p:'い-adj → 〜さ',e:'Kata sifat menjadi kata benda ukuran: 高い → 高さ, 長い → 長さ, 重い → 重さ.',ex:[['この 箱{はこ}の 重{おも}さは どのくらいですか。','Berat kotak ini kira-kira berapa?']]}],
+  nu:[
+   {a:'何時{なんじ}ですか。 知{し}って いますか。',b:'何時{なんじ}か 知{し}って いますか。',la:3,lb:3,t:'Di N5, pertanyaan diucapkan sebagai kalimat terpisah. Di N4, pertanyaan digabung ke dalam satu kalimat sehingga lebih ringkas dan natural.'},
+   {a:'聞{き}きます',b:'聞{き}いて みます',la:3,lb:3,t:'聞いてみます terdengar lebih rendah hati dan tidak memaksa: "akan saya coba tanyakan". Sering dipakai saat menjawab permintaan di tempat kerja.'}],
+  vx:[['確認{かくにん}します','mengecek',40],['間違{まちが}い','kesalahan',40],['重{おも}さ','berat',40],['お祝{いわ}い','hadiah perayaan',40]],
+  quiz:[
+   {q:'Apakah dia datang atau tidak: 彼{かれ}が 来{く}る （　）、 わかりません。',o:['か どうか','か','のを'],a:0,x:'Pertanyaan ya / tidak: <b>かどうか</b>.'},
+   {q:'Bentuk kata benda dari 長{なが}い:',o:['長{なが}さ','長{なが}く','長{なが}み'],a:0,x:'い → <b>さ</b>.'},
+   {q:'"Akan saya coba tanyakan":',o:['聞{き}いて みます','聞{き}いて おきます','聞{き}いて しまいます'],a:0,x:'Mencoba: <b>〜てみます</b>.'}],
+  kw:[{k:'k',p:'Pabrik · memeriksa produk',sp:['田中{たなか}','アンディ'],l:[
+   [0,'出荷{しゅっか}の 前{まえ}に、 傷{きず}が *ないか どうか* 確認{かくにん}して ください。','Sebelum pengiriman, tolong cek apakah ada goresan atau tidak.'],
+   [1,'はい。 箱{はこ}は *いくつ* 必要{ひつよう}*か*、 わかりますか。','Baik. Bapak tahu berapa kotak yang diperlukan?'],
+   [0,'さあ、 山田{やまだ}さんに *聞{き}いて みて* ください。','Entahlah, coba tanya Pak Yamada.'],
+   [1,'わかりました。 *聞{き}いて みます*。','Baik, akan saya coba tanyakan.']],
+   tip:'Jika tidak tahu, jawab 確認{かくにん}してみます alih-alih menebak.'},
+   {k:'h',p:'Toko baju · mencoba pakaian',sp:['アンディ','店員{てんいん}'],l:[
+   [0,'すみません、 この 服{ふく}を *着{き}て みても* いいですか。','Permisi, boleh mencoba baju ini?'],
+   [1,'どうぞ。 試着室{しちゃくしつ}は あちらです。','Silakan. Kamar pas di sebelah sana.'],
+   [0,'サイズが 合{あ}う *か どうか*、 ちょっと 心配{しんぱい}なんです。','Saya agak khawatir ukurannya pas atau tidak.'],
+   [1,'大{おお}きさが 合{あ}わなかったら、 言{い}って ください。','Kalau ukurannya tidak pas, bilang saja.']],
+   tip:'試着室{しちゃくしつ} = kamar pas. Lepas sepatu sebelum masuk ke kamar pas di toko Jepang.'}]},
+ {id:'n4-b41',bab:41,title:'Bab 41 · Memberi dan Menerima (Sopan)',jp:'いただきます・くださいます・やります',sum:'Bentuk hormat dari memberi dan menerima, tingkatan meminta tolong, dan やります.',
+  scene:{bg:'room',alt:'Guru memberi buku kepada Andi, dan Andi memberi makan anjing',
+   art:()=>P(110,215,1.1,{c:'#6B4E3A',h:'#555',gl:1,arm:'hold'})+BOOK(122,178,.9,'#B5462F')+ARROW(150,140,230,140)+P(260,215,1.1,{c:'#4F7CAC',flip:1,talk:1})+DOG(350,215,.75)+UMB(90,150,.7,'#3E7D4F'),
+   bub:[[260,108,'先生{せんせい}に 本{ほん}を いただきました。','Saya menerima buku dari guru.']],
+   hot:[[70,120,50,50,'先生{せんせい}が 傘{かさ}を 貸{か}して くださいました。','Guru meminjamkan payung kepada saya.'],[324,176,54,40,'わたしは 犬{いぬ}に えさを やります。','Saya memberi makan anjing.']]},
+  points:[
+   {p:'いただきます / くださいます',e:'Bentuk hormat dari もらいます dan くれます, dipakai jika pemberinya atasan atau orang yang dihormati.',ex:[['わたしは 部長{ぶちょう}に お土産{みやげ}を いただきました。','Saya menerima oleh-oleh dari kepala bagian.'],['社長{しゃちょう}が 本{ほん}を くださいました。','Direktur memberi saya buku.']]},
+   {p:'V て いただきます / V て くださいます',e:'Menerima kebaikan dari orang yang dihormati.',ex:[['先生{せんせい}に 作文{さくぶん}を 直{なお}して いただきました。','Karangan saya diperbaiki oleh guru.'],['部長{ぶちょう}が 駅{えき}まで 送{おく}って くださいました。','Kepala bagian mengantar saya sampai stasiun.']]},
+   {p:'やります / V て やります',e:'Memberi kepada hewan, tanaman, atau orang yang lebih rendah. Lebih rendah dari あげます.',ex:[['花{はな}に 水{みず}を やります。','Menyiram bunga.'],['息子{むすこ}に 紙飛行機{かみひこうき}を 作{つく}って やりました。','Saya membuatkan pesawat kertas untuk anak laki-laki saya.']]}],
+  nu:[
+   {a:'もらいました / くれました',b:'いただきました / くださいました',la:3,lb:5,t:'Di N5, もらう / くれる dipakai untuk siapa saja. Di N4, jika pemberinya atasan, guru, atau pelanggan, ganti dengan いただく / くださる.'},
+   {a:'あげます',b:'やります',la:3,lb:2,t:'あげます untuk teman atau orang lain. やります hanya untuk hewan, tanaman, atau anak sendiri. Kepada atasan, jangan memakai keduanya. Gunakan お〜します (Bab 50).'},
+   {a:'〜て ください',b:'〜て くださいませんか → 〜て いただけませんか',la:3,lb:5,t:'Tingkatan meminta tolong: てください (sopan) < てくださいませんか (lebih halus) < ていただけませんか (sangat halus).'}],
+  vx:[['いただきます','menerima (hormat)',41],['くださいます','memberi (hormat)',41],['直{なお}します','memperbaiki',41],['えさ','makanan hewan',41]],
+  quiz:[
+   {q:'Menerima dari guru: 先生{せんせい}に 辞書{じしょ}を （　）。',o:['いただきました','くださいました','やりました'],a:0,x:'Saya menerima dari atasan: <b>いただきました</b>.'},
+   {q:'部長{ぶちょう}が 説明{せつめい}して （　）。',o:['くださいました','いただきました','やりました'],a:0,x:'Atasan sebagai subjek pemberi: <b>くださいました</b>.'},
+   {q:'Memberi air ke bunga: 花{はな}に 水{みず}を （　）。',o:['やります','くださいます','いただきます'],a:0,x:'Untuk tanaman: <b>やります</b>.'}],
+  kw:[{k:'k',p:'Kantor · berterima kasih kepada atasan',sp:['アンディ','部長{ぶちょう}'],l:[
+   [0,'部長{ぶちょう}、 先日{せんじつ}は お土産{みやげ}を *ありがとう ございました*。','Pak Kepala, terima kasih atas oleh-oleh kemarin.'],
+   [1,'いえいえ。 口{くち}に 合{あ}いましたか。','Sama-sama. Cocok di lidah?'],
+   [0,'はい、 とても おいしかったです。 それから、 報告書{ほうこくしょ}を *直{なお}して くださって*、 ありがとう ございました。','Ya, enak sekali. Lalu terima kasih sudah memperbaiki laporan saya.'],
+   [1,'よく 書{か}けて いましたよ。','Tulisannya sudah bagus kok.']],
+   tip:'Orang Jepang biasa berterima kasih lagi di pertemuan berikutnya dengan 先日{せんじつ}は〜ありがとうございました.'},
+   {k:'h',p:'Rumah · cerita tentang hewan',sp:['鈴木{すずき}','アンディ'],l:[
+   [0,'毎朝{まいあさ} 犬{いぬ}に えさを *やって* いるんですか。','Setiap pagi kamu memberi makan anjing?'],
+   [1,'ええ。 大家{おおや}さんに 頼{たの}まれたんです。','Ya. Diminta oleh pemilik rumah.'],
+   [0,'この 犬{いぬ}は 大家{おおや}さんが 誰{だれ}に *もらった* んですか。','Anjing ini didapat pemilik rumah dari siapa?'],
+   [1,'お孫{まご}さんに *もらった* んですよ。','Dari cucunya.']],
+   tip:'大家{おおや}さん adalah pemilik kontrakan. Hubungan baik dengan beliau memudahkan hidup di Jepang.'}]},
+ {id:'n4-b42',bab:42,title:'Bab 42 · Tujuan dan Kegunaan',jp:'〜ために・〜のに・〜に よって',sum:'Tujuan dengan ために, kegunaan dengan のに, dan pelaku penciptaan dengan によって.',
+  scene:{bg:'room',alt:'Celengan untuk membuka toko dan sepatu gunung',
+   art:()=>PIG(110,200,1.4)+THINK(110,60,120,52,HOUSE(110,92,.45)+TXT(110,46,'じぶんの みせ',9,'#B5462F',800))+P(220,215,1.05,{c:'#4F7CAC'})+SHOE(330,205,1.6,'#8E4E28')+TXT(330,226,'やまぐつ',10,'#6E5848'),
+   bub:[[220,110,'自分{じぶん}の 店{みせ}を 持{も}つ ために、 貯金{ちょきん}して います。','Saya menabung untuk punya toko sendiri.']],
+   hot:[[70,166,80,40,'将来{しょうらい}の ために、 毎月{まいつき} 貯金{ちょきん}して います。','Demi masa depan, saya menabung setiap bulan.'],[296,180,70,32,'この 靴{くつ}は 山{やま}を 歩{ある}くのに いいです。','Sepatu ini bagus untuk berjalan di gunung.']]},
+  points:[
+   {p:'V(kamus) / N の ために、 〜',e:'Tujuan yang disengaja: "demi / untuk". Kata kerja sebelumnya adalah kehendak.',ex:[['日本{にほん}の 会社{かいしゃ}で 働{はたら}く ために、 日本語{にほんご}を 勉強{べんきょう}して います。','Saya belajar bahasa Jepang untuk bekerja di perusahaan Jepang.'],['家族{かぞく}の ために、 頑張{がんば}ります。','Saya berjuang demi keluarga.']]},
+   {p:'V(kamus) の / N に 〜',e:'Kegunaan atau keperluan, sering dengan 使います, いいです, 便利です, 必要です, かかります.',ex:[['この はさみは 花{はな}を 切{き}るのに 使{つか}います。','Gunting ini dipakai untuk memotong bunga.'],['家{いえ}を 建{た}てるのに お金{かね}が かかります。','Membangun rumah memerlukan biaya.']]},
+   {p:'N に よって V(pasif)',e:'Pelaku penciptaan atau penemuan dalam kalimat pasif.',ex:[['チキンラーメンは 1958年{せんきゅうひゃくごじゅうはちねん}に 安藤百福{あんどうももふく}に よって 発明{はつめい}されました。','Chicken Ramen ditemukan oleh Ando Momofuku pada tahun 1958.']]}],
+  nu:[
+   {a:'〜ように (Bab 36)',b:'〜ために',la:3,lb:3,t:'ために dipakai dengan kata kerja kehendak (持つ, 働く). ように dipakai dengan kata kerja non-kehendak seperti potensial atau ない (話せるように, 忘れないように).'},
+   {a:'V(ます) に 行{い}きます (N5)',b:'V ために 行{い}きます',la:3,lb:3,t:'Bentuk N5 dipakai untuk tujuan sederhana sehari-hari (買いに行きます). ために menekankan tujuan yang lebih besar dan terdengar lebih formal.'}],
+  vx:[['貯金{ちょきん}','tabungan',42],['将来{しょうらい}','masa depan',42],['発明{はつめい}','penemuan',42],['かかります','memerlukan (biaya / waktu)',42]],
+  quiz:[
+   {q:'家{いえ}を 買{か}う （　）、 貯金{ちょきん}して います。',o:['ために','のに','ように'],a:0,x:'Tujuan dengan kata kerja kehendak: <b>ために</b>.'},
+   {q:'この かばんは 旅行{りょこう}（　） 便利{べんり}です。',o:['に','ために','ので'],a:0,x:'Kegunaan dengan kata benda: <b>に</b> 便利です.'},
+   {q:'電話{でんわ}は ベル （　） 発明{はつめい}されました。',o:['に よって','の ために','から'],a:0,x:'Pelaku penciptaan: <b>によって</b>.'}],
+  kw:[{k:'k',p:'Wawancara · alasan bekerja',sp:['面接官{めんせつかん}','アンディ'],l:[
+   [0,'どうして 日本{にほん}で 働{はたら}きたいんですか。','Mengapa ingin bekerja di Jepang?'],
+   [1,'日本{にほん}の 技術{ぎじゅつ}を *学{まな}ぶ ために*、 来{き}ました。','Saya datang untuk mempelajari teknologi Jepang.'],
+   [0,'そうですか。 この 機械{きかい}は 何{なに}*に* 使{つか}うか、 わかりますか。','Begitu ya. Tahu mesin ini dipakai untuk apa?'],
+   [1,'はい、 部品{ぶひん}を *切{き}るのに* 使{つか}います。','Ya, dipakai untuk memotong komponen.']],
+   tip:'Jawaban dengan 〜ために menunjukkan tujuan yang jelas. Ini dinilai baik saat wawancara.'},
+   {k:'h',p:'Toko · memilih sepatu',sp:['店員{てんいん}','アンディ'],l:[
+   [0,'どんな 靴{くつ}を お探{さが}しですか。','Sepatu seperti apa yang dicari?'],
+   [1,'山{やま}を *歩{ある}くのに* いい 靴{くつ}は ありませんか。','Ada sepatu yang bagus untuk berjalan di gunung?'],
+   [0,'こちらは いかがですか。 軽{かる}くて、 滑{すべ}りにくいですよ。','Bagaimana dengan yang ini? Ringan dan tidak licin.'],
+   [1,'富士山{ふじさん}に 登{のぼ}る *ために*、 これを 買{か}います。','Saya beli ini untuk mendaki Gunung Fuji.']],
+   tip:'Pegawai toko memakai bahasa hormat seperti お探{さが}しですか. Kamu cukup menjawab dengan です・ます.'}]},
+ {id:'n4-b43',bab:43,title:'Bab 43 · Kelihatannya',jp:'〜そうです（様態{ようたい}）・〜て 来{き}ます',sum:'Menyatakan kesan dari apa yang dilihat dengan 〜そうです, dan pergi sebentar lalu kembali dengan 〜て来ます.',
+  scene:{bg:'sky',alt:'Awan gelap, kue yang menggugah selera, dan Andi pamit sebentar',
+   art:()=>CLOUD(110,48,1.5,'#8E9AA6')+CLOUD(170,40,1.1,'#9AA8B4')+DESK(200,215,.5)+CAKE(200,190,1.2)+P(320,215,1.05,{c:'#4F7CAC',arm:'wave',talk:1,flip:1}),
+   bub:[[320,108,'ちょっと 切符{きっぷ}を 買{か}って 来{き}ます。','Saya beli tiket sebentar.']],
+   hot:[[60,20,150,56,'今{いま}にも 雨{あめ}が 降{ふ}りそうです。','Sepertinya sebentar lagi hujan.'],[174,160,56,40,'この ケーキは おいしそうです。','Kue ini kelihatannya enak.']]},
+  points:[
+   {p:'V(ます) そうです',e:'Sesuatu yang akan terjadi berdasarkan apa yang dilihat. Sering dengan 今にも, もうすぐ, これから.',ex:[['今{いま}にも 雨{あめ}が 降{ふ}りそうです。','Sebentar lagi sepertinya hujan.']]},
+   {p:'い-adj(〜い) / な-adj そうです',e:'Kesan dari penampilan. Khusus: いい → よさそう, ない → なさそう.',ex:[['この ケーキは おいしそうです。','Kue ini kelihatannya enak.'],['ミラーさんは 元気{げんき}そうです。','Pak Miller kelihatannya sehat.']]},
+   {p:'〜そうな N / 〜そうに V',e:'Dipakai sebelum kata benda atau kata kerja.',ex:[['おいしそうな ケーキですね。','Kue yang kelihatannya enak ya.'],['子{こ}どもが 楽{たの}しそうに 遊{あそ}んで います。','Anak-anak bermain dengan riang.']]},
+   {p:'V て 来{き}ます',e:'Pergi ke suatu tempat untuk melakukan sesuatu, lalu kembali.',ex:[['ちょっと 出{で}かけて 来{き}ます。','Saya keluar sebentar, nanti kembali.']]}],
+  nu:[
+   {a:'おいしいです',b:'おいしそうです',la:3,lb:3,t:'おいしいです menyatakan fakta setelah mencicipi. おいしそうです hanya kesan dari penampilan. Untuk perasaan orang lain, orang Jepang memakai そう: 悲しそうです, bukan 悲しいです.'},
+   {a:'行{い}って 来{き}ます (salam)',b:'V て 来{き}ます',la:3,lb:3,t:'いってきます yang dipelajari di N5 sebenarnya bentuk 〜てきます: pergi lalu kembali. Di kantor, pamit dengan 〜てきます agar rekan tahu kamu akan kembali.'}],
+  vx:[['今{いま}にも','sebentar lagi',43],['切符{きっぷ}','tiket',43],['出{で}かけます','keluar / pergi',43],['よさそう','kelihatannya bagus',43]],
+  quiz:[
+   {q:'"Kelihatannya bagus" dari いい:',o:['よさそうです','いいそうです','いそうです'],a:0,x:'Khusus: いい → <b>よさそう</b>.'},
+   {q:'Bentuk そう dari 降{ふ}ります:',o:['降{ふ}りそうです','降{ふ}るそうです','降{ふ}りそうだです'],a:0,x:'Bentuk ます tanpa ます + <b>そうです</b>.'},
+   {q:'Pamit sebentar ke ruang lain:',o:['ちょっと 資料{しりょう}を 取{と}って 来{き}ます。','ちょっと 資料{しりょう}を 取{と}って 行{い}きます。','ちょっと 資料{しりょう}を 取{と}りそうです。'],a:0,x:'Pergi lalu kembali: <b>〜てきます</b>.'}],
+  kw:[{k:'k',p:'Kantor · pamit sebentar',sp:['アンディ','山田{やまだ}'],l:[
+   [0,'山田{やまだ}さん、 ちょっと 倉庫{そうこ}へ 部品{ぶひん}を *取{と}って 来{き}ます*。','Pak Yamada, saya ambil komponen ke gudang sebentar.'],
+   [1,'はい。 あ、 その 箱{はこ}、 *重{おも}そうですね*。 手伝{てつだ}いましょうか。','Ya. Ah, kotak itu kelihatannya berat. Mau saya bantu?'],
+   [0,'大丈夫{だいじょうぶ}です。 でも、 雨{あめ}が *降{ふ}りそう* なので、 急{いそ}ぎます。','Tidak apa-apa. Tapi sepertinya mau hujan, jadi saya bergegas.'],
+   [1,'気{き}を つけて。','Hati-hati.']],
+   tip:'Memberi tahu rekan saat meninggalkan meja kerja adalah kebiasaan penting di kantor Jepang.'},
+   {k:'h',p:'Toko kue · memilih kue',sp:['リナ','アンディ'],l:[
+   [0,'わあ、 どれも *おいしそう*！','Wah, semuanya kelihatan enak!'],
+   [1,'この チョコの ケーキは *甘{あま}そうですね*。','Kue cokelat ini kelihatannya manis ya.'],
+   [0,'こっちの 果物{くだもの}の ケーキは *よさそう*。','Yang kue buah ini kelihatannya enak.'],
+   [1,'じゃ、 両方{りょうほう} 買{か}いましょう。','Kalau begitu, beli dua-duanya.']],
+   tip:'Menghias kue dan makanan secara cantik adalah bagian penting budaya kuliner Jepang.'}]},
+ {id:'n4-b44',bab:44,title:'Bab 44 · Terlalu dan Mudah / Sulit',jp:'〜すぎます・〜やすい・〜にくい',sum:'Terlalu dengan すぎます, mudah / sulit dilakukan dengan やすい / にくい, dan mengubah keadaan dengan 〜く / 〜に します.',
+  scene:{bg:'room',alt:'Baju yang terlalu besar dan laptop yang mudah dipakai',
+   art:()=>P(110,215,1.1,{c:'#4F7CAC'})+SHIRT(110,150,2.6,'#3E7D4F')+PC(290,205,1.3)+DESK(290,215,.6),
+   bub:[[110,96,'この シャツは 大{おお}きすぎます。','Kemeja ini terlalu besar.']],
+   hot:[[246,140,90,60,'この パソコンは 使{つか}いやすいです。','Laptop ini mudah dipakai.']]},
+  points:[
+   {p:'V(ます) / Adj(〜い / 〜な) すぎます',e:'"Terlalu". Biasanya bernuansa negatif. Khusus: いい → よすぎます.',ex:[['ゆうべ お酒{さけ}を 飲{の}みすぎました。','Semalam saya terlalu banyak minum.'],['この 問題{もんだい}は 簡単{かんたん}すぎます。','Soal ini terlalu mudah.']]},
+   {p:'V(ます) やすいです / にくいです',e:'"Mudah / sulit di-…". Berubah seperti い-adj.',ex:[['この ペンは 書{か}きやすいです。','Pena ini enak dipakai menulis.'],['この コップは 割{わ}れにくいです。','Gelas ini tidak mudah pecah.']]},
+   {p:'Adj(〜く / 〜に) / N に します',e:'Mengubah keadaan sesuatu dengan sengaja.',ex:[['音{おと}を 小{ちい}さく します。','Mengecilkan suara.'],['部屋{へや}を きれいに します。','Membersihkan kamar.']]},
+   {p:'N に します',e:'Memutuskan atau memilih.',ex:[['会議{かいぎ}は あしたに します。','Rapatnya besok saja.'],['わたしは コーヒーに します。','Saya pilih kopi.']]}],
+  nu:[
+   {a:'〜く / 〜に なります (N5)',b:'〜く / 〜に します',la:3,lb:3,t:'なります = berubah dengan sendirinya (部屋が暗くなりました). します = seseorang sengaja mengubahnya (部屋を暗くしました).'},
+   {a:'とても 大{おお}きいです',b:'大{おお}きすぎます',la:3,lb:3,t:'とても hanya "sangat" dan netral. すぎます berarti melewati batas sehingga ada masalah. Saat menyampaikan keluhan, すぎます lebih tepat, tapi sampaikan dengan halus: ちょっと大きすぎるんですが….'}],
+  vx:[['使{つか}いやすい','mudah dipakai',44],['割{わ}れにくい','tidak mudah pecah',44],['問題{もんだい}','soal / masalah',44],['量{りょう}','jumlah',44]],
+  quiz:[
+   {q:'Terlalu banyak makan:',o:['食{た}べすぎました','食{た}べるすぎました','食{た}べすぎるました'],a:0,x:'Bentuk ます tanpa ます + <b>すぎます</b>.'},
+   {q:'Huruf ini sulit dibaca: この 字{じ}は 読{よ}み（　）です。',o:['にくい','やすい','すぎ'],a:0,x:'Sulit: <b>にくい</b>.'},
+   {q:'Mengecilkan volume: 音{おと}を 小{ちい}さ（　） します。',o:['く','に','な'],a:0,x:'い-adj: い → <b>く</b> します.'}],
+  kw:[{k:'k',p:'Pabrik · menyesuaikan pekerjaan',sp:['田中{たなか}','アンディ'],l:[
+   [0,'新{あたら}しい 道具{どうぐ}は どうですか。','Alat yang baru bagaimana?'],
+   [1,'軽{かる}くて、 とても *使{つか}いやすいです*。','Ringan dan sangat mudah dipakai.'],
+   [0,'作業{さぎょう}の スピードは？','Kecepatan kerjanya?'],
+   [1,'ちょっと *速{はや}すぎる* ので、 もう 少{すこ}し *遅{おそ}く して* いただけませんか。','Agak terlalu cepat, bisakah dibuat sedikit lebih pelan?'],
+   [0,'わかりました。 調整{ちょうせい}します。','Baik, akan saya sesuaikan.']],
+   tip:'Menyampaikan kesulitan dengan sopan (〜すぎるので、〜ていただけませんか) membantu mencegah kecelakaan kerja.'},
+   {k:'h',p:'Restoran · memesan',sp:['店員{てんいん}','アンディ'],l:[
+   [0,'ご注文{ちゅうもん}は お決{き}まりですか。','Sudah siap memesan?'],
+   [1,'ラーメン*に します*。 でも、 辛{から}*すぎる* のは ちょっと…。','Saya pilih ramen. Tapi kalau terlalu pedas, agak…'],
+   [0,'では、 辛{から}さを 普通{ふつう}*に します*ね。','Kalau begitu, tingkat pedasnya kami buat biasa ya.'],
+   [1,'お願{ねが}いします。','Tolong ya.']],
+   tip:'Kalimat yang dibiarkan menggantung seperti 〜はちょっと… adalah cara halus menolak di Jepang.'}]},
+ {id:'n4-b45',bab:45,title:'Bab 45 · Dalam Keadaan dan Padahal',jp:'〜場合{ばあい}は・〜のに',sum:'Mengandaikan kondisi dengan 場合は dan menyatakan kekecewaan dengan のに.',
+  scene:{bg:'office',alt:'Tanda darurat gempa di lift dan Andi menunggu teman yang tidak datang',
+   art:()=>`<rect x="40" y="70" width="90" height="135" fill="#B9C2C9"/><rect x="44" y="74" width="40" height="131" fill="#D5DCE1"/><rect x="86" y="74" width="40" height="131" fill="#D5DCE1"/>`+`<rect x="140" y="90" width="56" height="46" rx="4" fill="#FFFDF8" stroke="#C8372D" stroke-width="3"/>`+TXT(168,110,'じしんの',9,'#C8372D',800)+TXT(168,124,'ばあいは×',9,'#C8372D',800)+P(300,215,1.05,{c:'#4F7CAC'})+CLOCK(232,40,17,3,30),
+   bub:[[300,110,'約束{やくそく}したのに、 来{き}ません…','Padahal sudah janji, tapi dia tidak datang…']],
+   hot:[[40,70,156,135,'地震{じしん}の 場合{ばあい}は、 エレベーターを 使{つか}わないで ください。','Saat gempa, jangan menggunakan lift.'],[212,20,40,40,'もう 30分{さんじゅっぷん}も 待{ま}って いるのに…','Padahal sudah menunggu 30 menit…']]},
+  points:[
+   {p:'V / Adj(biasa) / な-adj な / N の 場合{ばあい}は、 〜',e:'Mengandaikan suatu kondisi. Kalimat belakang berisi cara mengatasinya. Sering dipakai dalam aturan dan petunjuk resmi.',ex:[['会議{かいぎ}に 間{ま}に 合{あ}わない 場合{ばあい}は、 連絡{れんらく}して ください。','Jika tidak keburu rapat, tolong hubungi.'],['火事{かじ}の 場合{ばあい}は、 119番{ひゃくじゅうきゅうばん}に 電話{でんわ}して ください。','Jika terjadi kebakaran, teleponlah 119.']]},
+   {p:'Bentuk biasa (な-adj / N + な) のに、 〜',e:'"Padahal". Hasil di luar dugaan, disertai rasa kecewa atau tidak puas.',ex:[['約束{やくそく}を したのに、 彼女{かのじょ}は 来{き}ませんでした。','Padahal sudah berjanji, dia tidak datang.'],['日曜日{にちようび}なのに、 仕事{しごと}が あります。','Padahal hari Minggu, ada kerja.']]}],
+  nu:[
+   {a:'〜たら (N5)',b:'〜場合{ばあい}は',la:3,lb:4,t:'場合は lebih formal dan objektif. Dipakai dalam aturan, pengumuman, manual, dan saat bertanya prosedur kepada atasan.'},
+   {a:'〜が (tetapi)',b:'〜のに',la:3,lb:3,t:'が hanya menyambung dua hal yang berlawanan secara netral. のに membawa rasa kecewa. Hindari のに saat mengeluh tentang atasan atau pelanggan karena terdengar menyalahkan.'}],
+  vx:[['場合{ばあい}','dalam hal / kondisi',45],['火事{かじ}','kebakaran',45],['連絡{れんらく}','menghubungi',45],['領収書{りょうしゅうしょ}','kuitansi',45]],
+  quiz:[
+   {q:'雨{あめ}（　） 場合{ばあい}は、 中止{ちゅうし}です。',o:['の','な','で'],a:0,x:'Kata benda + <b>の</b> 場合.'},
+   {q:'Padahal murah, tidak laku: 安{やす}い （　）、 売{う}れません。',o:['のに','ので','ために'],a:0,x:'Di luar dugaan: <b>のに</b>.'},
+   {q:'暇{ひま}（　）のに、 手伝{てつだ}って くれません。',o:['な','だ','の'],a:0,x:'な-adj + <b>な</b>のに.'}],
+  kw:[{k:'k',p:'Kantor · prosedur darurat',sp:['アンディ','田中{たなか}'],l:[
+   [0,'地震{じしん}の *場合{ばあい}は*、 どう すれば いいですか。','Saat gempa, sebaiknya bagaimana?'],
+   [1,'まず 机{つくえ}の 下{した}に 入{はい}って ください。 揺{ゆ}れが 止{と}まったら、 外{そと}に 出{で}ます。','Pertama masuk ke bawah meja. Setelah goyangan berhenti, keluar.'],
+   [0,'わたしが 遅刻{ちこく}する *場合{ばあい}は*？','Kalau saya terlambat?'],
+   [1,'9時{くじ}までに 電話{でんわ}で 連絡{れんらく}して ください。','Hubungi lewat telepon sebelum jam 9.']],
+   tip:'Pelajari prosedur bencana (避難経路{ひなんけいろ}, jalur evakuasi) di tempat kerja sejak minggu pertama.'},
+   {k:'h',p:'Stasiun · teman tidak datang',sp:['アンディ','リナ'],l:[
+   [0,'ブディさん、 来{き}ませんね。 9時{くじ}に 約束{やくそく}した*のに*。','Budi tidak datang ya. Padahal janji jam 9.'],
+   [1,'電話{でんわ}しても 出{で}ません。','Ditelepon juga tidak diangkat.'],
+   [0,'来{こ}られない *場合{ばあい}は*、 連絡{れんらく}して ほしいですね。','Kalau tidak bisa datang, mestinya dia mengabari ya.'],
+   [1,'あ、 メッセージが 来{き}ました。 寝坊{ねぼう}したそうです。','Ah, ada pesan. Katanya dia ketiduran.']],
+   tip:'Di Jepang, tepat waktu sangat penting. Jika akan terlambat, kabari sebelum waktu janji.'}]},
+ {id:'n4-b46',bab:46,title:'Bab 46 · Tahap Suatu Kegiatan',jp:'〜ところ・〜たばかり・〜はず',sum:'Akan, sedang, dan baru saja dengan ところ, baru saja dengan たばかり, dan seharusnya dengan はず.',
+  scene:{bg:'room',alt:'Tiga tahap makan siang',
+   modes:[
+    {label:'これから · akan',art:()=>DESK(200,215,.6)+BENTO(200,192,1.4)+P(110,215,1.05,{c:'#4F7CAC'})+CLOCK(330,70,22,12,0),
+     bub:[[110,108,'今{いま}から 食{た}べる ところです。','Saya baru akan makan.']]},
+    {label:'今 · sedang',art:()=>DESK(200,215,.6)+BENTO(200,192,1.4)+P(110,215,1.05,{c:'#4F7CAC',arm:'hold',talk:1})+CLOCK(330,70,22,12,10),
+     bub:[[110,108,'今{いま} 食{た}べて いる ところです。','Saya sedang makan.']]},
+    {label:'たった今 · baru saja',art:()=>DESK(200,215,.6)+`<rect x="176" y="182" width="48" height="12" rx="3" fill="#E7D8C4"/>`+P(110,215,1.05,{c:'#4F7CAC',arm:'wave'})+CLOCK(330,70,22,12,30),
+     bub:[[110,108,'たった今 食{た}べた ところです。','Saya baru saja selesai makan.']]}]},
+  points:[
+   {p:'V(kamus) ところです',e:'Tepat akan melakukan. Sering dengan 今から, これから.',ex:[['会議{かいぎ}は 今{いま}から 始{はじ}まる ところです。','Rapat baru akan dimulai.']]},
+   {p:'V て いる ところです',e:'Sedang tepat di tengah kegiatan.',ex:[['故障{こしょう}の 原因{げんいん}は 今{いま} 調{しら}べて いる ところです。','Penyebab kerusakannya sedang diperiksa.']]},
+   {p:'V た ところです',e:'Baru saja selesai, sering dengan たった今.',ex:[['渡辺{わたなべ}さんは たった今 帰{かえ}った ところです。','Bu Watanabe baru saja pulang.']]},
+   {p:'V た ばかりです',e:'"Baru saja" menurut perasaan pembicara, meski sudah beberapa waktu.',ex:[['彼{かれ}は 3月{さんがつ}に 大学{だいがく}を 卒業{そつぎょう}した ばかりです。','Dia baru saja lulus kuliah bulan Maret.']]},
+   {p:'Bentuk biasa (な-adj な / N の) はずです',e:'"Seharusnya", berdasarkan alasan yang jelas.',ex:[['ミラーさんは 会議室{かいぎしつ}に いる はずです。','Pak Miller seharusnya ada di ruang rapat.']]}],
+  nu:[
+   {a:'V て います (N5)',b:'V て いる ところです',la:3,lb:3,t:'〜ています hanya "sedang". 〜ているところです menekankan "tepat di tengah-tengah" dan sering dipakai untuk menjawab: 今やっているところです (sedang saya kerjakan).'},
+   {a:'V た ところです',b:'V た ばかりです',la:3,lb:3,t:'たところ = benar-benar baru beberapa saat lalu. たばかり = terasa baru menurut pembicara, bisa beberapa bulan lalu (入社したばかりです).'},
+   {a:'〜でしょう (Bab 32)',b:'〜はずです',la:3,lb:3,t:'でしょう adalah perkiraan. はず adalah keyakinan yang punya dasar jelas, misalnya jadwal atau janji.'}],
+  vx:[['故障{こしょう}','kerusakan',46],['原因{げんいん}','penyebab',46],['卒業{そつぎょう}','lulus',46],['入社{にゅうしゃ}','masuk perusahaan',46]],
+  quiz:[
+   {q:'Sedang memeriksa: 今{いま} 調{しら}べて いる （　）です。',o:['ところ','ばかり','はず'],a:0,x:'Sedang di tengah: <b>ているところ</b>.'},
+   {q:'"Saya baru masuk perusahaan bulan lalu":',o:['先月{せんげつ} 入社{にゅうしゃ}した ばかりです。','先月{せんげつ} 入社{にゅうしゃ}する ところです。','先月{せんげつ} 入社{にゅうしゃ}した はずです。'],a:0,x:'Terasa baru: <b>たばかり</b>.'},
+   {q:'Berdasarkan jadwal: 荷物{にもつ}は あした 届{とど}く （　）です。',o:['はず','ところ','ばかり'],a:0,x:'Seharusnya: <b>はず</b>.'}],
+  kw:[{k:'k',p:'Kantor · ditanya progres',sp:['田中{たなか}','アンディ'],l:[
+   [0,'アンディさん、 在庫{ざいこ}の チェックは 終{お}わりましたか。','Andi, pengecekan stok sudah selesai?'],
+   [1,'すみません、 今{いま} *やって いる ところです*。 あと 10分{じゅっぷん}で 終{お}わる *はずです*。','Maaf, sedang saya kerjakan. Seharusnya selesai 10 menit lagi.'],
+   [0,'わかりました。 終{お}わったら 教{おし}えて ください。','Baik. Kabari kalau sudah selesai.'],
+   [1,'田中{たなか}さん、 たった今 *終{お}わった ところです*。','Pak Tanaka, baru saja selesai.']],
+   tip:'Melapor progres dengan 〜ているところです dan perkiraan dengan 〜はずです membuat atasan merasa tenang.'},
+   {k:'h',p:'Telepon · ajakan makan',sp:['リナ','アンディ'],l:[
+   [0,'もしもし、 アンディ？ 今{いま}から 晩{ばん}ごはん、 一緒{いっしょ}に どう？','Halo, Andi? Mau makan malam bareng sekarang?'],
+   [1,'ごめん。 今{いま} *食{た}べた ところ* なんだ。','Maaf. Aku baru saja makan.'],
+   [0,'そっか。 じゃ、 お茶{ちゃ}は？','Oh begitu. Kalau minum teh?'],
+   [1,'いいね。 でも、 今{いま} 家{いえ}に *帰{かえ}って きた ばかり* だから、 30分{さんじゅっぷん} 待{ま}って。','Boleh. Tapi aku baru pulang, jadi tunggu 30 menit ya.']],
+   tip:'Dialog ini memakai gaya akrab (普通形{ふつうけい}). Kepada atasan, ganti dengan です・ます.'}]},
+ {id:'n4-b47',bab:47,title:'Bab 47 · Kabar dan Dugaan',jp:'〜そうです（伝聞{でんぶん}）・〜ようです',sum:'Menyampaikan kabar dengan そうです (katanya), menduga dengan ようです, dan membedakannya dari そう "kelihatannya".',
+  scene:{bg:'room',alt:'Ramalan cuaca di televisi dan kamar sebelah yang lampunya menyala',
+   art:()=>TV(140,170,1.2,CLOUD(-20,-50,.6,'#FFFFFF')+TXT(20,-30,'❄',22,'#4F7CAC',700)+TXT(0,-16,'あした さむい',9,'#3B2A20',800))+P(260,215,1,{c:'#4F7CAC',flip:1,talk:1})+DOOR(350,205,.8)+LAMP(350,130,.5,true),
+   bub:[[260,104,'あしたは 寒{さむ}く なるそうです。','Katanya besok akan dingin.']],
+   hot:[[66,76,148,94,'天気予報{てんきよほう}に よると、 あしたは 雪{ゆき}だそうです。','Menurut ramalan cuaca, katanya besok salju.'],[324,100,52,104,'隣{となり}の 部屋{へや}に だれか いるようです。','Sepertinya ada orang di kamar sebelah.']]},
+  points:[
+   {p:'Bentuk biasa + そうです (katanya)',e:'Menyampaikan informasi dari orang lain. Sumbernya sering disebut dengan 〜によると.',ex:[['天気予報{てんきよほう}に よると、 あしたは 寒{さむ}く なるそうです。','Menurut ramalan cuaca, katanya besok akan dingin.'],['沖縄{おきなわ}の 海{うみ}は とても きれいだそうです。','Katanya laut Okinawa sangat indah.']]},
+   {p:'Bentuk biasa (な-adj な / N の) ようです',e:'Dugaan pembicara dari apa yang dilihat, didengar, atau dirasakan.',ex:[['隣{となり}の 部屋{へや}に だれか いるようです。','Sepertinya ada orang di kamar sebelah.'],['事故{じこ}の ようです。','Sepertinya ada kecelakaan.']]},
+   {p:'声{こえ} / 音{おと} / におい / 味{あじ} が します',e:'Merasakan sesuatu lewat indera.',ex:[['いい においが しますね。','Wanginya enak ya.']]}],
+  nu:[
+   {a:'降{ふ}りそうです (Bab 43)',b:'降{ふ}るそうです',la:3,lb:3,t:'Bentuk ます tanpa ます + そう = "kelihatannya akan" (dari penglihatan sendiri). Bentuk biasa + そう = "katanya" (dari orang lain). Satu huruf saja berbeda, tapi artinya jauh berbeda.'},
+   {a:'忙{いそが}しそうです',b:'忙{いそが}しいようです',la:3,lb:3,t:'そう: kamu melihat langsung orangnya tampak sibuk. よう: kamu menyimpulkan dari tanda-tanda, misalnya pesan lama tidak dibalas.'},
+   {a:'〜と 言{い}って いました (Bab 33)',b:'〜そうです',la:3,lb:3,t:'と言っていました menyampaikan ucapan langsung dari orang tertentu. そうです menyampaikan kabar umum, termasuk dari berita atau gosip.'}],
+  vx:[['天気予報{てんきよほう}','ramalan cuaca',47],['〜に よると','menurut …',47],['におい','bau / wangi',47],['隣{となり}','sebelah',47]],
+  quiz:[
+   {q:'"Katanya enak":',o:['おいしいそうです','おいしそうです','おいしようです'],a:0,x:'Bentuk biasa + そうです = <b>katanya</b>.'},
+   {q:'Dari suara di luar: 外{そと}は 雨{あめ}の （　）です。',o:['よう','そう','はず'],a:0,x:'Dugaan dari tanda-tanda: N の <b>ようです</b>.'},
+   {q:'きれい + そうです (katanya):',o:['きれいだそうです','きれいそうです','きれいなそうです'],a:0,x:'な-adj + <b>だ</b>そうです.'}],
+  kw:[{k:'k',p:'Kantor · kabar dari atasan',sp:['山田{やまだ}','アンディ'],l:[
+   [0,'部長{ぶちょう}の 話{はなし}に よると、 来月{らいげつ} 新{あたら}しい 機械{きかい}が *入{はい}るそうです*。','Menurut kepala bagian, katanya bulan depan akan masuk mesin baru.'],
+   [1,'そうですか。 田中{たなか}さんは 最近{さいきん} *忙{いそが}しいようですね*。','Begitu ya. Pak Tanaka akhir-akhir ini sepertinya sibuk ya.'],
+   [0,'ええ、 その 準備{じゅんび}を して いるようです。','Ya, sepertinya sedang menyiapkan itu.'],
+   [1,'わたしも 何{なに}か 手伝{てつだ}えるか、 聞{き}いて みます。','Saya juga akan coba tanya apa yang bisa saya bantu.']],
+   tip:'Saat menyampaikan kabar yang belum pasti, gunakan そうです atau ようです agar tidak terdengar seperti fakta.'},
+   {k:'h',p:'Asrama · bau masakan',sp:['リナ','アンディ'],l:[
+   [0,'いい *においが しますね*。','Wanginya enak ya.'],
+   [1,'隣{となり}の 人{ひと}が カレーを 作{つく}って いる *ようです*。','Sepertinya tetangga sedang membuat kari.'],
+   [0,'あの 人{ひと}は 料理{りょうり}が 上手{じょうず}だ*そうです*よ。','Katanya orang itu pandai memasak lho.'],
+   [1,'へえ。 今度{こんど} 教{おし}えて もらいたいですね。','Wah. Lain kali ingin diajari ya.']],
+   tip:'Bau masakan yang tercium sampai luar adalah salah satu sumber keluhan di apartemen. Nyalakan kipas dapur saat memasak.'}]},
+ {id:'n4-b48',bab:48,title:'Bab 48 · Kalimat Kausatif',jp:'使役形{しえきけい}',sum:'Menyuruh atau membiarkan dengan bentuk kausatif, dan meminta izin sangat halus dengan 〜させて いただけませんか.',
+  scene:{bg:'autumn',alt:'Pelatih menyuruh anak-anak berlari dan Andi meminta izin',
+   art:()=>P(80,215,1.05,{c:'#3E7D4F',arm:'point',talk:1})+P(170,215,.7,{c:'#D9802F'})+P(210,215,.7,{c:'#4F7CAC',long:1})+P(250,215,.7,{c:'#B5462F'})+ARROW(150,180,290,180,'#3E7D4F')+CAR(340,200,.8)+FLEAVES(5),
+   bub:[[80,108,'毎日{まいにち} 1キロ 走{はし}らせて います。','Setiap hari saya menyuruh mereka lari 1 km.']],
+   hot:[[150,140,120,76,'子{こ}どもたちを 走{はし}らせます。','Menyuruh anak-anak berlari.'],[300,176,80,40,'ここに 車{くるま}を 止{と}めさせて いただけませんか。','Bolehkah saya memarkir mobil di sini?']]},
+  cj:'cau',
+  points:[
+   {p:'Bentuk kausatif',e:'Gol. I: bunyi い → baris あ + せる (い → わ: 買わせる). Gol. II: ます → させる. Gol. III: させる, 来{こ}させる.',ex:[['行{い}きます → 行{い}かせます','pergi → menyuruh pergi']]},
+   {p:'N(orang) を V(intransitif, kausatif)',e:'Untuk kata kerja intransitif, orang yang disuruh ditandai を.',ex:[['子{こ}どもを 公園{こうえん}で 遊{あそ}ばせます。','Membiarkan anak bermain di taman.']]},
+   {p:'N(orang) に N を V(transitif, kausatif)',e:'Untuk kata kerja transitif, orang yang disuruh ditandai に.',ex:[['娘{むすめ}に ピアノを 習{なら}わせます。','Menyuruh anak perempuan belajar piano.']]},
+   {p:'V(kausatif) て いただけませんか',e:'Meminta izin untuk diri sendiri dengan sangat halus: "izinkan saya …".',ex:[['今日{きょう}は 早{はや}く 帰{かえ}らせて いただけませんか。','Bolehkah hari ini saya pulang lebih awal?']]}],
+  nu:[
+   {a:'V ても いいですか (N5)',b:'V(kausatif) て いただけませんか',la:3,lb:5,t:'〜てもいいですか cukup untuk teman atau situasi biasa. Untuk meminta izin kepada atasan atau pelanggan (pulang cepat, cuti, memakai sesuatu), 〜させていただけませんか jauh lebih sopan.'},
+   {a:'V て いただけませんか (Bab 26)',b:'V(kausatif) て いただけませんか',la:5,lb:5,t:'送っていただけませんか = minta orang lain melakukan. 送らせていただけませんか = minta izin agar saya yang melakukan.'},
+   {w:1,t:'Bentuk kausatif dipakai dari atas ke bawah (atasan → bawahan, orang tua → anak). Jangan memakainya untuk atasan: 部長を待たせました terdengar sangat tidak sopan, kecuali dalam permintaan maaf お待たせしました.'}],
+  vx:[['習{なら}います','belajar (dari guru)',48],['止{と}めます','memarkir',48],['早退{そうたい}','pulang lebih awal',48],['お待{ま}たせしました','maaf membuat menunggu',48]],
+  quiz:[
+   {q:'Kausatif dari 買{か}います:',o:['買{か}わせます','買{か}いさせます','買{か}あせます'],a:0,x:'い → <b>わ</b> + せます.'},
+   {q:'子{こ}ども（　） 野菜{やさい}を 食{た}べさせます。',o:['に','を','が'],a:0,x:'Kata kerja transitif (ada を): orang yang disuruh memakai <b>に</b>.'},
+   {q:'Meminta izin cuti kepada atasan:',o:['休{やす}ませて いただけませんか。','休{やす}んで いただけませんか。','休{やす}んでも いい？'],a:0,x:'Izin untuk diri sendiri: <b>〜させていただけませんか</b>.'}],
+  kw:[{k:'k',p:'Kantor · meminta pulang cepat',sp:['アンディ','田中{たなか}'],l:[
+   [0,'田中{たなか}さん、 申{もう}し訳{わけ}ありませんが、 今日{きょう}は 早{はや}く *帰{かえ}らせて いただけませんか*。','Pak Tanaka, mohon maaf, bolehkah hari ini saya pulang lebih awal?'],
+   [1,'どう したんですか。','Ada apa?'],
+   [0,'市役所{しやくしょ}で 手続{てつづ}きが あるので。','Karena ada urusan administrasi di balai kota.'],
+   [1,'わかりました。 いいですよ。','Baik. Boleh.'],
+   [0,'ありがとう ございます。 明日{あした}の 準備{じゅんび}は *させて いただきます*。','Terima kasih. Persiapan untuk besok akan saya kerjakan.']],
+   tip:'〜させていただけませんか adalah ungkapan paling aman untuk meminta izin kepada atasan.'},
+   {k:'h',p:'Rumah · orang tua dan anak',sp:['鈴木{すずき}','アンディ'],l:[
+   [0,'うちの 息子{むすこ}に 毎週{まいしゅう} 水泳{すいえい}を *習{なら}わせて います*。','Saya menyuruh anak saya belajar renang setiap minggu.'],
+   [1,'いいですね。 息子{むすこ}さんは 楽{たの}しそうですか。','Bagus. Anaknya kelihatan senang?'],
+   [0,'ええ。 でも、 ゲームばかり するので、 時々{ときどき} 外{そと}で *遊{あそ}ばせて います*。','Ya. Tapi dia main game terus, jadi kadang saya suruh main di luar.'],
+   [1,'それは 大切{たいせつ}ですね。','Itu penting ya.']],
+   tip:'Bentuk kausatif juga berarti "membiarkan" (遊ばせる = membiarkan bermain), tergantung konteks.'}]},
+ {id:'n4-b49',bab:49,title:'Bab 49 · Bahasa Hormat (Sonkeigo)',jp:'尊敬語{そんけいご}',sum:'Meninggikan tindakan orang lain dengan kata khusus, お〜に なります, bentuk pasif hormat, dan お〜ください.',
+  scene:{bg:'office',alt:'Resepsionis menyambut tamu di kantor',
+   art:()=>`<rect x="40" y="150" width="120" height="55" rx="4" fill="#B98A5A"/>`+P(100,155,.9,{c:'#2F6F8F',long:1,talk:1})+P(250,215,1.1,{c:'#3B3F4A',tie:'#B5462F',h:'#555',gl:1,flip:1})+BAG(270,185,.8,'#3B2A20')+DOOR(350,205,.8,true),
+   bub:[[100,64,'いらっしゃいませ。 どうぞ お入{はい}りください。','Selamat datang. Silakan masuk.']],
+   hot:[[220,110,70,105,'お名前{なまえ}は 何{なん}と おっしゃいますか。','Siapa nama Anda?'],[40,150,120,55,'部長{ぶちょう}は 何時{なんじ}に いらっしゃいますか。','Jam berapa kepala bagian datang?']]},
+  points:[
+   {p:'Kata khusus sonkeigo',e:'いらっしゃいます (pergi / datang / ada), 召{め}し上{あ}がります (makan / minum), おっしゃいます (berkata), ご覧{らん}に なります (melihat), なさいます (melakukan), ご存{ぞん}じです (tahu), くださいます (memberi).',ex:[['社長{しゃちょう}は 今{いま} 会議室{かいぎしつ}に いらっしゃいます。','Direktur sekarang ada di ruang rapat.'],['何{なに}を 召{め}し上{あ}がりますか。','Mau makan apa?']]},
+   {p:'お V(ます) に なります',e:'Pola umum sonkeigo untuk kata kerja yang tidak punya kata khusus.',ex:[['部長{ぶちょう}は もう お帰{かえ}りに なりました。','Kepala bagian sudah pulang.']]},
+   {p:'V(pasif) sebagai hormat',e:'Bentuk pasif juga bisa menjadi bahasa hormat. Tingkatnya sedikit lebih rendah dari お〜になります.',ex:[['部長{ぶちょう}は 何時{なんじ}に 来{こ}られますか。','Jam berapa kepala bagian datang?']]},
+   {p:'お V(ます) ください / ご N ください',e:'Mempersilakan atau meminta dengan hormat.',ex:[['こちらに お名前{なまえ}を お書{か}きください。','Silakan tulis nama Anda di sini.'],['ご連絡{れんらく}ください。','Silakan hubungi kami.']]}],
+  nu:[
+   {a:'行{い}きますか / 食{た}べますか (N5)',b:'いらっしゃいますか / 召{め}し上{あ}がりますか',la:3,lb:5,t:'Bentuk です・ます (丁寧語) sudah sopan, tapi tidak meninggikan orangnya. Kepada pelanggan, atasan, atau tamu, pakai sonkeigo untuk meninggikan tindakan mereka.'},
+   {a:'〜て ください',b:'お〜ください',la:3,lb:5,t:'お待ちください dan お掛けください adalah bentuk standar pelayanan pelanggan. 待ってください masih terdengar seperti perintah.'},
+   {w:1,t:'Sonkeigo hanya untuk tindakan orang lain. わたしはいらっしゃいます adalah kesalahan fatal. Untuk diri sendiri, pakai kenjougo (Bab 50).'}],
+  vx:[['いらっしゃいます','datang / pergi / ada (hormat)',49],['召{め}し上{あ}がります','makan / minum (hormat)',49],['おっしゃいます','berkata (hormat)',49],['ご覧{らん}に なります','melihat (hormat)',49]],
+  quiz:[
+   {q:'Sonkeigo dari 見{み}ます:',o:['ご覧{らん}に なります','拝見{はいけん}します','見{み}させます'],a:0,x:'Hormat: <b>ご覧になります</b>.'},
+   {q:'社長{しゃちょう}は もう お帰{かえ}り（　） なりました。',o:['に','を','が'],a:0,x:'お V(ます) <b>に</b> なります.'},
+   {q:'Kepada tamu: "Silakan tunggu."',o:['少々{しょうしょう} お待{ま}ちください。','ちょっと 待{ま}って。','待{ま}って いただきます。'],a:0,x:'<b>お待ちください</b> adalah bentuk pelayanan standar.'}],
+  kw:[{k:'k',p:'Kantor · menerima tamu',sp:['アンディ','お客様{きゃくさま}'],l:[
+   [0,'いらっしゃいませ。 お名前{なまえ}を *伺{うかが}っても よろしいですか*。','Selamat datang. Boleh saya tahu nama Anda?'],
+   [1,'ABC商事{しょうじ}の 佐藤{さとう}です。 田中{たなか}部長{ぶちょう}は *いらっしゃいますか*。','Sato dari ABC Trading. Apakah Kepala Bagian Tanaka ada?'],
+   [0,'はい。 少々{しょうしょう} *お待{ま}ちください*。 こちらに *お掛{か}けください*。','Ada. Mohon tunggu sebentar. Silakan duduk di sini.'],
+   [1,'ありがとう ございます。','Terima kasih.'],
+   [0,'コーヒーと お茶{ちゃ}と、 どちらを *召{め}し上{あ}がりますか*。','Anda mau kopi atau teh?']],
+   tip:'Saat menerima tamu, rekan kantor sendiri tidak diberi さん dan tidak memakai sonkeigo. Bab 50 membahasnya.'},
+   {k:'h',p:'Toko · pelayan yang sopan',sp:['店員{てんいん}','アンディ'],l:[
+   [0,'何{なに}を *お探{さが}しですか*。','Sedang mencari apa?'],
+   [1,'母{はは}への プレゼントを 探{さが}して いるんです。','Saya sedang mencari hadiah untuk ibu.'],
+   [0,'こちらは *ご覧{らん}に なりましたか*。 人気{にんき}の スカーフです。','Apakah sudah melihat yang ini? Syal yang populer.'],
+   [1,'きれいですね。 これに します。','Cantik ya. Saya pilih ini.']],
+   tip:'Kamu tidak perlu membalas dengan sonkeigo di toko. Cukup jawab dengan です・ます yang sopan.'}]},
+ {id:'n4-b50',bab:50,title:'Bab 50 · Bahasa Merendah (Kenjougo)',jp:'謙譲語{けんじょうご}',sum:'Merendahkan tindakan diri sendiri dengan kata khusus dan お〜します, serta memakai 丁寧語 untuk pelanggan.',
+  scene:{bg:'office',alt:'Andi memperkenalkan diri dalam wawancara dan membawakan barang tamu',
+   art:()=>DESK(110,215,.8)+P(90,215,1.05,{c:'#3B3F4A',tie:'#2F6F8F',h:'#555',gl:1})+P(220,215,1.05,{c:'#3B3F4A',tie:'#B5462F',talk:1})+P(330,215,1.05,{c:'#4F7CAC',tie:'#B5462F',arm:'hold',flip:1})+BAG(318,182,.9,'#3B2A20'),
+   bub:[[220,108,'アンディと 申{もう}します。','Nama saya Andi.']],
+   hot:[[296,120,64,96,'お荷物{にもつ}を お持{も}ちします。','Saya bawakan barang Anda.'],[56,120,70,96,'あした 御社{おんしゃ}に 伺{うかが}います。','Besok saya akan berkunjung ke perusahaan Anda.']]},
+  points:[
+   {p:'Kata khusus kenjougo',e:'参{まい}ります (pergi / datang), おります (ada), いただきます (makan / menerima), 申{もう}します (berkata), 拝見{はいけん}します (melihat), いたします (melakukan), 伺{うかが}います (bertanya / berkunjung), 存{ぞん}じて おります (tahu), お目{め}に かかります (bertemu), 差{さ}し上{あ}げます (memberi).',ex:[['アンディと 申{もう}します。','Nama saya Andi.'],['資料{しりょう}を 拝見{はいけん}しました。','Saya sudah melihat materinya.']]},
+   {p:'お V(ます) します / ご N します',e:'Pola umum kenjougo: saya melakukan sesuatu untuk orang yang dihormati.',ex:[['お荷物{にもつ}を お持{も}ちします。','Saya bawakan barang Anda.'],['会社{かいしゃ}を ご案内{あんない}します。','Saya pandu Anda berkeliling kantor.']]},
+   {p:'丁寧語{ていねいご}: ございます / でございます',e:'Bentuk sangat sopan dari あります dan です, sering dipakai di toko dan layanan pelanggan.',ex:[['トイレは あちらで ございます。','Toilet ada di sebelah sana.']]}],
+  nu:[
+   {a:'行{い}きます → いらっしゃいます (Bab 49)',b:'行{い}きます → 参{まい}ります',la:5,lb:5,t:'Kata yang sama punya dua bentuk. Untuk orang lain (meninggikan) pakai いらっしゃいます. Untuk diri sendiri (merendah) pakai 参ります. Jangan tertukar.'},
+   {a:'田中{たなか}さんは いません (N5)',b:'田中{たなか}は ただいま 席{せき}を 外{はず}して おります',la:3,lb:5,t:'Kepada orang dari luar perusahaan, rekan kantor sendiri dianggap "pihak saya". Panggil tanpa さん dan pakai kenjougo (おります), meskipun dia atasanmu.'},
+   {a:'です・ます (丁寧語)',b:'尊敬語 / 謙譲語',la:3,lb:5,t:'Ringkasan tingkat kesopanan: bentuk biasa (teman) < です・ます (umum) < 尊敬語 / 謙譲語 (atasan, pelanggan, wawancara, telepon bisnis).'}],
+  vx:[['申{もう}します','berkata (merendah)',50],['参{まい}ります','pergi / datang (merendah)',50],['拝見{はいけん}します','melihat (merendah)',50],['伺{うかが}います','berkunjung / bertanya (merendah)',50]],
+  quiz:[
+   {q:'Kenjougo dari 言{い}います:',o:['申{もう}します','おっしゃいます','言{い}われます'],a:0,x:'Merendah: <b>申します</b>.'},
+   {q:'Membantu tamu membawa barang:',o:['お持{も}ちします','お持{も}ちに なります','お持{も}ちください'],a:0,x:'Saya melakukan untuk orang lain: <b>お〜します</b>.'},
+   {q:'Kepada tamu dari luar: "Pak Tanaka (atasan saya) sedang keluar."',o:['田中{たなか}は 外出{がいしゅつ}して おります。','田中{たなか}さんは 外出{がいしゅつ}して いらっしゃいます。','田中{たなか}様{さま}は 外出{がいしゅつ}なさって います。'],a:0,x:'Rekan sendiri kepada pihak luar: tanpa さん + <b>おります</b>.'}],
+  kw:[{k:'k',p:'Telepon bisnis · menerima telepon',sp:['アンディ','お客様{きゃくさま}'],l:[
+   [0,'お電話{でんわ} ありがとう ございます。 ふじ工業{こうぎょう}の アンディで *ございます*。','Terima kasih atas teleponnya. Saya Andi dari Fuji Industri.'],
+   [1,'ABC商事{しょうじ}の 佐藤{さとう}ですが、 田中{たなか}部長{ぶちょう}は いらっしゃいますか。','Ini Sato dari ABC Trading. Apakah Kepala Bagian Tanaka ada?'],
+   [0,'申{もう}し訳{わけ}ございません。 *田中{たなか}は* ただいま 席{せき}を 外{はず}して *おります*。','Mohon maaf. Tanaka sedang tidak di tempat.'],
+   [1,'そうですか。 では、 お電話{でんわ}を いただけるように お伝{つた}えください。','Begitu ya. Kalau begitu, tolong sampaikan agar beliau menelepon saya.'],
+   [0,'かしこまりました。 戻{もど}りましたら、 *お伝{つた}えします*。','Baik. Begitu kembali, akan saya sampaikan.']],
+   tip:'かしこまりました adalah bentuk sangat sopan dari わかりました. Wajib dipakai kepada pelanggan.'},
+   {k:'h',p:'Wawancara · memperkenalkan diri',sp:['面接官{めんせつかん}','アンディ'],l:[
+   [0,'では、 自己紹介{じこしょうかい}を お願{ねが}いします。','Silakan perkenalkan diri.'],
+   [1,'インドネシアから *参{まい}りました*、 アンディと *申{もう}します*。','Saya Andi, datang dari Indonesia.'],
+   [0,'当社{とうしゃ}の ことは ご存{ぞん}じですか。','Apakah Anda tahu tentang perusahaan kami?'],
+   [1,'はい。 ホームページを *拝見{はいけん}しました*。 御社{おんしゃ}で 働{はたら}きたいと *存{ぞん}じて おります*。','Ya. Saya sudah melihat situs webnya. Saya ingin bekerja di perusahaan Anda.'],
+   [0,'ありがとう ございます。','Terima kasih.']],
+   tip:'Saat wawancara, sebut perusahaan mereka 御社{おんしゃ} saat berbicara dan 貴社{きしゃ} dalam tulisan.'}]}
+];
 const LEVELS=[
  {id:'kana',tag:'かな',name:'Kana Dasar',sub:'Hiragana & Katakana',desc:'Titik nol: mengenal 46 huruf hiragana dan 46 katakana beserta bunyinya.',lessons:[
   {id:'hira',kana:'hira',title:'Hiragana',jp:'ひらがな',sum:'Huruf dasar untuk kata asli Jepang dan partikel. Ketuk huruf untuk mendengar bunyinya.'},
   {id:'kata',kana:'kata',title:'Katakana',jp:'カタカナ',sum:'Huruf untuk kata serapan asing, nama negara, dan nama orang asing.'}]},
  {id:'n5',tag:'N5',name:'Pemula',sub:'Minna no Nihongo I · Bab 1–25',desc:'25 bab pola kalimat dasar dengan ilustrasi interaktif, contoh bersuara, kosakata per bab, dan latihan.',lessons:N5B},
- {id:'n4',tag:'N4',name:'Dasar Lanjut',sub:'Setara Minna no Nihongo I–II',desc:'Bentuk て, keinginan, kemampuan, dan pengalaman.',lessons:[
-  {id:'n4-1',title:'Bentuk て',jp:'て形{けい}',sum:'Meminta, izin, larangan, dan kegiatan yang sedang berlangsung.',
-   points:[
-    {p:'Vて ください',e:'Meminta orang lain melakukan sesuatu dengan sopan.',ex:[['ちょっと 待{ま}って ください。','Tolong tunggu sebentar.']]},
-    {p:'Vて います',e:'Kegiatan yang sedang berlangsung, atau keadaan.',ex:[['今{いま} 雨{あめ}が 降{ふ}って います。','Sekarang sedang hujan.']]},
-    {p:'Vても いいです / Vては いけません',e:'Meminta/memberi izin dan menyatakan larangan.',ex:[['写真{しゃしん}を 撮{と}っても いいですか。','Bolehkah saya memotret?'],['ここで たばこを 吸{す}っては いけません。','Dilarang merokok di sini.']]}],
-   vocab:[['書{か}く → 書{か}いて','menulis'],['飲{の}む → 飲{の}んで','minum'],['待{ま}つ → 待{ま}って','menunggu'],['見{み}る → 見{み}て','melihat'],['する → して','melakukan'],['行{い}く → 行{い}って','pergi (pengecualian)']],
-   quiz:[
-    {q:'Bentuk て dari 書{か}く:',o:['書{か}って','書{か}いて','書{か}んで'],a:1,x:'Akhiran く → <b>いて</b>.'},
-    {q:'Bentuk て dari 行{い}く:',o:['行{い}いて','行{い}って','行{い}んで'],a:1,x:'行く adalah pengecualian → <b>行って</b>.'},
-    {q:'"Bolehkah saya duduk?"',o:['座{すわ}っても いいですか。','座{すわ}っては いけません。','座{すわ}って います。'],a:0,x:'Minta izin: <b>Vても いいですか</b>.'}]},
-  {id:'n4-2',title:'Keinginan, Kemampuan, Pengalaman',jp:'〜たい・できる・〜たことがある',sum:'Bercerita tentang diri sendiri lebih lengkap.',
-   points:[
-    {p:'V-ます → Vたいです',e:'"Ingin melakukan". Ganti ます dengan たい.',ex:[['日本{にほん}で 働{はたら}きたいです。','Saya ingin bekerja di Jepang.']]},
-    {p:'V辞書形{じしょけい} ことが できます',e:'"Bisa melakukan". Memakai bentuk kamus.',ex:[['日本語{にほんご}を 話{はな}す ことが できます。','Saya bisa berbicara bahasa Jepang.']]},
-    {p:'Vた ことが あります',e:'"Pernah melakukan". Memakai bentuk た.',ex:[['納豆{なっとう}を 食{た}べた ことが あります。','Saya pernah makan natto.']]}],
-   vocab:[['話{はな}す','berbicara'],['泳{およ}ぐ','berenang'],['運転{うんてん}する','menyetir'],['経験{けいけん}','pengalaman'],['夢{ゆめ}','mimpi / cita-cita']],
-   quiz:[
-    {q:'"Saya pernah pergi ke Jepang."',o:['日本{にほん}へ 行{い}く ことが あります。','日本{にほん}へ 行{い}った ことが あります。','日本{にほん}へ 行{い}きたいです。'],a:1,x:'Pengalaman: <b>Vた ことが あります</b>.'},
-    {q:'"Ingin minum kopi" → コーヒーが 飲{の}み（　）です。',o:['たい','ます','たら'],a:0,x:'Keinginan: <b>〜たい</b>です.'},
-    {q:'車{くるま}を 運転{うんてん}する ことが（　）。',o:['あります','できます','します'],a:1,x:'Kemampuan: <b>ことが できます</b>.'}]}]},
- {id:'jft',tag:'A2',name:'JFT A2 · SSW',sub:'Bahasa Jepang di tempat kerja',desc:'Instruksi atasan, tanda keselamatan, dan pengumuman di lingkungan kerja.',lessons:[
-  {id:'jft-1',title:'Instruksi di Tempat Kerja',jp:'職場{しょくば}の 指示{しじ}',sum:'Memahami perintah, larangan, dan kewajiban.',
-   points:[
-    {p:'Vて おいて ください',e:'Meminta sesuatu disiapkan/diselesaikan lebih dulu.',ex:[['道具{どうぐ}を 片付{かたづ}けて おいて ください。','Tolong rapikan alat-alatnya.']]},
-    {p:'Vないで ください',e:'Larangan yang sopan: "tolong jangan…".',ex:[['機械{きかい}に 触{さわ}らないで ください。','Tolong jangan sentuh mesin.']]},
-    {p:'Vなければ なりません',e:'Kewajiban: "harus…".',ex:[['ヘルメットを かぶらなければ なりません。','Harus memakai helm.']]}],
-   vocab:[['安全{あんぜん}','keselamatan'],['危険{きけん}','bahaya'],['確認{かくにん}','pengecekan'],['報告{ほうこく}','laporan'],['休憩{きゅうけい}','istirahat'],['禁止{きんし}','dilarang']],
-   quiz:[
-    {q:'"Tolong jangan sentuh." → 触{さわ}（　）ください。',o:['らないで','って','らなくて'],a:0,x:'Larangan sopan: <b>Vないで ください</b> → 触らないで.'},
-    {q:'禁止{きんし} artinya…',o:['diizinkan','dilarang','darurat'],a:1,x:'<b>禁止</b> = dilarang, contoh: 喫煙禁止 (dilarang merokok).'},
-    {q:'"Harus memakai helm."',o:['ヘルメットを かぶっても いいです。','ヘルメットを かぶらなければ なりません。','ヘルメットを かぶらないで ください。'],a:1,x:'Kewajiban: <b>なければ なりません</b>.'}]},
-  {id:'jft-2',title:'Tanda dan Pengumuman',jp:'掲示{けいじ}と お知{し}らせ',sum:'Membaca tanda keselamatan dan alasan sopan.',
-   points:[
-    {p:'Tanda penting',e:'立入禁止{たちいりきんし} dilarang masuk · 非常口{ひじょうぐち} pintu darurat · 足元{あしもと}注意{ちゅうい} awas langkah.',ex:[['足元{あしもと}に 注意{ちゅうい}して ください。','Hati-hati dengan langkah Anda.']]},
-    {p:'〜ので',e:'"Karena…", terdengar lebih sopan dari から saat memberi alasan.',ex:[['熱{ねつ}が あるので、 休{やす}みます。','Karena demam, saya izin istirahat.']]},
-    {p:'Vたら',e:'"Setelah/kalau…". Urutan kerja yang umum.',ex:[['終{お}わったら、 報告{ほうこく}して ください。','Setelah selesai, tolong laporkan.']]}],
-   vocab:[['立入禁止{たちいりきんし}','dilarang masuk'],['非常口{ひじょうぐち}','pintu darurat'],['注意{ちゅうい}','perhatian / awas'],['工事中{こうじちゅう}','sedang konstruksi'],['消火器{しょうかき}','alat pemadam api']],
-   quiz:[
-    {q:'非常口{ひじょうぐち} artinya…',o:['pintu darurat','pintu masuk','toilet'],a:0,x:'<b>非常口</b> = pintu darurat.'},
-    {q:'Tanda 立入禁止{たちいりきんし} berarti…',o:['silakan masuk','dilarang masuk','pintu keluar'],a:1,x:'立入 = masuk, 禁止 = dilarang.'},
-    {q:'終{お}わったら、 報告{ほうこく}して ください。 Kapan harus melapor?',o:['sebelum mulai','setelah selesai','saat istirahat'],a:1,x:'<b>〜たら</b> di sini berarti "setelah".'}]}]},
+ {id:'n4',tag:'N4',name:'Dasar Lanjut',sub:'Minna no Nihongo II · Bab 26–50',desc:'25 bab dengan ilustrasi interaktif, nuansa dan tingkat kesopanan, kaiwa kerja dan sehari-hari, serta latihan.',lessons:N4B},
  {id:'n3',tag:'N3',name:'Menengah',sub:'Ekspresi sehari-hari yang lebih alami',desc:'Tujuan, perubahan, perkiraan, dan kabar.',lessons:[
   {id:'n3-1',title:'Tujuan dan Perubahan',jp:'〜ように・〜ことにする',sum:'Menyatakan tujuan, perubahan kemampuan, dan keputusan.',
    points:[
@@ -1672,6 +2444,7 @@ const KW={
 };
 N5B.forEach(x=>{x.vocab=(x.vx||[]).concat(VOCAB_X.n5.filter(v=>v[2]===x.bab));x.quiz.forEach((q,i)=>{const n=q.o.length,k=(x.bab+i)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
 N5B.forEach(x=>{x.kw=KW[x.bab]});
+N4B.forEach(x=>{x.vocab=x.vx||[];x.quiz.forEach((q,i)=>{const n=q.o.length,k=(x.bab+i)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
 </script>
 
 <script>
@@ -1708,7 +2481,7 @@ function ring(p,s=56,label=''){p=Math.max(0,Math.min(1,p));const r=s/2-6,c=2*Mat
 let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2400)}
 
 /* ===================== SUARA ===================== */
-const FK=new Set(["一人|ひとり", "一日|いちにち", "七|なな", "七人|ななにん", "上|あ", "上|うえ", "上手|じょうず", "下|した", "下手|へた", "中|なか", "九|ここの", "九人|きゅうにん", "二人|ににん", "二人|ふたり", "人|じん", "人|にん", "人|ひと", "今日|きょう", "何|なに", "何|なん", "何時|なんじ", "作業靴|さぎょうぐつ", "入|い", "入|はい", "八|やっ", "六|むっ", "六|ろっ", "出|だ", "出|で", "分|ふん", "分|わ", "前|まえ", "十|とお", "四|し", "四|よっ", "四|よん", "四人|よにん", "回|かい", "回|まわ", "土産|みやげ", "報連相|ほうれんそう", "変|か", "変|へん", "外国人|がいこくじん", "安|やす", "安全靴|あんぜんぐつ", "富士山|ふじさん", "少|すく", "少|すこ", "広|ひろ", "弾|ひ", "形|けい", "後|うし", "御社|おんしゃ", "急|いそ", "急|きゅう", "方|かた", "明日|あした", "昨日|きのう", "時計|とけい", "普通形|ふつうけい", "書|か", "枚|まい", "果物|くだもの", "止|と", "歳|さい", "母|かあ", "母|はは", "眼鏡|めがね", "着|き", "着|つ", "行|い", "触|さわ", "言|い", "話|はな", "話|はなし", "読|よ", "買|か", "車|くるま", "遅|おく", "遅|おそ", "部屋|へや", "開|あ", "間|あいだ", "間|ま", "降|お", "降|ふ", "非常口|ひじょうぐち", "飲|の"]);
+const FK=new Set(["10日|とおか", "20日|はつか", "一人|ひとり", "一日|いちにち", "七|なな", "七人|ななにん", "上|あ", "上|うえ", "上手|じょうず", "下|した", "下手|へた", "中|なか", "九|ここの", "九人|きゅうにん", "二人|ににん", "二人|ふたり", "人|じん", "人|にん", "人|ひと", "今日|きょう", "何|なに", "何|なん", "何時|なんじ", "作業靴|さぎょうぐつ", "入|い", "入|はい", "八|やっ", "六|むっ", "六|ろっ", "出|だ", "出|で", "分|ふん", "分|わ", "前|まえ", "十|とお", "四|し", "四|よっ", "四|よん", "四人|よにん", "回|かい", "回|まわ", "土産|みやげ", "報連相|ほうれんそう", "変|か", "変|へん", "外|そと", "外|はず", "外国人|がいこくじん", "安|やす", "安全靴|あんぜんぐつ", "富士山|ふじさん", "少|すく", "少|すこ", "広|ひろ", "弾|ひ", "形|けい", "後|うし", "御社|おんしゃ", "急|いそ", "急|きゅう", "方|かた", "明日|あした", "昨日|きのう", "時計|とけい", "普通形|ふつうけい", "書|か", "枚|まい", "果物|くだもの", "止|と", "歳|さい", "母|かあ", "母|はは", "消|き", "消|け", "眼鏡|めがね", "着|き", "着|つ", "行|い", "触|さわ", "言|い", "話|はな", "話|はなし", "読|よ", "買|か", "足|あし", "足|た", "車|くるま", "遅|おく", "遅|おそ", "部屋|へや", "開|あ", "間|あいだ", "間|ま", "降|お", "降|ふ", "非常口|ひじょうぐち", "飲|の"]);
 const spk=t=>{t=String(t).replace(/\*/g,'').replace(/（\s*）/g,'');const one=t.replace(/[〜～\s　]/g,'');const m=one.match(/^([々〆ヶ一-鿿0-9０-９]+)\{([^}]+)\}$/);if(m)return m[2];return t.replace(RB,(x,b,r)=>FK.has(b+'|'+r)?r:b).replace(/[〜～\s　]/g,'')};
 let jaVoice=null,jaVoices=[];
 const vScore=x=>(/natural|neural|online/i.test(x.name)?50:0)+(/google/i.test(x.name)?40:0)+(/nanami|keita|kyoko|o-ren|otoya|hattori/i.test(x.name)?30:0)+(/premium|enhanced|拡張/i.test(x.name)?15:0)+(/haruka/i.test(x.name)?8:/ayumi/i.test(x.name)?6:/sayaka/i.test(x.name)?4:/ichiro/i.test(x.name)?3:0);
@@ -1858,7 +2631,7 @@ function vLesson(){
   body=`${sceneHTML(x)}<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Pola kalimat<span class="jpn">文型</span></h2></div>
    ${x.points.map((p,pi)=>`<article class="card point"><span class="eyebrow">Pola ${pi+1}</span>${x.bab?fm(p.p):`<div class="pattern">${rb(p.p)}</div>`}<p>${rbh(p.e)}</p>
     ${p.ex.map(e=>`<div class="ex">${say(e[0])}<div><div class="jp">${rb(e[0])}</div><div class="tr">${esc(e[1])}</div></div></div>`).join('')}</article>`).join('')}</section>
-  ${x.note?`<div class="note"><b>Catatan sensei:</b> ${rbh(x.note)}</div>`:''}${x.cj?cjHTML(x):''}${x.kw?kwHTML(x):''}
+  ${x.note?`<div class="note"><b>Catatan sensei:</b> ${rbh(x.note)}</div>`:''}${x.nu?nuHTML(x):''}${x.cj?cjHTML(x):''}${x.kw?kwHTML(x):''}
   <section class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px"><div class="sec-head"><h2>Kosakata<span class="jpn">言葉</span></h2><span class="muted" style="font-size:.85rem">${x.vocab.length} kata</span></div>
    <div class="tblwrap"><table class="vtab"><tbody>${x.vocab.map(v=>`<tr><td>${rb(v[0])}</td><td class="muted">${esc(v[1])}</td><td>${say(v[0])}</td></tr>`).join('')}</tbody></table></div></section>
   <section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Latihan mini<span class="jpn">練習</span></h2>${answered?`<span class="pill ${score===qs.length?'good':'maple'} num">Skor ${score}/${qs.length}</span>`:''}</div>
@@ -1879,7 +2652,7 @@ function vLesson(){
 /* ===================== ILUSTRASI & WIDGET MATERI ===================== */
 UI.scHot={};UI.scMode={};UI.cnt={t:'tsu',n:3};UI.cj={};
 function fm(p){if(!/[぀-ヿ一-鿿]/.test(p))return `<div class="pattern">${rb(p)}</div>`;
- const out=[];p.split(' ').filter(Boolean).forEach(t=>{const lat=/[A-Za-z]/.test(t)&&!/[぀-ヿ一-鿿]/.test(t.replace(/\{[^}]*\}/g,''))||/^(N|V|Adj)/.test(t);
+ const out=[];p.split(' ').filter(Boolean).forEach(t=>{const lat=/[A-Za-z]/.test(t)&&!/[぀-ヿ一-鿿]/.test(t.replace(/\{[^}]*\}/g,''))||/^(N|V|Adj|な-adj|い-adj)/.test(t);
   const k=t==='/'||t==='+'||t==='・'||t==='→'?'op':lat?'slot':'part';const last=out[out.length-1];
   if(k==='slot'&&last&&last.k==='slot'&&!/[぀-ヿ一-鿿]/.test(t))last.t+=' '+t;else out.push({k,t})});
  return `<div class="formula" aria-label="Rumus: ${esc(kana(p))}">${out.map(o=>`<span class="fx-${o.k}">${rb(o.t)}</span>`).join('')}</div>`}
@@ -1907,9 +2680,25 @@ function counterHTML(){const c=UI.cnt,d=CNT[c.t],j=d.jp[c.n-1],sent=d.s(j);
  <div class="scene-art cnt-art"><svg viewBox="0 0 400 170" role="img" aria-label="${c.n} ${d.tr}"><rect width="400" height="170" fill="#FBF1E2"/><rect y="84" width="400" height="4" fill="#E7D8C4"/><rect y="156" width="400" height="4" fill="#E7D8C4"/>${art}</svg></div>
  <div class="cnt-ctrl"><button class="iconbtn cnt-b" data-act="cntN" data-v="-1" aria-label="Kurangi">−</button><div class="cnt-big"><div class="jp">${rb(j)}</div><span class="muted num">${c.n} ${d.tr}</span></div><button class="iconbtn cnt-b" data-act="cntN" data-v="1" aria-label="Tambah">+</button></div>
  <figcaption class="scene-cap">${say(sent)}<div style="min-width:0"><div class="jp">${rb(sent)}</div><div class="tr muted" style="font-size:.9rem">Ada ${c.n} ${d.tr}. Tekan + atau − untuk mengganti jumlah.</div></div></figcaption></section>`}
-const VB=[['書{か}きます','書{か}いて','書{か}かない','書{か}く','書{か}いた','I'],['行{い}きます','行{い}って','行{い}かない','行{い}く','行{い}った','I'],['急{いそ}ぎます','急{いそ}いで','急{いそ}がない','急{いそ}ぐ','急{いそ}いだ','I'],['飲{の}みます','飲{の}んで','飲{の}まない','飲{の}む','飲{の}んだ','I'],['遊{あそ}びます','遊{あそ}んで','遊{あそ}ばない','遊{あそ}ぶ','遊{あそ}んだ','I'],['待{ま}ちます','待{ま}って','待{ま}たない','待{ま}つ','待{ま}った','I'],['買{か}います','買{か}って','買{か}わない','買{か}う','買{か}った','I'],['帰{かえ}ります','帰{かえ}って','帰{かえ}らない','帰{かえ}る','帰{かえ}った','I'],['話{はな}します','話{はな}して','話{はな}さない','話{はな}す','話{はな}した','I'],['食{た}べます','食{た}べて','食{た}べない','食{た}べる','食{た}べた','II'],['見{み}ます','見{み}て','見{み}ない','見{み}る','見{み}た','II'],['起{お}きます','起{お}きて','起{お}きない','起{お}きる','起{お}きた','II'],['来{き}ます','来{き}て','来{こ}ない','来{く}る','来{き}た','III'],['勉強{べんきょう}します','勉強{べんきょう}して','勉強{べんきょう}しない','勉強{べんきょう}する','勉強{べんきょう}した','III']];
-const CJF={te:[1,'bentuk て','て形'],nai:[2,'bentuk ない','ない形'],dict:[3,'bentuk kamus','辞書形'],ta:[4,'bentuk た','た形']};
+const VB=[['書{か}きます','書{か}いて','書{か}かない','書{か}く','書{か}いた','I','書{か}ける','書{か}こう','書{か}け','書{か}けば','書{か}かれる','書{か}かせる'],['行{い}きます','行{い}って','行{い}かない','行{い}く','行{い}った','I','行{い}ける','行{い}こう','行{い}け','行{い}けば','行{い}かれる','行{い}かせる'],['急{いそ}ぎます','急{いそ}いで','急{いそ}がない','急{いそ}ぐ','急{いそ}いだ','I','急{いそ}げる','急{いそ}ごう','急{いそ}げ','急{いそ}げば','急{いそ}がれる','急{いそ}がせる'],['飲{の}みます','飲{の}んで','飲{の}まない','飲{の}む','飲{の}んだ','I','飲{の}める','飲{の}もう','飲{の}め','飲{の}めば','飲{の}まれる','飲{の}ませる'],['遊{あそ}びます','遊{あそ}んで','遊{あそ}ばない','遊{あそ}ぶ','遊{あそ}んだ','I','遊{あそ}べる','遊{あそ}ぼう','遊{あそ}べ','遊{あそ}べば','遊{あそ}ばれる','遊{あそ}ばせる'],['待{ま}ちます','待{ま}って','待{ま}たない','待{ま}つ','待{ま}った','I','待{ま}てる','待{ま}とう','待{ま}て','待{ま}てば','待{ま}たれる','待{ま}たせる'],['買{か}います','買{か}って','買{か}わない','買{か}う','買{か}った','I','買{か}える','買{か}おう','買{か}え','買{か}えば','買{か}われる','買{か}わせる'],['帰{かえ}ります','帰{かえ}って','帰{かえ}らない','帰{かえ}る','帰{かえ}った','I','帰{かえ}れる','帰{かえ}ろう','帰{かえ}れ','帰{かえ}れば','帰{かえ}られる','帰{かえ}らせる'],['話{はな}します','話{はな}して','話{はな}さない','話{はな}す','話{はな}した','I','話{はな}せる','話{はな}そう','話{はな}せ','話{はな}せば','話{はな}される','話{はな}させる'],['食{た}べます','食{た}べて','食{た}べない','食{た}べる','食{た}べた','II','食{た}べられる','食{た}べよう','食{た}べろ','食{た}べれば','食{た}べられる','食{た}べさせる'],['見{み}ます','見{み}て','見{み}ない','見{み}る','見{み}た','II','見{み}られる','見{み}よう','見{み}ろ','見{み}れば','見{み}られる','見{み}させる'],['起{お}きます','起{お}きて','起{お}きない','起{お}きる','起{お}きた','II','起{お}きられる','起{お}きよう','起{お}きろ','起{お}きれば','起{お}きられる','起{お}きさせる'],['来{き}ます','来{き}て','来{こ}ない','来{く}る','来{き}た','III','来{こ}られる','来{こ}よう','来{こ}い','来{く}れば','来{こ}られる','来{こ}させる'],['勉強{べんきょう}します','勉強{べんきょう}して','勉強{べんきょう}しない','勉強{べんきょう}する','勉強{べんきょう}した','III','勉強{べんきょう}できる','勉強{べんきょう}しよう','勉強{べんきょう}しろ','勉強{べんきょう}すれば','勉強{べんきょう}される','勉強{べんきょう}させる']];
+const CJF={te:[1,'bentuk て','て形'],nai:[2,'bentuk ない','ない形'],dict:[3,'bentuk kamus','辞書形'],ta:[4,'bentuk た','た形'],pot:[6,'bentuk potensial','可能形'],vol:[7,'bentuk maksud','意向形'],imp:[8,'bentuk perintah','命令形'],ba:[9,'bentuk ば','条件形'],pas:[10,'bentuk pasif','受身形'],cau:[11,'bentuk kausatif','使役形']};
+const ROWS={'い':'わうえお','き':'かくけこ','ぎ':'がぐげご','し':'さすせそ','ち':'たつてと','に':'なぬねの','び':'ばぶべぼ','み':'まむめも','り':'らるれろ'};
+const CJX={
+ pot:(g,e)=>g==='III'?'Golongan III: する → できる, 来{く}る → 来{こ}られる.':g==='II'?'Golongan II: ganti ます → られる.':`Golongan I: bunyi ${e} → ${ROWS[e][2]}, lalu + る.`,
+ vol:(g,e)=>g==='III'?'Golongan III: する → しよう, 来{く}る → 来{こ}よう.':g==='II'?'Golongan II: ganti ます → よう.':`Golongan I: bunyi ${e} → ${ROWS[e][3]}, lalu + う.`,
+ imp:(g,e)=>g==='III'?'Golongan III: する → しろ, 来{く}る → 来{こ}い.':g==='II'?'Golongan II: ganti ます → ろ.':`Golongan I: bunyi ${e} → ${ROWS[e][2]}.`,
+ ba:(g,e)=>g==='III'?'Golongan III: する → すれば, 来{く}る → 来{く}れば.':g==='II'?'Golongan II: ganti ます → れば.':`Golongan I: bunyi ${e} → ${ROWS[e][2]}, lalu + ば.`,
+ pas:(g,e)=>g==='III'?'Golongan III: する → される, 来{く}る → 来{こ}られる.':g==='II'?'Golongan II: ganti ます → られる (sama dengan bentuk potensial).':`Golongan I: bunyi ${e} → ${ROWS[e][0]}, lalu + れる.${e==='い'?' Perhatikan: い berubah menjadi わ, bukan あ.':''}`,
+ cau:(g,e)=>g==='III'?'Golongan III: する → させる, 来{く}る → 来{こ}させる.':g==='II'?'Golongan II: ganti ます → させる.':`Golongan I: bunyi ${e} → ${ROWS[e][0]}, lalu + せる.${e==='い'?' Perhatikan: い berubah menjadi わ, bukan あ.':''}`};
+const PL=['','Kasar','Akrab','Sopan','Lebih sopan','Sangat hormat'];
+const pmeter=l=>`<span class="pm" aria-label="Tingkat kesopanan: ${PL[l]}">${[1,2,3,4,5].map(i=>`<i class="${i<=l?'on l'+l:''}"></i>`).join('')}<b>${PL[l]}</b></span>`;
+const nuSay=t=>/[\/→×()（）]/.test(t)?'':say(t);
+function nuHTML(x){return `<section class="card nu"><div class="sec-head"><div><h2>Nuansa &amp; tingkat kesopanan<span class="jpn">使い分け</span></h2><p class="muted" style="font-size:.88rem">Perbandingan dengan pola yang sudah dipelajari, dan kapan sebaiknya dipakai.</p></div></div>
+ <div class="pm-legend">${[1,2,3,4,5].map(l=>`<span>${pmeter(l)}</span>`).join('')}</div>
+ ${x.nu.map(n=>n.w?`<div class="nu-warn"><b>Hati-hati:</b> ${rbh(n.t)}</div>`:`<article class="nu-card"><div class="nu-pair"><div class="nu-side"><span class="nu-tag">Sebelumnya</span><div class="nu-ex">${nuSay(n.a)}<span class="jp">${rb(n.a)}</span></div>${pmeter(n.la)}</div><div class="nu-vs" aria-hidden="true">→</div><div class="nu-side b"><span class="nu-tag n4">Bab ini</span><div class="nu-ex">${nuSay(n.b)}<span class="jp">${rb(n.b)}</span></div>${pmeter(n.lb)}</div></div><p>${rbh(n.t)}</p></article>`).join('')}</section>`}
+
 function cjRule(v,f){const g=v[5],st=kana(v[0]).replace(/ます$/,''),e=st.slice(-1);
+ if(CJX[f])return CJX[f](g,e);
  if(g==='III')return 'Golongan III berubah tidak beraturan, jadi perlu dihafalkan.';
  if(g==='II')return {te:'Golongan II: cukup ganti ます → て.',ta:'Golongan II: cukup ganti ます → た.',nai:'Golongan II: cukup ganti ます → ない.',dict:'Golongan II: cukup ganti ます → る.'}[f];
  if(f==='te'||f==='ta'){const T=f==='te'?['って','んで','いて','いで','して']:['った','んだ','いた','いだ','した'];
@@ -1924,12 +2713,12 @@ function cjHTML(x){const f=x.cj,st=UI.cj[x.id]||{i:0,show:false},v=VB[st.i],F=CJ
   <div class="cj-row"><span class="cj-w">${rb(v[0])}</span><span class="cj-arrow" aria-hidden="true">→</span>${st.show?`<span class="cj-w cj-ans pop">${rb(v[F[0]])}</span>`:`<button class="btn" data-act="cjShow" data-id="${x.id}">Lihat ${F[1]}</button>`}</div>
   ${st.show?`<p class="cj-rule pop">${cjRule(v,f)}</p><div style="display:flex;gap:8px;align-items:center">${say(v[F[0]])}<button class="btn sm ghost" data-act="cjNext" data-id="${x.id}">Kata kerja berikutnya</button></div>`:''}</div></section>`}
 function fixBubbles(){document.querySelectorAll('.scene-art').forEach(a=>{const A=a.getBoundingClientRect(),bs=[...a.querySelectorAll('.sb')],placed=[];
- bs.forEach(b=>{b.style.setProperty('--dx','0px');b.style.setProperty('--dy','0px')});
+ bs.forEach(b=>{b.style.setProperty('--dx','0px');b.style.setProperty('--dy','0px');b.style.transition='none';b.style.whiteSpace='';b.style.width='';if(b.offsetWidth>A.width-8){b.style.whiteSpace='normal';b.style.width=(A.width-8)+'px'}});
  bs.forEach(b=>{const r=b.getBoundingClientRect();let dx=0,dy=0;if(r.left<A.left+4)dx=A.left+4-r.left;else if(r.right>A.right-4)dx=A.right-4-r.right;
   const q={l:r.left+dx,r:r.right+dx,t:r.top,b:r.bottom};let moved=true,guard=0;
   while(moved&&guard++<6){moved=false;for(const p of placed)if(q.l<p.r+2&&p.l<q.r+2&&q.t<p.b+2&&p.t<q.b+2){const s=q.b-p.t+4;dy-=s;q.t-=s;q.b-=s;moved=true}}
   if(q.t<A.top+2){const s=A.top+2-q.t;dy+=s}
-  b.style.setProperty('--dx',dx.toFixed(1)+'px');b.style.setProperty('--dy',dy.toFixed(1)+'px');placed.push(q)})})}
+  b.style.setProperty('--dx',dx.toFixed(1)+'px');b.style.setProperty('--dy',dy.toFixed(1)+'px');placed.push(q)});requestAnimationFrame(()=>bs.forEach(b=>b.style.transition=''))})}
 let fbT;addEventListener('resize',()=>{clearTimeout(fbT);fbT=setTimeout(fixBubbles,120)});if(document.fonts)document.fonts.ready.then(()=>fixBubbles());
 
 /* ===================== KAIWA PRAKTIS PER BAB ===================== */
