@@ -460,6 +460,39 @@ mark.kwk{background:var(--amber-soft);color:inherit;border-radius:6px;padding:0 
 .ab-end{padding:20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .ab-banner{display:flex;gap:14px;align-items:center;padding:16px 18px;text-decoration:none;color:inherit}
 .ab-banner .jp{color:var(--maple);font-weight:700}
+.kana.sel{border-color:var(--maple);background:var(--maple-soft);box-shadow:0 0 0 2px var(--maple) inset}
+.kt,.trc,.mir,.mp,.nm{padding:18px;display:flex;flex-direction:column;gap:12px}
+.kt-h{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;font-size:1rem;margin-top:6px}.kt-h .muted{font-size:.82rem;font-weight:500}
+.kt-mod{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.kt-m{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px;border-radius:14px;background:var(--surface);border:1px solid var(--line);color:inherit;cursor:pointer;font:inherit}
+.kt-m b{font-size:1.5rem;font-weight:500;line-height:1.2}.kt-m small{color:var(--ink-3);font-weight:700;font-size:.78rem}.kt-m span{font-size:.8rem;color:var(--ink-2)}
+.kt-m:hover{border-color:var(--maple);background:var(--maple-soft)}
+.trc-row{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+.trc-box{flex:1 1 220px;max-width:320px;border-radius:16px;border:2px solid var(--line);background:var(--surface);overflow:hidden;touch-action:none}
+.trc-box canvas{display:block;width:100%;aspect-ratio:1;cursor:crosshair;touch-action:none}
+.trc-side{flex:1 1 180px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.trc-big{display:flex;align-items:baseline;gap:10px}.trc-big b{font-size:3rem;font-weight:500;line-height:1.1}.trc-big span{color:var(--ink-2);font-weight:700}
+.trc-btns{display:flex;gap:8px;flex-wrap:wrap}
+.mir-g{display:flex;flex-wrap:wrap;gap:10px}
+.mir-set{display:flex;gap:4px;padding:6px;border-radius:16px;background:var(--surface-2)}
+.mir-c{display:flex;flex-direction:column;align-items:center;min-width:58px;padding:6px 8px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:inherit;cursor:pointer;font:inherit}
+.mir-c b{font-size:1.9rem;font-weight:500;line-height:1.25}.mir-c small{color:var(--ink-3);font-weight:700;font-size:.75rem}
+.mir-c:hover{border-color:var(--maple)}
+.mp-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px;border-radius:14px;background:var(--surface-2)}
+.mp-opts{display:flex;gap:8px;flex:1;min-width:220px}
+.mp-o{flex:1;display:flex;flex-direction:column;align-items:center;gap:0;padding:8px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:inherit;cursor:pointer;font:inherit}
+.mp-o .jp{font-size:1.3rem;line-height:1.7;font-weight:700}.mp-o small{color:var(--ink-2);font-size:.78rem}
+.mp-o:disabled{cursor:default}.mp-o:not(:disabled):hover{border-color:var(--maple)}
+.mp-o.right{border-color:var(--good);background:var(--good-soft)}.mp-o.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.mp-res{flex-basis:100%;font-size:.9rem}.mp-res .jp{font-size:1.05rem;line-height:1.6;font-weight:700}
+.kana-grid.c3 .kana{aspect-ratio:auto;padding:8px 0}.mp-res .ok{color:var(--good)}.mp-res .no{color:var(--bad)}
+.linkbtn{background:none;border:0;padding:0;color:var(--maple);font:inherit;font-weight:700;cursor:pointer;text-decoration:underline}
+.nm-in{display:flex;gap:8px;flex-wrap:wrap}.nm-in input{flex:1;min-width:180px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:1rem}
+.nm-in input:focus{outline:none;border-color:var(--maple)}
+.nm-ex{display:flex;gap:6px;flex-wrap:wrap}
+.chip{padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:inherit;cursor:pointer;font:inherit;font-size:.85rem}.chip:hover{border-color:var(--maple)}
+.nm-out{display:flex;gap:12px;align-items:center;padding:14px;border-radius:14px;background:var(--maple-soft)}
+.nm-k{font-size:1.9rem;font-weight:700;line-height:1.4;color:var(--maple);word-break:break-all}
 .kw-done{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:14px 16px;border-radius:16px;background:linear-gradient(160deg,var(--surface),var(--amber-soft))}
 </style>
 </head>
@@ -1781,10 +1814,240 @@ const N4B=[
    [0,'ありがとう ございます。','Terima kasih.']],
    tip:'Saat wawancara, sebut perusahaan mereka 御社{おんしゃ} saat berbicara dan 貴社{きしゃ} dalam tulisan.'}]}
 ];
+/* ===================== MATERI KANA ===================== */
+const KSENT=(x,y)=>`<text x="${x}" y="${y}" text-anchor="middle" font-size="26" font-weight="700"><tspan fill="#B5462F">私</tspan><tspan fill="#3E7D4F">は</tspan><tspan fill="#2F6F8F">インドネシア</tspan><tspan fill="#B5462F">人</tspan><tspan fill="#3E7D4F">です。</tspan></text>`;
+const KANAB=[
+ {id:'k1',title:'Pelajaran 1 · Mengenal Huruf Jepang',jp:'にほんごの もじ',sum:'Tiga jenis huruf Jepang (hiragana, katakana, kanji) dan fungsinya masing-masing.',
+  scene:{bg:'room',alt:'Papan tulis berisi satu kalimat dengan tiga warna huruf',
+   art:()=>`<rect x="40" y="26" width="320" height="96" rx="6" fill="#2F4A3A" stroke="#8E5E35" stroke-width="5"/><rect x="52" y="38" width="296" height="72" rx="4" fill="#FFFDF8"/>`+KSENT(200,84)+TXT(200,104,'わたしは インドネシアじん です',10,'#6E5848',700)+OWL(60,215,.8)+P(200,215,1.05,{c:'#6B4E3A',h:'#555',gl:1,arm:'point',talk:1})+P(320,215,1.05,{c:'#4F7CAC',flip:1}),
+   bub:[[200,132,'ひらがな、 カタカナ、 かんじ！','Hiragana, katakana, kanji!']],
+   hot:[[66,50,48,52,'わたし','私 = kanji. Satu huruf punya makna "saya".'],[110,50,30,52,'は','は = hiragana, di sini sebagai partikel (dibaca wa).'],[140,50,150,52,'インドネシア','インドネシア = katakana, untuk nama negara asing.'],[290,50,60,52,'じん です','人 (kanji) = orang, です (hiragana) = adalah.']]},
+  points:[
+   {p:'ひらがな (hiragana)',e:'Huruf dasar untuk kata asli Jepang, partikel (は・を・へ), dan akhiran kata kerja. Bentuknya melengkung.',ex:[['わたし','saya'],['ありがとう','terima kasih']]},
+   {p:'カタカナ (katakana)',e:'Untuk kata serapan asing, nama negara, dan nama orang asing. Bentuknya bersudut dan lurus.',ex:[['インドネシア','Indonesia'],['コーヒー','kopi']]},
+   {p:'漢字{かんじ} (kanji)',e:'Huruf dari Tiongkok yang memiliki makna. Dipelajari bertahap setelah kana dikuasai.',ex:[['人{ひと}','orang'],['山{やま}','gunung']]},
+   {p:'Tanpa spasi',e:'Bahasa Jepang aslinya tidak memakai spasi antar kata. Di buku pemula (dan di aplikasi ini), spasi ditambahkan agar mudah dibaca.',ex:[['わたしは がくせいです。','Saya pelajar.']]}],
+  vx:[['ひらがな','hiragana'],['カタカナ','katakana'],['かんじ','kanji'],['もじ','huruf'],['にほんご','bahasa Jepang']],
+  quiz:[
+   {q:'Nama negara "Indonesia" ditulis dengan…',o:['カタカナ','ひらがな','かんじ'],a:0,x:'Nama negara asing memakai <b>katakana</b>: インドネシア.'},
+   {q:'Partikel は・を・へ ditulis dengan…',o:['ひらがな','カタカナ','かんじ'],a:0,x:'Partikel selalu ditulis dengan <b>hiragana</b>.'},
+   {q:'Huruf yang setiap hurufnya punya makna adalah…',o:['かんじ','ひらがな','カタカナ'],a:0,x:'<b>Kanji</b> adalah ideogram, setiap huruf punya makna.'}],
+  kw:[{k:'k',p:'Kelas persiapan · hari pertama',sp:['せんせい','アンディ'],l:[
+   [0,'これは *ひらがな* です。','Ini hiragana.'],
+   [1,'これは *カタカナ* ですか。','Yang ini katakana?'],
+   [0,'はい、 そうです。 *インドネシア* は カタカナです。','Ya, betul. "Indonesia" ditulis katakana.'],
+   [1,'わかりました。 がんばります！','Baik, saya akan berusaha!']],
+   tip:'Di Jepang, formulir, tanda, dan instruksi kerja memakai ketiga huruf sekaligus. Kuasai kana dulu agar cepat beradaptasi.'},
+   {k:'h',p:'Toko · membaca label',sp:['リナ','アンディ'],l:[
+   [0,'アンディさん、 これ、 よめますか。','Andi, bisa membaca ini?'],
+   [1,'*コーヒー*… カタカナですね。','Koohii… ini katakana ya.'],
+   [0,'すごい！ じゃ、 これは？','Hebat! Kalau yang ini?'],
+   [1,'*おちゃ*。 ひらがなです。','Ocha (teh). Ini hiragana.']],
+   tip:'Latih membaca label minuman dan makanan di toko. Banyak kata serapan ditulis katakana.'}]},
+ {id:'hira',kt:'hira',trace:'hira',title:'Pelajaran 2 · Hiragana Dasar',jp:'ひらがな（せいおん）',sum:'46 huruf dasar hiragana: baca per baris, dengarkan bunyinya, lalu latih menulis.',
+  scene:{bg:'room',alt:'Burung hantu mengajar baris あいうえお',
+   art:()=>BOARD(200,22,220,70,'あ い う え お',30)+OWL(90,215,1)+P(300,215,1.05,{c:'#4F7CAC',flip:1,talk:1})+NOTE(250,120,.8)+NOTE(270,104,.7,'#D9802F'),
+   bub:[[300,112,'あ、 い、 う、 え、 お！','A, i, u, e, o!']],
+   hot:[[90,22,220,70,'あいうえお','Baris vokal: a, i, u, e, o. Semua baris lain mengikuti urutan ini.']]},
+  points:[
+   {p:'Baca per baris: a – i – u – e – o',e:'Setiap baris konsonan mengikuti urutan vokal: か き く け こ (ka ki ku ke ko), さ し す せ そ, dan seterusnya.',ex:[['か き く け こ','ka ki ku ke ko']]},
+   {p:'Bacaan khusus',e:'し = shi, ち = chi, つ = tsu, ふ = fu, を = o (wo), ん = n. Huruf ini tidak dibaca sesuai pola baris.',ex:[['し ち つ ふ','shi chi tsu fu']]},
+   {p:'Baris や dan わ',e:'Baris や hanya punya や ゆ よ. Baris わ hanya わ dan を. ん berdiri sendiri.',ex:[['や ゆ よ わ を ん','ya yu yo wa wo n']]},
+   {p:'Cara menulis',e:'Tulis dari atas ke bawah dan dari kiri ke kanan. Perhatikan ujung goresan: berhenti (とめ), mengait (はね), atau menipis (はらい).',ex:[['あ (3 goresan)','a']]}],
+  mirip:[['あ','お'],['い','り'],['う','ら'],['き','さ','ち'],['ぬ','め'],['ね','れ','わ'],['は','ほ'],['る','ろ'],['こ','に'],['し','つ']],
+  vx:[['いぬ','anjing'],['ねこ','kucing'],['さかな','ikan'],['くるま','mobil'],['やま','gunung'],['うみ','laut']],
+  quiz:[
+   {q:'Bacaan し adalah…',o:['shi','si','chi'],a:0,x:'し dibaca <b>shi</b>.'},
+   {q:'Huruf untuk "fu" adalah…',o:['ふ','ほ','へ'],a:0,x:'<b>ふ</b> = fu.'},
+   {q:'ね・れ・わ: mana yang dibaca "re"?',o:['れ','ね','わ'],a:0,x:'<b>れ</b> = re. Ketiganya mirip, perhatikan ujung kanan.'}],
+  kw:[{k:'k',p:'Kelas · membaca nama barang',sp:['せんせい','アンディ'],l:[
+   [0,'これは なんですか。','Ini apa?'],
+   [1,'*く・る・ま*… *くるま* です。','Ku-ru-ma… mobil.'],
+   [0,'そうです。 じゃ、 これは？','Benar. Kalau ini?'],
+   [1,'*や・ま*。 *やま* です。','Ya-ma. Gunung.']],
+   tip:'Baca huruf satu per satu dulu, lalu gabungkan menjadi kata. Kecepatan akan datang dengan sendirinya.'},
+   {k:'h',p:'Taman · melihat hewan',sp:['リナ','アンディ'],l:[
+   [0,'あ、 *いぬ*！','Ah, anjing!'],
+   [1,'あそこに *ねこ* も いますよ。','Di sana juga ada kucing lho.'],
+   [0,'かわいい！','Lucunya!'],
+   [1,'ほんとうに かわいいですね。','Benar-benar lucu ya.']],
+   tip:'Hubungkan huruf dengan benda di sekitarmu. Tempel kartu hiragana di barang-barang di kamar.'}]},
+ {id:'hira2',kt:'hira2',title:'Pelajaran 3 · Dakuon, Han-dakuon, Youon',jp:'だくおん・はんだくおん・ようおん',sum:'Tanda tenten (゛) dan maru (゜), serta bunyi gabungan dengan ゃ・ゅ・ょ kecil.',
+  scene:{bg:'room',alt:'Papan menunjukkan perubahan bunyi ka menjadi ga, dan ha menjadi ba dan pa',
+   art:()=>BOARD(200,20,300,96,'',14)+TXT(110,62,'か → が',24,'#FFFDF8',700)+TXT(290,62,'は → ば → ぱ',24,'#FFFDF8',700)+TXT(200,100,'き + ゃ → きゃ',20,'#F4B642',700)+OWL(70,215,.9)+P(300,215,1.05,{c:'#3E7D4F',flip:1,talk:1}),
+   bub:[[300,128,'でんしゃ！','Densha (kereta)!']],
+   hot:[[60,30,110,46,'か に ゛ (tenten) → が','ka + tenten = ga. Bunyi menjadi "berat".'],[220,30,140,46,'は → ば → ぱ','ha + tenten = ba, ha + maru = pa.'],[110,78,180,34,'きゃ','ki + ya kecil = kya, dibaca satu ketukan.']]},
+  points:[
+   {p:'Dakuon: tenten ( ゛)',e:'k → g, s → z, t → d, h → b. Contoh: か → が, さ → ざ, た → だ, は → ば.',ex:[['かぎ','kunci (ka-gi)'],['でんわ','telepon (de-n-wa)']]},
+   {p:'Han-dakuon: maru ( ゜)',e:'Hanya baris は: h → p. ぱ ぴ ぷ ぺ ぽ.',ex:[['えんぴつ','pensil (e-n-pi-tsu)'],['さんぽ','jalan-jalan (sa-n-po)']]},
+   {p:'Youon: kolom い + ゃ・ゅ・ょ kecil',e:'Ditulis kecil dan dibaca satu ketukan: き + ゃ = きゃ (kya), し + ゅ = しゅ (shu), ち + ょ = ちょ (cho).',ex:[['おちゃ','teh (o-cha)'],['りょこう','wisata (ryo-ko-u)']]},
+   {p:'Besar atau kecil mengubah bunyi',e:'びょういん (rumah sakit, byo-u-i-n) berbeda dengan びよういん (salon, bi-yo-u-i-n). Perhatikan ukuran ょ.',ex:[['びょういん','rumah sakit'],['びよういん','salon kecantikan']]}],
+  mp:[['びょういん','びよういん','byouin','biyouin','rumah sakit','salon'],['じゆう','じゅう','jiyuu','juu','bebas','sepuluh']],
+  vx:[['かぎ','kunci'],['でんわ','telepon'],['えんぴつ','pensil'],['おちゃ','teh'],['でんしゃ','kereta'],['りょこう','wisata']],
+  quiz:[
+   {q:'は + ゜ (maru) =',o:['ぱ','ば','ほ'],a:0,x:'Maru mengubah h → <b>p</b>: ぱ.'},
+   {q:'Cara baca しゃ:',o:['sha','shiya','sya'],a:0,x:'し + ゃ kecil = <b>sha</b>, satu ketukan.'},
+   {q:'"Rumah sakit" ditulis…',o:['びょういん','びよういん','ひょういん'],a:0,x:'<b>びょういん</b> memakai ょ kecil.'}],
+  kw:[{k:'k',p:'Kantor · meminjam alat tulis',sp:['アンディ','たなか'],l:[
+   [0,'すみません、 *えんぴつ* を かして ください。','Permisi, tolong pinjamkan pensil.'],
+   [1,'はい、 どうぞ。','Ya, silakan.'],
+   [0,'*かぎ* は どこですか。','Kuncinya di mana?'],
+   [1,'つくえの うえです。','Di atas meja.']],
+   tip:'Tenten dan maru sangat kecil di tulisan tangan. Perhatikan baik-baik saat membaca catatan atasan.'},
+   {k:'h',p:'Stasiun · bertanya kereta',sp:['アンディ','えきいん'],l:[
+   [0,'すみません、 この *でんしゃ* は とうきょうへ いきますか。','Permisi, apakah kereta ini ke Tokyo?'],
+   [1,'はい、 いきますよ。','Ya, ke Tokyo.'],
+   [0,'ありがとう ございます。','Terima kasih.'],
+   [1,'どういたしまして。 *りょこう* ですか。','Sama-sama. Sedang berwisata?']],
+   tip:'Kata でんしゃ (kereta) dan えき (stasiun) akan sangat sering kamu baca di Jepang.'}]},
+ {id:'kr',title:'Pelajaran 4 · Aturan Baca Hiragana',jp:'よみかたの ルール',sum:'っ kecil (sokuon), ん (hatsuon), vokal panjang (chouon), partikel は・へ・を, dan sapaan 〜さん.',
+  scene:{bg:'room',alt:'Perbandingan bunyi pendek dan panjang',
+   modes:[
+    {label:'Vokal panjang',art:()=>P(110,215,1.05,{c:'#D9802F',long:1})+TXT(110,232,'おばさん',13,'#3B2A20',800)+P(290,215,1.05,{c:'#8E6FA8',long:1,h:'#BDBDBD',gl:1})+TXT(290,232,'おばあさん',13,'#3B2A20',800),
+     bub:[[110,106,'おばさん (bibi)','obasan = bibi'],[290,106,'おばあさん (nenek)','obaasan = nenek']]},
+    {label:'っ kecil',art:()=>P(110,215,1.05,{c:'#4F7CAC',arm:'wave',talk:1})+TXT(110,232,'きて',13,'#3B2A20',800)+`<rect x="262" y="120" width="56" height="64" rx="3" fill="#FFFDF8" stroke="#B5462F" stroke-width="3" stroke-dasharray="4 3"/><circle cx="290" cy="152" r="14" fill="#F4B642"/>`+TXT(290,232,'きって',13,'#3B2A20',800),
+     bub:[[110,106,'きて！ (datang!)','kite = datanglah'],[290,100,'きって (perangko)','kitte = perangko']]},
+    {label:'Partikel は・へ・を',art:()=>BOARD(200,30,330,110,'',14)+TXT(200,70,'わたし は がくせいです',18,'#FFFDF8',700)+TXT(200,104,'にほん へ いきます',18,'#FFFDF8',700)+TXT(200,134,'みず を のみます',18,'#FFFDF8',700)+OWL(60,226,.7),
+     bub:[[330,180,'は = wa、 へ = e、 を = o','Partikel dibaca wa, e, o']]}]},
+  points:[
+   {p:'っ kecil (sokuon)',e:'Konsonan berikutnya digandakan dan ada jeda singkat: がっこう (ga-k-ko-u), きって (ki-t-te). Dihitung satu ketukan.',ex:[['がっこう','sekolah'],['きって','perangko']]},
+   {p:'ん (hatsuon)',e:'Bunyi "n" mati, dihitung satu ketukan sendiri. Konsonan rangkap "nn" ditulis dengan ん, bukan っ: おんな, みんな.',ex:[['すみません','maaf / permisi'],['おんな','perempuan']]},
+   {p:'Vokal panjang (chouon)',e:'Tambahkan huruf vokal: a+あ, i+い, u+う, e+い/え, o+う/お. Panjang-pendek mengubah arti.',ex:[['おかあさん','ibu (okaasan)'],['せんせい','guru (sensee)'],['べんきょう','belajar (benkyoo)']]},
+   {p:'Partikel は・へ・を',e:'Sebagai partikel, は dibaca wa, へ dibaca e, を dibaca o.',ex:[['わたしは インドネシアじんです。','Saya orang Indonesia.'],['にほんへ いきます。','Pergi ke Jepang.']]},
+   {p:'Sapaan 〜さん',e:'Ditambahkan setelah nama orang lain sebagai bentuk hormat. Jangan dipakai untuk nama sendiri. 〜さま lebih hormat (おきゃくさま), 〜くん dan 〜ちゃん untuk yang akrab atau anak-anak.',ex:[['たなかさん','Pak / Bu Tanaka']]}],
+  mp:[['おばさん','おばあさん','obasan','obaasan','bibi','nenek'],['きて','きって','kite','kitte','datanglah','perangko'],['ここ','こうこう','koko','kookoo','di sini','SMA']],
+  nu:[{a:'アンディさん (untuk diri sendiri)',b:'アンディです',la:1,lb:3,t:'Jangan menambahkan さん pada nama sendiri. Saat memperkenalkan diri, cukup sebut nama: アンディです. さん hanya untuk orang lain.'},
+   {a:'たなか (tanpa さん)',b:'たなかさん',la:2,lb:3,t:'Di tempat kerja, panggil atasan dan rekan dengan nama keluarga + さん. Memanggil nama saja terdengar tidak sopan.'}],
+  vx:[['がっこう','sekolah'],['きって','perangko'],['おかあさん','ibu'],['せんせい','guru'],['べんきょう','belajar'],['みんな','semua orang']],
+  quiz:[
+   {q:'がっこう dibaca…',o:['gakkou','gakou','gatsukou'],a:0,x:'っ kecil menggandakan konsonan: <b>gakkou</b>.'},
+   {q:'Partikel を dibaca…',o:['o','wo (selalu)','wa'],a:0,x:'Sebagai partikel, を dibaca <b>o</b>.'},
+   {q:'"Nenek" ditulis…',o:['おばあさん','おばさん','おばっさん'],a:0,x:'Vokal panjang aa: <b>おばあさん</b>. おばさん = bibi.'}],
+  kw:[{k:'k',p:'Pabrik · perkenalan singkat',sp:['たなか','アンディ'],l:[
+   [0,'はじめまして。 *たなか* です。','Salam kenal. Saya Tanaka.'],
+   [1,'はじめまして。 *アンディ* です。 *インドネシア* から きました。','Salam kenal. Saya Andi. Saya datang dari Indonesia.'],
+   [0,'アンディ*さん*、 よろしく おねがいします。','Andi, mohon kerja samanya.'],
+   [1,'*たなかさん*、 よろしく おねがいします。','Pak Tanaka, mohon bimbingannya.']],
+   tip:'Perhatikan: Andi menyebut dirinya tanpa さん, tetapi memanggil atasannya たなかさん.'},
+   {k:'h',p:'Rumah · telepon ibu',sp:['おかあさん','アンディ'],l:[
+   [0,'もしもし、 アンディ？ *げんき*？','Halo, Andi? Sehat?'],
+   [1,'うん、 げんき。 *おかあさん* は？','Iya, sehat. Ibu bagaimana?'],
+   [0,'げんきよ。 *べんきょう* は どう？','Ibu sehat. Belajarnya bagaimana?'],
+   [1,'*がっこう* は たのしいよ。','Sekolahnya menyenangkan.']],
+   tip:'Latih bunyi panjang おかあさん (o-ka-a-sa-n) dengan menepuk tangan per ketukan: 5 ketukan.'}]},
+ {id:'kbaca',title:'Pelajaran 5 · Ayo Baca Hiragana',jp:'ひらがなを よみましょう',sum:'Membaca kosakata makanan, minuman, dan pekerjaan dengan aturan yang sudah dipelajari.',
+  scene:{bg:'room',alt:'Meja makan dengan nasi, teh, dan telur',
+   art:()=>DESK(200,215,1.6)+BENTO(150,172,1.4)+JUICE(250,170,1.2)+`<ellipse cx="310" cy="176" rx="12" ry="15" fill="#FFF6E5" stroke="#E7D8C4" stroke-width="2"/>`+SUN(60,50,14)+P(70,215,.9,{c:'#4F7CAC',arm:'hold',talk:1}),
+   bub:[[70,120,'いただきます！','Selamat makan!']],
+   hot:[[120,150,60,40,'あさごはん','sarapan (asagohan)'],[236,140,30,46,'おちゃ','teh hijau (ocha)'],[296,158,30,34,'たまご','telur (tamago)'],[40,30,40,40,'あさ','pagi (asa)']]},
+  points:[
+   {p:'Waktu makan',e:'あさごはん (sarapan), ひるごはん (makan siang), ばんごはん (makan malam). ごはん juga berarti nasi.',ex:[['あさごはん','sarapan'],['ばんごはん','makan malam']]},
+   {p:'Minuman',e:'みず (air), おちゃ (teh hijau), こうちゃ (teh hitam), ぎゅうにゅう (susu sapi).',ex:[['おちゃ','teh hijau'],['ぎゅうにゅう','susu sapi']]},
+   {p:'Kata kerja dan tempat kerja',e:'しごと (pekerjaan), かいしゃ (perusahaan), ともだち (teman), あした (besok).',ex:[['しごと','pekerjaan'],['かいしゃ','perusahaan']]},
+   {p:'Ungkapan makan',e:'いただきます sebelum makan, ごちそうさまでした setelah makan. Diucapkan juga di kantin kantor.',ex:[['いただきます','(sebelum makan)'],['ごちそうさまでした','(setelah makan)']]}],
+  vx:[['あさごはん','sarapan'],['ひるごはん','makan siang'],['ばんごはん','makan malam'],['みず','air'],['おちゃ','teh hijau'],['たまご','telur'],['しごと','pekerjaan'],['かいしゃ','perusahaan']],
+  quiz:[
+   {q:'ぎゅうにゅう artinya…',o:['susu sapi','daging sapi','air'],a:0,x:'<b>ぎゅうにゅう</b> = susu sapi. ぎゅうにく = daging sapi.'},
+   {q:'"Makan siang" ditulis…',o:['ひるごはん','あさごはん','ばんごはん'],a:0,x:'ひる = siang: <b>ひるごはん</b>.'},
+   {q:'Diucapkan setelah makan:',o:['ごちそうさまでした','いただきます','いってきます'],a:0,x:'<b>ごちそうさまでした</b> = terima kasih atas hidangannya.'}],
+  kw:[{k:'k',p:'Kantin kantor · makan siang',sp:['やまだ','アンディ'],l:[
+   [0,'アンディさん、 *ひるごはん* ですか。','Andi, makan siang?'],
+   [1,'はい。 *いただきます*。','Ya. Selamat makan.'],
+   [0,'*おちゃ* も どうぞ。','Silakan tehnya juga.'],
+   [1,'ありがとう ございます。 … *ごちそうさまでした*。','Terima kasih. … Terima kasih atas hidangannya.']],
+   tip:'Mengucapkan いただきます dan ごちそうさまでした di kantin menunjukkan sopan santun yang dihargai rekan kerja.'},
+   {k:'h',p:'Asrama · sarapan',sp:['ブディ','アンディ'],l:[
+   [0,'*あさごはん*、 なに たべる？','Sarapan makan apa?'],
+   [1,'*たまご* と *ごはん*。','Telur dan nasi.'],
+   [0,'のみものは？','Minumnya?'],
+   [1,'*ぎゅうにゅう*。','Susu.']],
+   tip:'Sebutkan dalam hati nama makananmu dalam bahasa Jepang setiap kali makan. Cara ini cepat menambah kosakata.'}]},
+ {id:'kata',kt:'kata',trace:'kata',title:'Pelajaran 6 · Katakana Dasar',jp:'カタカナ（せいおん）',sum:'46 huruf dasar katakana untuk kata serapan, nama negara, dan nama orang asing.',
+  scene:{bg:'room',alt:'Barang-barang dengan nama katakana: kamera, komputer, dan bola',
+   art:()=>BOARD(200,20,220,64,'ア イ ウ エ オ',28)+CAMERA(90,160,1.6)+PC(200,190,1.3)+BALL(310,180,16)+TXT(90,200,'カメラ',13,'#3B2A20',800)+TXT(200,212,'パソコン',13,'#3B2A20',800)+TXT(310,212,'ボール',13,'#3B2A20',800),
+   hot:[[60,130,64,60,'カメラ','kamera (kamera)'],[160,150,80,46,'パソコン','komputer (pasokon)'],[290,160,40,40,'ボール','bola (booru)']]},
+  points:[
+   {p:'Fungsi katakana',e:'Kata serapan (コーヒー), nama negara (インドネシア), nama orang asing (アンディ), dan bunyi tiruan atau penekanan (ドン！).',ex:[['テレビ','televisi'],['インドネシア','Indonesia']]},
+   {p:'Urutan sama dengan hiragana',e:'ア イ ウ エ オ, カ キ ク ケ コ, dan seterusnya. Bunyinya sama persis dengan hiragana.',ex:[['カ キ ク ケ コ','ka ki ku ke ko']]},
+   {p:'Garis lurus dan tegas',e:'Katakana tersusun dari garis lurus. Bedakan arah goresan huruf yang mirip: シ ditarik dari bawah ke atas, ツ dari atas ke bawah.',ex:[['シ ツ','shi tsu'],['ソ ン','so n']]},
+   {p:'Huruf yang mirip hiragana',e:'カ・か, キ・き, ヘ・へ, リ・り hampir sama bentuknya. Ini memudahkan menghafal.',ex:[['ヘ へ','he']]}],
+  mirip:[['シ','ツ'],['ソ','ン'],['ク','ケ','タ'],['ウ','ワ','フ'],['コ','ユ'],['チ','テ'],['ヌ','ス'],['ノ','メ'],['ロ','口']],
+  vx:[['カメラ','kamera'],['テレビ','televisi'],['パソコン','komputer'],['ボール','bola'],['ペン','pena'],['ノート','buku tulis']],
+  quiz:[
+   {q:'シ dibaca…',o:['shi','tsu','n'],a:0,x:'<b>シ</b> = shi (goresan dari bawah ke atas). ツ = tsu.'},
+   {q:'Kata serapan "kamera" ditulis…',o:['カメラ','かめら','カメテ'],a:0,x:'Kata serapan memakai katakana: <b>カメラ</b>.'},
+   {q:'ソ dan ン: yang dibaca "n" adalah…',o:['ン','ソ','ノ'],a:0,x:'<b>ン</b> = n. Goresan panjangnya ditarik dari bawah ke atas.'}],
+  kw:[{k:'k',p:'Kantor · menyiapkan alat',sp:['たなか','アンディ'],l:[
+   [0,'アンディさん、 *パソコン* を つけて ください。','Andi, tolong nyalakan komputernya.'],
+   [1,'はい。 *ペン* も いりますか。','Baik. Pena juga perlu?'],
+   [0,'ええ、 *ペン* と *ノート* を おねがいします。','Ya, tolong pena dan buku tulis.'],
+   [1,'はい、 どうぞ。','Baik, silakan.']],
+   tip:'Banyak benda kantor memakai nama katakana: パソコン, コピー, ファイル, ホチキス.'},
+   {k:'h',p:'Toko elektronik · melihat-lihat',sp:['リナ','アンディ'],l:[
+   [0,'この *カメラ*、 いいですね。','Kamera ini bagus ya.'],
+   [1,'ええ。 あの *テレビ* も おおきいですね。','Ya. Televisi itu juga besar ya.'],
+   [0,'アンディさんの *パソコン* は？','Komputer Andi bagaimana?'],
+   [1,'ふるいです。 あたらしいのが ほしいです。','Sudah tua. Saya ingin yang baru.']],
+   tip:'Katakana sering memendekkan kata asing: パーソナルコンピューター menjadi パソコン.'}]},
+ {id:'kata2',kt:'kata2',title:'Pelajaran 7 · Katakana Lanjutan',jp:'カタカナの ルール',sum:'Dakuon dan youon katakana, ー untuk vokal panjang, ッ kecil, dan kombinasi modern seperti ティ dan ファ.',
+  scene:{bg:'room',alt:'Kafe dengan kopi, kue, dan jus',
+   art:()=>DESK(200,215,1.6)+JUICE(130,172,1.3)+CAKE(200,180,1.1)+JUICE(270,172,1.3)+`<rect x="40" y="30" width="110" height="86" rx="6" fill="#3B2A20"/>`+TXT(95,56,'メニュー',13,'#F4B642',800)+TXT(95,78,'コーヒー',12,'#FFFDF8',700)+TXT(95,98,'ジュース',12,'#FFFDF8',700)+P(330,215,1,{c:'#B5462F',long:1,flip:1,talk:1}),
+   bub:[[330,112,'コーヒーと ケーキ！','Kopi dan kue!']],
+   hot:[[110,140,44,40,'コーヒー','kopi (koohii). ー memanjangkan bunyi.'],[176,150,48,40,'ケーキ','kue (keeki)'],[250,140,44,40,'ジュース','jus (juusu)'],[40,30,110,86,'メニュー','menu (menyuu): youon + ー']]},
+  points:[
+   {p:'ー untuk vokal panjang',e:'Berbeda dengan hiragana: katakana cukup memakai garis ー (chouonpu).',ex:[['コーヒー','kopi (koohii)'],['スーパー','supermarket (suupaa)']]},
+   {p:'ッ kecil',e:'Sama seperti hiragana, ッ menggandakan konsonan.',ex:[['ベッド','tempat tidur (beddo)'],['サッカー','sepak bola (sakkaa)']]},
+   {p:'Dakuon dan youon',e:'Aturannya sama dengan hiragana: ガ, パ, キャ, シュ, チョ.',ex:[['メニュー','menu'],['ジュース','jus']]},
+   {p:'Kombinasi modern',e:'Untuk bunyi asing: ティ (ti), ディ (di), ファ (fa), フィ (fi), フェ (fe), フォ (fo), ウィ (wi), ウェ (we), シェ (she), ジェ (je), チェ (che).',ex:[['パーティー','pesta'],['カフェ','kafe'],['チェック','cek']]}],
+  mp:[['ビル','ビール','biru','biiru','gedung','bir'],['ベッド','ベット','beddo','betto','tempat tidur','taruhan']],
+  nu:[{a:'おかあさん (hiragana: tambah vokal)',b:'コーヒー (katakana: tambah ー)',la:3,lb:3,t:'Cara menulis vokal panjang berbeda. Hiragana menambah huruf vokal (あ, い, う). Katakana memakai garis ー. Menulis コオヒイ dianggap salah.'}],
+  vx:[['コーヒー','kopi'],['ジュース','jus'],['ケーキ','kue'],['スーパー','supermarket'],['パーティー','pesta'],['チェック','cek / pemeriksaan']],
+  quiz:[
+   {q:'"Kopi" dalam katakana:',o:['コーヒー','コオヒイ','コヒ'],a:0,x:'Vokal panjang katakana memakai <b>ー</b>.'},
+   {q:'Bunyi "ti" pada パーティー ditulis…',o:['ティ','チ','テ'],a:0,x:'Kombinasi modern: テ + ィ kecil = <b>ティ</b>.'},
+   {q:'サッカー dibaca…',o:['sakkaa','sakaa','satsukaa'],a:0,x:'ッ menggandakan konsonan, ー memanjangkan: <b>sakkaa</b>.'}],
+  kw:[{k:'k',p:'Pabrik · pemeriksaan pagi',sp:['たなか','アンディ'],l:[
+   [0,'しごとの まえに *チェック* を して ください。','Sebelum bekerja, tolong lakukan pengecekan.'],
+   [1,'はい。 *ヘルメット* と *マスク*、 OKです。','Baik. Helm dan masker, OK.'],
+   [0,'*スイッチ* も *チェック* しましたか。','Saklarnya juga sudah dicek?'],
+   [1,'はい、 しました。','Ya, sudah.']],
+   tip:'Kata keselamatan kerja seperti ヘルメット, マスク, スイッチ, dan チェック wajib dihafal sebelum berangkat ke Jepang.'},
+   {k:'h',p:'Kafe · memesan',sp:['てんいん','アンディ'],l:[
+   [0,'いらっしゃいませ。 ごちゅうもんは？','Selamat datang. Mau pesan apa?'],
+   [1,'*コーヒー* と *ケーキ* を ください。','Kopi dan kue.'],
+   [0,'*ホット* ですか、 *アイス* ですか。','Panas atau dingin?'],
+   [1,'*アイス* で おねがいします。','Yang dingin.']],
+   tip:'ホット (hot) dan アイス (ice) adalah pilihan standar saat memesan minuman di Jepang.'}]},
+ {id:'kname',nama:1,title:'Pelajaran 8 · Ayo Baca Katakana & Menulis Nama',jp:'カタカナで なまえを かこう',sum:'Membaca kosakata serapan dan menulis nama Indonesia dalam katakana berdasarkan bunyinya.',
+  scene:{bg:'room',alt:'Dua orang dengan papan nama katakana',
+   art:()=>P(120,215,1.1,{c:'#4F7CAC',talk:1})+`<rect x="100" y="150" width="40" height="18" rx="3" fill="#FFFDF8" stroke="#B5462F" stroke-width="2"/>`+TXT(120,163,'アンディ',8,'#B5462F',800)+P(290,215,1.1,{c:'#3E7D4F',flip:1})+`<rect x="270" y="150" width="40" height="18" rx="3" fill="#FFFDF8" stroke="#B5462F" stroke-width="2"/>`+TXT(290,163,'ブディ',8,'#B5462F',800),
+   bub:[[120,108,'はじめまして。 アンディです。','Salam kenal. Saya Andi.'],[290,108,'ブディです。','Saya Budi.']],
+   hot:[[98,146,44,26,'アンディ','A-n-di: bunyi "di" memakai ディ.'],[268,146,44,26,'ブディ','Bu-di: ブ + ディ.']]},
+  points:[
+   {p:'Ikuti bunyi, bukan ejaan',e:'Nama ditulis sesuai cara dibaca. Cahya dibaca cha-hya → チャヒャ.',ex:[['チャヒャ','Cahya']]},
+   {p:'Konsonan mati diberi vokal',e:'Konsonan di akhir suku kata diberi vokal u (atau o setelah t / d): Agus → a-gu-su → アグス.',ex:[['アグス','Agus']]},
+   {p:'n mati → ン, h di akhir hilang',e:'Indah → in-da → インダ. Rizky → リズキ.',ex:[['インダ','Indah'],['リズキ','Rizky']]},
+   {p:'ti / di → ティ / ディ',e:'Bukan チ / ジ. Nama depan dan belakang dipisah titik tengah ・.',ex:[['シティ','Siti'],['ブディ・サントソ','Budi Santoso']]}],
+  vx:[['ラーメン','ramen'],['パン','roti'],['カレー','kari'],['サラダ','salad'],['トマト','tomat'],['バナナ','pisang']],
+  quiz:[
+   {q:'"Siti" dalam katakana:',o:['シティ','シチ','スィティ'],a:0,x:'Bunyi "ti" memakai <b>ティ</b>.'},
+   {q:'"Agus" dalam katakana:',o:['アグス','アグ','アガス'],a:0,x:'Konsonan mati s diberi vokal u: <b>アグス</b>.'},
+   {q:'Pemisah nama depan dan belakang:',o:['・','ー','、'],a:0,x:'Gunakan titik tengah <b>・</b>: ブディ・サントソ.'}],
+  kw:[{k:'k',p:'Wawancara · memperkenalkan diri',sp:['めんせつかん','アンディ'],l:[
+   [0,'おなまえは？','Nama Anda?'],
+   [1,'*アンディ・プラタマ* です。','Andi Pratama.'],
+   [0,'どこから きましたか。','Datang dari mana?'],
+   [1,'*インドネシア* の *ジャカルタ* から きました。','Dari Jakarta, Indonesia.']],
+   tip:'Latih menulis namamu dalam katakana sampai lancar. Kamu akan menulisnya di banyak formulir di Jepang.'},
+   {k:'h',p:'Restoran · memesan makanan',sp:['てんいん','アンディ'],l:[
+   [0,'ごちゅうもんは？','Mau pesan apa?'],
+   [1,'*ラーメン* を ひとつ ください。','Ramen satu.'],
+   [0,'*サラダ* は いかがですか。','Bagaimana dengan salad?'],
+   [1,'じゃ、 *サラダ* も おねがいします。','Kalau begitu, salad juga.']],
+   tip:'Menu restoran Jepang penuh katakana. Membaca menu adalah latihan katakana terbaik.'}]}
+];
 const LEVELS=[
- {id:'kana',tag:'かな',name:'Kana Dasar',sub:'Hiragana & Katakana',desc:'Titik nol: mengenal 46 huruf hiragana dan 46 katakana beserta bunyinya.',lessons:[
-  {id:'hira',kana:'hira',title:'Hiragana',jp:'ひらがな',sum:'Huruf dasar untuk kata asli Jepang dan partikel. Ketuk huruf untuk mendengar bunyinya.'},
-  {id:'kata',kana:'kata',title:'Katakana',jp:'カタカナ',sum:'Huruf untuk kata serapan asing, nama negara, dan nama orang asing.'}]},
+ {id:'kana',tag:'かな',name:'Kana Dasar',sub:'Hiragana & Katakana · Starter',desc:'Titik nol: 8 pelajaran hiragana dan katakana dengan tabel bersuara, latihan menulis, tes pendengaran, kaiwa, dan menulis nama dalam katakana.',lessons:KANAB},
  {id:'n5',tag:'N5',name:'Pemula',sub:'Minna no Nihongo I · Bab 1–25',desc:'25 bab pola kalimat dasar dengan ilustrasi interaktif, contoh bersuara, kosakata per bab, dan latihan.',lessons:N5B},
  {id:'n4',tag:'N4',name:'Dasar Lanjut',sub:'Minna no Nihongo II · Bab 26–50',desc:'25 bab dengan ilustrasi interaktif, nuansa dan tingkat kesopanan, kaiwa kerja dan sehari-hari, serta latihan.',lessons:N4B},
  {id:'jft',tag:'A2',name:'JFT A2 · SSW',sub:'Bahasa Jepang di tempat kerja',desc:'Instruksi atasan, tanda keselamatan, dan pengumuman di lingkungan kerja.',lessons:[
@@ -2506,6 +2769,7 @@ const KW={
 N5B.forEach(x=>{x.vocab=(x.vx||[]).concat(VOCAB_X.n5.filter(v=>v[2]===x.bab));x.quiz.forEach((q,i)=>{const n=q.o.length,k=(x.bab+i)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
 N5B.forEach(x=>{x.kw=KW[x.bab]});
 N4B.forEach(x=>{x.vocab=x.vx||[];x.quiz.forEach((q,i)=>{const n=q.o.length,k=(x.bab+i)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
+KANAB.forEach((x,idx)=>{x.vocab=x.vx||[];x.quiz.forEach((q,i)=>{const n=q.o.length,k=(idx+i+1)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
 </script>
 
 <script>
@@ -2579,7 +2843,7 @@ function paintChrome(){
  document.body.classList.toggle('nofuri',!S.set.furi);document.body.classList.toggle('notr',!S.set.tr);
 }
 function render(keepScroll){const y=window.scrollY;const V={tentang:vAbout,beranda:vHome,belajar:vLearn,bisnis:vBisnis,kaiwa:vKaiwa,soal:vSoal,game:vGame,profil:vProfile}[UI.route];
- $('#view').innerHTML=V();paintChrome();fixBubbles();if(keepScroll)window.scrollTo(0,y)}
+ $('#view').innerHTML=V();paintChrome();fixBubbles();drawTrace();if(keepScroll)window.scrollTo(0,y)}
 function rerender(){render(true)}
 function go(){const h=location.hash.slice(1);UI.route=NAV.some(n=>n[0]===h)||h==='tentang'?h:'beranda';stopTimers();
  Object.assign(UI,{lesson:(UI.route==='belajar'||UI.route==='bisnis')&&UI.pending?UI.pending:null,pending:null,lq:{},kaiwa:UI.route==='kaiwa'&&UI.pendingK?UI.pendingK:null,pendingK:null,kmode:'dengar',rp:null,quiz:null,game:null,reset:false,rev:null,confirmSubmit:false});render();window.scrollTo(0,0);
@@ -2734,10 +2998,10 @@ function vLesson(){
   <div class="note"><b>Tips belajar:</b> hafalkan per baris (あ, か, さ…), ucapkan keras-keras, lalu uji diri di game <b>Kilat Kana</b>. Perhatikan bunyi khusus: し = shi, ち = chi, つ = tsu, ふ = fu. ${x.kana==='hira'?'Partikel は, を, へ dibaca wa, o, e.':'Tanda ー memanjangkan bunyi, contoh: コーヒー (kōhī).'}</div>`;
  }else{
   const qs=x.quiz,ans=UI.lq;const answered=qs.every((q,i)=>ans[i]!==undefined);const score=qs.filter((q,i)=>ans[i]===q.a).length;
-  body=`${sceneHTML(x)}<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Pola kalimat<span class="jpn">文型</span></h2></div>
+  body=`${sceneHTML(x)}${x.kt?ktHTML(x):''}${x.trace?trHTML(x):''}${x.mirip?mirHTML(x):''}${x.nama?namaHTML(x):''}<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Pola kalimat<span class="jpn">文型</span></h2></div>
    ${x.points.map((p,pi)=>`<article class="card point"><span class="eyebrow">Pola ${pi+1}</span>${x.bab?fm(p.p):`<div class="pattern">${rb(p.p)}</div>`}<p>${rbh(p.e)}</p>
     ${p.ex.map(e=>`<div class="ex">${say(e[0])}<div><div class="jp">${rb(e[0])}</div><div class="tr">${esc(e[1])}</div></div></div>`).join('')}</article>`).join('')}</section>
-  ${x.note?`<div class="note"><b>Catatan sensei:</b> ${rbh(x.note)}</div>`:''}${x.nu?nuHTML(x):''}${x.cj?cjHTML(x):''}${x.kw?kwHTML(x):''}
+  ${x.note?`<div class="note"><b>Catatan sensei:</b> ${rbh(x.note)}</div>`:''}${x.nu?nuHTML(x):''}${x.cj?cjHTML(x):''}${x.mp?mpHTML(x):''}${x.kw?kwHTML(x):''}
   <section class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px"><div class="sec-head"><h2>Kosakata<span class="jpn">言葉</span></h2><span class="muted" style="font-size:.85rem">${x.vocab.length} kata</span></div>
    <div class="tblwrap"><table class="vtab"><tbody>${x.vocab.map(v=>`<tr><td>${rb(v[0])}</td><td class="muted">${esc(v[1])}</td><td>${say(v[0])}</td></tr>`).join('')}</tbody></table></div></section>
   <section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Latihan mini<span class="jpn">練習</span></h2>${answered?`<span class="pill ${score===qs.length?'good':'maple'} num">Skor ${score}/${qs.length}</span>`:''}</div>
@@ -2757,6 +3021,73 @@ function vLesson(){
 
 /* ===================== ILUSTRASI & WIDGET MATERI ===================== */
 UI.scHot={};UI.scMode={};UI.cnt={t:'tsu',n:3};UI.cj={};
+/* ===================== WIDGET KANA ===================== */
+const toKata=s=>s.replace(/[ぁ-ゖ]/g,c=>String.fromCharCode(c.charCodeAt(0)+0x60));
+const DAK=[...'がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ'],DAKR='ga gi gu ge go za ji zu ze zo da ji zu de do ba bi bu be bo pa pi pu pe po'.split(' ');
+const YOU='きゃ きゅ きょ しゃ しゅ しょ ちゃ ちゅ ちょ にゃ にゅ にょ ひゃ ひゅ ひょ みゃ みゅ みょ りゃ りゅ りょ ぎゃ ぎゅ ぎょ じゃ じゅ じょ びゃ びゅ びょ ぴゃ ぴゅ ぴょ'.split(' '),
+ YOUR='kya kyu kyo sha shu sho cha chu cho nya nyu nyo hya hyu hyo mya myu myo rya ryu ryo gya gyu gyo ja ju jo bya byu byo pya pyu pyo'.split(' ');
+const KMOD='ティ ディ トゥ ドゥ ファ フィ フェ フォ ウィ ウェ ウォ ヴァ シェ ジェ チェ'.split(' '),
+ KMODR='ti di tu du fa fi fe fo wi we wo va she je che'.split(' '),
+ KMODX=['パーティー','ディナー','タトゥー','ヒンドゥー','ファン','フィルム','カフェ','フォーク','ウィンドウ','ウェブ','ウォーター','ヴァイオリン','シェフ','ジェット','チェック'];
+UI.tr={};UI.trG={};UI.mp={};UI.nm={v:'Andi Pratama'};
+function kbtn(c,r,id){return `<button class="kana ${UI.tr[id]===c?'sel':''}" data-act="ktPick" data-id="${id}" data-c="${c}" aria-label="${c} ${r}"><b>${c}</b><small>${r}</small></button>`}
+function ktGrid(arr,rom,id,cols=5){return `<div class="kana-grid ${cols===3?'c3':''}" style="grid-template-columns:repeat(${cols},minmax(0,1fr))">${arr.map((c,i)=>c==='・'?`<div class="kana empty"></div>`:kbtn(c,rom[i],id)).join('')}</div>`}
+function ktHTML(x){const id=x.id,K=x.kt.startsWith('kata'),f=K?toKata:(s=>s);let inner='';
+ if(x.kt==='hira'||x.kt==='kata')inner=`<p class="muted" style="margin:0;font-size:.9rem">Baca dari kiri ke kanan: a・i・u・e・o. Setiap baris memakai satu konsonan. Ketuk huruf untuk mendengar bunyinya${x.trace?' dan melatih menulisnya di bawah':''}.</p>${ktGrid((K?KATA:HIRA),ROMA,id)}`;
+ else inner=`<h3 class="kt-h">Dakuon ゛ & Han-dakuon ゜<span class="muted">${K?'ガ・ザ・ダ・バ・パ':'が・ざ・だ・ば・ぱ'}</span></h3>${ktGrid(DAK.map(f),DAKR,id)}
+  <h3 class="kt-h">Youon<span class="muted">huruf kecil ${K?'ャ・ュ・ョ':'ゃ・ゅ・ょ'}</span></h3>${ktGrid(YOU.map(f),YOUR,id,3)}
+  ${K?`<h3 class="kt-h">Kombinasi modern<span class="muted">untuk bunyi asing</span></h3><div class="kt-mod">${KMOD.map((c,i)=>`<button class="kt-m" data-say="${KMODX[i]}" aria-label="${c} ${KMODR[i]}, contoh ${KMODX[i]}"><b>${c}</b><small>${KMODR[i]}</small><span>${KMODX[i]}</span></button>`).join('')}</div>`:''}`;
+ return `<section class="card kt" id="kt-${id}"><div class="sec-head"><h2>Tabel ${K?'Katakana':'Hiragana'}<span class="jpn">${x.kt.endsWith('2')?'濁音・拗音':'五十音'}</span></h2><span class="muted" style="font-size:.85rem">Ketuk untuk mendengar</span></div>${inner}</section>`}
+function trList(x){return (x.trace==='kata'?KATA:HIRA).filter(c=>c!=='・')}
+function trHTML(x){const id=x.id,L=trList(x),c=UI.tr[id]&&L.includes(UI.tr[id])?UI.tr[id]:L[0],i=L.indexOf(c),g=UI.trG[id]!==false,r=ROMA[(x.trace==='kata'?KATA:HIRA).indexOf(c)];
+ return `<section class="card trc"><div class="sec-head"><h2>Latihan menulis<span class="jpn">${rb('書{か}いて みよう')}</span></h2><span class="pill num">${i+1}/${L.length}</span></div>
+ <p class="muted" style="margin:0;font-size:.9rem">Tulis di kotak dengan jari atau mouse mengikuti huruf contoh. Matikan contoh untuk menguji hafalanmu.</p>
+ <div class="trc-row"><div class="trc-box"><canvas id="trc-${id}" data-c="${c}" data-g="${g?1:0}" aria-label="Kanvas latihan menulis huruf ${c}"></canvas></div>
+  <div class="trc-side"><div class="trc-big"><b>${c}</b><span class="num">${r}</span></div>${say(c)}
+   <div class="trc-btns"><button class="btn sm ghost" data-act="trStep" data-id="${id}" data-v="-1" ${i?'':'disabled'}>‹ Sebelumnya</button><button class="btn sm ghost" data-act="trStep" data-id="${id}" data-v="1" ${i<L.length-1?'':'disabled'}>Berikutnya ›</button></div>
+   <div class="trc-btns"><button class="btn sm" data-act="trClr" data-id="${id}">Hapus</button><button class="btn sm ghost" data-act="trG" data-id="${id}">${g?'Sembunyikan contoh':'Tampilkan contoh'}</button></div></div></div></section>`}
+function drawTrace(){document.querySelectorAll('.trc-box canvas').forEach(cv=>{const box=cv.parentElement,w=box.clientWidth,dpr=window.devicePixelRatio||1;cv.width=w*dpr;cv.height=w*dpr;
+ const g=cv.getContext('2d');g.scale(dpr,dpr);const cs=getComputedStyle(document.body),ln=cs.getPropertyValue('--line').trim()||'#ddd',ink=cs.getPropertyValue('--ink').trim()||'#333';
+ const base=()=>{g.clearRect(0,0,w,w);g.strokeStyle=ln;g.lineWidth=1;g.setLineDash([5,5]);g.beginPath();g.moveTo(w/2,0);g.lineTo(w/2,w);g.moveTo(0,w/2);g.lineTo(w,w/2);g.stroke();g.setLineDash([]);
+  if(cv.dataset.g==='1'){g.fillStyle=ink;g.globalAlpha=.13;g.font=`500 ${w*.78}px ${cs.fontFamily}`;g.textAlign='center';g.textBaseline='middle';g.fillText(cv.dataset.c,w/2,w/2+w*.04);g.globalAlpha=1}};
+ base();cv._clr=base;let dn=false,lx,ly;const pt=e=>{const r=cv.getBoundingClientRect(),k=w/r.width;return [(e.clientX-r.left)*k,(e.clientY-r.top)*k]};
+ g.lineCap='round';g.lineJoin='round';
+ cv.onpointerdown=e=>{dn=true;cv.setPointerCapture(e.pointerId);[lx,ly]=pt(e);g.strokeStyle=getComputedStyle(document.body).getPropertyValue('--maple').trim()||'#B5462F';g.lineWidth=Math.max(6,w/26);g.beginPath();g.arc(lx,ly,g.lineWidth/2,0,7);g.fillStyle=g.strokeStyle;g.fill();e.preventDefault()};
+ cv.onpointermove=e=>{if(!dn)return;const [x,y]=pt(e);g.beginPath();g.moveTo(lx,ly);g.lineTo(x,y);g.stroke();lx=x;ly=y;e.preventDefault()};
+ cv.onpointerup=cv.onpointercancel=()=>{dn=false}})}
+function mirHTML(x){return `<section class="card mir"><div class="sec-head"><h2>Huruf yang mirip<span class="jpn">にて いる もじ</span></h2><span class="muted" style="font-size:.85rem">Ketuk untuk mendengar</span></div>
+ <p class="muted" style="margin:0;font-size:.9rem">Huruf-huruf ini sering tertukar. Bandingkan bentuknya baik-baik.</p>
+ <div class="mir-g">${x.mirip.map(gr=>`<div class="mir-set">${gr.map(c=>{const A=x.kt==='kata'?KATA:HIRA,i=A.indexOf(c);return `<button class="mir-c" data-say="${c==='口'?'くち':c}" aria-label="${c}"><b>${c}</b><small>${c==='口'?'kanji kuchi':ROMA[i]}</small></button>`}).join('')}</div>`).join('')}</div></section>`}
+function mpHTML(x){const id=x.id;return `<section class="card mp"><div class="sec-head"><h2>Tes pendengaran<span class="jpn">ききとり</span></h2><span class="muted" style="font-size:.85rem">Dengar, lalu pilih</span></div>
+ <p class="muted" style="margin:0;font-size:.9rem">Satu bunyi kecil bisa mengubah arti. Putar audio, lalu pilih kata yang kamu dengar.</p>
+ ${x.mp.map((p,i)=>{const s=UI.mp[id+i]||{},done=s.pick!==undefined;return `<div class="mp-row"><button class="btn sm" data-act="mpPlay" data-id="${id}" data-i="${i}">${ic('play').replace('<svg','<svg width="16" height="16"')} ${s.t===undefined?'Putar':'Ulang'}</button>
+  <div class="mp-opts">${[0,1].map(j=>`<button class="mp-o ${done&&j===s.t?'right':''} ${done&&j===s.pick&&j!==s.t?'wrong':''}" data-act="mpPick" data-id="${id}" data-i="${i}" data-j="${j}" ${s.t===undefined||done?'disabled':''}><b class="jp">${p[j]}</b><small>${done?esc(p[2+j])+' · '+esc(p[4+j]):'&nbsp;'}</small></button>`).join('')}</div>
+  ${done?`<div class="mp-res"><b class="${s.pick===s.t?'ok':'no'}">${s.pick===s.t?'Benar!':'Belum tepat.'}</b> Yang diputar: <span class="jp">${p[s.t]}</span> (${esc(p[2+s.t])}). <button class="linkbtn" data-act="mpNew" data-id="${id}" data-i="${i}">Coba lagi</button></div>`:''}</div>`}).join('')}</section>`}
+/* romaji (ejaan Indonesia) → katakana */
+const KV={a:0,i:1,u:2,e:3,o:4},KAV=['ア','イ','ウ','エ','オ'];
+const KC={k:'カキクケコ',g:'ガギグゲゴ',s:'サシスセソ',z:'ザジズゼゾ',n:'ナニヌネノ',h:'ハヒフヘホ',b:'バビブベボ',p:'パピプペポ',m:'マミムメモ',r:'ラリルレロ',l:'ラリルレロ',v:'バビブベボ',q:'カキクケコ',kh:'ハヒフヘホ',
+ t:['タ','ティ','トゥ','テ','ト'],d:['ダ','ディ','ドゥ','デ','ド'],y:['ヤ','イ','ユ','イェ','ヨ'],w:['ワ','ウィ','ウ','ウェ','ウォ'],f:['ファ','フィ','フ','フェ','フォ'],
+ j:['ジャ','ジ','ジュ','ジェ','ジョ'],c:['チャ','チ','チュ','チェ','チョ'],ch:['チャ','チ','チュ','チェ','チョ'],ny:['ニャ','ニ','ニュ','ニェ','ニョ'],sy:['シャ','シ','シュ','シェ','ショ'],hy:['ヒャ','ヒ','ヒュ','ヒェ','ヒョ'],sh:['シャ','シ','シュ','シェ','ショ'],ts:['ツァ','ツィ','ツ','ツェ','ツォ'],dh:['ダ','ディ','ドゥ','デ','ド']};
+const KCO={k:'ク',g:'グ',s:'ス',z:'ズ',t:'ト',d:'ド',h:'フ',b:'ブ',p:'プ',m:'ム',r:'ル',l:'ル',f:'フ',v:'ブ',j:'ジ',c:'チ',w:'ウ',y:'イ',q:'ク',x:'クス'};
+function nm2k(w){w=w.toLowerCase().replace(/[^a-z]/g,'').replace(/x/g,'ks').replace(/([^aiueo])y$/,'$1i');const out=[];let i=0;
+ while(i<w.length){const ch=w[i],nx=w[i+1];
+  if(ch in KV){const v=KAV[KV[ch]];if(out.length&&out[out.length-1].v===ch){out.push({k:'ー'});i++;continue}out.push({k:v,v:ch});i++;continue}
+  if(ch==='n'&&nx==='g'&&!(w[i+2] in KV)){out.push({k:'ン'});i+=2;continue}
+  if(ch==='n'&&!(nx in KV)&&nx!=='y'){out.push({k:'ン'});i++;continue}
+  if(ch==='m'&&'bpm'.includes(nx||'#')){out.push({k:'ン'});i++;continue}
+  if(ch===nx&&(w[i+2] in KV)){out.push({k:ch==='m'||ch==='n'?'ン':'ッ'});i++;continue}
+  if(ch==='h'&&nx===undefined&&out.length&&out[out.length-1].v){i++;continue}
+  const di=w.slice(i,i+2);let key=KC[di]&&(w[i+2] in KV)?di:ch,len=key.length;const v=w[i+len];
+  if(v in KV&&KC[key]){const row=KC[key];out.push({k:row[KV[v]],v});i+=len+1;continue}
+  out.push({k:KCO[ch]||''});i++}
+ return out.map(o=>o.k).join('')}
+const nmKata=s=>s.trim().split(/\s+/).filter(Boolean).map(nm2k).join('・');
+const NM_EX=['Budi Santoso','Siti Aminah','Dewi Lestari','Agus','Rina','Joko Widodo','Bambang','Putri'];
+function namaHTML(x){const v=UI.nm.v,k=nmKata(v);return `<section class="card nm"><div class="sec-head"><h2>Tulis namamu<span class="jpn">なまえを カタカナで</span></h2></div>
+ <p class="muted" style="margin:0;font-size:.9rem">Ketik nama sesuai ejaan Indonesia. Hasil dibuat berdasarkan bunyi, jadi periksa lagi dengan cara kamu mengucapkannya.</p>
+ <div class="nm-in"><input id="nm-in" type="text" maxlength="40" value="${esc(v)}" placeholder="contoh: Budi Santoso" aria-label="Nama dalam huruf latin" onkeydown="if(event.key==='Enter')ACT.nmGo()"><button class="btn" data-act="nmGo">Ubah</button></div>
+ <div class="nm-ex">${NM_EX.map(n=>`<button class="chip" data-act="nmEx" data-v="${n}">${n}</button>`).join('')}</div>
+ ${k?`<div class="nm-out">${say(k)}<div style="min-width:0"><div class="nm-k">${esc(k)}</div><div class="muted" style="font-size:.88rem">${esc(v)} · ketuk ikon untuk mendengar</div></div></div>`:''}</section>`}
 function fm(p){if(!/[぀-ヿ一-鿿]/.test(p))return `<div class="pattern">${rb(p)}</div>`;
  const out=[];p.split(' ').filter(Boolean).forEach(t=>{const lat=/[A-Za-z]/.test(t)&&!/[぀-ヿ一-鿿]/.test(t.replace(/\{[^}]*\}/g,''))||/^(N|V|Adj|な-adj|い-adj)/.test(t);
   const k=t==='/'||t==='+'||t==='・'||t==='→'?'op':lat?'slot':'part';const last=out[out.length-1];
@@ -3114,6 +3445,15 @@ const ACT={
  openLesson:d=>{const x=findLesson(d.id),dest=x.lv.id==='biz'?'bisnis':'belajar';if(dest==='belajar')UI.lvTab=x.lv.id;if(UI.route!==dest){UI.pending=d.id;location.hash=dest;return}openSub(()=>{UI.lesson=d.id;UI.lq={}})},
  backLearn:()=>openSub(()=>{const x=findLesson(UI.lesson);if(x&&x.lv.id!=='biz')UI.lvTab=x.lv.id;UI.lesson=null}),
  lvTab:d=>{UI.lvTab=d.id;rerender()},
+ ktPick:d=>{UI.tr[d.id]=d.c;speak(d.c);rerender()},
+ trStep:d=>{const x=findLesson(d.id),L=trList(x),c=UI.tr[d.id]&&L.includes(UI.tr[d.id])?UI.tr[d.id]:L[0],i=Math.max(0,Math.min(L.length-1,L.indexOf(c)+ +d.v));UI.tr[d.id]=L[i];rerender()},
+ trClr:d=>{const cv=document.getElementById('trc-'+d.id);if(cv&&cv._clr)cv._clr()},
+ trG:d=>{UI.trG[d.id]=UI.trG[d.id]===false;rerender()},
+ mpPlay:d=>{const x=findLesson(d.id),k=d.id+d.i,s=UI.mp[k]=UI.mp[k]||{};if(s.t===undefined){s.t=Math.random()<.5?0:1;rerender()}speak(x.mp[+d.i][s.t])},
+ mpPick:d=>{const x=findLesson(d.id),k=d.id+d.i,s=UI.mp[k];if(!s||s.t===undefined||s.pick!==undefined)return;s.pick=+d.j;rerender();if(s.pick===s.t){S.mp=S.mp||{};if(!S.mp[k]){S.mp[k]=1;addXP(5,'Tes pendengaran')}}},
+ mpNew:d=>{const x=findLesson(d.id),k=d.id+d.i;UI.mp[k]={t:Math.random()<.5?0:1};rerender();speak(x.mp[+d.i][UI.mp[k].t])},
+ nmGo:()=>{const el=document.getElementById('nm-in');if(!el)return;UI.nm.v=el.value.slice(0,40);rerender();const k=nmKata(UI.nm.v);if(k)speak(k.replace(/・/g,' '))},
+ nmEx:d=>{UI.nm.v=d.v;rerender();speak(nmKata(d.v).replace(/・/g,' '))},
  abSym:d=>{UI.abS=+d.i;rerender()},
  abPil:d=>{UI.abP=UI.abP===+d.i?-1:+d.i;rerender()},
  abBack:()=>{location.hash='#beranda'},
