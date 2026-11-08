@@ -420,6 +420,46 @@ mark.kwk{background:var(--amber-soft);color:inherit;border-radius:6px;padding:0 
 .nu-vs{align-self:center;font-size:1.3rem;color:var(--ink-3);font-weight:800}
 .nu-warn{padding:12px 14px;border-radius:14px;border:1.5px solid #C8372D;background:rgba(200,55,45,.07);line-height:1.7}
 @media (max-width:560px){.nu-pair{grid-template-columns:1fr}.nu-vs{transform:rotate(90deg);justify-self:center}}
+.ab-hero .hero-text{display:flex;flex-direction:column;gap:10px}
+.ab-motto{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ab-motto .jp{font-size:1.35rem;font-weight:700;color:var(--maple);line-height:2}
+.ab-found{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
+.ab-found>div{display:flex;flex-direction:column;gap:2px;padding:10px 14px;border-radius:14px;background:var(--surface);border:1px solid var(--line)}
+.ab-found b{font-size:1.1rem}
+.ab-day{flex-direction:row!important;align-items:center;gap:10px!important}
+.ab-day b{font-size:2rem;color:var(--maple);line-height:1}
+.ab-day span{font-size:.82rem;color:var(--ink-2);line-height:1.3}
+.ab-sec{padding:20px;display:flex;flex-direction:column;gap:12px}
+.ab-sec p{margin:0;line-height:1.75}
+.ab-sec2{display:flex;flex-direction:column;gap:12px}
+.ab-syms{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.ab-sym{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);text-align:left;cursor:pointer;color:inherit}
+.ab-sym span{display:flex;flex-direction:column}
+.ab-sym.on{border-color:var(--maple);background:var(--maple-soft)}
+.ab-sw{display:inline-flex;gap:3px}.ab-sw i{width:12px;height:24px;border-radius:6px;border:1px solid var(--line)}
+.ab-panel{padding:16px;border-radius:16px;background:var(--surface-2);display:flex;flex-direction:column;gap:8px}
+.ab-word{display:flex;align-items:center;gap:10px}.ab-word .jp{font-size:1.5rem;font-weight:700;line-height:2.1}
+.ab-pils{display:flex;flex-direction:column;gap:10px}
+.ab-pil{padding:0;overflow:hidden}
+.ab-pil-h{width:100%;display:flex;gap:14px;align-items:center;padding:14px 16px;background:none;border:0;color:inherit;cursor:pointer;font:inherit}
+.ab-pil-h b{display:block;font-size:.95rem}
+.ab-pj{display:block;font-size:1.2rem;line-height:2;color:var(--maple)}
+.ab-num{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--maple-soft);color:var(--maple);font-weight:800}
+.ab-pil.on .ab-num{background:var(--maple);color:var(--maple-ink)}
+.ab-chev{font-size:1.4rem;color:var(--ink-3);font-weight:700}
+.ab-pil-b{padding:0 16px 16px 66px;display:flex;flex-direction:column;gap:10px}
+.ab-pil-b p{margin:0;line-height:1.75}
+@media (max-width:520px){.ab-pil-b{padding-left:16px}}
+.ab-mis{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;line-height:1.6}
+.ab-road{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;counter-reset:r}
+.ab-road button{width:100%;display:flex;gap:10px;align-items:center;padding:10px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:inherit;cursor:pointer;text-align:left;font:inherit}
+.ab-road button:hover{border-color:var(--maple)}
+.ab-road span{display:flex;flex-direction:column}
+.ab-dot{flex:none;width:42px;height:42px;border-radius:12px;display:grid!important;place-items:center;background:var(--amber-soft);font-weight:800;font-size:.85rem}
+.ab-dot.done{background:var(--good);color:#fff}
+.ab-end{padding:20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.ab-banner{display:flex;gap:14px;align-items:center;padding:16px 18px;text-decoration:none;color:inherit}
+.ab-banner .jp{color:var(--maple);font-weight:700}
 .kw-done{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:14px 16px;border-radius:16px;background:linear-gradient(160deg,var(--surface),var(--amber-soft))}
 </style>
 </head>
@@ -2538,14 +2578,58 @@ function paintChrome(){
  document.documentElement.style.setProperty('--rt',{m:'.5em',l:'.6em',xl:'.72em'}[S.set.fs]||'.6em');
  document.body.classList.toggle('nofuri',!S.set.furi);document.body.classList.toggle('notr',!S.set.tr);
 }
-function render(keepScroll){const y=window.scrollY;const V={beranda:vHome,belajar:vLearn,bisnis:vBisnis,kaiwa:vKaiwa,soal:vSoal,game:vGame,profil:vProfile}[UI.route];
+function render(keepScroll){const y=window.scrollY;const V={tentang:vAbout,beranda:vHome,belajar:vLearn,bisnis:vBisnis,kaiwa:vKaiwa,soal:vSoal,game:vGame,profil:vProfile}[UI.route];
  $('#view').innerHTML=V();paintChrome();fixBubbles();if(keepScroll)window.scrollTo(0,y)}
 function rerender(){render(true)}
-function go(){const h=location.hash.slice(1);UI.route=NAV.some(n=>n[0]===h)?h:'beranda';stopTimers();
+function go(){const h=location.hash.slice(1);UI.route=NAV.some(n=>n[0]===h)||h==='tentang'?h:'beranda';stopTimers();
  Object.assign(UI,{lesson:(UI.route==='belajar'||UI.route==='bisnis')&&UI.pending?UI.pending:null,pending:null,lq:{},kaiwa:UI.route==='kaiwa'&&UI.pendingK?UI.pendingK:null,pendingK:null,kmode:'dengar',rp:null,quiz:null,game:null,reset:false,rev:null,confirmSubmit:false});render();window.scrollTo(0,0);
  if(UI.route==='soal'&&UI.pendingT){const id=UI.pendingT;UI.pendingT=null;ACT.startTryout({id})}
  if(UI.route==='game'&&UI.pendingG){const p=UI.pendingG;UI.pendingG=null;UI.gLv=p.lv;UI.game=initGame(p.g,p.lv);render()}}
 function openSub(fn){stopTimers();fn();render();window.scrollTo(0,0)}
+
+/* ===================== TENTANG / FILOSOFI ===================== */
+const FOUNDED=new Date(2026,10,6);
+const aboutDay=()=>Math.max(1,Math.floor((new Date().setHours(0,0,0,0)-FOUNDED.getTime())/864e5)+1);
+UI.abS=0;UI.abP=0;
+const AB_SYM=[
+ {k:'フクロウ',r:'不苦労{ふくろう}',t:'Burung hantu',ic:'owl',d:'Burung hantu adalah lambang kebijaksanaan dan ketekunan. Matanya tetap tajam di dalam gelap, seperti pelajar yang terus maju walau awalnya belum mengerti apa pun. Dalam bahasa Jepang, フクロウ juga bisa ditulis 不苦労{ふくろう}, artinya "tanpa kesusahan". Inilah doa kami: semoga perjalanan belajar dan merantau ke Jepang dijalani tanpa kesulitan berarti.'},
+ {k:'角帽',r:'角帽{かくぼう}',t:'Toga',ic:'cap',d:'Toga melambangkan tujuan yang jelas. Setiap materi dirancang untuk satu hal: lulus ujian seperti JLPT, JFT-Basic, dan SSW, lalu siap bekerja dengan percaya diri.'},
+ {k:'紅葉',r:'紅葉{もみじ}',t:'Daun momiji',ic:'leaf',d:'Daun momiji berubah warna perlahan, tidak dalam satu malam. Begitu juga kemampuan berbahasa: tumbuh bertahap, dan setiap tahap punya keindahannya sendiri. Di Jepang, musim gugur juga disebut 読書{どくしょ}の 秋{あき}, musim yang cocok untuk belajar.'},
+ {k:'色',r:'色{いろ}',t:'Warna krem dan merah',ic:'palette',d:'Krem yang hangat membuat pemula merasa diterima. Merah maple yang tegas mengingatkan bahwa tujuan kita serius. Hangat dalam membimbing, tegas dalam target.'}];
+const AB_PIL=[
+ ['一歩{いっぽ}ずつ','Langkah demi langkah','Tidak ada yang langsung mahir. Jalur belajar disusun dari kana, N5, N4, hingga keigo bisnis, agar setiap pelajar bisa mulai dari nol tanpa merasa tertinggal.','belajar','Buka jalur belajar'],
+ ['使{つか}える 日本語{にほんご}','Bahasa Jepang yang langsung terpakai','Belajar bukan hanya untuk lulus ujian. Setiap bab dilengkapi kaiwa di tempat kerja dan kehidupan sehari-hari, agar apa yang dipelajari hari ini bisa dipakai besok.','kaiwa','Latihan kaiwa'],
+ ['礼儀{れいぎ}と 思{おも}いやり','Sopan santun dan kepedulian','Bahasa Jepang tidak terpisah dari budayanya. Kami mengajarkan tingkat kesopanan, keigo, dan etika kerja, agar pelajar dihargai karena sikapnya, bukan hanya kemampuannya.','bisnis','Pelajari keigo bisnis'],
+ ['楽{たの}しく 学{まな}ぶ','Belajar dengan gembira','Ilustrasi, suara, dan game membuat belajar terasa ringan. Pelajar yang menikmati prosesnya akan bertahan lebih lama.','game','Main game belajar'],
+ ['継続{けいぞく}は 力{ちから}なり','Ketekunan adalah kekuatan','Peribahasa Jepang ini menjadi pegangan kami. Sedikit setiap hari lebih kuat daripada banyak sekali-sekali. Target harian, XP, dan hari beruntun dibuat untuk menjaga konsistensi.','profil','Lihat progresku']];
+const AB_ROAD=[['kana','かな','Hiragana & Katakana'],['n5','N5','Dasar'],['n4','N4','Dasar lanjut'],['jft','A2','JFT · SSW'],['n3','N3','Menengah'],['n2','N2','Mahir'],['n1','N1','Ahli'],['biz','ビジ','Bisnis']];
+function vAbout(){const s=AB_SYM[UI.abS],day=aboutDay();
+ const icon=n=>n==='owl'?'<svg width="28" height="28" aria-hidden="true"><use href="#owl"/></svg>':n==='leaf'?'<svg width="24" height="24" aria-hidden="true" style="color:var(--maple)"><use href="#leaf"/></svg>':n==='cap'?'<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 2 9l10 5 10-5z" fill="#3B2A20"/><path d="M6 11v4c0 1.7 2.7 3 6 3s6-1.3 6-3v-4l-6 3z" fill="#5A4636"/><path d="M21 9v6" stroke="#E0A23C" stroke-width="1.6"/></svg>':'<span class="ab-sw" aria-hidden="true"><i style="background:#F7EBDA"></i><i style="background:#B5462F"></i></span>';
+ return `<button class="back" data-act="abBack">${ic('left').replace('<svg','<svg width="18" height="18"')} Beranda</button>
+ <section class="hero ab-hero"><div class="leaves" aria-hidden="true">${leaves(7)}</div>
+  <div class="hero-text"><span class="eyebrow">Tentang kami · 私たちについて</span><h1>Owl Nihongo <span class="jpn" style="font-size:1rem">フクロウ日本語</span></h1>
+   <div class="ab-motto"><span class="jp">${rb('一歩{いっぽ}ずつ、 確{たし}かな 日本語{にほんご}を。')}</span>${say('一歩{いっぽ}ずつ、 確{たし}かな 日本語{にほんご}を。')}</div>
+   <p class="muted">Selangkah demi selangkah, menuju bahasa Jepang yang mantap.</p>
+   <div class="ab-found"><div><span class="eyebrow">Berdiri · 創立</span><b>6 November 2026</b><span class="muted jp" style="font-size:.9rem">2026年11月6日</span></div><div class="ab-day"><b class="num">${day}</b><span>hari menemani<br>pelajar</span></div></div>
+  </div><svg class="owl-big owl-bob" role="img" aria-label="Maskot burung hantu bertoga"><use href="#owl"/></svg></section>
+
+ <section class="card ab-sec"><div class="sec-head"><div><h2>Makna nama dan simbol<span class="jpn">名前の意味</span></h2><p class="muted" style="font-size:.88rem">Ketuk setiap simbol untuk mengenal maknanya.</p></div></div>
+  <div class="ab-syms" role="tablist">${AB_SYM.map((x,i)=>`<button role="tab" aria-selected="${i===UI.abS}" class="ab-sym ${i===UI.abS?'on':''}" data-act="abSym" data-i="${i}">${icon(x.ic)}<span><b>${esc(x.t)}</b><small class="jpn">${esc(x.k)}</small></span></button>`).join('')}</div>
+  <div class="ab-panel pop"><div class="ab-word"><span class="jp">${rb(s.r)}</span>${say(s.r)}</div><p>${rb(s.d)}</p></div></section>
+
+ <section class="ab-sec2"><div class="sec-head"><div><h2>Lima pilar filosofi<span class="jpn">五つの柱</span></h2><p class="muted" style="font-size:.88rem">Prinsip yang menjadi dasar setiap materi, ilustrasi, dan latihan.</p></div></div>
+  <div class="ab-pils">${AB_PIL.map((p,i)=>{const on=UI.abP===i;return `<article class="card ab-pil ${on?'on':''}"><button class="ab-pil-h" data-act="abPil" data-i="${i}" aria-expanded="${on}"><span class="ab-num num">${i+1}</span><span style="flex:1;min-width:0;text-align:left"><span class="jp ab-pj">${rb(p[0])}</span><b>${esc(p[1])}</b></span><span class="ab-chev" aria-hidden="true">${on?'−':'+'}</span></button>
+   ${on?`<div class="ab-pil-b pop"><p>${esc(p[2])}</p><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">${say(p[0])}<a class="btn sm" href="#${p[3]}">${esc(p[4])}</a></div></div>`:''}</article>`}).join('')}</div></section>
+
+ <section class="grid g2">
+  <div class="card ab-sec"><span class="eyebrow">Visi · ビジョン</span><h2 style="margin:4px 0 6px">Teman belajar dari nol sampai siap kerja</h2><p>Menjadi teman belajar bahasa Jepang yang membawa pelajar Indonesia dari nol hingga percaya diri bekerja dan hidup di Jepang.</p></div>
+  <div class="card ab-sec"><span class="eyebrow">Misi · ミッション</span><ul class="ab-mis"><li>Menyajikan materi yang jelas, bertahap, dan mudah dipahami.</li><li>Mengajarkan bahasa yang langsung terpakai di tempat kerja dan kehidupan sehari-hari.</li><li>Menanamkan sopan santun dan budaya kerja Jepang.</li><li>Membuat belajar terasa menyenangkan dan konsisten setiap hari.</li></ul></div>
+ </section>
+
+ <section class="card ab-sec"><div class="sec-head"><div><h2>Jalan belajar<span class="jpn">学びの道</span></h2><p class="muted" style="font-size:.88rem">Ketuk salah satu tahap untuk langsung membukanya.</p></div></div>
+  <ol class="ab-road">${AB_ROAD.map(([id,tag,nm])=>{const L=LEVELS.find(l=>l.id===id);const n=L?L.lessons.length:0,d=L?L.lessons.filter(x=>S.done[x.id]).length:0;return `<li><button data-act="abGo" data-id="${id}"><span class="ab-dot ${n&&d===n?'done':''}">${esc(tag)}</span><span><b>${esc(nm)}</b><small class="muted num">${d}/${n} pelajaran</small></span></button></li>`}).join('')}</ol></section>
+
+ <section class="card ab-end"><svg width="72" height="72" aria-hidden="true"><use href="#owl"/></svg><div style="flex:1;min-width:200px"><div class="jp" style="font-size:1.2rem">${rb('さあ、 一緒{いっしょ}に 始{はじ}めましょう！')}</div><p class="muted">Ayo, kita mulai bersama!</p></div><a class="btn" href="#belajar">Mulai belajar</a></section>`}
 
 /* ===================== BERANDA ===================== */
 function leaves(n){const c=['var(--maple)','var(--amber)','var(--gold)'];let s='';for(let i=0;i<n;i++)s+=`<svg style="left:${(i*97)%100}%;animation-duration:${9+i*1.6}s;animation-delay:-${i*2.1}s;color:${c[i%3]}"><use href="#leaf"/></svg>`;return s}
@@ -2573,6 +2657,7 @@ function vHome(){
   </div>
   <svg class="owl-big owl-bob" role="img" aria-label="Maskot burung hantu bertoga"><use href="#owl"/></svg>
  </section>
+ <a class="card tap ab-banner" href="#tentang"><svg width="48" height="48" aria-hidden="true" style="flex:none"><use href="#owl"/></svg><span style="flex:1;min-width:0;display:flex;flex-direction:column;gap:2px"><span class="eyebrow">Filosofi Owl Nihongo · 私たちについて</span><span class="jp">${rb('一歩{いっぽ}ずつ、 確{たし}かな 日本語{にほんご}を。')}</span><span class="muted" style="font-size:.85rem">Berdiri 6 November 2026 · kenali makna burung hantu, toga, dan momiji</span></span><span aria-hidden="true" style="font-size:1.3rem;color:var(--ink-3)">›</span></a>
 
  <section class="grid g2">
   <div class="card" style="padding:20px;display:flex;gap:18px;align-items:center">
@@ -3029,6 +3114,10 @@ const ACT={
  openLesson:d=>{const x=findLesson(d.id),dest=x.lv.id==='biz'?'bisnis':'belajar';if(dest==='belajar')UI.lvTab=x.lv.id;if(UI.route!==dest){UI.pending=d.id;location.hash=dest;return}openSub(()=>{UI.lesson=d.id;UI.lq={}})},
  backLearn:()=>openSub(()=>{const x=findLesson(UI.lesson);if(x&&x.lv.id!=='biz')UI.lvTab=x.lv.id;UI.lesson=null}),
  lvTab:d=>{UI.lvTab=d.id;rerender()},
+ abSym:d=>{UI.abS=+d.i;rerender()},
+ abPil:d=>{UI.abP=UI.abP===+d.i?-1:+d.i;rerender()},
+ abBack:()=>{location.hash='#beranda'},
+ abGo:d=>{if(d.id==='biz'){location.hash='#bisnis';return}UI.lvTab=d.id;location.hash='#belajar'},
  kwTab:d=>{const s=kwSt(d.id);s.t=+d.i;s.rev={};s.last=-1;UI.kwTok++;if(window.speechSynthesis)speechSynthesis.cancel();rerender()},
  kwRole:d=>{const s=kwSt(d.id);s.role=+d.r;s.rev={};s.last=-1;UI.kwTok++;if(window.speechSynthesis)speechSynthesis.cancel();rerender();if(s.role>=0)kwChain(d.id,0)},
  kwTr:d=>{const s=kwSt(d.id);s.tr=!s.tr;rerender()},
