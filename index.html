@@ -400,7 +400,7 @@ mark.kwk{background:var(--amber-soft);color:inherit;border-radius:6px;padding:0 
 .kw-turn{align-self:flex-start;max-width:92%;padding:14px 16px;border-radius:16px;border:2px dashed var(--maple);background:var(--surface);display:flex;flex-direction:column;gap:8px}
 .kw-turn.r{align-self:flex-end}
 .kw-turn p{margin:0;font-size:.88rem;color:var(--ink-2)}
-.kw-id{font-weight:700;font-size:1.05rem}
+.kw-id{font-weight:700;font-size:1.05rem}.rd{padding:20px;display:flex;flex-direction:column;gap:16px}.rd .sec-head{flex-wrap:wrap;gap:10px}.rd-item{position:relative;border:1px solid var(--line);border-radius:14px;padding:16px 16px 12px;background:var(--surface-2);display:flex;flex-direction:column;gap:8px}.rd-k{position:absolute;top:-12px;left:14px;background:var(--maple);color:#fff;font-weight:800;border-radius:8px;padding:2px 10px;font-size:.85rem}.rd-h{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.rd-h .jp{font-size:1.1rem;line-height:1.9}.rd-h .muted{font-size:.82rem}.rd-txt{font-size:1.18rem;line-height:2.35}.rd-txt p{margin:0 0 .5em}.rd-txt u{text-decoration-color:var(--maple);text-decoration-thickness:2px;text-underline-offset:6px}.rd-tr{border-top:1px dashed var(--line);padding-top:8px;font-size:.92rem;line-height:1.7;color:var(--ink-2)}.rd-tr summary{cursor:pointer;font-weight:700;color:var(--maple);padding:4px 0}.rd-tr p{margin:.4em 0}body.rdexam .rd rt,body.rdexam .rdq rt{visibility:hidden}.lgrp{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--maple);padding:12px 4px 2px}.lgrp:first-child{padding-top:2px}
 .nu{padding:20px;display:flex;flex-direction:column;gap:14px}
 .pm{display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
 .pm i{width:14px;height:8px;border-radius:4px;background:var(--line)}
@@ -3190,6 +3190,149 @@ const N2B=[
    [0,'荷物{にもつ}をここに置{お}いて*もよろしいでしょうか*。','Bolehkah saya menaruh barang di sini?'],
    [1,'申{もう}し訳{わけ}ございません。こちらではお預{あず}かりいたし*かねます*。フロントでお預{あず}かりします。','Mohon maaf, di sini kami tidak dapat menerima titipan. Silakan di resepsionis.']],
    tip:'Staf menjawab ご存知{ぞんじ}ですか dengan 存{ぞん}じております (kenjougo), bukan ご存知{ぞんじ}です.'}]},
+ {id:'n2-g16',fx:1,title:'Bab 16 · Sudut Pandang dan Dasar Penilaian',jp:'観点{かんてん}・基準{きじゅん}',sum:'からいうと, からして, にとっての, によっては, をもとに, のもとで, にこたえて: menyebut dari sudut mana sebuah penilaian dibuat.',
+  scene:{bg:'room',alt:'Andi dan atasan menilai dua proposal di papan',
+   art:()=>BOARD(215,14,230,72,'',14)+TXT(160,46,'A案',18,'#FFFDF8',800)+TXT(270,46,'B案',18,'#FFFDF8',800)+TXT(160,72,'安い',13,'#F4B642',800)+TXT(270,72,'高品質',13,'#F4B642',800)+P(90,215,1.05,{c:'#3B3F4A',h:'#555',gl:1,tie:'#2F6F8F',arm:'point',talk:1})+P(320,215,1.05,{c:'#4F7CAC',tie:'#B5462F',flip:1}),
+   bub:[[90,106,'費用{ひよう}からいうとA案{あん}だね。','Dari segi biaya, rencana A ya.']],
+   hot:[[180,30,26,26,'費用{ひよう}からいえば、A案{あん}のほうが安{やす}い。','Kalau dilihat dari biaya, rencana A lebih murah.'],[290,30,26,26,'品質{ひんしつ}からいって、B案{あん}のほうがいい。','Kalau dinilai dari kualitas, rencana B lebih baik.']]},
+  points:[
+   {p:'N + からいうと / からいって / からいえば',e:'"Kalau dilihat / dinilai dari (segi)…". Penilaian berdasarkan sudut pandang tertentu yang disebutkan, misalnya pengalaman, posisi, atau kriteria. Tidak dipakai langsung dengan orang (×私{わたし}からいうと); pakai 私{わたし}から見{み}ると.',ex:[['経験{けいけん}からいうと、この方法{ほうほう}はあまりうまくいかない。','Kalau dilihat dari pengalaman, cara ini biasanya kurang berhasil.'],['彼{かれ}の実力{じつりょく}からいって、合格{ごうかく}は間違{まちが}いないだろう。','Kalau dinilai dari kemampuannya, dia pasti lulus.']]},
+   {p:'N + からして',e:'"Dari … saja sudah…". Mengambil contoh paling dasar atau paling mencolok, lalu menyimpulkan bahwa hal lainnya juga sama. Sering bernada kritik.',ex:[['この店{みせ}は、店員{てんいん}の態度{たいど}からして感{かん}じが悪{わる}い。','Toko ini, dari sikap pegawainya saja sudah tidak menyenangkan.'],['タイトルからして面白{おもしろ}そうな本{ほん}だ。','Dari judulnya saja, buku ini sudah kelihatan menarik.']]},
+   {p:'N① + にとっての + N②',e:'"N② bagi N①". Bentuk にとって yang langsung menerangkan kata benda, untuk menyatakan nilai atau arti sesuatu dari posisi seseorang.',ex:[['家族{かぞく}は、私{わたし}にとっての宝物{たからもの}です。','Keluarga adalah harta karun bagi saya.'],['社員{しゃいん}にとっての働{はたら}きやすさを第{だい}一{いち}に考{かんが}えたい。','Kami ingin mengutamakan kenyamanan bekerja bagi karyawan.']]},
+   {p:'N + によっては',e:'"Tergantung…, ada kalanya…". Menunjuk satu kemungkinan khusus di antara banyak variasi. Lebih spesifik daripada によって.',ex:[['場合{ばあい}によっては、出張{しゅっちょう}が延{の}びるかもしれない。','Tergantung keadaannya, perjalanan dinas mungkin diperpanjang.'],['人{ひと}によっては、この味{あじ}を辛{から}いと感{かん}じる。','Tergantung orangnya, ada yang merasa rasa ini pedas.']]},
+   {p:'N + をもとに(して) / をもとにした + N',e:'"Berdasarkan / bertolak dari…". N adalah bahan, data, atau petunjuk yang menjadi dasar untuk membuat sesuatu.',ex:[['アンケートの結果{けっか}をもとに、新{あたら}しい商品{しょうひん}を開発{かいはつ}した。','Kami mengembangkan produk baru berdasarkan hasil angket.'],['これは実話{じつわ}をもとにした映画{えいが}です。','Ini film yang diangkat dari kisah nyata.']]},
+   {p:'N + のもとで / のもとに',e:'"Di bawah (bimbingan / pengaruh / kondisi)…". N biasanya orang yang berpengaruh, aturan, atau kondisi.',ex:[['有名{ゆうめい}な先生{せんせい}のもとで、三{さん}年間{ねんかん}研究{けんきゅう}した。','Saya meneliti selama tiga tahun di bawah bimbingan dosen terkenal.'],['厳{きび}しいルールのもとに、試合{しあい}が行{おこな}われた。','Pertandingan diadakan dengan aturan yang ketat.']]},
+   {p:'N + にこたえて / にこたえる + N',e:'"Menanggapi / memenuhi…". N berupa harapan, permintaan, atau dukungan dari pihak lain (期待{きたい}・要望{ようぼう}・声援{せいえん}). Kanji: 応{こた}えて.',ex:[['お客{きゃく}様{さま}の要望{ようぼう}にこたえて、営業{えいぎょう}時間{じかん}を延{の}ばしました。','Menanggapi permintaan pelanggan, kami memperpanjang jam buka.'],['ファンの声援{せいえん}にこたえて、選手{せんしゅ}は手{て}を振{ふ}った。','Membalas sorakan penggemar, sang atlet melambaikan tangan.']]}],
+  nu:[
+   {a:'国{くに}によって、法律{ほうりつ}が違{ちが}う。',b:'国{くに}によっては、死刑{しけい}がない。',la:3,lb:3,t:'によって = semua berbeda-beda tergantung N. によっては = menyorot sebagian kasus khusus. Bagian setelahnya biasanya kalimat "ada yang…" atau "mungkin…".'},
+   {a:'私{わたし}から見{み}ると、この計画{けいかく}は無理{むり}だ。',b:'専門{せんもん}家{か}の立場{たちば}からいうと、この計画{けいかく}は無理{むり}だ。',la:3,lb:4,t:'からいうと butuh dasar penilaian yang jelas (立場{たちば}, 経験{けいけん}, 点{てん}). Untuk pendapat pribadi, gunakan 私{わたし}から見{み}ると atau 私{わたし}としては.'}],
+  vx:[['経験{けいけん}','pengalaman'],['実力{じつりょく}','kemampuan nyata'],['態度{たいど}','sikap'],['要望{ようぼう}','permintaan'],['声援{せいえん}','sorakan dukungan'],['開発{かいはつ}','pengembangan'],['実話{じつわ}','kisah nyata'],['品質{ひんしつ}','kualitas']],
+  quiz:[
+   {q:'店員{てんいん}のあいさつ（　）、この店{みせ}はサービスが悪{わる}そうだ。',o:['からして','にとっての','のもとで'],a:0,x:'Dari salam pegawainya saja sudah tampak buruk: <b>からして</b>.'},
+   {q:'天気{てんき}（　）、試合{しあい}が中止{ちゅうし}になることもあります。',o:['によっては','をもとに','にこたえて'],a:0,x:'Tergantung cuaca, ada kemungkinan khusus: <b>によっては</b>.'},
+   {q:'市民{しみん}の要望{ようぼう}（　）、図書{としょ}館{かん}が夜{よる}九時{きゅうじ}まで開{あ}くことになった。',o:['にこたえて','からして','によっては'],a:0,x:'Memenuhi permintaan warga: <b>にこたえて</b>.'},
+   {q:'調査{ちょうさ}データ（　）、報告{ほうこく}書{しょ}を作成{さくせい}してください。',o:['をもとに','にとっての','からいうと'],a:0,x:'Data sebagai bahan dasar: <b>をもとに</b>.'},
+   {q:'Mana yang alami?',o:['品質{ひんしつ}の点{てん}からいえば、こちらの製品{せいひん}が優{すぐ}れている。','私{わたし}からいえば、こちらの製品{せいひん}が優{すぐ}れている。','品質{ひんしつ}からして、こちらの製品{せいひん}が優{すぐ}れているそうだ。'],a:0,x:'からいえば perlu dasar penilaian yang jelas seperti 品質{ひんしつ}の点{てん}. Tidak dipakai dengan 私{わたし}.'}],
+  kw:[{k:'k',p:'Rapat · memilih pemasok',sp:['田中{たなか}課長{かちょう}','アンディ'],l:[
+   [0,'二{ふた}つの会社{かいしゃ}、どちらがいいと思{おも}う？','Menurutmu, dari dua perusahaan itu mana yang lebih baik?'],
+   [1,'価格{かかく}*からいうと*A社{しゃ}ですが、品質{ひんしつ}*からいえば*B社{しゃ}です。','Dari segi harga perusahaan A, tapi dari segi kualitas perusahaan B.'],
+   [0,'そうか。去年{きょねん}のデータ*をもとに*、もう一度{いちど}比{くら}べてみよう。','Begitu. Mari bandingkan lagi berdasarkan data tahun lalu.'],
+   [1,'はい。お客{きゃく}様{さま}の要望{ようぼう}*にこたえる*ことを第{だい}一{いち}に考{かんが}えます。','Baik. Saya akan mengutamakan pemenuhan permintaan pelanggan.']],
+   tip:'Dalam rapat, sebutkan dulu kriteria penilaian dengan からいうと, lalu dasar datanya dengan をもとに.'},
+   {k:'h',p:'Kafe · membicarakan film',sp:['リナ','アンディ'],l:[
+   [0,'昨日{きのう}の映画{えいが}、どうだった？','Film kemarin bagaimana?'],
+   [1,'ポスター*からして*怖{こわ}そうだったけど、本当{ほんとう}に怖{こわ}かった。','Dari posternya saja sudah kelihatan seram, dan memang seram.'],
+   [0,'でも、人{ひと}*によっては*笑{わら}える映画{えいが}らしいよ。','Tapi katanya, bagi sebagian orang, film itu malah lucu.'],
+   [1,'え？僕{ぼく}*にとっての*ホラーは、笑{わら}えないなあ。','Hah? Film horor bagiku tidak bisa ditertawakan.']],
+   tip:'からして sering dipakai dalam obrolan untuk memberi kesan pertama, baik positif maupun negatif.'}]},
+ {id:'n2-g17',fx:1,title:'Bab 17 · Cakupan, Pemicu, dan Momen Resmi',jp:'範囲{はんい}・契機{けいき}・場面{ばめん}',sum:'にわたって, はもとより, をきっかけに, を通じて, に対する, につき, に際して, に先立って: ungkapan yang sering muncul di pengumuman dan berita.',
+  scene:{bg:'street',alt:'Pengumuman resmi di depan gedung acara',
+   art:()=>BLD(200,215,190,150,'#C9B39D','')+BOARD(200,78,150,58,'',12)+TXT(200,104,'改装中につき',15,'#FFFDF8',800)+TXT(200,124,'休業',13,'#F4B642',800)+P(80,215,1.05,{c:'#4F7CAC',talk:1})+P(330,215,1.05,{c:'#B5462F',long:1,flip:1}),
+   bub:[[80,106,'改装{かいそう}中{ちゅう}につき休業{きゅうぎょう}…','Tutup karena renovasi…']],
+   hot:[[250,84,30,30,'改装{かいそう}中{ちゅう}につき、しばらく休業{きゅうぎょう}いたします。','Karena sedang direnovasi, kami tutup untuk sementara.']]},
+  points:[
+   {p:'N(期間{きかん}・範囲{はんい}) + にわたって / にわたる + N',e:'"Selama / meliputi…". Menekankan luasnya waktu atau wilayah: 三日間{みっかかん}, 全国{ぜんこく}, 長年{ながねん}.',ex:[['会議{かいぎ}は五{ご}時間{じかん}にわたって続{つづ}いた。','Rapat berlangsung selama lima jam penuh.'],['台風{たいふう}は九州{きゅうしゅう}全域{ぜんいき}にわたる被害{ひがい}をもたらした。','Topan menimbulkan kerusakan di seluruh wilayah Kyushu.']]},
+   {p:'N + はもとより',e:'"Tentu saja…, bahkan … juga". Hal pertama adalah yang paling wajar, hal kedua adalah tambahan. Lebih formal dari はもちろん.',ex:[['この祭{まつ}りには、地元{じもと}の人{ひと}はもとより、海外{かいがい}からも観光{かんこう}客{きゃく}が来{く}る。','Festival ini tentu didatangi warga setempat, bahkan juga turis dari luar negeri.']]},
+   {p:'N / Vこと + をきっかけに(して) / がきっかけで',e:'"Berawal dari / dipicu oleh…". Peristiwa kecil atau pribadi yang memulai perubahan. Versi formal: を契機{けいき}に.',ex:[['留学{りゅうがく}をきっかけに、日本{にほん}の文化{ぶんか}に興味{きょうみ}を持{も}った。','Berawal dari kuliah di luar negeri, saya jadi tertarik pada budaya Jepang.'],['ちょっとした会話{かいわ}がきっかけで、二人{ふたり}は友達{ともだち}になった。','Berkat obrolan kecil, mereka berdua menjadi teman.']]},
+   {p:'N + を通{つう}じて',e:'Dua arti: (1) "melalui / lewat perantara…" (2) "sepanjang…" (一年{いちねん}を通{つう}じて = sepanjang tahun). Lebih formal daripada を通{とお}して.',ex:[['友人{ゆうじん}を通{つう}じて、今{いま}の会社{かいしゃ}を紹介{しょうかい}してもらった。','Saya dikenalkan ke perusahaan ini melalui seorang teman.'],['この島{しま}は一年{いちねん}を通{つう}じて暖{あたた}かい。','Pulau ini hangat sepanjang tahun.']]},
+   {p:'N① + に対{たい}する / に対{たい}しての + N②',e:'"N② terhadap N①". Bentuk に対{たい}して yang menerangkan kata benda: 意見{いけん}, 不満{ふまん}, 態度{たいど}, 対策{たいさく}.',ex:[['お客{きゃく}様{さま}に対{たい}する言葉遣{ことばづか}いに気{き}をつけてください。','Tolong perhatikan cara bicara terhadap pelanggan.'],['社員{しゃいん}からの質問{しつもん}に対{たい}しての回答{かいとう}をまとめた。','Saya merangkum jawaban atas pertanyaan dari karyawan.']]},
+   {p:'N + につき',e:'"Karena…" dalam papan pengumuman, surat resmi, atau siaran. Bunyinya kaku dan sopan.',ex:[['工事{こうじ}中{ちゅう}につき、この道{みち}は通{とお}れません。','Karena ada pekerjaan konstruksi, jalan ini tidak bisa dilewati.'],['本日{ほんじつ}は祝日{しゅくじつ}につき、午後{ごご}五時{ごじ}で閉館{へいかん}いたします。','Karena hari ini hari libur nasional, gedung tutup pukul lima sore.']]},
+   {p:'N / V辞書形{じしょけい} + に際{さい}して / に際{さい}し / に際{さい}しての + N',e:'"Pada saat / ketika (momen khusus)…". Untuk peristiwa penting yang jarang terjadi: 入学{にゅうがく}, 出国{しゅっこく}, 契約{けいやく}, 開店{かいてん}.',ex:[['契約{けいやく}に際{さい}して、本人{ほんにん}確認{かくにん}の書類{しょるい}が必要{ひつよう}です。','Pada saat penandatanganan kontrak, diperlukan dokumen identitas.'],['出国{しゅっこく}に際{さい}し、パスポートをもう一度{いちど}確認{かくにん}した。','Ketika akan keluar negeri, saya memeriksa paspor sekali lagi.']]},
+   {p:'N / V辞書形{じしょけい} + に先立{さきだ}って / に先立{さきだ}ち / に先立{さきだ}つ + N',e:'"Sebelum (acara besar), terlebih dahulu…". Menunjukkan persiapan yang dilakukan sebelum sesuatu yang penting.',ex:[['新{しん}製品{せいひん}の発売{はつばい}に先立{さきだ}って、記者{きしゃ}会見{かいけん}が開{ひら}かれた。','Sebelum peluncuran produk baru, diadakan konferensi pers.'],['工事{こうじ}に先立{さきだ}ち、住民{じゅうみん}への説明{せつめい}会{かい}を行{おこな}います。','Sebelum konstruksi, kami akan mengadakan sosialisasi untuk warga.']]}],
+  nu:[
+   {a:'入学{にゅうがく}のとき、写真{しゃしん}が必要{ひつよう}です。',b:'入学{にゅうがく}に際{さい}して、写真{しゃしん}が必要{ひつよう}です。',la:2,lb:4,t:'とき netral untuk semua situasi. に際{さい}して hanya untuk momen penting dan terdengar resmi, cocok untuk dokumen dan pengumuman.'},
+   {a:'友達{ともだち}を通{とお}して知{し}り合{あ}った。',b:'友人{ゆうじん}を通{つう}じて知{し}り合{あ}いました。',la:3,lb:4,t:'Arti sama: "melalui". を通{つう}じて sedikit lebih formal dan juga bisa berarti "sepanjang (waktu)". を通{とお}して lebih menekankan perantara yang sengaja dipakai.'}],
+  vx:[['被害{ひがい}','kerusakan'],['全域{ぜんいき}','seluruh wilayah'],['観光{かんこう}客{きゃく}','turis'],['言葉遣{ことばづか}い','cara bertutur'],['工事{こうじ}','konstruksi'],['祝日{しゅくじつ}','hari libur nasional'],['本人{ほんにん}確認{かくにん}','verifikasi identitas'],['記者{きしゃ}会見{かいけん}','konferensi pers']],
+  quiz:[
+   {q:'改装{かいそう}工事{こうじ}中{ちゅう}（　）、本日{ほんじつ}は休業{きゅうぎょう}いたします。',o:['につき','をきっかけに','にわたって'],a:0,x:'Alasan di papan pengumuman: <b>につき</b>.'},
+   {q:'大会{たいかい}は四日間{よっかかん}（　）行{おこな}われた。',o:['にわたって','に際{さい}して','を通{つう}じて'],a:0,x:'Rentang waktu yang panjang: <b>にわたって</b>.'},
+   {q:'入院{にゅういん}（　）、健康{けんこう}の大切{たいせつ}さを知{し}った。',o:['をきっかけに','につき','に先立{さきだ}って'],a:0,x:'Peristiwa yang memicu perubahan: <b>をきっかけに</b>.'},
+   {q:'試合{しあい}開始{かいし}（　）、国歌{こっか}が演奏{えんそう}された。',o:['に先立{さきだ}って','にわたって','はもとより'],a:0,x:'Sebelum acara penting: <b>に先立{さきだ}って</b>.'},
+   {q:'この店{みせ}は、味{あじ}（　）、サービスもすばらしい。',o:['はもとより','につき','に対{たい}する'],a:0,x:'Tentu saja rasanya, bahkan pelayanannya juga: <b>はもとより</b>.'}],
+  kw:[{k:'k',p:'Kantor · persiapan pameran',sp:['田中{たなか}課長{かちょう}','アンディ'],l:[
+   [0,'展示{てんじ}会{かい}*に先立{さきだ}って*、説明{せつめい}会{かい}を開{ひら}こう。','Sebelum pameran, mari adakan sesi penjelasan.'],
+   [1,'はい。展示{てんじ}会{かい}は三日間{みっかかん}*にわたって*行{おこな}われますね。','Baik. Pamerannya berlangsung selama tiga hari ya.'],
+   [0,'そうだ。お客{きゃく}様{さま}*に対{たい}する*説明{せつめい}は丁寧{ていねい}にね。','Betul. Penjelasan kepada pelanggan harus sopan ya.'],
+   [1,'承知{しょうち}しました。出展{しゅってん}*に際{さい}して*、資料{しりょう}も準備{じゅんび}しておきます。','Baik. Saya juga akan menyiapkan materi untuk keikutsertaan pameran.']],
+   tip:'に先立{さきだ}って dan に際{さい}して membuat laporan dan email kerja terdengar rapi dan resmi.'},
+   {k:'h',p:'Taman · bercerita tentang hobi',sp:['リナ','アンディ'],l:[
+   [0,'アンディさん、どうして写真{しゃしん}を始{はじ}めたの？','Andi, kenapa mulai hobi fotografi?'],
+   [1,'旅行{りょこう}*をきっかけに*始{はじ}めたんだ。','Berawal dari jalan-jalan.'],
+   [0,'へえ。この公園{こうえん}、一年{いちねん}*を通{つう}じて*花{はな}がきれいだよね。','Oh. Taman ini bunganya cantik sepanjang tahun ya.'],
+   [1,'うん。春{はる}*はもとより*、冬{ふゆ}も撮{と}りに来{く}るよ。','Iya. Musim semi pasti, musim dingin pun aku datang memotret.']],
+   tip:'をきっかけに adalah cara alami untuk menjawab pertanyaan "kenapa mulai…?" saat wawancara atau obrolan.'}]},
+ {id:'n2-g18',fx:1,title:'Bab 18 · Dugaan, Keputusan, dan Perubahan',jp:'推量{すいりょう}・決意{けつい}・変化{へんか}',sum:'ようだ, 上で (dalam hal), 上は, わけでもない, とともに, にしたら, 向き, つつある.',
+  scene:{bg:'street',alt:'Detektif memeriksa jejak kaki besar di jalan',
+   art:()=>`<g fill="#7A5A44" opacity=".75"><ellipse cx="190" cy="205" rx="9" ry="16"/><ellipse cx="225" cy="190" rx="9" ry="16"/><ellipse cx="260" cy="205" rx="9" ry="16"/><ellipse cx="295" cy="190" rx="9" ry="16"/></g>`+P(110,215,1.1,{c:'#3B3F4A',h:'#555',hat:1,talk:1})+QMARK(340,70,1)+OWL(360,226,.6),
+   bub:[[110,106,'犯人{はんにん}は大{おお}きい男{おとこ}のようだ。','Sepertinya pelakunya pria bertubuh besar.']],
+   hot:[[175,170,135,50,'足跡{あしあと}が大{おお}きい。犯人{はんにん}は背{せ}の高{たか}い人{ひと}のようだ。','Jejaknya besar. Sepertinya pelakunya orang yang tinggi.']]},
+  points:[
+   {p:'普通形{ふつうけい} (Adjな / Nの) + ようだ / ような / ように',e:'"Sepertinya / tampaknya…". Dugaan subjektif berdasarkan apa yang penutur lihat, dengar, atau rasakan sendiri. Lisan: みたいだ.',ex:[['いいにおいがする。だれかがケーキを焼{や}いているようだ。','Ada bau harum. Sepertinya ada yang sedang memanggang kue.'],['熱{ねつ}が下{さ}がったようだ。体{からだ}が楽{らく}になった。','Sepertinya demamnya sudah turun. Badan terasa lebih ringan.']]},
+   {p:'V辞書形{じしょけい} / Nの + 上{うえ}で(は / も)',e:'"Dalam hal / untuk keperluan…". Berbeda dengan Vた上{うえ}で (= setelah). Sering: 生活{せいかつ}する上{うえ}で, 仕事{しごと}の上{うえ}で.',ex:[['日本{にほん}で生活{せいかつ}する上{うえ}で、ゴミの分{わ}け方{かた}は大切{たいせつ}だ。','Dalam hal hidup di Jepang, cara memilah sampah itu penting.'],['仕事{しごと}の上{うえ}では、報告{ほうこく}・連絡{れんらく}・相談{そうだん}が基本{きほん}です。','Dalam pekerjaan, melapor, menghubungi, dan berkonsultasi adalah dasarnya.']]},
+   {p:'V普通形{ふつうけい} + 上{うえ}は',e:'"Karena sudah…, maka harus…". Tekad atau kewajiban setelah keputusan besar. Mirip 以上{いじょう}は dan からには, tetapi paling kaku.',ex:[['引{ひ}き受{う}けた上{うえ}は、最後{さいご}まで責任{せきにん}を持{も}ってやります。','Karena sudah menerima tugas ini, saya akan bertanggung jawab sampai akhir.']]},
+   {p:'普通形{ふつうけい} + わけでもない',e:'"Bukan berarti juga…". Menyangkal sebagian anggapan dengan nada lembut. Sering bersama 特{とく}に, 別{べつ}に, 必{かなら}ずしも.',ex:[['別{べつ}に嫌{きら}いなわけでもないが、肉{にく}はあまり食{た}べない。','Bukan berarti saya tidak suka, tapi saya jarang makan daging.']]},
+   {p:'N / V辞書形{じしょけい} + とともに',e:'Tiga arti: (1) "seiring dengan" perubahan, (2) "bersama dengan" (N orang/organisasi), (3) "sekaligus" (dua sifat atau dua kejadian bersamaan).',ex:[['年{とし}をとるとともに、体力{たいりょく}が落{お}ちてきた。','Seiring bertambahnya usia, stamina saya menurun.'],['家族{かぞく}とともに、新{あたら}しい町{まち}へ引{ひ}っ越{こ}した。','Saya pindah ke kota baru bersama keluarga.'],['合格{ごうかく}して、うれしいとともに、少{すこ}し不安{ふあん}もある。','Saya lulus. Senang, sekaligus sedikit cemas.']]},
+   {p:'N(人{ひと}) + にしたら / にすれば / にしてみれば',e:'"Dari sudut pandang… (orang lain)". Penutur membayangkan perasaan orang itu. Tidak dipakai untuk diri sendiri.',ex:[['親{おや}にしたら、子{こ}どもが一人{ひとり}で外国{がいこく}に行{い}くのは心配{しんぱい}だろう。','Dari sudut pandang orang tua, pasti khawatir anaknya pergi sendirian ke luar negeri.']]},
+   {p:'N + 向{む}きだ / 向{む}きの + N',e:'"Cocok untuk…". Sifat benda itu kebetulan sesuai dengan sasaran. Lawan katanya 不向{ふむ}き.',ex:[['このコースは坂{さか}が少{すく}なくて、初心{しょしん}者{しゃ}向{む}きだ。','Jalur ini sedikit tanjakannya, jadi cocok untuk pemula.'],['彼{かれ}は細{こま}かい作業{さぎょう}には不向{ふむ}きだ。','Dia tidak cocok untuk pekerjaan yang detail.']]},
+   {p:'Vます + つつある',e:'"Sedang dalam proses…". Perubahan yang terus bergerak ke satu arah. Gaya tulisan, berita, laporan. Jarang dipakai dalam percakapan.',ex:[['この地域{ちいき}の人口{じんこう}は減{へ}りつつある。','Penduduk di wilayah ini sedang terus berkurang.'],['経済{けいざい}は回復{かいふく}しつつある。','Ekonomi sedang dalam proses pulih.']]}],
+  nu:[
+   {a:'この本{ほん}は高{たか}いらしい。',b:'この本{ほん}は高{たか}いようだ。',la:3,lb:3,t:'らしい = informasi dari orang lain (kabar). ようだ = dugaan dari pengamatan sendiri. そうだ (高{たか}そう) = kesan dari penampilan. だろう = perkiraan di kepala tanpa bukti.'},
+   {a:'子{こ}ども向{む}けの絵本{えほん}',b:'子{こ}ども向{む}きの絵本{えほん}',la:3,lb:3,t:'向{む}け = sengaja dibuat untuk sasaran itu. 向{む}き = sifatnya cocok untuk sasaran itu, meski tidak dibuat khusus.'}],
+  vx:[['足跡{あしあと}','jejak kaki'],['分{わ}け方{かた}','cara memilah'],['引{ひ}き受{う}ける','menerima tugas'],['責任{せきにん}','tanggung jawab'],['体力{たいりょく}','stamina'],['初心{しょしん}者{しゃ}','pemula'],['人口{じんこう}','penduduk'],['回復{かいふく}','pemulihan']],
+  quiz:[
+   {q:'電気{でんき}が消{き}えている。田中{たなか}さんはもう帰{かえ}った（　）。',o:['ようだ','わけでもない','向{む}きだ'],a:0,x:'Dugaan dari pengamatan sendiri: <b>ようだ</b>.'},
+   {q:'約束{やくそく}した（　）、必{かなら}ず守{まも}らなければならない。',o:['上{うえ}は','上{うえ}で','とともに'],a:0,x:'Karena sudah berjanji, maka harus: <b>上{うえ}は</b>.'},
+   {q:'この部屋{へや}は日当{ひあ}たりがよくて、植物{しょくぶつ}を育{そだ}てるの（　）。',o:['に向{む}いている','に向{む}けだ','につつある'],a:0,x:'Cocok untuk: <b>向{む}いている / 向{む}き</b>. 向{む}け dipakai sebelum kata benda (子{こ}ども向{む}けの本{ほん}).'},
+   {q:'地球{ちきゅう}の温度{おんど}は少{すこ}しずつ上{あ}がり（　）。',o:['つつある','ようだ','上{うえ}は'],a:0,x:'Proses perubahan yang sedang berlangsung: <b>つつある</b>.'},
+   {q:'彼女{かのじょ}の気持{きも}ち（　）、あんなことを言{い}われたら悲{かな}しいだろう。',o:['にしたら','とともに','上{うえ}で'],a:0,x:'Membayangkan sudut pandang orang lain: <b>にしたら</b>.'}],
+  kw:[{k:'k',p:'Kantor · tugas baru',sp:['田中{たなか}課長{かちょう}','アンディ'],l:[
+   [0,'新{あたら}しいプロジェクトのリーダー、引{ひ}き受{う}けてくれる？','Maukah kamu menerima posisi ketua proyek baru?'],
+   [1,'はい。お引{ひ}き受{う}けした*上{うえ}は*、全力{ぜんりょく}でがんばります。','Baik. Karena sudah menerimanya, saya akan berusaha sekuat tenaga.'],
+   [0,'頼{たの}もしいね。チームの雰囲気{ふんいき}もよくなり*つつある*し。','Bisa diandalkan ya. Suasana tim juga sedang membaik.'],
+   [1,'仕事{しごと}を進{すす}める*上{うえ}で*、皆{みな}さんの意見{いけん}を大切{たいせつ}にしたいです。','Dalam menjalankan pekerjaan, saya ingin menghargai pendapat semua orang.']],
+   tip:'引{ひ}き受{う}けた上{うえ}は adalah cara tegas dan sopan untuk menunjukkan komitmen kepada atasan.'},
+   {k:'h',p:'Rumah · menelepon ibu',sp:['リナ','アンディ'],l:[
+   [0,'お母{はは}さん、アンディさんの一人暮{ひとりぐ}らしを心配{しんぱい}してる*ようだ*ね。','Sepertinya ibumu khawatir kamu tinggal sendirian ya.'],
+   [1,'うん。母{はは}*にしたら*、まだ子{こ}どもなんだろうね。','Iya. Dari sudut pandang ibu, aku mungkin masih anak kecil.'],
+   [0,'料理{りょうり}が苦手{にがて}な*わけでもない*のにね。','Padahal bukan berarti kamu tidak bisa masak ya.'],
+   [1,'そう。年{とし}をとる*とともに*、心配性{しんぱいしょう}になったみたい。','Iya. Seiring bertambah usia, sepertinya beliau jadi mudah khawatir.']],
+   tip:'にしたら menunjukkan empati: kamu memahami perasaan orang lain tanpa menghakimi.'}]},
+ {id:'n2-g19',fx:1,title:'Bab 19 · Bahkan, Kontras, Risiko, dan Kata Keterangan',jp:'強調{きょうちょう}・対比{たいひ}・副詞{ふくし}',sum:'(で)さえ, ばかりか, 反面, かねない, dan kata keterangan わざと, 自然に, せっせと, さっさと, たしか, たしかに.',
+  scene:{bg:'room',alt:'Andi bekerja tekun, Rina cepat-cepat pulang',
+   art:()=>DESK(170,215,1.4)+PC(160,172,.85)+P(100,215,1.1,{c:'#4F7CAC',tie:'#B5462F',talk:1})+P(320,215,1.05,{c:'#B5462F',long:1,flip:1})+BAG(345,190,.8)+ARROW(330,120,385,120,'#B5462F'),
+   bub:[[100,106,'せっせと働{はたら}く。','Bekerja dengan tekun.']],
+   hot:[[300,100,90,40,'仕事{しごと}が終{お}わると、さっさと帰{かえ}った。','Begitu kerja selesai, dia langsung cepat-cepat pulang.']]},
+  points:[
+   {p:'N + (で)さえ',e:'"Bahkan…". Mengambil contoh ekstrem untuk menunjukkan bahwa yang lain tentu juga begitu. Beda dengan さえ〜ば (= asalkan).',ex:[['専門{せんもん}家{か}でさえ、この問題{もんだい}は解{と}けなかった。','Bahkan ahlinya pun tidak bisa memecahkan masalah ini.'],['忙{いそが}しくて、食事{しょくじ}をする時間{じかん}さえない。','Saking sibuknya, waktu untuk makan pun tidak ada.']]},
+   {p:'普通形{ふつうけい} (Nの / Nである は省略{しょうりゃく}可{か}) + ばかりか',e:'"Bukan hanya…, bahkan…". Hal kedua lebih mengejutkan. Kalimat setelahnya sering memakai も・さえ・まで.',ex:[['彼{かれ}は遅刻{ちこく}したばかりか、宿題{しゅくだい}も忘{わす}れてきた。','Dia bukan hanya terlambat, bahkan lupa membawa PR juga.'],['この薬{くすり}は効{き}かないばかりか、副{ふく}作用{さよう}まである。','Obat ini bukan hanya tidak manjur, bahkan ada efek sampingnya.']]},
+   {p:'普通形{ふつうけい} (Adjな / Nである) + 反面{はんめん} / 半面{はんめん}',e:'"Di satu sisi…, di sisi lain…". Satu hal yang sama punya dua sisi yang berlawanan (biasanya baik dan buruk).',ex:[['インターネットは便利{べんり}な反面{はんめん}、個人{こじん}情報{じょうほう}の問題{もんだい}もある。','Internet memang praktis, tetapi di sisi lain ada masalah data pribadi.']]},
+   {p:'Vます + かねない',e:'"Bisa-bisa / dikhawatirkan…". Kemungkinan hasil buruk karena suatu tindakan. Penutur memberi peringatan.',ex:[['睡眠{すいみん}不足{ふそく}が続{つづ}くと、事故{じこ}を起{お}こしかねない。','Kalau kurang tidur terus, bisa-bisa menyebabkan kecelakaan.'],['そんな言{い}い方{かた}をしたら、誤解{ごかい}されかねないよ。','Kalau bicara begitu, bisa-bisa disalahpahami lho.']]},
+   {p:'わざと ↔ 自然{しぜん}に',e:'わざと = "sengaja" (ada niat). 自然{しぜん}に = "dengan sendirinya / secara alami" (tanpa usaha khusus).',ex:[['弟{おとうと}は、わざと負{ま}けてくれた。','Adik saya sengaja mengalah.'],['毎日{まいにち}聞{き}いていたら、自然{しぜん}に歌{うた}えるようになった。','Karena mendengarkan setiap hari, saya jadi bisa menyanyi dengan sendirinya.']]},
+   {p:'せっせと ↔ さっさと',e:'せっせと = "dengan tekun, tanpa henti". さっさと = "cepat-cepat, segera" (kadang bernada kurang sabar).',ex:[['祖母{そぼ}は朝{あさ}から、せっせと畑仕事{はたけしごと}をしている。','Nenek sejak pagi bekerja tekun di ladang.'],['文句{もんく}を言{い}わないで、さっさと片付{かたづ}けなさい。','Jangan mengeluh, cepat bereskan.']]},
+   {p:'たしか ↔ たしかに',e:'たしか = "kalau tidak salah…" (ingatan yang kurang yakin). たしかに = "memang benar" (setuju atau yakin).',ex:[['会議{かいぎ}は、たしか三時{さんじ}からだったと思{おも}います。','Kalau tidak salah, rapatnya mulai jam tiga.'],['たしかに、その意見{いけん}にも一理{いちり}ある。','Memang benar, pendapat itu juga ada benarnya.']]}],
+  nu:[
+   {a:'事故{じこ}を起{お}こすおそれがある。',b:'事故{じこ}を起{お}こしかねない。',la:4,lb:4,t:'おそれがある = kemungkinan buruk secara objektif, gaya berita dan pengumuman. かねない = peringatan penutur bahwa tindakan tertentu bisa berakibat buruk.'},
+   {a:'都会{とかい}は便利{べんり}な一方{いっぽう}で、物価{ぶっか}が高{たか}い。',b:'都会{とかい}は便利{べんり}な反面{はんめん}、物価{ぶっか}が高{たか}い。',la:3,lb:3,t:'一方{いっぽう}で bisa membandingkan dua hal berbeda maupun dua sisi satu hal. 反面{はんめん} khusus untuk dua sisi berlawanan dari satu hal yang sama.'}],
+  vx:[['専門{せんもん}家{か}','ahli'],['副{ふく}作用{さよう}','efek samping'],['個人{こじん}情報{じょうほう}','data pribadi'],['睡眠{すいみん}不足{ふそく}','kurang tidur'],['誤解{ごかい}','salah paham'],['畑仕事{はたけしごと}','kerja ladang'],['片付{かたづ}ける','membereskan'],['一理{いちり}','ada benarnya']],
+  quiz:[
+   {q:'この漢字{かんじ}は難{むずか}しくて、日本人{にほんじん}（　）読{よ}めない。',o:['でさえ','ばかりか','反面{はんめん}'],a:0,x:'Contoh ekstrem: <b>でさえ</b> = bahkan orang Jepang pun.'},
+   {q:'スマホは便利{べんり}な（　）、使{つか}いすぎると目{め}が疲{つか}れる。',o:['反面{はんめん}','ばかりか','でさえ'],a:0,x:'Dua sisi dari satu hal: <b>反面{はんめん}</b>.'},
+   {q:'このまま無理{むり}をすると、体{からだ}を壊{こわ}し（　）。',o:['かねない','ばかりか','つつある'],a:0,x:'Peringatan akibat buruk: <b>かねない</b>.'},
+   {q:'彼{かれ}は約束{やくそく}を忘{わす}れた（　）、謝{あやま}りもしなかった。',o:['ばかりか','反面{はんめん}','でさえ'],a:0,x:'Bukan hanya…, bahkan…: <b>ばかりか</b>.'},
+   {q:'A「この店{みせ}、高{たか}いね。」B「（　）。でも、おいしいよ。」',o:['たしかに','たしか','わざと'],a:0,x:'Setuju dengan pernyataan lawan bicara: <b>たしかに</b>. たしか = kalau tidak salah.'}],
+  kw:[{k:'k',p:'Kantor · peringatan keselamatan',sp:['田中{たなか}課長{かちょう}','アンディ'],l:[
+   [0,'最近{さいきん}、残業{ざんぎょう}が多{おお}いね。このままでは体{からだ}を壊{こわ}し*かねない*よ。','Akhir-akhir ini sering lembur ya. Kalau begini terus, bisa-bisa kamu sakit.'],
+   [1,'すみません。週末{しゅうまつ}*さえ*休{やす}めていなくて。','Maaf. Akhir pekan pun saya tidak bisa istirahat.'],
+   [0,'仕事{しごと}熱心{ねっしん}な*反面{はんめん}*、無理{むり}をしすぎるところがあるね。','Kamu memang rajin, tapi di sisi lain suka terlalu memaksakan diri.'],
+   [1,'*たしかに*そうですね。今日{きょう}は早{はや}めに帰{かえ}ります。','Memang benar. Hari ini saya pulang lebih awal.']],
+   tip:'たしかに adalah cara sopan untuk menerima nasihat sebelum memberi tanggapan.'},
+   {k:'h',p:'Rumah · bersih-bersih',sp:['リナ','アンディ'],l:[
+   [0,'アンディ、*せっせと*掃除{そうじ}してるね。','Andi, rajin sekali bersih-bersihnya ya.'],
+   [1,'うん。リナも*さっさと*手伝{てつだ}ってよ。','Iya. Rina juga cepat bantu dong.'],
+   [0,'あれ、この皿{さら}、*わざと*ここに置{お}いたの？','Lho, piring ini sengaja ditaruh di sini?'],
+   [1,'違{ちが}うよ。*たしか*昨日{きのう}、リナが置{お}いたんだよ。','Bukan. Kalau tidak salah, kemarin Rina yang menaruhnya.']],
+   tip:'Kata keterangan seperti せっせと dan さっさと membuat percakapan lebih hidup dan sering muncul di soal 語彙{ごい}.'}]},
+
  {id:'n2-v1',title:'Kosakata 1 · Membaca dan Menulis Kanji',jp:'漢字{かんじ}読{よ}み・表記{ひょうき}',sum:'Model soal JLPT N2 Mondai 1 dan 2: konsonan rangkap, rendaku, bacaan khusus, kanji mirip, dan kata berbunyi sama.',
   scene:{bg:'room',alt:'Papan tulis berisi kanji yang sering salah dibaca',
    art:()=>BOARD(200,18,260,110,'',14)+TXT(120,56,'発揮',22,'#FFFDF8',700)+TXT(240,56,'本棚',22,'#FFFDF8',700)+TXT(120,104,'素人',22,'#FFFDF8',700)+TXT(240,104,'異動',22,'#FFFDF8',700)+OWL(60,226,.8)+P(345,215,1.05,{c:'#4F7CAC',flip:1,talk:1}),
@@ -3268,7 +3411,128 @@ const N2B=[
    [1,'はい。*あいにく*、データが少{すこ}し足{た}りないので、*補{おぎな}って*から出{だ}します。','Ya. Sayangnya datanya agak kurang, jadi saya lengkapi dulu sebelum menyerahkan.'],
    [0,'*手間{てま}*がかかりますが、よろしくお願{ねが}いします。','Memang merepotkan, tapi mohon bantuannya.'],
    [1,'*せめて*明日{あした}の朝{あさ}までには仕上{しあ}げます。','Setidaknya besok pagi akan saya selesaikan.']],
-   tip:'Kata keterangan seperti あいにく dan せめて membuat komunikasi kerja terdengar lebih halus.'}]}
+   tip:'Kata keterangan seperti あいにく dan せめて membuat komunikasi kerja terdengar lebih halus.'}]},
+ {id:'n2-r1',title:'Membaca 1 · Tata Bahasa dalam Teks',jp:'文章{ぶんしょう}の文法{ぶんぽう}',sum:'Mengisi bagian kosong dalam esai: kata sambung, sudut pandang, bentuk akhir kalimat, dan alur cerita.',
+  scene:{bg:'plain',alt:'Pesta kembang api di tepi sungai pada malam musim panas',
+   art:()=>`<rect width="400" height="240" fill="#22284A"/><g fill="none" stroke-width="3" stroke-linecap="round"><g stroke="#F4B642"><path d="M120 70 l0 -26 M120 70 l18 -18 M120 70 l26 0 M120 70 l18 18 M120 70 l0 26 M120 70 l-18 18 M120 70 l-26 0 M120 70 l-18 -18"/></g><g stroke="#E85D75"><path d="M270 60 l0 -22 M270 60 l16 -16 M270 60 l22 0 M270 60 l16 16 M270 60 l0 22 M270 60 l-16 16 M270 60 l-22 0 M270 60 l-16 -16"/></g></g><rect y="200" width="400" height="40" fill="#2F6F8F"/>`+P(110,215,1.05,{c:'#4F7CAC',talk:1})+P(190,215,1.05,{c:'#B5462F',long:1,flip:1}),
+   bub:[[110,106,'わあ、きれい！','Wah, indah!']],
+   hot:[[90,40,60,60,'思{おも}わず声{こえ}を出{だ}してしまいました。','Tanpa sadar saya berseru.']]},
+  points:[
+   {p:'① Baca seluruh paragraf dulu',e:'Jangan langsung melihat pilihan. Pahami alur cerita sebelum dan sesudah bagian kosong. Soal 文章{ぶんしょう}の文法{ぶんぽう} menguji hubungan antar-kalimat, bukan satu kalimat saja.',ex:[['前{まえ}の文{ぶん}と後{うし}ろの文{ぶん}の関係{かんけい}を考{かんが}える。','Pikirkan hubungan kalimat sebelum dan sesudahnya.']]},
+   {p:'② Kata sambung (接続{せつぞく}詞{し})',e:'Tentukan hubungan logisnya: sebab-akibat (だから・そのため), berlawanan (しかし・ところが), tambahan (そのうえ・また), penjelasan (つまり), atau contoh (たとえば).',ex:[['雨{あめ}が強{つよ}かった。しかし、試合{しあい}は行{おこな}われた。','Hujan deras. Namun, pertandingan tetap diadakan.']]},
+   {p:'③ Sudut pandang dan bentuk akhir',e:'Siapa yang berbicara? Informasi dari orang lain memakai そうだ atau ということだ. Perasaan spontan memakai Vてしまう. Rencana penulis memakai Vたいと思{おも}っている.',ex:[['友人{ゆうじん}によると、明日{あした}は休{やす}みだそうだ。','Menurut teman saya, besok katanya libur.']]},
+   {p:'④ Periksa tense dan keigo',e:'Esai pengalaman biasanya bentuk lampau. Tindakan orang yang dihormati memakai くださる atau いらっしゃる, bukan あげる.',ex:[['先生{せんせい}が駅{えき}まで送{おく}ってくださいました。','Guru mengantar saya sampai stasiun.']]}],
+  rd:[{h:'文章{ぶんしょう}の文法{ぶんぽう}',t:'Esai mahasiswa asing · 留学{りゅうがく}生{せい}の作文{さくぶん}',a:[
+   '私{わたし}の国{くに}では、花火{はなび}は新年{しんねん}を祝{いわ}うときに少{すこ}し見{み}るぐらいで、夏{なつ}の行事{ぎょうじ}ではありません。（ ① ）、日本{にほん}に来{き}て初{はじ}めての夏{なつ}、友人{ゆうじん}に「花火{はなび}大会{たいかい}に行{い}こう」と誘{さそ}われたときは、あまりぴんと来{き}ませんでした。',
+   '当日{とうじつ}、会場{かいじょう}の河原{かわら}には、浴衣{ゆかた}を着{き}た人々{ひとびと}が何万人{なんまんにん}も集{あつ}まっていました。夜{よる}七時{しちじ}半{はん}、最初{さいしょ}の花火{はなび}が上{あ}がると、大{おお}きな音{おと}とともに夜空{よぞら}が明{あか}るくなり、周{まわ}りから「わあ」という声{こえ}が上{あ}がりました。私{わたし}も思{おも}わず声{こえ}を出{だ}して（ ② ）。',
+   '花火{はなび}は一{いち}時間{じかん}半{はん}にわたって、休{やす}みなく打{う}ち上{あ}げられました。中{なか}でも印象{いんしょう}に残{のこ}ったのは、最後{さいご}に上{あ}がった大{おお}きな金色{きんいろ}の花火{はなび}です。消{き}えたあとも、しばらくだれも動{うご}こうとしませんでした。友人{ゆうじん}によると、日本人{にほんじん}は花火{はなび}が消{き}える瞬間{しゅんかん}の「はかなさ」も美{うつく}しいと（ ③ ）。',
+   '帰{かえ}り道{みち}、駅{えき}は大変{たいへん}混雑{こんざつ}していて、電車{でんしゃ}に乗{の}るまで四十分{よんじゅっぷん}も待{ま}たされました。（ ④ ）、不思議{ふしぎ}と嫌{いや}な気持{きも}ちにはなりませんでした。来年{らいねん}は私{わたし}も浴衣{ゆかた}を着{き}て、また（ ⑤ ）。'],
+   tr:['Di negara saya, kembang api hanya sedikit dilihat saat merayakan tahun baru dan bukan acara musim panas. ( ① ), ketika pada musim panas pertama di Jepang teman mengajak saya, "Ayo ke festival kembang api," saya tidak terlalu tertarik.',
+   'Pada hari itu, di bantaran sungai tempat acara, puluhan ribu orang berkumpul mengenakan yukata. Pukul setengah delapan malam, begitu kembang api pertama meluncur, langit malam menjadi terang bersamaan dengan suara keras, dan terdengar seruan "Wah" dari sekitar. Saya pun tanpa sadar ( ② ) berseru.',
+   'Kembang api diluncurkan tanpa henti selama satu setengah jam. Yang paling berkesan adalah kembang api emas besar yang diluncurkan terakhir. Setelah padam pun, untuk sesaat tidak ada yang mau beranjak. Menurut teman saya, orang Jepang ( ③ ) juga merasakan keindahan pada "kefanaan" saat kembang api padam.',
+   'Saat pulang, stasiun sangat padat dan saya harus menunggu empat puluh menit sampai bisa naik kereta. ( ④ ), anehnya saya tidak merasa kesal. Tahun depan, saya juga ingin mengenakan yukata dan ( ⑤ ).']}],
+  vx:[['行事{ぎょうじ}','acara tahunan'],['誘{さそ}う','mengajak'],['ぴんと来{こ}ない','tidak terasa / kurang tertarik'],['河原{かわら}','bantaran sungai'],['思{おも}わず','tanpa sadar'],['打{う}ち上{あ}げる','meluncurkan'],['はかなさ','kefanaan'],['混雑{こんざつ}','padat / ramai']],
+  quiz:[
+   {q:'（ ① ）に入{はい}るものはどれか。',o:['だから','ところが','そのうえ','たとえば'],a:0,x:'Kalimat sebelumnya adalah alasan (bukan acara musim panas), kalimat sesudahnya adalah akibat (tidak tertarik). Hubungan sebab-akibat: <b>だから</b>.'},
+   {q:'（ ② ）に入{はい}るものはどれか。',o:['しまいました','みせました','あげました','おきました'],a:0,x:'思{おも}わず ("tanpa sadar") cocok dengan Vてしまう yang menunjukkan tindakan spontan: <b>しまいました</b>.'},
+   {q:'（ ③ ）に入{はい}るものはどれか。',o:['感{かん}じるのだそうです','感{かん}じるつもりです','感{かん}じたがっています','感{かん}じさせます'],a:0,x:'Ada 友人{ゆうじん}によると, jadi informasi ini dari orang lain. Akhir kalimat yang cocok: <b>そうです</b> (katanya).'},
+   {q:'（ ④ ）に入{はい}るものはどれか。',o:['しかし','そのため','それに','すると'],a:0,x:'Menunggu lama biasanya membuat kesal, tetapi penulis tidak kesal. Hubungan berlawanan: <b>しかし</b>.'},
+   {q:'（ ⑤ ）に入{はい}るものはどれか。',o:['行{い}ってみたいと思{おも}っています','行{い}ったことがあります','行{い}くはずでした','行{い}かせられました'],a:0,x:'来年{らいねん} menunjukkan rencana atau keinginan penulis di masa depan: <b>行{い}ってみたいと思{おも}っています</b>.'}]},
+ {id:'n2-r2',title:'Membaca 2 · Teks Pendek',jp:'読解{どっかい}・短文{たんぶん}',sum:'Empat teks pendek (email kantor, esai, pengumuman, artikel) dengan teknik mencari kalimat kunci dan rujukan kata tunjuk.',
+  scene:{bg:'room',alt:'Andi membaca email pemberitahuan di komputer',
+   art:()=>DESK(200,215,1.5)+PC(200,170,.95)+P(90,215,1.1,{c:'#4F7CAC',tie:'#B5462F',talk:1})+OWL(345,226,.7),
+   bub:[[90,106,'日{ひ}にちが変{か}わったのか。','Oh, tanggalnya berubah.']],
+   hot:[[160,135,80,40,'健康{けんこう}診断{しんだん}の日程{にってい}が変更{へんこう}になりました。','Jadwal pemeriksaan kesehatan berubah.']]},
+  points:[
+   {p:'① Baca pertanyaan lebih dulu',e:'Teks pendek (sekitar 200 karakter) biasanya hanya punya satu soal. Ketahui dulu apa yang ditanyakan: maksud utama, kata tunjuk, atau isi yang sesuai.',ex:[['このメールで一番{いちばん}伝{つた}えたいことは何{なに}か。','Apa hal yang paling ingin disampaikan email ini?']]},
+   {p:'② Inti biasanya di akhir',e:'Dalam esai Jepang, pendapat penulis sering muncul di kalimat terakhir. Perhatikan ungkapan seperti 〜のではないだろうか, 〜べきだ, 〜かもしれない.',ex:[['実{じつ}はいちばん確{たし}かな道{みち}なのかもしれない。','Mungkin justru itulah jalan yang paling pasti.']]},
+   {p:'③ Pengumuman: perhatikan ただし dan なお',e:'Kata ただし (namun) dan なお (selain itu) membawa syarat atau pengecualian. Soal sering menguji bagian ini.',ex:[['ただし、CDは返却{へんきゃく}ポストに入{い}れないでください。','Namun, CD jangan dimasukkan ke kotak pengembalian.']]},
+   {p:'④ Kata tunjuk (指示{しじ}語{ご})',e:'それ, この, そうした biasanya merujuk ke kalimat tepat sebelumnya. Coba ganti kata tunjuk dengan jawaban pilihan, lalu baca ulang kalimatnya.',ex:[['それこそが、本当{ほんとう}の意味{いみ}だ。','Justru itulah makna yang sebenarnya.']]}],
+  rd:[{h:'短文{たんぶん} ①',t:'Email kantor · 社内{しゃない}メール',a:['件名{けんめい}：健康{けんこう}診断{しんだん}の日程{にってい}変更{へんこう}について','社員{しゃいん}各位{かくい}','お疲{つか}れさまです。総務{そうむ}部{ぶ}の山本{やまもと}です。','十{じゅう}月{がつ}十五日{じゅうごにち}（水{すい}）に予定{よてい}しておりました健康{けんこう}診断{しんだん}は、会場{かいじょう}の都合{つごう}により、十{じゅう}月{がつ}二十二日{にじゅうににち}（水{すい}）に変更{へんこう}となりました。時間{じかん}と場所{ばしょ}に変更{へんこう}はありません。','なお、二十二日{にじゅうににち}にどうしても都合{つごう}がつかない方{かた}は、今月{こんげつ}末{まつ}までに総務{そうむ}部{ぶ}へご連絡{れんらく}ください。別{べつ}の日程{にってい}をご案内{あんない}いたします。'],
+    tr:['Perihal: Perubahan jadwal pemeriksaan kesehatan','Kepada seluruh karyawan','Terima kasih atas kerja kerasnya. Saya Yamamoto dari bagian umum.','Pemeriksaan kesehatan yang dijadwalkan pada Rabu, 15 Oktober diubah menjadi Rabu, 22 Oktober karena kendala tempat. Tidak ada perubahan jam dan lokasi.','Selain itu, bagi yang benar-benar tidak bisa pada tanggal 22, mohon menghubungi bagian umum paling lambat akhir bulan ini. Kami akan memberikan jadwal lain.']},
+   {h:'短文{たんぶん} ②',t:'Esai · エッセイ',a:['外国{がいこく}語{ご}を学{まな}ぶ人{ひと}の多{おお}くは、できるだけ早{はや}く話{はな}せるようになる方法{ほうほう}を探{さが}している。私{わたし}もかつてはそうだった。しかし、近道{ちかみち}を探{さが}して教材{きょうざい}を次々{つぎつぎ}に変{か}えるうちに、どれも中途{ちゅうと}半端{はんぱ}に終{お}わってしまった。結局{けっきょく}、力{ちから}がついたのは、一冊{いっさつ}の教科{きょうか}書{しょ}を何度{なんど}も繰{く}り返{かえ}し読{よ}んだときである。遠回{とおまわ}りに見{み}える方法{ほうほう}が、実{じつ}はいちばん確{たし}かな道{みち}なのかもしれない。'],
+    tr:['Banyak orang yang belajar bahasa asing mencari cara agar bisa berbicara secepat mungkin. Dulu saya juga begitu. Namun, saat mencari jalan pintas dan terus berganti buku ajar, semuanya berakhir setengah-setengah. Pada akhirnya, kemampuan saya meningkat ketika saya membaca satu buku pelajaran berulang kali. Cara yang tampak memutar justru mungkin jalan yang paling pasti.']},
+   {h:'短文{たんぶん} ③',t:'Pengumuman · お知{し}らせ',a:['【市{し}立{りつ}図書{としょ}館{かん}からのお知{し}らせ】','館内{かんない}整理{せいり}のため、十一{じゅういち}月{がつ}四日{よっか}（月{げつ}）から八日{ようか}（金{きん}）まで休館{きゅうかん}いたします。休館{きゅうかん}中{ちゅう}も、正面{しょうめん}入口{いりぐち}横{よこ}の返却{へんきゃく}ポストはご利用{りよう}いただけます。','ただし、CDやDVDは壊{こわ}れるおそれがありますので、返却{へんきゃく}ポストには入{い}れず、開館日{かいかんび}にカウンターへお返{かえ}しください。また、休館{きゅうかん}中{ちゅう}に返却{へんきゃく}期限{きげん}を迎{むか}える本{ほん}は、自動{じどう}的{てき}に十一{じゅういち}月{がつ}十五日{じゅうごにち}まで延長{えんちょう}されます。'],
+    tr:['[Pemberitahuan dari Perpustakaan Kota]','Perpustakaan tutup mulai Senin, 4 November sampai Jumat, 8 November untuk penataan. Selama tutup, kotak pengembalian di samping pintu depan tetap bisa digunakan.','Namun, CD dan DVD bisa rusak, jadi jangan dimasukkan ke kotak pengembalian. Kembalikan ke konter pada hari perpustakaan buka. Selain itu, buku yang batas pengembaliannya jatuh selama perpustakaan tutup akan diperpanjang otomatis sampai 15 November.']},
+   {h:'短文{たんぶん} ④',t:'Artikel bisnis · ビジネスコラム',a:['部下{ぶか}を育{そだ}てるとき、ほめることは大切{たいせつ}だと言{い}われる。だが、ただ「よくやった」と言{い}うだけでは、相手{あいて}の心{こころ}にはあまり残{のこ}らない。大事{だいじ}なのは、何{なに}がどうよかったのかを具体{ぐたい}的{てき}に伝{つた}えることだ。たとえば「資料{しりょう}のグラフが見{み}やすくて、会議{かいぎ}が早{はや}く進{すす}んだ」と言{い}われれば、部下{ぶか}は次{つぎ}に何{なに}をすればいいかがわかる。<u>それ</u>こそが、ほめることの本当{ほんとう}の意味{いみ}ではないだろうか。'],
+    tr:['Dalam membina bawahan, katanya memuji itu penting. Namun, jika hanya berkata "Kerja bagus", itu tidak terlalu membekas di hati. Yang penting adalah menyampaikan secara konkret apa yang bagus dan bagaimana. Misalnya, jika dikatakan "Grafik di materimu mudah dibaca, jadi rapat berjalan cepat", bawahan akan tahu apa yang harus dilakukan berikutnya. Bukankah justru itu makna sebenarnya dari memuji?']}],
+  vx:[['各位{かくい}','kepada semua (formal)'],['都合{つごう}','keadaan / kesempatan'],['近道{ちかみち}','jalan pintas'],['中途{ちゅうと}半端{はんぱ}','setengah-setengah'],['遠回{とおまわ}り','jalan memutar'],['休館{きゅうかん}','perpustakaan tutup'],['返却{へんきゃく}期限{きげん}','batas pengembalian'],['具体{ぐたい}的{てき}','konkret']],
+  quiz:[
+   {q:'【短文{たんぶん}①】このメールで最{もっと}も伝{つた}えたいことは何{なに}か。',o:['健康{けんこう}診断{しんだん}の日{ひ}が変{か}わったこと、変更{へんこう}後{ご}の日{ひ}に受{う}けられない人{ひと}は連絡{れんらく}すること','健康{けんこう}診断{しんだん}の時間{じかん}と場所{ばしょ}が変{か}わったこと','健康{けんこう}診断{しんだん}を受{う}けない人{ひと}は、今月{こんげつ}末{まつ}までに連絡{れんらく}すること','会場{かいじょう}が使{つか}えないため、健康{けんこう}診断{しんだん}が中止{ちゅうし}になったこと'],a:0,x:'Isi utamanya: tanggal berubah (十{じゅう}月{がつ}二十二日{にじゅうににち}に変更{へんこう}) dan yang tidak bisa harus menghubungi (なお…ご連絡{れんらく}ください). Jam dan tempat 「変更{へんこう}はありません」.'},
+   {q:'【短文{たんぶん}②】筆者{ひっしゃ}の考{かんが}えに合{あ}うものはどれか。',o:['一{ひと}つの教材{きょうざい}をじっくり続{つづ}けることが、結果{けっか}的{てき}に上達{じょうたつ}への近道{ちかみち}になる','早{はや}く話{はな}せるようになるには、いろいろな教材{きょうざい}を試{ため}すべきだ','教科{きょうか}書{しょ}を読{よ}むだけでは、外国{がいこく}語{ご}は上達{じょうたつ}しない','外国{がいこく}語{ご}には近道{ちかみち}があるので、探{さが}す努力{どりょく}が大切{たいせつ}だ'],a:0,x:'Kalimat kunci di akhir: 「遠回{とおまわ}りに見{み}える方法{ほうほう}が、実{じつ}はいちばん確{たし}かな道{みち}なのかもしれない」. Cara yang tampak lambat (satu buku diulang) justru paling efektif.'},
+   {q:'【短文{たんぶん}③】休館{きゅうかん}中{ちゅう}について、正{ただ}しいものはどれか。',o:['本{ほん}は返却{へんきゃく}ポストに返{かえ}せるが、DVDはカウンターに返{かえ}す必要{ひつよう}がある','本{ほん}もDVDも、返却{へんきゃく}ポストに返{かえ}すことができる','返却{へんきゃく}期限{きげん}を延{の}ばしたい人{ひと}は、カウンターで手続{てつづ}きをする','休館{きゅうかん}中{ちゅう}は、返却{へんきゃく}ポストも利用{りよう}できない'],a:0,x:'ただし membawa pengecualian: CD dan DVD 「返却{へんきゃく}ポストには入{い}れず…カウンターへ」. Perpanjangan terjadi 「自動{じどう}的{てき}に」, tidak perlu prosedur.'},
+   {q:'【短文{たんぶん}④】「それ」とは何{なに}か。',o:['よかった点{てん}を具体{ぐたい}的{てき}に伝{つた}えて、部下{ぶか}が次{つぎ}にするべきことがわかるようにすること','部下{ぶか}に「よくやった」と言{い}うこと','会議{かいぎ}を早{はや}く進{すす}めること','資料{しりょう}のグラフを見{み}やすく作{つく}ること'],a:0,x:'それ merujuk ke kalimat sebelumnya: memuji secara konkret sehingga bawahan tahu 「次{つぎ}に何{なに}をすればいいか」.'}]},
+ {id:'n2-r3',title:'Membaca 3 · Teks Sedang',jp:'読解{どっかい}・中文{ちゅうぶん}',sum:'Esai sekitar 500 karakter: alasan, kata tunjuk, dan pendapat penulis per paragraf.',
+  scene:{bg:'room',alt:'Andi kecil menunggu surat dari nenek di depan kotak pos',
+   art:()=>`<rect x="250" y="120" width="56" height="44" rx="6" fill="#B5462F"/><rect x="274" y="164" width="8" height="51" fill="#7A5A44"/><rect x="258" y="134" width="40" height="5" rx="2" fill="#3B2A20"/>`+NOTE(330,150,.8,'#FFFDF8')+P(150,215,.95,{c:'#4F7CAC',talk:1})+CLOCK(70,50,20,4,0),
+   bub:[[150,118,'まだ来{こ}ないかなあ。','Belum datang ya…']],
+   hot:[[250,120,56,44,'祖母{そぼ}からの手紙{てがみ}を毎月{まいつき}楽{たの}しみにしていた。','Setiap bulan saya menantikan surat dari nenek.']]},
+  points:[
+   {p:'① Satu paragraf = satu ide',e:'Teks sedang terdiri dari tiga sampai lima paragraf. Setelah membaca tiap paragraf, ringkas idenya dalam satu kalimat bahasa Indonesia.',ex:[['第{だい}一{いち}段落{だんらく}：便利{べんり}になった。第{だい}二{に}段落{だんらく}：失{うしな}ったものもある。','Paragraf 1: hidup jadi praktis. Paragraf 2: ada juga yang hilang.']]},
+   {p:'② Bagian bergaris bawah',e:'Jawaban hampir selalu ada di sekitar bagian bergaris bawah. Baca satu atau dua kalimat sebelum dan sesudahnya.',ex:[['〜からこそ、…と感{かん}じられたのだ。','Justru karena…, maka terasa….']]},
+   {p:'③ Penanda alasan dan pendapat',e:'Alasan: 〜から, 〜ため, 〜からこそ. Pendapat: 〜のではないだろうか, 〜と思{おも}う, 〜たい. Penyangkalan sebagian: 〜わけではない (bukan berarti…).',ex:[['昔{むかし}に戻{もど}るべきだと言{い}いたいわけではない。','Bukan berarti saya ingin mengatakan kita harus kembali ke masa lalu.']]},
+   {p:'④ Waspadai pilihan yang terlalu ekstrem',e:'Pilihan yang memakai すべて, 必{かなら}ず, べきだ secara berlebihan sering salah karena penulis biasanya berpendapat secara seimbang.',ex:[['もちろん、〜。ただ、〜。','Tentu saja… Hanya saja….']]}],
+  rd:[{h:'中文{ちゅうぶん}',t:'Esai · 随筆{ずいひつ}',a:[
+   '最近{さいきん}、何{なに}かを「待{ま}つ」ということが、ずいぶん少{すく}なくなったように思{おも}う。調{しら}べたいことがあれば、スマートフォンですぐに答{こた}えが見{み}つかる。友人{ゆうじん}との待{ま}ち合{あ}わせに遅{おく}れそうなときも、メッセージを一{ひと}つ送{おく}れば済{す}む。買{か}い物{もの}も、注文{ちゅうもん}した翌日{よくじつ}には商品{しょうひん}が届{とど}く。便利{べんり}になったことは間違{まちが}いない。',
+   'しかし、<u>① その便利{べんり}さと引{ひ}きかえに、私{わたし}たちは何{なに}かを失{うしな}ってはいないだろうか</u>。子{こ}どものころ、私{わたし}は遠{とお}くに住{す}む祖母{そぼ}から届{とど}く手紙{てがみ}を、毎月{まいつき}楽{たの}しみにしていた。郵便{ゆうびん}受{う}けをのぞいては、まだ来{こ}ないとがっかりし、届{とど}いた日{ひ}には何度{なんど}も読{よ}み返{かえ}した。待{ま}っている時間{じかん}があったからこそ、一通{いっつう}の手紙{てがみ}がとても大切{たいせつ}なものに感{かん}じられたのだ。',
+   '待{ま}つ時間{じかん}は、ただの無駄{むだ}な時間{じかん}ではない。相手{あいて}のことを考{かんが}えたり、これから起{お}こることを想像{そうぞう}したりする時間{じかん}でもある。答{こた}えがすぐに手{て}に入{はい}らないとき、人{ひと}は自分{じぶん}の頭{あたま}で考{かんが}えようとする。<u>② そうした時間{じかん}</u>が、物事{ものごと}を深{ふか}く味{あじ}わう力{ちから}を育{そだ}てているのではないだろうか。',
+   'もちろん、昔{むかし}の不便{ふべん}な生活{せいかつ}に戻{もど}るべきだと言{い}いたいわけではない。ただ、すぐに答{こた}えを求{もと}める前{まえ}に、少{すこ}し立{た}ち止{ど}まって待{ま}ってみる。そんな小{ちい}さな余裕{よゆう}を、私{わたし}は大切{たいせつ}にしたいと思{おも}っている。'],
+   tr:['Akhir-akhir ini, saya merasa kegiatan "menunggu" sudah jauh berkurang. Kalau ada yang ingin dicari tahu, jawabannya langsung ditemukan di ponsel pintar. Saat hampir terlambat bertemu teman pun, cukup kirim satu pesan. Belanja pun, barang tiba keesokan hari setelah dipesan. Tidak diragukan lagi hidup jadi lebih praktis.',
+   'Namun, (1) bukankah sebagai ganti kepraktisan itu kita kehilangan sesuatu? Waktu kecil, setiap bulan saya menantikan surat dari nenek yang tinggal jauh. Saya mengintip kotak pos, kecewa kalau belum datang, dan pada hari surat tiba saya membacanya berulang kali. Justru karena ada waktu menunggu, sepucuk surat terasa sangat berharga.',
+   'Waktu menunggu bukan sekadar waktu yang terbuang. Itu juga waktu untuk memikirkan orang lain dan membayangkan apa yang akan terjadi. Ketika jawaban tidak langsung didapat, orang berusaha berpikir dengan kepalanya sendiri. Bukankah (2) waktu seperti itulah yang menumbuhkan kemampuan menikmati sesuatu secara mendalam?',
+   'Tentu saja, bukan berarti saya ingin mengatakan kita harus kembali ke kehidupan dulu yang serba tidak praktis. Hanya saja, sebelum langsung mencari jawaban, cobalah berhenti sejenak dan menunggu. Saya ingin menghargai kelonggaran kecil seperti itu.']}],
+  vx:[['待{ま}ち合{あ}わせ','janji bertemu'],['引{ひ}きかえに','sebagai gantinya'],['郵便{ゆうびん}受{う}け','kotak pos'],['読{よ}み返{かえ}す','membaca ulang'],['無駄{むだ}','sia-sia'],['味{あじ}わう','menikmati'],['立{た}ち止{ど}まる','berhenti sejenak'],['余裕{よゆう}','kelonggaran']],
+  quiz:[
+   {q:'①「その便利{べんり}さと引{ひ}きかえに、私{わたし}たちは何{なに}かを失{うしな}ってはいないだろうか」とあるが、筆者{ひっしゃ}はどのようなことを心配{しんぱい}しているか。',o:['便利{べんり}になったことで、待{ま}つ時間{じかん}が持{も}つよさを感{かん}じられなくなっていること','スマートフォンのせいで、友人{ゆうじん}との約束{やくそく}を守{まも}らなくなったこと','手紙{てがみ}を書{か}く人{ひと}が減{へ}って、郵便{ゆうびん}が使{つか}われなくなること','買{か}い物{もの}が便利{べんり}になって、お金{かね}を使{つか}いすぎること'],a:0,x:'Paragraf berikutnya menjelaskan nilai dari 「待{ま}っている時間{じかん}」. Yang hilang karena kepraktisan adalah kebaikan dari waktu menunggu.'},
+   {q:'筆者{ひっしゃ}が祖母{そぼ}からの手紙{てがみ}を大切{たいせつ}に感{かん}じたのはなぜか。',o:['届{とど}くまで待{ま}つ時間{じかん}があったから','祖母{そぼ}が遠{とお}くに住{す}んでいて、めったに会{あ}えなかったから','手紙{てがみ}に珍{めずら}しい話{はなし}が書{か}いてあったから','毎月{まいつき}決{き}まった日{ひ}に必{かなら}ず届{とど}いたから'],a:0,x:'Kalimat kunci: 「待{ま}っている時間{じかん}があったからこそ、一通{いっつう}の手紙{てがみ}がとても大切{たいせつ}なものに感{かん}じられたのだ」.'},
+   {q:'②「そうした時間{じかん}」とはどのような時間{じかん}か。',o:['相手{あいて}のことを考{かんが}えたり、これから起{お}こることを想像{そうぞう}したりする時間{じかん}','スマートフォンで答{こた}えを調{しら}べる時間{じかん}','手紙{てがみ}を何度{なんど}も読{よ}み返{かえ}す時間{じかん}','何{なに}もしないで休{やす}んでいる時間{じかん}'],a:0,x:'そうした merujuk ke kalimat sebelumnya: 「相手{あいて}のことを考{かんが}えたり、これから起{お}こることを想像{そうぞう}したりする時間{じかん}」 dan berpikir sendiri.'},
+   {q:'この文章{ぶんしょう}で筆者{ひっしゃ}が言{い}いたいことは何{なに}か。',o:['便利{べんり}な生活{せいかつ}の中{なか}でも、少{すこ}し待{ま}ってみる余裕{よゆう}を大切{たいせつ}にしたい','不便{ふべん}な昔{むかし}の生活{せいかつ}に戻{もど}ったほうが、人{ひと}は幸{しあわ}せになれる','スマートフォンは、考{かんが}える力{ちから}を育{そだ}てるのに役{やく}に立{た}つ','待{ま}つ時間{じかん}は無駄{むだ}なので、できるだけ減{へ}らすべきだ'],a:0,x:'Paragraf terakhir: penulis tidak ingin kembali ke masa lalu (わけではない), tetapi 「そんな小{ちい}さな余裕{よゆう}を、私{わたし}は大切{たいせつ}にしたい」. Pilihan 2 terlalu ekstrem.'}]},
+ {id:'n2-r4',title:'Membaca 4 · Membandingkan Dua Teks',jp:'統合{とうごう}理解{りかい}',sum:'Dua opini (A dan B) tentang kerja sampingan: mencari titik yang sama, perbedaan sikap, dan alasan masing-masing.',
+  scene:{bg:'room',alt:'Dua karyawan berdiskusi dengan papan berisi pendapat A dan B',
+   art:()=>BOARD(215,12,220,74,'',14)+`<line x1="215" y1="22" x2="215" y2="78" stroke="#FFFDF8" stroke-width="2" stroke-dasharray="5 5"/>`+TXT(160,44,'A',22,'#F4B642',800)+TXT(270,44,'B',22,'#F4B642',800)+TXT(160,72,'賛成',13,'#FFFDF8',700)+TXT(270,72,'慎重',13,'#FFFDF8',700)+P(90,215,1.05,{c:'#4F7CAC',tie:'#B5462F',talk:1})+P(320,215,1.05,{c:'#3B3F4A',h:'#555',gl:1,tie:'#2F6F8F',flip:1}),
+   bub:[[90,106,'副業{ふくぎょう}、賛成{さんせい}です。','Saya setuju kerja sampingan.']],
+   hot:[[300,26,26,26,'Bは、一人一人{ひとりひとり}の状況{じょうきょう}を見{み}て判断{はんだん}するべきだと考{かんが}えている。','B berpendapat harus diputuskan dengan melihat kondisi tiap orang.']]},
+  points:[
+   {p:'① Tandai sikap A dan B',e:'Setelah membaca, tulis singkat: A = setuju / tidak / bersyarat; B = setuju / tidak / bersyarat. Soal kedua hampir selalu menanyakan perbedaan sikap ini.',ex:[['Aは前向{まえむ}き、Bは慎重{しんちょう}。','A positif, B berhati-hati.']]},
+   {p:'② Cari titik yang sama',e:'Soal 「AとBのどちらにも触{ふ}れられている」 menanyakan hal yang disebut di kedua teks. Pilihan yang hanya ada di satu teks adalah jebakan.',ex:[['両方{りょうほう}に「新{あたら}しい知識{ちしき}・スキル」が出{で}てくる。','Di kedua teks muncul "pengetahuan atau keterampilan baru".']]},
+   {p:'③ Perhatikan 確{たし}かに〜。しかし〜',e:'Pola ini berarti penulis mengakui satu sisi, lalu menyampaikan pendapat utamanya setelah しかし. Pendapat utama ada di bagian kedua.',ex:[['確{たし}かによさはある。しかし、問題{もんだい}もある。','Memang ada kebaikannya. Namun, ada juga masalahnya.']]},
+   {p:'④ Kalimat terakhir tiap teks',e:'Kesimpulan biasanya memakai べきだ, だろう, ではないか. Bandingkan dua kalimat terakhir untuk menjawab soal sikap.',ex:[['〜を認{みと}めていくべきだろう。','Sebaiknya kita mulai mengizinkan….']]}],
+  rd:[{k:'A',h:'統合{とうごう}理解{りかい} · A',t:'Opini · 意見{いけん}文{ぶん}',a:['最近{さいきん}、社員{しゃいん}の副業{ふくぎょう}を認{みと}める会社{かいしゃ}が増{ふ}えている。副業{ふくぎょう}を通{つう}じて、社員{しゃいん}は本業{ほんぎょう}では得{え}られない知識{ちしき}や人脈{じんみゃく}を手{て}に入{い}れることができる。そうした経験{けいけん}が本業{ほんぎょう}に生{い}かされれば、会社{かいしゃ}にとってもプラスになるはずだ。また、収入{しゅうにゅう}源{げん}が一{ひと}つではないという安心{あんしん}感{かん}は、社員{しゃいん}が新{あたら}しいことに挑戦{ちょうせん}する力{ちから}にもなる。','もちろん、働{はたら}きすぎで体{からだ}を壊{こわ}しては意味{いみ}がない。会社{かいしゃ}は労働{ろうどう}時間{じかん}をきちんと把握{はあく}する仕組{しく}みを整{ととの}えたうえで、副業{ふくぎょう}を前向{まえむ}きに認{みと}めていくべきだろう。'],
+    tr:['Akhir-akhir ini, perusahaan yang mengizinkan kerja sampingan bagi karyawannya semakin banyak. Melalui kerja sampingan, karyawan bisa mendapatkan pengetahuan dan jaringan yang tidak didapat di pekerjaan utama. Jika pengalaman itu dimanfaatkan di pekerjaan utama, tentu menguntungkan perusahaan juga. Selain itu, rasa aman karena sumber penghasilan tidak hanya satu juga menjadi kekuatan bagi karyawan untuk mencoba hal baru.','Tentu saja, tidak ada artinya jika jatuh sakit karena terlalu banyak bekerja. Setelah menyiapkan sistem untuk memantau jam kerja dengan baik, perusahaan sebaiknya mengizinkan kerja sampingan secara positif.']},
+   {k:'B',h:'統合{とうごう}理解{りかい} · B',t:'Opini · 意見{いけん}文{ぶん}',a:['副業{ふくぎょう}には、確{たし}かに新{あたら}しいスキルが身{み}につくというよさがある。しかし、本業{ほんぎょう}が終{お}わってから別{べつ}の仕事{しごと}をすれば、休{やす}む時間{じかん}はそれだけ減{へ}る。疲{つか}れがたまれば、本業{ほんぎょう}でのミスにつながりかねない。また、同{おな}じ業界{ぎょうかい}で副業{ふくぎょう}をする場合{ばあい}、会社{かいしゃ}の情報{じょうほう}が外{そと}にもれる心配{しんぱい}もある。','副業{ふくぎょう}を認{みと}めるかどうかは、会社{かいしゃ}が一律{いちりつ}に決{き}めるのではなく、仕事{しごと}の内容{ないよう}や本人{ほんにん}の働{はたら}き方{かた}を一人一人{ひとりひとり}確認{かくにん}したうえで判断{はんだん}するべきだ。'],
+    tr:['Kerja sampingan memang punya kebaikan, yaitu bisa mendapatkan keterampilan baru. Namun, jika bekerja lagi setelah pekerjaan utama selesai, waktu istirahat berkurang sebanyak itu. Jika kelelahan menumpuk, bisa-bisa berujung pada kesalahan di pekerjaan utama. Selain itu, jika kerja sampingan di industri yang sama, ada kekhawatiran informasi perusahaan bocor ke luar.','Mengizinkan kerja sampingan atau tidak sebaiknya tidak diputuskan perusahaan secara seragam, tetapi setelah memeriksa isi pekerjaan dan cara kerja tiap orang satu per satu.']}],
+  vx:[['副業{ふくぎょう}','kerja sampingan'],['本業{ほんぎょう}','pekerjaan utama'],['人脈{じんみゃく}','jaringan relasi'],['収入{しゅうにゅう}源{げん}','sumber penghasilan'],['把握{はあく}','memahami / memantau'],['前向{まえむ}き','positif'],['一律{いちりつ}','seragam'],['もれる','bocor']],
+  quiz:[
+   {q:'AとBのどちらにも触{ふ}れられている内容{ないよう}はどれか。',o:['副業{ふくぎょう}によって、新{あたら}しい知識{ちしき}や技術{ぎじゅつ}が得{え}られること','副業{ふくぎょう}が、収入{しゅうにゅう}の面{めん}で安心{あんしん}感{かん}につながること','会社{かいしゃ}の情報{じょうほう}が外{そと}にもれる危険{きけん}があること','同{おな}じ業界{ぎょうかい}での副業{ふくぎょう}は禁止{きんし}するべきであること'],a:0,x:'A: 「本業{ほんぎょう}では得{え}られない知識{ちしき}」, B: 「新{あたら}しいスキルが身{み}につく」. Rasa aman penghasilan hanya di A, kebocoran informasi hanya di B.'},
+   {q:'副業{ふくぎょう}について、AとBはどのような立場{たちば}をとっているか。',o:['Aは条件{じょうけん}を整{ととの}えたうえで積極{せっきょく}的{てき}に認{みと}めるべきだと考{かんが}え、Bは一人一人{ひとりひとり}の状況{じょうきょう}を見{み}て判断{はんだん}するべきだと考{かんが}えている','AもBも、副業{ふくぎょう}は認{みと}めるべきではないと考{かんが}えている','Aは副業{ふくぎょう}に反対{はんたい}し、Bは賛成{さんせい}している','AもBも、会社{かいしゃ}が一律{いちりつ}に認{みと}めるべきだと考{かんが}えている'],a:0,x:'Kalimat terakhir A: 「仕組{しく}みを整{ととの}えたうえで、前向{まえむ}きに認{みと}めていくべき」. B: 「一律{いちりつ}に決{き}めるのではなく…一人一人{ひとりひとり}確認{かくにん}したうえで判断{はんだん}するべき」.'},
+   {q:'働{はたら}きすぎの問題{もんだい}について、正{ただ}しいものはどれか。',o:['Aは会社{かいしゃ}が労働{ろうどう}時間{じかん}を把握{はあく}するべきだと述{の}べ、Bは本業{ほんぎょう}のミスにつながる危険{きけん}を述{の}べている','Aだけが働{はたら}きすぎの問題{もんだい}に触{ふ}れている','Bだけが働{はたら}きすぎの問題{もんだい}に触{ふ}れている','AもBも、働{はたら}きすぎは大{おお}きな問題{もんだい}ではないと述{の}べている'],a:0,x:'A: 「働{はたら}きすぎで体{からだ}を壊{こわ}しては意味{いみ}がない…労働{ろうどう}時間{じかん}をきちんと把握{はあく}」. B: 「疲{つか}れがたまれば、本業{ほんぎょう}でのミスにつながりかねない」. Keduanya menyinggungnya.'}]},
+ {id:'n2-r5',title:'Membaca 5 · Memahami Pendapat Penulis',jp:'主張{しゅちょう}理解{りかい}',sum:'Esai panjang sekitar 800 karakter: menemukan pendapat utama, fungsi contoh, dan makna bagian bergaris bawah.',
+  scene:{bg:'room',alt:'Andi berpikir keras di depan buku yang sulit',
+   art:()=>DESK(200,215,1.5)+BOOK(200,176,1.1,'#2F6F8F')+P(110,215,1.1,{c:'#4F7CAC',talk:1})+THINK(300,70,130,70,QMARK(300,70,.9)),
+   bub:[[110,106,'君{きみ}はどう思{おも}う？','Menurutmu bagaimana?']],
+   hot:[[170,162,60,26,'わからないまま、しばらく考{かんが}え続{つづ}けてみる。','Cobalah terus berpikir sejenak, meski belum paham.']]},
+  points:[
+   {p:'① Pendapat utama: cari kata 私{わたし}',e:'Dalam esai panjang, kalimat yang memuat 私{わたし}は〜と思{おも}う, 〜と私{わたし}は感{かん}じている, 〜のではないか adalah tempat pendapat penulis. Biasanya di paragraf kedua dan terakhir.',ex:[['〜と私{わたし}は思{おも}う。','Menurut saya….']]},
+   {p:'② Fungsi contoh dan pengalaman',e:'Cerita pribadi atau contoh (たとえば, 私{わたし}が学生{がくせい}だったころ) dipakai untuk mendukung pendapat. Soal 「なぜこの例{れい}を書{か}いたか」 jawabannya adalah pendapat yang didukung.',ex:[['今{いま}思{おも}えば、あの時間{じかん}が〜てくれたのだ。','Kalau dipikir sekarang, waktu itulah yang….']]},
+   {p:'③ Pola 確{たし}かに〜。しかし〜。',e:'Bagian 確{たし}かに (memang) adalah pendapat umum yang diakui. Pendapat penulis yang sebenarnya ada setelah しかし.',ex:[['たしかに大切{たいせつ}だ。しかし、求{もと}めすぎている。','Memang penting. Namun, kita terlalu menuntutnya.']]},
+   {p:'④ Pilih jawaban yang mencakup keseluruhan',e:'Untuk soal 「最{もっと}も言{い}いたいこと」, pilihan yang benar mencakup seluruh teks, bukan detail satu paragraf. Pilihan yang benar tetapi terlalu sempit sering menjadi jebakan.',ex:[['全体{ぜんたい}のまとめ ＝ 最後{さいご}の段落{だんらく}','Rangkuman keseluruhan = paragraf terakhir']]}],
+  rd:[{h:'主張{しゅちょう}理解{りかい}',t:'Esai opini · 論説文{ろんせつぶん}',a:[
+   '「もっとわかりやすく説明{せつめい}してほしい」。仕事{しごと}でも学校{がっこう}でも、よく聞{き}く言葉{ことば}である。たしかに、伝{つた}える側{がわ}が工夫{くふう}をして、相手{あいて}が理解{りかい}しやすいように話{はな}すことは大切{たいせつ}だ。専門{せんもん}用語{ようご}ばかりの説明{せつめい}では、聞{き}く人{ひと}は置{お}いていかれてしまう。',
+   'しかし、最近{さいきん}の社会{しゃかい}は「わかりやすさ」を求{もと}めすぎているのではないか、と私{わたし}は感{かん}じている。テレビのニュースは短{みじか}い言葉{ことば}と派手{はで}な図{ず}でまとめられ、本{ほん}の帯{おび}には「すぐわかる」「一冊{いっさつ}で全部{ぜんぶ}わかる」といった言葉{ことば}が並{なら}ぶ。複雑{ふくざつ}な問題{もんだい}でも、だれかが簡単{かんたん}な答{こた}えを用意{ようい}してくれるのが当{あ}たり前{まえ}になりつつある。',
+   '問題{もんだい}は、<u>① わかったつもりになること</u>である。物事{ものごと}の多{おお}くは、本来{ほんらい}、簡単{かんたん}には説明{せつめい}できない。経済{けいざい}の動{うご}きも、人{ひと}の心{こころ}も、さまざまな原因{げんいん}が重{かさ}なり合{あ}ってできている。それを一言{ひとこと}でまとめれば、たしかに覚{おぼ}えやすい。だが、その一言{ひとこと}からこぼれ落{お}ちた部分{ぶぶん}にこそ、本当{ほんとう}に大切{たいせつ}なことが隠{かく}れている場合{ばあい}も少{すく}なくない。わかりやすい説明{せつめい}だけで満足{まんぞく}していると、人{ひと}は自分{じぶん}で調{しら}べたり、別{べつ}の見{み}方{かた}を考{かんが}えたりしなくなる。',
+   '私{わたし}が学生{がくせい}だったころ、ある先生{せんせい}は質問{しつもん}をしても、すぐには答{こた}えてくれなかった。「君{きみ}はどう思{おも}う？」と聞{き}き返{かえ}し、私{わたし}が考{かんが}えをまとめるまで黙{だま}って待{ま}っていた。当時{とうじ}はもどかしく感{かん}じたが、今{いま}思{おも}えば、あの時間{じかん}が私{わたし}に考{かんが}える習慣{しゅうかん}をつけてくれたのだ。',
+   'わかりにくいものに出会{であ}ったとき、すぐに簡単{かんたん}な答{こた}えを探{さが}すのではなく、わからないまま、しばらく考{かんが}え続{つづ}けてみる。<u>② その面倒{めんどう}な時間{じかん}</u>を引{ひ}き受{う}けることこそが、本当{ほんとう}に「わかる」ための第{だい}一歩{いっぽ}なのだと私{わたし}は思{おも}う。'],
+   tr:['"Tolong jelaskan dengan lebih mudah dipahami." Ungkapan ini sering terdengar, baik di tempat kerja maupun sekolah. Memang penting bagi pihak penyampai untuk berusaha berbicara agar mudah dipahami. Dengan penjelasan yang penuh istilah teknis, pendengar akan tertinggal.',
+   'Namun, saya merasa masyarakat akhir-akhir ini terlalu menuntut "kemudahan untuk dipahami". Berita TV dirangkum dengan kata-kata pendek dan grafik mencolok, sementara sampul buku dipenuhi kata-kata seperti "Langsung paham" atau "Semua paham dalam satu buku". Bahkan untuk masalah yang rumit, sudah mulai dianggap wajar bahwa seseorang menyiapkan jawaban sederhana.',
+   'Masalahnya adalah (1) merasa sudah paham. Banyak hal pada dasarnya tidak bisa dijelaskan dengan sederhana. Pergerakan ekonomi maupun hati manusia terbentuk dari berbagai penyebab yang saling bertumpuk. Jika dirangkum dalam satu kalimat, memang mudah diingat. Namun, tidak jarang hal yang benar-benar penting justru tersembunyi di bagian yang tercecer dari satu kalimat itu. Jika puas hanya dengan penjelasan yang mudah, orang berhenti mencari tahu sendiri atau memikirkan sudut pandang lain.',
+   'Ketika saya masih mahasiswa, seorang dosen tidak langsung menjawab ketika saya bertanya. Ia balik bertanya, "Menurutmu bagaimana?", lalu diam menunggu sampai saya merangkum pikiran saya. Saat itu saya merasa tidak sabar, tetapi kalau dipikir sekarang, waktu itulah yang membentuk kebiasaan berpikir pada diri saya.',
+   'Ketika bertemu sesuatu yang sulit dipahami, alih-alih langsung mencari jawaban sederhana, cobalah terus berpikir untuk sementara meski belum paham. Menurut saya, menerima (2) waktu yang merepotkan itulah langkah pertama untuk benar-benar "memahami".']}],
+  vx:[['工夫{くふう}','upaya kreatif'],['専門{せんもん}用語{ようご}','istilah teknis'],['派手{はで}','mencolok'],['複雑{ふくざつ}','rumit'],['重{かさ}なり合{あ}う','saling bertumpuk'],['こぼれ落{お}ちる','tercecer'],['もどかしい','tidak sabar / gemas'],['習慣{しゅうかん}','kebiasaan']],
+  quiz:[
+   {q:'①「わかったつもりになること」とはどういうことか。',o:['簡単{かんたん}な説明{せつめい}を聞{き}いただけで、物事{ものごと}を十分{じゅうぶん}に理解{りかい}したと思{おも}い込{こ}むこと','専門{せんもん}用語{ようご}を使{つか}って、相手{あいて}にわかりやすく説明{せつめい}すること','難{むずか}しい問題{もんだい}を自分{じぶん}で調{しら}べて、正{ただ}しく理解{りかい}すること','覚{おぼ}えやすい言葉{ことば}で、物事{ものごと}を正確{せいかく}にまとめること'],a:0,x:'つもり = merasa sudah, padahal belum tentu. Konteksnya: puas dengan 「わかりやすい説明{せつめい}だけ」 padahal hal penting tersembunyi di bagian yang tercecer.'},
+   {q:'筆者{ひっしゃ}によると、わかりやすい説明{せつめい}だけで満足{まんぞく}すると、どうなるか。',o:['自分{じぶん}で調{しら}べたり、別{べつ}の見{み}方{かた}を考{かんが}えたりしなくなる','専門{せんもん}用語{ようご}が理解{りかい}できなくなる','テレビのニュースを見{み}なくなる','説明{せつめい}する人{ひと}が工夫{くふう}をしなくなる'],a:0,x:'Kalimat terakhir paragraf ketiga: 「人{ひと}は自分{じぶん}で調{しら}べたり、別{べつ}の見{み}方{かた}を考{かんが}えたりしなくなる」.'},
+   {q:'筆者{ひっしゃ}が学生{がくせい}時代{じだい}の先生{せんせい}の話{はなし}を書{か}いたのはなぜか。',o:['すぐに答{こた}えをもらえない時間{じかん}が、考{かんが}える力{ちから}を育{そだ}てることを示{しめ}すため','先生{せんせい}の教{おし}え方{かた}に不満{ふまん}があったことを伝{つた}えるため','質問{しつもん}にはすぐ答{こた}えるべきだと主張{しゅちょう}するため','学生{がくせい}時代{じだい}の楽{たの}しい思{おも}い出{で}を紹介{しょうかい}するため'],a:0,x:'Contoh ini mendukung pendapat penulis: 「あの時間{じかん}が私{わたし}に考{かんが}える習慣{しゅうかん}をつけてくれた」. もどかしい hanya perasaan saat itu, bukan keluhan.'},
+   {q:'この文章{ぶんしょう}で筆者{ひっしゃ}が最{もっと}も言{い}いたいことは何{なに}か。',o:['わからないことをすぐに簡単{かんたん}な答{こた}えで片付{かたづ}けず、自分{じぶん}で考{かんが}え続{つづ}けることが大切{たいせつ}だ','説明{せつめい}する人{ひと}は、もっとわかりやすく話{はな}す工夫{くふう}をするべきだ','テレビや本{ほん}は、複雑{ふくざつ}な問題{もんだい}を扱{あつか}うべきではない','わかりやすい説明{せつめい}は、すべて間違{まちが}っている'],a:0,x:'Paragraf terakhir: 「すぐに簡単{かんたん}な答{こた}えを探{さが}すのではなく…考{かんが}え続{つづ}けてみる」. Pilihan 2 hanya pendapat umum di paragraf pertama (たしかに), pilihan 4 terlalu ekstrem.'}]}
 ];
 const LEVELS=[
  {id:'kana',tag:'かな',name:'Kana Dasar',sub:'Hiragana & Katakana · Starter',desc:'Titik nol: 8 pelajaran hiragana dan katakana dengan tabel bersuara, latihan menulis, tes pendengaran, kaiwa, dan menulis nama dalam katakana.',lessons:KANAB},
@@ -3296,7 +3560,7 @@ const LEVELS=[
     {q:'Tanda 立入禁止{たちいりきんし} berarti…',o:['silakan masuk','dilarang masuk','pintu keluar'],a:1,x:'立入 = masuk, 禁止 = dilarang.'},
     {q:'終{お}わったら、 報告{ほうこく}して ください。 Kapan harus melapor?',o:['sebelum mulai','setelah selesai','saat istirahat'],a:1,x:'<b>〜たら</b> di sini berarti "setelah".'}]}]},
  {id:'n3',tag:'N3',name:'Menengah',sub:'JLPT N3 · 110 pola tata bahasa + kosakata & kanji',desc:'14 bab tata bahasa per tema (alasan, perubahan, perbandingan, waktu, aturan, keigo) dengan nuansa penggunaan, kaiwa kerja dan sehari-hari, plus 3 bab kosakata dan kanji model soal JLPT.',lessons:N3B},
- {id:'n2',tag:'N2',name:'Menengah Atas',sub:'JLPT N2 · 135 pola tata bahasa + kosakata & kanji',desc:'15 bab tata bahasa per seri dan tema (もの, こと, 限り, sebab-akibat, penekanan, waktu, keigo) dengan nuansa penggunaan, kaiwa kerja dan sehari-hari, plus 3 bab kosakata dan kanji model soal JLPT.',lessons:N2B},
+ {id:'n2',tag:'N2',name:'Menengah Atas',sub:'JLPT N2 · 19 bab tata bahasa · kosakata & kanji · membaca',desc:'Lengkap untuk persiapan JLPT N2: 19 bab tata bahasa (lebih dari 160 pola) dengan nuansa dan kaiwa, 3 bab kosakata dan kanji model soal, serta 5 bab membaca (文章の文法, 短文, 中文, 統合理解, 主張理解) dengan strategi menjawab, terjemahan, dan mode tanpa furigana.',lessons:N2B},
  {id:'n1',tag:'N1',name:'Mahir',sub:'Ungkapan formal tingkat tertinggi',desc:'Pola tingkat tertinggi JLPT untuk pengumuman resmi, pidato, dan tulisan.',lessons:[
   {id:'n1-1',title:'Ungkapan Resmi',jp:'〜をもって・〜に至{いた}るまで・〜をよそに',sum:'Pola yang sering muncul di pengumuman dan berita.',
    points:[
@@ -3946,6 +4210,7 @@ N4B.forEach(x=>{x.vocab=x.vx||[];x.quiz.forEach((q,i)=>{const n=q.o.length,k=(x.
 KANAB.forEach((x,idx)=>{x.vocab=x.vx||[];x.quiz.forEach((q,i)=>{const n=q.o.length,k=(idx+i+1)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
 N3B.forEach((x,idx)=>{x.vocab=x.vx||[];x.quiz.forEach((q,i)=>{const n=q.o.length,k=(idx+i+2)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
 N2B.forEach((x,idx)=>{x.vocab=x.vx||[];x.quiz.forEach((q,i)=>{const n=q.o.length,k=(idx+i+1)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
+N2B.forEach(x=>{x.grp=x.id.startsWith('n2-r')?'Membaca · 読解':x.id.startsWith('n2-v')?'Kosakata & Kanji · 語彙・漢字':'Tata Bahasa · 文法'});
 </script>
 
 <script>
@@ -4127,7 +4392,7 @@ function vHome(){
 }
 
 /* ===================== BELAJAR ===================== */
-const lessonRows=l=>`<div class="lessons">${l.lessons.map(x=>`<button class="lrow ${S.done[x.id]?'ok':''}" data-act="openLesson" data-id="${x.id}"><span class="chk">${S.done[x.id]?ic('check'):''}</span><span class="t"><b>${esc(x.title)}</b> <span style="font-size:.88rem;color:var(--ink-2)">${rb(x.jp)}</span><small>${esc(x.sum)}</small></span><span aria-hidden="true" style="color:var(--ink-3)">›</span></button>`).join('')}</div>`;
+const lessonRows=l=>`<div class="lessons">${l.lessons.map((x,i)=>`${x.grp&&x.grp!==(l.lessons[i-1]||{}).grp?`<div class="lgrp">${rb(x.grp)}</div>`:''}<button class="lrow ${S.done[x.id]?'ok':''}" data-act="openLesson" data-id="${x.id}"><span class="chk">${S.done[x.id]?ic('check'):''}</span><span class="t"><b>${esc(x.title)}</b> <span style="font-size:.88rem;color:var(--ink-2)">${rb(x.jp)}</span><small>${esc(x.sum)}</small></span><span aria-hidden="true" style="color:var(--ink-3)">›</span></button>`).join('')}</div>`;
 const lvVocabAll=id=>{const seen=new Set();return LEVELS.find(x=>x.id===id).lessons.flatMap(x=>x.vocab||[]).concat(VOCAB_X[id]||[]).filter(v=>!seen.has(v[0])&&seen.add(v[0])).sort((a,b)=>(a[2]||99)-(b[2]||99))};
 function vocabBlock(id){const V=lvVocabAll(id),lv=LEVELS.find(x=>x.id===id),canGame=GLV.some(v=>v[0]===id);
  return `<section class="card" style="padding:18px;display:flex;flex-direction:column;gap:12px"><div class="sec-head"><div><h2>Kosakata ${lv.tag}<span class="jpn">語彙</span></h2><p class="muted num" style="font-size:.88rem">${V.length} kata${id==='n5'?' · urut sesuai Minna no Nihongo I Bab 1–25':''} · ketuk ikon suara untuk mendengar</p></div>${canGame?`<button class="btn sm" data-act="goFlash" data-lv="${id}">Latih dengan flashcard</button>`:''}</div>
@@ -4163,7 +4428,7 @@ function vRoadmapAll(){
   return `<div class="stage ${full?'done':''} ${cur?'cur':''}"><div class="badge">${l.tag}</div>
   <div class="card stage-body"><header><div><span class="eyebrow">Tahap ${i+1}${cur?' · sedang dipelajari':''}</span><h2>${l.name}</h2><p class="muted" style="font-size:.9rem">${l.sub}</p></div><span class="pill ${full?'good':''} num">${d}/${l.lessons.length}</span></header>
   <p style="margin-top:8px;font-size:.95rem">${l.desc}</p>
-  <div class="lessons">${l.lessons.map(x=>`<button class="lrow ${S.done[x.id]?'ok':''}" data-act="openLesson" data-id="${x.id}"><span class="chk">${S.done[x.id]?ic('check'):''}</span><span class="t"><b>${esc(x.title)}</b> <span style="font-size:.88rem;color:var(--ink-2)">${rb(x.jp)}</span><small>${esc(x.sum)}</small></span><span aria-hidden="true" style="color:var(--ink-3)">›</span></button>`).join('')}</div></div></div>`}).join('')}</div>`;
+  ${lessonRows(l)}</div></div>`}).join('')}</div>`;
 }
 function vLesson(){
  const x=findLesson(UI.lesson),lv=x.lv,done=!!S.done[x.id];
@@ -4174,13 +4439,13 @@ function vLesson(){
   <div class="note"><b>Tips belajar:</b> hafalkan per baris (あ, か, さ…), ucapkan keras-keras, lalu uji diri di game <b>Kilat Kana</b>. Perhatikan bunyi khusus: し = shi, ち = chi, つ = tsu, ふ = fu. ${x.kana==='hira'?'Partikel は, を, へ dibaca wa, o, e.':'Tanda ー memanjangkan bunyi, contoh: コーヒー (kōhī).'}</div>`;
  }else{
   const qs=x.quiz,ans=UI.lq;const answered=qs.every((q,i)=>ans[i]!==undefined);const score=qs.filter((q,i)=>ans[i]===q.a).length;
-  body=`${sceneHTML(x)}${x.kt?ktHTML(x):''}${x.trace?trHTML(x):''}${x.mirip?mirHTML(x):''}${x.nama?namaHTML(x):''}<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Pola kalimat<span class="jpn">文型</span></h2></div>
-   ${x.points.map((p,pi)=>`<article class="card point"><span class="eyebrow">Pola ${pi+1}</span>${x.bab||x.fx?fm(p.p):`<div class="pattern">${rb(p.p)}</div>`}<p>${rbh(p.e)}</p>
+  body=`${sceneHTML(x)}${x.kt?ktHTML(x):''}${x.trace?trHTML(x):''}${x.mirip?mirHTML(x):''}${x.nama?namaHTML(x):''}<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>${x.rd?'Strategi menjawab<span class="jpn">解き方</span>':'Pola kalimat<span class="jpn">文型</span>'}</h2></div>
+   ${x.points.map((p,pi)=>`<article class="card point"><span class="eyebrow">${x.rd?'Langkah':'Pola'} ${pi+1}</span>${x.bab||x.fx?fm(p.p):`<div class="pattern">${rb(p.p)}</div>`}<p>${rbh(p.e)}</p>
     ${p.ex.map(e=>`<div class="ex">${say(e[0])}<div><div class="jp">${rb(e[0])}</div><div class="tr">${esc(e[1])}</div></div></div>`).join('')}</article>`).join('')}</section>
-  ${x.note?`<div class="note"><b>Catatan sensei:</b> ${rbh(x.note)}</div>`:''}${x.nu?nuHTML(x):''}${x.cj?cjHTML(x):''}${x.mp?mpHTML(x):''}${x.kw?kwHTML(x):''}
+  ${x.rd?rdHTML(x):''}${x.note?`<div class="note"><b>Catatan sensei:</b> ${rbh(x.note)}</div>`:''}${x.nu?nuHTML(x):''}${x.cj?cjHTML(x):''}${x.mp?mpHTML(x):''}${x.kw?kwHTML(x):''}
   <section class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px"><div class="sec-head"><h2>Kosakata<span class="jpn">言葉</span></h2><span class="muted" style="font-size:.85rem">${x.vocab.length} kata</span></div>
    <div class="tblwrap"><table class="vtab"><tbody>${x.vocab.map(v=>`<tr><td>${rb(v[0])}</td><td class="muted">${esc(v[1])}</td><td>${say(v[0])}</td></tr>`).join('')}</tbody></table></div></section>
-  <section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Latihan mini<span class="jpn">練習</span></h2>${answered?`<span class="pill ${score===qs.length?'good':'maple'} num">Skor ${score}/${qs.length}</span>`:''}</div>
+  <section class="${x.rd?'rdq':''}" style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>${x.rd?'Soal bacaan<span class="jpn">問題</span>':'Latihan mini<span class="jpn">練習</span>'}</h2>${answered?`<span class="pill ${score===qs.length?'good':'maple'} num">Skor ${score}/${qs.length}</span>`:''}</div>
    ${qs.map((q,i)=>{const a=ans[i],lock=a!==undefined;return `<article class="card q"><span class="eyebrow">Soal ${i+1}</span><div class="stem">${rb(q.q)}</div>
     <div class="opts ${lock?'locked':''}">${q.o.map((o,j)=>`<button class="opt ${lock&&j===q.a?'right':''} ${lock&&j===a&&a!==q.a?'wrong':''}" data-act="lq" data-q="${i}" data-o="${j}"><span class="k">${'ABCD'[j]}</span><span>${rb(o)}</span></button>`).join('')}</div>
     ${lock?`<div class="expl pop"><b>${a===q.a?'Benar.':'Belum tepat.'}</b> ${rbh(q.x)}</div>`:''}</article>`}).join('')}</section>`;
@@ -4306,6 +4571,8 @@ const CJX={
 const PL=['','Kasar','Akrab','Sopan','Lebih sopan','Sangat hormat'];
 const pmeter=l=>`<span class="pm" aria-label="Tingkat kesopanan: ${PL[l]}">${[1,2,3,4,5].map(i=>`<i class="${i<=l?'on l'+l:''}"></i>`).join('')}<b>${PL[l]}</b></span>`;
 const nuSay=t=>/[\/→×()（）]/.test(t)?'':say(t);
+function rdHTML(x){return `<section class="card rd"><div class="sec-head"><div><h2>Teks bacaan<span class="jpn">本文</span></h2><p class="muted" style="font-size:.88rem">Baca teks, lalu jawab soal di bawah. Terjemahan bisa dibuka setelah mencoba.</p></div><button class="btn sm ghost" data-act="rdFuri" aria-pressed="${!!UI.nofuri}">${UI.nofuri?'Tampilkan furigana':'Mode ujian · tanpa furigana'}</button></div>
+ ${x.rd.map(r=>`<article class="rd-item">${r.k?`<span class="rd-k">${r.k}</span>`:''}<div class="rd-h"><b class="jp">${rbh(r.h)}</b>${r.t?`<span class="muted">${rbh(r.t)}</span>`:''}</div><div class="rd-txt jp">${r.a.map(p=>`<p>${rbh(p)}</p>`).join('')}</div><details class="rd-tr"><summary>Tampilkan terjemahan</summary>${r.tr.map(p=>`<p>${esc(p)}</p>`).join('')}</details></article>`).join('')}</section>`}
 function nuHTML(x){return `<section class="card nu"><div class="sec-head"><div><h2>Nuansa &amp; tingkat kesopanan<span class="jpn">使い分け</span></h2><p class="muted" style="font-size:.88rem">Perbandingan dengan pola yang sudah dipelajari, dan kapan sebaiknya dipakai.</p></div></div>
  <div class="pm-legend">${[1,2,3,4,5].map(l=>`<span>${pmeter(l)}</span>`).join('')}</div>
  ${x.nu.map(n=>n.w?`<div class="nu-warn"><b>Hati-hati:</b> ${rbh(n.t)}</div>`:`<article class="nu-card"><div class="nu-pair"><div class="nu-side"><span class="nu-tag">Sebelumnya</span><div class="nu-ex">${nuSay(n.a)}<span class="jp">${rb(n.a)}</span></div>${pmeter(n.la)}</div><div class="nu-vs" aria-hidden="true">→</div><div class="nu-side b"><span class="nu-tag n4">Bab ini</span><div class="nu-ex">${nuSay(n.b)}<span class="jp">${rb(n.b)}</span></div>${pmeter(n.lb)}</div></div><p>${rbh(n.t)}</p></article>`).join('')}</section>`}
@@ -4621,6 +4888,7 @@ const ACT={
  openLesson:d=>{const x=findLesson(d.id),dest=x.lv.id==='biz'?'bisnis':'belajar';if(dest==='belajar')UI.lvTab=x.lv.id;if(UI.route!==dest){UI.pending=d.id;location.hash=dest;return}openSub(()=>{UI.lesson=d.id;UI.lq={}})},
  backLearn:()=>openSub(()=>{const x=findLesson(UI.lesson);if(x&&x.lv.id!=='biz')UI.lvTab=x.lv.id;UI.lesson=null}),
  lvTab:d=>{UI.lvTab=d.id;rerender()},
+ rdFuri:()=>{UI.nofuri=!UI.nofuri;document.body.classList.toggle('rdexam',UI.nofuri);rerender()},
  ktPick:d=>{UI.tr[d.id]=d.c;speak(d.c);rerender()},
  trStep:d=>{const x=findLesson(d.id),L=trList(x),c=UI.tr[d.id]&&L.includes(UI.tr[d.id])?UI.tr[d.id]:L[0],i=Math.max(0,Math.min(L.length-1,L.indexOf(c)+ +d.v));UI.tr[d.id]=L[i];rerender()},
  trClr:d=>{const cv=document.getElementById('trc-'+d.id);if(cv&&cv._clr)cv._clr()},
