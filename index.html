@@ -79,7 +79,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .chip-stat{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:var(--surface-2);font-weight:700;font-size:.85rem}
 .main{min-width:0;padding-block:20px 110px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .view{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(6,1fr);background:var(--surface);border-top:1px solid var(--line);
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(7,1fr);background:var(--surface);border-top:1px solid var(--line);
   padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(4px,env(safe-area-inset-left,0px));padding-right:max(4px,env(safe-area-inset-right,0px))}
 .tabs a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 2px 8px;text-decoration:none;color:var(--ink-3);font-size:.7rem;font-weight:700}
 .tabs a svg{width:22px;height:22px}
@@ -401,6 +401,7 @@ mark.kwk{background:var(--amber-soft);color:inherit;border-radius:6px;padding:0 
 .kw-turn.r{align-self:flex-end}
 .kw-turn p{margin:0;font-size:.88rem;color:var(--ink-2)}
 .kw-id{font-weight:700;font-size:1.05rem}.rd{padding:20px;display:flex;flex-direction:column;gap:16px}.rd .sec-head{flex-wrap:wrap;gap:10px}.rd-item{position:relative;border:1px solid var(--line);border-radius:14px;padding:16px 16px 12px;background:var(--surface-2);display:flex;flex-direction:column;gap:8px}.rd-k{position:absolute;top:-12px;left:14px;background:var(--maple);color:#fff;font-weight:800;border-radius:8px;padding:2px 10px;font-size:.85rem}.rd-h{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.rd-h .jp{font-size:1.1rem;line-height:1.9}.rd-h .muted{font-size:.82rem}.rd-txt{font-size:1.18rem;line-height:2.35}.rd-txt p{margin:0 0 .5em}.rd-txt u{text-decoration-color:var(--maple);text-decoration-thickness:2px;text-underline-offset:6px}.rd-tr{border-top:1px dashed var(--line);padding-top:8px;font-size:.92rem;line-height:1.7;color:var(--ink-2)}.rd-tr summary{cursor:pointer;font-weight:700;color:var(--maple);padding:4px 0}.rd-tr p{margin:.4em 0}body.rdexam .rd rt,body.rdexam .rdq rt{visibility:hidden}.lgrp{font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--maple);padding:12px 4px 2px}.lgrp:first-child{padding-top:2px}
+.ksem{padding:20px;display:flex;flex-direction:column;gap:14px}.semtabs{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px}.semtab{display:flex;flex-direction:column;align-items:center;padding:6px 2px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);line-height:1.2}.semtab b{font-size:1.15rem}.semtab small{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}.semtab.on{background:var(--maple);border-color:var(--maple);color:#fff}.sem-body{display:flex;flex-direction:column;gap:8px;padding:16px;border-radius:14px;background:var(--surface-2)}.sem-body h3{margin:0}.sem-mk{margin:0;padding-left:1.2em;line-height:1.9}.sem-links{display:flex;flex-wrap:wrap;gap:8px}.sem-l{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:.84rem;font-weight:700;color:var(--ink);text-align:left}.sem-l svg{width:14px;height:14px}.sem-l.ok{border-color:var(--good,#4A8F5B)}.sem-l.jl{border-color:var(--maple);color:var(--maple)}
 .nu{padding:20px;display:flex;flex-direction:column;gap:14px}
 .pm{display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
 .pm i{width:14px;height:8px;border-radius:4px;background:var(--line)}
@@ -505,7 +506,7 @@ mark.kwk{background:var(--amber-soft);color:inherit;border-radius:6px;padding:0 
     <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-4 3v-3H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2zM17 9h3a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-1v3l-3-3h-3"/></symbol>
     <symbol id="i-pen" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 3h6l1 2h3v16H5V5h3zM9 11l2 2 4-4M9 17h6"/></symbol>
     <symbol id="i-game" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 7h10a5 5 0 0 1 0 10c-1.5 0-2.3-1-3-2h-4c-.7 1-1.5 2-3 2A5 5 0 0 1 7 7zM8 10v4M6 12h4M16 11h.01M18 13h.01"/></symbol>
-    <symbol id="i-brief" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 8h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zM9 8V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V8M3 13h18"/></symbol>
+    <symbol id="i-brief" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 8h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1zM9 8V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V8M3 13h18"/></symbol><symbol id="i-cap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M2 9l10-5 10 5-10 5zM6 11v5c0 1.6 2.7 3 6 3s6-1.4 6-3v-5M22 9v6"/></symbol>
     <symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20.5s-7.6-4.6-9.6-9.3C1.1 8 3.3 4.5 6.9 4.5c2 0 3.5 1.1 4.3 2.5h1.6c.8-1.4 2.3-2.5 4.3-2.5 3.6 0 5.8 3.5 4.5 6.7-2 4.7-9.6 9.3-9.6 9.3z"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M5 9v6h4l5 4V5L9 9zm11.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></symbol>
@@ -3534,6 +3535,417 @@ const N2B=[
    {q:'筆者{ひっしゃ}が学生{がくせい}時代{じだい}の先生{せんせい}の話{はなし}を書{か}いたのはなぜか。',o:['すぐに答{こた}えをもらえない時間{じかん}が、考{かんが}える力{ちから}を育{そだ}てることを示{しめ}すため','先生{せんせい}の教{おし}え方{かた}に不満{ふまん}があったことを伝{つた}えるため','質問{しつもん}にはすぐ答{こた}えるべきだと主張{しゅちょう}するため','学生{がくせい}時代{じだい}の楽{たの}しい思{おも}い出{で}を紹介{しょうかい}するため'],a:0,x:'Contoh ini mendukung pendapat penulis: 「あの時間{じかん}が私{わたし}に考{かんが}える習慣{しゅうかん}をつけてくれた」. もどかしい hanya perasaan saat itu, bukan keluhan.'},
    {q:'この文章{ぶんしょう}で筆者{ひっしゃ}が最{もっと}も言{い}いたいことは何{なに}か。',o:['わからないことをすぐに簡単{かんたん}な答{こた}えで片付{かたづ}けず、自分{じぶん}で考{かんが}え続{つづ}けることが大切{たいせつ}だ','説明{せつめい}する人{ひと}は、もっとわかりやすく話{はな}す工夫{くふう}をするべきだ','テレビや本{ほん}は、複雑{ふくざつ}な問題{もんだい}を扱{あつか}うべきではない','わかりやすい説明{せつめい}は、すべて間違{まちが}っている'],a:0,x:'Paragraf terakhir: 「すぐに簡単{かんたん}な答{こた}えを探{さが}すのではなく…考{かんが}え続{つづ}けてみる」. Pilihan 2 hanya pendapat umum di paragraf pertama (たしかに), pilihan 4 terlalu ekstrem.'}]}
 ];
+const KUB=[
+ {id:'ku-l1',grp:'Linguistik Jepang · 日本{にほん}語学{ごがく}',title:'Linguistik 1 · Fonetik dan Fonologi',jp:'音声{おんせい}学{がく}・音韻{おんいん}論{ろん}',sum:'Mora (拍), bunyi khusus, aksen nada, dan devokalisasi vokal.',
+  scene:{bg:'room',alt:'Dosen menjelaskan ketukan mora di papan',
+   art:()=>BOARD(200,18,260,96,'',14)+TXT(200,58,'が・っ・こ・う',22,'#FFFDF8',800)+TXT(200,94,'= 4 拍',15,'#F4B642',800)+P(80,215,1.05,{c:'#3B3F4A',h:'#555',gl:1,tie:'#2F6F8F',arm:'point',talk:1})+P(330,215,1.05,{c:'#4F7CAC',flip:1}),
+   bub:[[80,106,'拍{はく}で数{かぞ}えます。','Hitung dengan mora.']],
+   hot:[[295,40,30,30,'「がっこう」は四{よん}拍{はく}の言葉{ことば}です。','"Gakkou" adalah kata dengan empat mora.']]},
+  points:[
+   {p:'拍{はく}（モーラ）',e:'Satuan ketukan bahasa Jepang. Setiap kana biasa = 1 mora. Huruf kecil ゃゅょ menempel pada huruf sebelumnya (きゃ = 1 mora). Inilah dasar ritme haiku 5-7-5.',ex:[['とうきょう：と・う・きょ・う（四{よん}拍{はく}）','Toukyou: to-u-kyo-u (empat mora)']]},
+   {p:'特殊{とくしゅ}拍{はく}：長音{ちょうおん}・促音{そくおん}・撥音{はつおん}',e:'Tiga bunyi khusus yang tetap dihitung satu mora: 長音{ちょうおん} (vokal panjang ー), 促音{そくおん} (っ, konsonan rangkap), 撥音{はつおん} (ん). Kesalahan umum pelajar Indonesia adalah memendekkan bunyi ini.',ex:[['おばさん（四{よん}拍{はく}） ↔ おばあさん（五{ご}拍{はく}）','Obasan (bibi) ↔ obaasan (nenek)']]},
+   {p:'アクセント（高低{こうてい}アクセント）',e:'Bahasa Jepang memakai aksen nada tinggi-rendah, bukan tekanan keras. Pola standar Tokyo: mora pertama dan kedua selalu berbeda tinggi. Aksen membedakan arti.',ex:[['はし（橋{はし}）↔ はし（箸{はし}）','Hashi (jembatan) ↔ hashi (sumpit), beda nada']]},
+   {p:'母音{ぼいん}の無声{むせい}化{か}',e:'Vokal i dan u di antara konsonan tak bersuara (k, s, t, h, p) sering tidak bersuara. Karena itu です terdengar "des" dan すき terdengar "ski".',ex:[['です → [des]、ください → [kudasai] (u hampir hilang)','Contoh devokalisasi dalam percakapan sehari-hari']]},
+   {p:'音素{おんそ}と異音{いおん}',e:'音素{おんそ} adalah bunyi yang membedakan arti. 異音{いおん} adalah variasi bunyi yang tidak membedakan arti. Contoh: ん dibaca [m], [n], atau [ŋ] tergantung bunyi berikutnya, tetapi tetap satu fonem /N/.',ex:[['さんぽ [m]・さんど [n]・さんか [ŋ]','Tiga bunyi berbeda untuk ん yang sama']]}],
+  nu:[{a:'きて（来{き}て）',b:'きって（切手{きって}）',la:3,lb:3,t:'Perbedaan satu mora 促音{そくおん} mengubah arti. Dalam ujian 聴解{ちょうかい} dan kuliah 音声{おんせい}学{がく}, latih jeda っ dengan menepuk tangan per mora.'}],
+  vx:[['音声{おんせい}学{がく}','fonetik'],['音韻{おんいん}論{ろん}','fonologi'],['拍{はく}','mora / ketukan'],['長音{ちょうおん}','vokal panjang'],['促音{そくおん}','konsonan rangkap (っ)'],['撥音{はつおん}','bunyi ん'],['無声{むせい}化{か}','devokalisasi'],['音素{おんそ}','fonem']],
+  quiz:[
+   {q:'「きって」は何{なに}拍{はく}か。',o:['3 拍{はく}','2 拍{はく}','4 拍{はく}'],a:0,x:'き・っ・て = tiga mora. 促音{そくおん} っ dihitung satu mora.'},
+   {q:'「ん」の音{おと}を表{あらわ}す用語{ようご}はどれか。',o:['撥音{はつおん}','促音{そくおん}','長音{ちょうおん}'],a:0,x:'<b>撥音{はつおん}</b> = bunyi ん. 促音{そくおん} = っ, 長音{ちょうおん} = vokal panjang.'},
+   {q:'Bahasa Jepang standar memakai aksen jenis apa?',o:['Aksen nada tinggi-rendah','Aksen tekanan keras','Tidak memakai aksen'],a:0,x:'Bahasa Jepang memakai <b>高低{こうてい}アクセント</b> (pitch accent).'},
+   {q:'「です」の「す」が聞{き}こえにくい現象{げんしょう}は何{なに}か。',o:['母音{ぼいん}の無声{むせい}化{か}','連濁{れんだく}','音便{おんびん}'],a:0,x:'Vokal u setelah s di akhir kata tidak bersuara: <b>母音{ぼいん}の無声{むせい}化{か}</b>.'},
+   {q:'Mana pasangan yang hanya berbeda karena 長音{ちょうおん}?',o:['おばさん ／ おばあさん','きて ／ きって','かき ／ かぎ'],a:0,x:'おばさん vs おばあさん berbeda karena vokal panjang (長音{ちょうおん}).'}]},
+ {id:'ku-l2',grp:'Linguistik Jepang · 日本{にほん}語学{ごがく}',title:'Linguistik 2 · Sistem Tulisan',jp:'文字{もじ}・表記{ひょうき}',sum:'Empat jenis aksara, asal-usul kanji (六書), on-yomi dan kun-yomi, okurigana, dan penulisan kata serapan.',
+  scene:{bg:'room',alt:'Papan berisi kanji gambar dan gabungan',
+   art:()=>BOARD(200,18,260,96,'',14)+TXT(120,64,'山',30,'#FFFDF8',800)+TXT(200,64,'上',30,'#FFFDF8',800)+TXT(280,64,'休',30,'#FFFDF8',800)+TXT(120,100,'象形',12,'#F4B642',700)+TXT(200,100,'指事',12,'#F4B642',700)+TXT(280,100,'会意',12,'#F4B642',700)+OWL(60,226,.7)+P(340,215,1.05,{c:'#4F7CAC',flip:1,talk:1}),
+   bub:[[340,136,'休{きゅう}は人{ひと}と木{き}！','休 = orang + pohon!']],
+   hot:[[300,26,22,22,'「休{きゅう}」は人{ひと}が木{き}のそばで休{やす}む様子{ようす}を表{あらわ}す会意{かいい}文字{もじ}です。','休 adalah kanji gabungan makna: orang beristirahat di samping pohon.']]},
+  points:[
+   {p:'日本{にほん}語{ご}の文字{もじ}体系{たいけい}',e:'Bahasa Jepang memakai empat jenis aksara sekaligus: 漢字{かんじ} (makna), ひらがな (gramatika dan kata asli), カタカナ (kata serapan dan penekanan), dan ローマ字{じ} (singkatan dan nama).',ex:[['私{わたし}はJRで東京{とうきょう}へ行{い}きます。','Satu kalimat memakai kanji, hiragana, katakana, dan huruf Latin.']]},
+   {p:'六書{りくしょ}：漢字{かんじ}の成{な}り立{た}ち',e:'Klasifikasi tradisional pembentukan kanji. Empat yang utama: 象形{しょうけい} (gambar benda: 山{やま}, 川{かわ}), 指事{しじ} (simbol abstrak: 上{うえ}, 下{した}), 会意{かいい} (gabungan makna: 休{きゅう}, 明{めい}), 形声{けいせい} (unsur makna + unsur bunyi: 晴{せい}, 清{せい}). Sekitar 80% kanji adalah 形声{けいせい}文字{もじ}.',ex:[['晴{せい}・清{せい}・精{せい}・請{せい}（青{あお} = bunyi「せい」）','Kanji 形声: unsur 青 memberi bunyi せい']]},
+   {p:'音読{おんよ}みと訓読{くんよ}み',e:'音読{おんよ}み berasal dari bunyi Tionghoa (dipakai dalam kata gabungan kanji). 訓読{くんよ}み adalah kata asli Jepang yang dicocokkan dengan kanji. Ada juga 当{あ}て字{じ} dan 熟字訓{じゅくじくん} seperti 今日{きょう} dan 大人{おとな}.',ex:[['山{やま}（やま・サン）：富士山{ふじさん}、山登{やまのぼ}り','Satu kanji, dua cara baca']]},
+   {p:'送{おく}り仮名{がな}',e:'Hiragana setelah kanji untuk menunjukkan perubahan bentuk kata (活用{かつよう}). Aturannya ditetapkan dalam「送{おく}り仮名{がな}の付{つ}け方{かた}」. Kesalahan okurigana sering diuji di 表記{ひょうき}.',ex:[['明{あか}るい（×明{あか}い）、少{すく}ない（×少{すくな}い）','Okurigana yang benar']]},
+   {p:'外来{がいらい}語{ご}の表記{ひょうき}',e:'Kata serapan ditulis dengan katakana dan mengikuti pedoman「外来{がいらい}語{ご}の表記{ひょうき}」. Bunyi asing diadaptasi ke struktur mora Jepang, misalnya penambahan vokal.',ex:[['コンピューター、ファイル、ヴァイオリン／バイオリン','Variasi penulisan kata serapan']]}],
+  vx:[['文字{もじ}','aksara'],['表記{ひょうき}','penulisan / ortografi'],['象形{しょうけい}文字{もじ}','kanji piktograf'],['形声{けいせい}文字{もじ}','kanji fonetis-semantik'],['音読{おんよ}み','bacaan on'],['訓読{くんよ}み','bacaan kun'],['送{おく}り仮名{がな}','okurigana'],['外来{がいらい}語{ご}','kata serapan']],
+  quiz:[
+   {q:'「山{やま}」「川{かわ}」のように物{もの}の形{かたち}からできた漢字{かんじ}は何{なに}か。',o:['象形{しょうけい}文字{もじ}','形声{けいせい}文字{もじ}','会意{かいい}文字{もじ}'],a:0,x:'Dari gambar bentuk benda: <b>象形{しょうけい}文字{もじ}</b>.'},
+   {q:'「休{きゅう}」（人{ひと}＋木{き}）のように意味{いみ}を組{く}み合{あ}わせた漢字{かんじ}は何{なに}か。',o:['会意{かいい}文字{もじ}','指事{しじ}文字{もじ}','象形{しょうけい}文字{もじ}'],a:0,x:'Gabungan dua makna: <b>会意{かいい}文字{もじ}</b>.'},
+   {q:'漢字{かんじ}の中{なか}で最{もっと}も数{かず}が多{おお}いのはどれか。',o:['形声{けいせい}文字{もじ}','象形{しょうけい}文字{もじ}','指事{しじ}文字{もじ}'],a:0,x:'Sekitar 80% kanji adalah <b>形声{けいせい}文字{もじ}</b> (unsur makna + unsur bunyi).'},
+   {q:'送{おく}り仮名{がな}が正{ただ}しいものはどれか。',o:['少{すく}ない','少{すくな}い','少{すくな}くない'],a:0,x:'Penulisan baku: <b>少{すく}ない</b>.'},
+   {q:'Kata serapan dari bahasa asing biasanya ditulis dengan…',o:['カタカナ','ひらがな','漢字{かんじ}だけ'],a:0,x:'外来{がいらい}語{ご} ditulis dengan <b>カタカナ</b>.'}]},
+ {id:'ku-l3',grp:'Linguistik Jepang · 日本{にほん}語学{ごがく}',title:'Linguistik 3 · Leksikologi dan Morfologi',jp:'語彙{ごい}論{ろん}・形態{けいたい}論{ろん}',sum:'Jenis kosakata (和語・漢語・外来語・混種語), morfem, kata majemuk, rendaku, dan afiks.',
+  scene:{bg:'room',alt:'Kartu kata majemuk ditempel di papan',
+   art:()=>BOARD(200,18,260,96,'',14)+TXT(130,58,'本＋棚',20,'#FFFDF8',800)+TXT(270,58,'ほんだな',20,'#F4B642',800)+ARROW(175,52,220,52,'#FFFDF8')+TXT(200,96,'た → だ（連濁）',14,'#FFFDF8',700)+P(80,215,1.05,{c:'#3B3F4A',h:'#555',gl:1,tie:'#2F6F8F',arm:'point',talk:1})+P(330,215,1.05,{c:'#B5462F',long:1,flip:1}),
+   bub:[[80,106,'これが連濁{れんだく}です。','Inilah rendaku.']],
+   hot:[[300,78,22,22,'本棚{ほんだな}：「たな」が「だな」に変{か}わる。','本棚: たな berubah menjadi だな.']]},
+  points:[
+   {p:'語種{ごしゅ}：和語{わご}・漢語{かんご}・外来{がいらい}語{ご}・混種{こんしゅ}語{ご}',e:'Kosakata dibagi menurut asal: 和語{わご} (asli Jepang, biasanya kun-yomi), 漢語{かんご} (dari Tionghoa, on-yomi), 外来{がいらい}語{ご} (serapan Barat, katakana), dan 混種{こんしゅ}語{ご} (gabungan dua jenis).',ex:[['宿屋{やどや}（和語{わご}）・旅館{りょかん}（漢語{かんご}）・ホテル（外来{がいらい}語{ご}）・ホテル代{だい}（混種{こんしゅ}語{ご}）','Empat jenis kata dengan makna mirip "penginapan"']]},
+   {p:'形態{けいたい}素{そ}',e:'Satuan terkecil yang punya makna. 自由{じゆう}形態{けいたい}素{そ} bisa berdiri sendiri, 拘束{こうそく}形態{けいたい}素{そ} harus menempel (seperti akhiran).',ex:[['食{た}べ／させ／られ／た（四{よん}つの形態{けいたい}素{そ}）','Satu kata kerja terdiri atas empat morfem']]},
+   {p:'複合{ふくごう}語{ご}と連濁{れんだく}',e:'Kata majemuk dari dua kata atau lebih. Saat bergabung, bunyi awal unsur kedua sering menjadi bunyi bersuara: 連濁{れんだく}. Rendaku jarang terjadi jika unsur kedua sudah memiliki bunyi bersuara (ライマンの法則{ほうそく}).',ex:[['人{ひと}＋人{ひと} → ひとびと、山{やま}＋川{かわ} → やまかわ（連濁{れんだく}なし）','Ada yang mengalami rendaku, ada yang tidak']]},
+   {p:'派生{はせい}語{ご}：接頭{せっとう}辞{じ}・接尾{せつび}辞{じ}',e:'Kata turunan dibentuk dengan afiks. Awalan: 不{ふ}・非{ひ}・無{む}・未{み}・お・ご. Akhiran: 〜的{てき}・〜性{せい}・〜化{か}・〜さ・〜っぽい.',ex:[['不{ふ}安定{あんてい}、非{ひ}常識{じょうしき}、近代{きんだい}化{か}、重要{じゅうよう}性{せい}、大{おお}きさ','Kata turunan dengan afiks']]},
+   {p:'品詞{ひんし}の転成{てんせい}',e:'Perubahan kelas kata tanpa afiks baru, misalnya bentuk ます kata kerja menjadi kata benda.',ex:[['休{やす}む → 休{やす}み、光{ひか}る → 光{ひかり}、遠{とお}い → 遠{とお}く','Kata kerja atau sifat menjadi kata benda']]}],
+  nu:[{a:'宿屋{やどや}に泊{と}まる',b:'ホテルに泊{と}まる',la:2,lb:3,t:'和語{わご} terasa lembut dan tradisional, 漢語{かんご} terasa formal dan tertulis, 外来{がいらい}語{ご} terasa modern. Pemilihan jenis kata (語種{ごしゅ}) memengaruhi nuansa tulisan.'}],
+  vx:[['語彙{ごい}','kosakata'],['語種{ごしゅ}','jenis kata menurut asal'],['和語{わご}','kata asli Jepang'],['漢語{かんご}','kata serapan Tionghoa'],['混種{こんしゅ}語{ご}','kata campuran'],['形態{けいたい}素{そ}','morfem'],['複合{ふくごう}語{ご}','kata majemuk'],['連濁{れんだく}','rendaku']],
+  quiz:[
+   {q:'「旅館{りょかん}」は語種{ごしゅ}で分{わ}けると何{なに}か。',o:['漢語{かんご}','和語{わご}','外来{がいらい}語{ご}'],a:0,x:'旅館{りょかん} dibaca on-yomi (りょかん): <b>漢語{かんご}</b>.'},
+   {q:'「ホテル代{だい}」は何{なに}か。',o:['混種{こんしゅ}語{ご}','外来{がいらい}語{ご}','漢語{かんご}'],a:0,x:'ホテル (外来{がいらい}語{ご}) + 代{だい} (漢語{かんご}) = <b>混種{こんしゅ}語{ご}</b>.'},
+   {q:'「本棚{ほんだな}」の「だな」のように濁{にご}る現象{げんしょう}は何{なに}か。',o:['連濁{れんだく}','無声{むせい}化{か}','音便{おんびん}'],a:0,x:'Bunyi awal unsur kedua menjadi bersuara: <b>連濁{れんだく}</b>.'},
+   {q:'「非{ひ}常識{じょうしき}」の「非{ひ}」は何{なに}か。',o:['接頭{せっとう}辞{じ}','接尾{せつび}辞{じ}','助詞{じょし}'],a:0,x:'Awalan di depan kata: <b>接頭{せっとう}辞{じ}</b>.'},
+   {q:'意味{いみ}を持{も}つ最小{さいしょう}の単位{たんい}は何{なに}か。',o:['形態{けいたい}素{そ}','音素{おんそ}','文節{ぶんせつ}'],a:0,x:'Satuan terkecil bermakna: <b>形態{けいたい}素{そ}</b>. 音素{おんそ} tidak bermakna sendiri.'}]},
+ {id:'ku-l4',grp:'Linguistik Jepang · 日本{にほん}語学{ごがく}',title:'Linguistik 4 · Sintaksis dan Tata Bahasa',jp:'統語{とうご}論{ろん}・文法{ぶんぽう}論{ろん}',sum:'Kelas kata (品詞), fungsi kalimat, transitif-intransitif, voice, aspek, tense, dan modalitas.',
+  scene:{bg:'room',alt:'Diagram kalimat dengan subjek dan predikat',
+   art:()=>BOARD(200,18,260,96,'',14)+TXT(110,58,'猫が',18,'#FFFDF8',800)+TXT(200,58,'魚を',18,'#FFFDF8',800)+TXT(290,58,'食べた',18,'#FFFDF8',800)+TXT(110,94,'主語',12,'#F4B642',700)+TXT(200,94,'目的語',12,'#F4B642',700)+TXT(290,94,'述語',12,'#F4B642',700)+CAT(330,210,.9)+P(80,215,1.05,{c:'#4F7CAC',talk:1}),
+   bub:[[80,106,'述語{じゅつご}は最後{さいご}！','Predikat di akhir!']],
+   hot:[[318,26,18,18,'日本{にほん}語{ご}の述語{じゅつご}は文{ぶん}の最後{さいご}に来{く}る（SOV型{がた}）。','Predikat bahasa Jepang ada di akhir kalimat (tipe SOV).']]},
+  points:[
+   {p:'品詞{ひんし}（十{じゅう}品詞{ひんし}）',e:'Tata bahasa sekolah Jepang (学校{がっこう}文法{ぶんぽう}) membagi kata menjadi sepuluh kelas: 名詞{めいし}, 動詞{どうし}, 形容{けいよう}詞{し}, 形容{けいよう}動詞{どうし}, 副詞{ふくし}, 連体{れんたい}詞{し}, 接続{せつぞく}詞{し}, 感動{かんどう}詞{し}, 助{じょ}動詞{どうし}, 助詞{じょし}. Dalam pengajaran bahasa Jepang (日本{にほん}語{ご}教育{きょういく}), 形容{けいよう}詞{し} = イ形容{けいよう}詞{し} dan 形容{けいよう}動詞{どうし} = ナ形容{けいよう}詞{し}.',ex:[['静{しず}かだ：学校{がっこう}文法{ぶんぽう}では「形容{けいよう}動詞{どうし}」、日本{にほん}語{ご}教育{きょういく}では「ナ形容{けいよう}詞{し}」','Satu kata, dua istilah']]},
+   {p:'語順{ごじゅん}と文{ぶん}の成分{せいぶん}',e:'Bahasa Jepang bertipe SOV: predikat (述語{じゅつご}) di akhir. Partikel (助詞{じょし}) menandai fungsi, jadi urutan kata relatif bebas. Subjek sering dihilangkan jika jelas dari konteks.',ex:[['（私{わたし}は）昨日{きのう}、図書{としょ}館{かん}で本{ほん}を借{か}りた。','Subjek 私 boleh dihilangkan']]},
+   {p:'自動{じどう}詞{し}と他動{たどう}詞{し}',e:'自動{じどう}詞{し} tidak membutuhkan objek (ドアが開{あ}く), 他動{たどう}詞{し} membutuhkan objek dengan を (ドアを開{あ}ける). Banyak pasangan berbentuk mirip.',ex:[['電気{でんき}がつく／電気{でんき}をつける','Pasangan intransitif dan transitif']]},
+   {p:'ヴォイス：受身{うけみ}・使役{しえき}・使役{しえき}受身{うけみ}',e:'Mengubah sudut pandang pelaku. Bahasa Jepang punya 迷惑{めいわく}の受身{うけみ} (pasif yang menyatakan kerugian), yang tidak ada padanannya dalam bahasa Indonesia.',ex:[['雨{あめ}に降{ふ}られた。','Saya kehujanan (merasa dirugikan)']]},
+   {p:'テンス・アスペクト・モダリティ',e:'テンス = waktu (る / た). アスペクト = tahap peristiwa (ている: sedang atau hasil). モダリティ = sikap penutur (だろう, らしい, べきだ, かもしれない).',ex:[['窓{まど}が開{あ}いている。（結果{けっか}の状態{じょうたい}）','Jendelanya dalam keadaan terbuka']]}],
+  nu:[{a:'財布{さいふ}を盗{ぬす}まれた。',b:'財布{さいふ}が盗{ぬす}まれた。',la:3,lb:3,t:'Kalimat pertama adalah pasif tidak langsung: penutur menjadi korban. Kalimat kedua pasif langsung yang netral, sering dipakai di berita.'}],
+  vx:[['品詞{ひんし}','kelas kata'],['主語{しゅご}','subjek'],['述語{じゅつご}','predikat'],['自動{じどう}詞{し}','verba intransitif'],['他動{たどう}詞{し}','verba transitif'],['受身{うけみ}','pasif'],['使役{しえき}','kausatif'],['助{じょ}動詞{どうし}','verba bantu']],
+  quiz:[
+   {q:'「ドアを開{あ}ける」の「開{あ}ける」は何{なに}か。',o:['他動{たどう}詞{し}','自動{じどう}詞{し}','形容{けいよう}詞{し}'],a:0,x:'Memerlukan objek dengan を: <b>他動{たどう}詞{し}</b>.'},
+   {q:'学校{がっこう}文法{ぶんぽう}の「形容{けいよう}動詞{どうし}」は日本{にほん}語{ご}教育{きょういく}で何{なに}と呼{よ}ぶか。',o:['ナ形容{けいよう}詞{し}','イ形容{けいよう}詞{し}','副詞{ふくし}'],a:0,x:'形容{けいよう}動詞{どうし} = <b>ナ形容{けいよう}詞{し}</b>.'},
+   {q:'「雨{あめ}に降{ふ}られた」の受身{うけみ}は何{なに}を表{あらわ}すか。',o:['迷惑{めいわく}・被害{ひがい}','尊敬{そんけい}','可能{かのう}'],a:0,x:'Pasif tidak langsung yang menyatakan kerugian: <b>迷惑{めいわく}の受身{うけみ}</b>.'},
+   {q:'「窓{まど}が開{あ}いている」の「ている」は何{なに}を表{あらわ}すか。',o:['結果{けっか}の状態{じょうたい}','進行{しんこう}中{ちゅう}の動作{どうさ}','習慣{しゅうかん}'],a:0,x:'Keadaan hasil perubahan: <b>結果{けっか}の状態{じょうたい}</b>.'},
+   {q:'日本{にほん}語{ご}の基本{きほん}語順{ごじゅん}はどれか。',o:['SOV','SVO','VSO'],a:0,x:'Predikat di akhir: <b>SOV</b>.'}]},
+ {id:'ku-l5',grp:'Linguistik Jepang · 日本{にほん}語学{ごがく}',title:'Linguistik 5 · Semantik dan Pragmatik',jp:'意味{いみ}論{ろん}・語用{ごよう}論{ろん}',sum:'Sinonim, polisemi, hiponimi, tindak tutur tidak langsung, dan teori kesantunan.',
+  scene:{bg:'room',alt:'Dua orang, satu menolak ajakan secara halus',
+   art:()=>P(130,215,1.1,{c:'#4F7CAC',talk:1})+P(280,215,1.1,{c:'#B5462F',long:1,flip:1})+THINK(280,62,120,60,QMARK(280,62,.8)),
+   bub:[[130,106,'今晩{こんばん}、飲{の}みに行{い}かない？','Mau minum malam ini?']],
+   hot:[[220,30,120,64,'「今晩{こんばん}はちょっと…」＝ 遠回{とおまわ}しな断{ことわ}り','"Malam ini agak…" = penolakan secara tidak langsung']]},
+  points:[
+   {p:'類義{るいぎ}語{ご}',e:'Kata yang maknanya mirip tetapi berbeda dalam nuansa, kolokasi, atau gaya. Analisis類義{るいぎ}語{ご} adalah tema skripsi yang sangat populer.',ex:[['あがる／のぼる：階段{かいだん}をのぼる（過程{かてい}）・二階{にかい}にあがる（到達{とうたつ}点{てん}）','Perbedaan fokus proses dan tujuan']]},
+   {p:'多義{たぎ}語{ご}',e:'Satu kata dengan banyak makna yang saling berhubungan. Makna dasar (基本{きほん}義{ぎ}) berkembang menjadi makna perluasan melalui metafora (隠喩{いんゆ}) dan metonimi (換喩{かんゆ}).',ex:[['「かける」：電話{でんわ}をかける・眼鏡{めがね}をかける・迷惑{めいわく}をかける','Satu kata kerja, banyak makna']]},
+   {p:'上位{じょうい}語{ご}・下位{かい}語{ご}',e:'Hubungan makna umum dan khusus (hiponimi). 果物{くだもの} adalah 上位{じょうい}語{ご}, sedangkan りんご dan みかん adalah 下位{かい}語{ご}.',ex:[['動物{どうぶつ} ⊃ 犬{いぬ}・猫{ねこ}・鳥{とり}','Hubungan hiponimi']]},
+   {p:'語用{ごよう}論{ろん}：言外{げんがい}の意味{いみ}',e:'Makna yang tidak diucapkan langsung tetapi dipahami dari konteks (含意{がんい}). Orang Jepang sering menolak atau meminta secara tidak langsung (間接{かんせつ}発話{はつわ}行為{こうい}).',ex:[['「ちょっと寒{さむ}いですね」→ 窓{まど}を閉{し}めてほしい','Permintaan tidak langsung']]},
+   {p:'ポライトネス理論{りろん}',e:'Teori Brown dan Levinson: penutur menjaga "muka" (フェイス) lawan bicara. Negative face = ingin tidak diganggu, positive face = ingin dihargai. Banyak ungkapan Jepang (〜ていただけませんか) adalah strategi negative politeness.',ex:[['お忙{いそが}しいところ申{もう}し訳{わけ}ありませんが…','Mengakui beban lawan bicara sebelum meminta']]}],
+  nu:[{a:'行{い}けません。',b:'その日{ひ}はちょっと…',la:2,lb:4,t:'Penolakan langsung terasa kasar dalam budaya Jepang. Kalimat yang dibiarkan menggantung (言{い}いさし) adalah strategi kesantunan yang umum.'}],
+  vx:[['意味{いみ}論{ろん}','semantik'],['語用{ごよう}論{ろん}','pragmatik'],['類義{るいぎ}語{ご}','sinonim'],['多義{たぎ}語{ご}','polisemi'],['上位{じょうい}語{ご}','hipernim'],['下位{かい}語{ご}','hiponim'],['含意{がんい}','implikatur'],['断{ことわ}り','penolakan']],
+  quiz:[
+   {q:'「果物{くだもの}」と「りんご」の関係{かんけい}で、「果物{くだもの}」は何{なに}か。',o:['上位{じょうい}語{ご}','下位{かい}語{ご}','類義{るいぎ}語{ご}'],a:0,x:'Kata yang lebih umum: <b>上位{じょうい}語{ご}</b>.'},
+   {q:'「かける」のように意味{いみ}がたくさんある語{ご}は何{なに}か。',o:['多義{たぎ}語{ご}','類義{るいぎ}語{ご}','対義{たいぎ}語{ご}'],a:0,x:'Satu kata banyak makna terkait: <b>多義{たぎ}語{ご}</b>.'},
+   {q:'「今晩{こんばん}はちょっと…」の本当{ほんとう}の意味{いみ}は何{なに}か。',o:['断{ことわ}っている','賛成{さんせい}している','時間{じかん}を聞{き}いている'],a:0,x:'Penolakan tidak langsung, dipahami dari konteks (語用{ごよう}論{ろん}).'},
+   {q:'Teori kesantunan "face" dikemukakan oleh…',o:['Brown dan Levinson','Saussure','Chomsky'],a:0,x:'Teori politeness: <b>Brown & Levinson</b> (1987).'},
+   {q:'言外{げんがい}の意味{いみ}を研究{けんきゅう}する分野{ぶんや}はどれか。',o:['語用{ごよう}論{ろん}','音韻{おんいん}論{ろん}','形態{けいたい}論{ろん}'],a:0,x:'Makna di luar kata-kata dan konteks: <b>語用{ごよう}論{ろん}</b>.'}]},
+ {id:'ku-l6',grp:'Linguistik Jepang · 日本{にほん}語学{ごがく}',title:'Linguistik 6 · Sosiolinguistik',jp:'社会{しゃかい}言語{げんご}学{がく}',sum:'Dialek, bahasa anak muda, ragam bahasa pria dan wanita, role language, dan perubahan keigo.',
+  scene:{bg:'street',alt:'Orang Osaka dan Tokyo berbicara dengan dialek berbeda',
+   art:()=>P(120,215,1.1,{c:'#D9802F',talk:1})+P(290,215,1.1,{c:'#4F7CAC',flip:1})+BLD(330,215,70,120,'#C9B39D','')+BLD(60,215,60,90,'#D8C4AE',''),
+   bub:[[120,106,'ほんまに、おおきに！','Beneran, makasih banyak! (Kansai)']],
+   hot:[[250,110,80,100,'標準{ひょうじゅん}語{ご}：「本当{ほんとう}に、ありがとう」','Bahasa standar: "Sungguh, terima kasih."']]},
+  points:[
+   {p:'方言{ほうげん}と共通{きょうつう}語{ご}',e:'Jepang punya banyak dialek. 共通{きょうつう}語{ご} (berbasis dialek Tokyo) dipakai di media dan sekolah. 関西{かんさい}弁{べん} adalah dialek paling dikenal: だ → や, ない → へん, ありがとう → おおきに.',ex:[['あかん（だめ）、めっちゃ（とても）、ちゃう（違{ちが}う）','Kosakata khas Kansai']]},
+   {p:'若者{わかもの}言葉{ことば}',e:'Ragam bahasa anak muda: singkatan, akhiran baru, dan kata dari internet. Cepat berubah dan menjadi topik penelitian sosiolinguistik.',ex:[['やばい（すごい）、ググる（検索{けんさく}する）、エモい','Contoh bahasa anak muda']]},
+   {p:'性差{せいさ}と役割{やくわり}語{ご}',e:'Dulu ada perbedaan jelas antara 男性{だんせい}語{ご} (ぼく, 〜ぜ) dan 女性{じょせい}語{ご} (あたし, 〜わ). Sekarang semakin berkurang dalam kehidupan nyata, tetapi tetap dipakai dalam fiksi sebagai 役割{やくわり}語{ご} (bahasa peran) untuk menandai karakter.',ex:[['「わしは博士{はかせ}じゃ」（老人{ろうじん}・博士{はかせ}の役割{やくわり}語{ご}）','Role language tokoh profesor tua']]},
+   {p:'敬語{けいご}の変化{へんか}',e:'Keigo terus berubah. Contoh yang diperdebatkan: させていただく yang berlebihan, ら抜{ぬ}き言葉{ことば} (見{み}れる), dan バイト敬語{けいご} (〜になります, 〜でよろしかったでしょうか).',ex:[['見{み}られる → 見{み}れる（ら抜{ぬ}き言葉{ことば}）','Perubahan bentuk potensial dalam bahasa lisan']]},
+   {p:'言語{げんご}接触{せっしょく}と外来{がいらい}語{ご}',e:'Kontak dengan bahasa lain memengaruhi kosakata. Selain 外来{がいらい}語{ご}, ada 和製{わせい}英語{えいご} (bahasa Inggris buatan Jepang) yang tidak dimengerti penutur asli bahasa Inggris.',ex:[['サラリーマン、ノートパソコン、コンセント','Contoh 和製英語']]}],
+  nu:[{a:'これ、見{み}れる？',b:'こちら、ご覧{らん}になれますか。',la:1,lb:5,t:'ら抜{ぬ}き言葉{ことば} sudah umum dalam percakapan santai, tetapi dalam tulisan resmi, ujian, dan situasi kerja tetap gunakan bentuk baku 見{み}られる.'}],
+  vx:[['方言{ほうげん}','dialek'],['共通{きょうつう}語{ご}','bahasa standar'],['若者{わかもの}言葉{ことば}','bahasa anak muda'],['役割{やくわり}語{ご}','role language'],['和製{わせい}英語{えいご}','Inggris buatan Jepang'],['ら抜{ぬ}き言葉{ことば}','bentuk potensial tanpa ら'],['言語{げんご}接触{せっしょく}','kontak bahasa'],['変化{へんか}','perubahan']],
+  quiz:[
+   {q:'関西{かんさい}弁{べん}の「あかん」は共通{きょうつう}語{ご}で何{なに}か。',o:['だめ','ありがとう','とても'],a:0,x:'あかん = <b>だめ</b> (tidak boleh / tidak bagus).'},
+   {q:'「見{み}れる」のような言{い}い方{かた}を何{なに}と呼{よ}ぶか。',o:['ら抜{ぬ}き言葉{ことば}','若者{わかもの}言葉{ことば}','役割{やくわり}語{ご}'],a:0,x:'Bentuk potensial tanpa ら: <b>ら抜{ぬ}き言葉{ことば}</b>.'},
+   {q:'「サラリーマン」は何{なに}の例{れい}か。',o:['和製{わせい}英語{えいご}','方言{ほうげん}','漢語{かんご}'],a:0,x:'Kata bahasa Inggris buatan Jepang: <b>和製{わせい}英語{えいご}</b>.'},
+   {q:'フィクションで人物{じんぶつ}の特徴{とくちょう}を示{しめ}す言葉{ことば}は何{なに}か。',o:['役割{やくわり}語{ご}','共通{きょうつう}語{ご}','敬語{けいご}'],a:0,x:'<b>役割{やくわり}語{ご}</b>, misalnya わしは〜じゃ untuk tokoh tua.'},
+   {q:'Bahasa standar Jepang (共通{きょうつう}語{ご}) berbasis dialek…',o:['Tokyo','Osaka','Kyoto'],a:0,x:'共通{きょうつう}語{ご} berbasis ragam bahasa <b>Tokyo</b>.'}]},
+ {id:'ku-b1',grp:'Budaya & Masyarakat · 日本{にほん}事情{じじょう}',title:'Budaya 1 · Geografi dan Pemerintahan',jp:'日本{にほん}の地理{ちり}と行政{ぎょうせい}',sum:'Empat pulau utama, delapan wilayah, 47 prefektur, iklim, dan sistem pemerintahan Jepang.',
+  scene:{bg:'sky',alt:'Gunung Fuji dan peta kepulauan Jepang',
+   art:()=>FUJI(200,215,1.3)+SUN(340,50,1)+CLOUD(90,50,1)+P(70,215,1,{c:'#4F7CAC',talk:1}),
+   bub:[[70,108,'日本{にほん}一{いち}高{たか}い山{やま}！','Gunung tertinggi di Jepang!']],
+   hot:[[160,110,80,60,'富士山{ふじさん}の高{たか}さは3,776 メートルです。','Tinggi Gunung Fuji adalah 3.776 meter.']]},
+  points:[
+   {p:'国土{こくど}：四{よん}つの主{おも}な島{しま}',e:'Jepang terdiri atas sekitar 14.000 pulau. Empat pulau utama dari utara ke selatan: 北海道{ほっかいどう}, 本州{ほんしゅう}, 四国{しこく}, 九州{きゅうしゅう}. Okinawa berada di ujung selatan.',ex:[['本州{ほんしゅう}は日本{にほん}でいちばん大{おお}きい島{しま}です。','Honshu adalah pulau terbesar di Jepang.']]},
+   {p:'八{はち}地方{ちほう}と都{と}道{どう}府{ふ}県{けん}',e:'Jepang dibagi menjadi delapan wilayah (北海道{ほっかいどう}・東北{とうほく}・関東{かんとう}・中部{ちゅうぶ}・近畿{きんき}・中国{ちゅうごく}・四国{しこく}・九州{きゅうしゅう}) dan 47 prefektur: 一{いち}都{と} (東京{とうきょう}都{と}), 一道{いちどう} (北海道{ほっかいどう}), 二{に}府{ふ} (大阪{おおさか}府{ふ}・京都{きょうと}府{ふ}), dan 四十三{よんじゅうさん}県{けん}.',ex:[['都{と}道{どう}府{ふ}県{けん}：一{いち}都{と}・一道{いちどう}・二{に}府{ふ}・四十三{よんじゅうさん}県{けん}','Susunan 47 prefektur']]},
+   {p:'気候{きこう}と自然{しぜん}災害{さいがい}',e:'Jepang punya empat musim yang jelas, musim hujan (梅雨{つゆ}) pada bulan Juni, dan musim topan (台風{たいふう}) pada akhir musim panas. Karena berada di pertemuan lempeng, gempa (地震{じしん}) dan tsunami sering terjadi.',ex:[['日本{にほん}は地震{じしん}が多{おお}いので、防災{ぼうさい}訓練{くんれん}が大切{たいせつ}だ。','Karena sering gempa, latihan kebencanaan penting di Jepang.']]},
+   {p:'政治{せいじ}のしくみ',e:'Jepang adalah monarki konstitusional. 天皇{てんのう} adalah simbol negara menurut UUD 1947 (日本{にほん}国{こく}憲法{けんぽう}). Kekuasaan dibagi tiga (三{さん}権{けん}分立{ぶんりつ}): 国会{こっかい} (legislatif, dua kamar), 内閣{ないかく} (eksekutif, dipimpin 内閣{ないかく}総理{そうり}大臣{だいじん}), dan 裁判{さいばん}所{しょ} (yudikatif).',ex:[['国会{こっかい}は衆議{しゅうぎ}院{いん}と参議{さんぎ}院{いん}の二{に}院{いん}制{せい}です。','Parlemen memakai sistem dua kamar.']]},
+   {p:'元号{げんごう}',e:'Selain kalender Masehi, Jepang memakai nama era (元号{げんごう}) yang berganti saat kaisar berganti. Era sekarang: 令和{れいわ} (mulai 2019). Formulir resmi sering memakai tahun era.',ex:[['令和{れいわ}元年{がんねん} ＝ 西暦{せいれき} 2019 年{ねん}','Tahun pertama Reiwa = 2019']]}],
+  vx:[['地理{ちり}','geografi'],['都{と}道{どう}府{ふ}県{けん}','prefektur'],['地方{ちほう}','wilayah'],['梅雨{つゆ}','musim hujan'],['地震{じしん}','gempa'],['国会{こっかい}','parlemen'],['内閣{ないかく}','kabinet'],['元号{げんごう}','nama era']],
+  quiz:[
+   {q:'日本{にほん}でいちばん大{おお}きい島{しま}はどれか。',o:['本州{ほんしゅう}','北海道{ほっかいどう}','九州{きゅうしゅう}'],a:0,x:'Pulau terbesar: <b>本州{ほんしゅう}</b>.'},
+   {q:'「府{ふ}」がつくのはどこか。',o:['大阪{おおさか}と京都{きょうと}','東京{とうきょう}と北海道{ほっかいどう}','沖縄{おきなわ}と福岡{ふくおか}'],a:0,x:'Dua 府{ふ}: <b>大阪{おおさか}府{ふ}</b> dan <b>京都{きょうと}府{ふ}</b>.'},
+   {q:'日本{にほん}の国会{こっかい}はどのような制度{せいど}か。',o:['二{に}院{いん}制{せい}','一{いち}院{いん}制{せい}','三{さん}院{いん}制{せい}'],a:0,x:'衆議{しゅうぎ}院{いん} dan 参議{さんぎ}院{いん}: <b>二{に}院{いん}制{せい}</b>.'},
+   {q:'現在{げんざい}の元号{げんごう}はどれか。',o:['令和{れいわ}','平成{へいせい}','昭和{しょうわ}'],a:0,x:'Sejak 2019: <b>令和{れいわ}</b>.'},
+   {q:'Musim hujan di Jepang pada bulan Juni disebut…',o:['梅雨{つゆ}','台風{たいふう}','紅葉{こうよう}'],a:0,x:'<b>梅雨{つゆ}</b> (tsuyu).'}]},
+ {id:'ku-b2',grp:'Budaya & Masyarakat · 日本{にほん}事情{じじょう}',title:'Budaya 2 · Sejarah Jepang Singkat',jp:'日本{にほん}の歴史{れきし}',sum:'Garis waktu dari zaman Jomon sampai Reiwa: Heian, samurai, Edo, Restorasi Meiji, dan Jepang pascaperang.',
+  scene:{bg:'wall',alt:'Garis waktu sejarah Jepang di dinding museum',
+   art:()=>`<line x1="40" y1="70" x2="360" y2="70" stroke="#7A5A44" stroke-width="4"/>`+[60,130,200,270,340].map(x=>`<circle cx="${x}" cy="70" r="8" fill="#B5462F"/>`).join('')+TXT(60,52,'縄文',11,'#3B2A20',700)+TXT(130,52,'平安',11,'#3B2A20',700)+TXT(200,52,'江戸',11,'#3B2A20',700)+TXT(270,52,'明治',11,'#3B2A20',700)+TXT(340,52,'令和',11,'#3B2A20',700)+P(200,215,.9,{c:'#4F7CAC',talk:1}),
+   bub:[[200,150,'明治{めいじ}維新{いしん}は 1868 年{ねん}！','Restorasi Meiji tahun 1868!']],
+   hot:[[255,56,30,30,'明治{めいじ}維新{いしん}で日本{にほん}は近代{きんだい}国家{こっか}になった。','Dengan Restorasi Meiji, Jepang menjadi negara modern.']]},
+  points:[
+   {p:'古代{こだい}：縄文{じょうもん}・弥生{やよい}・古墳{こふん}・飛鳥{あすか}・奈良{なら}',e:'縄文{じょうもん} (budaya berburu, tembikar berpola tali) → 弥生{やよい} (pertanian padi dan logam masuk dari daratan) → 古墳{こふん} (makam raksasa) → 飛鳥{あすか} (agama Buddha masuk, 聖徳{しょうとく}太子{たいし}) → 奈良{なら} (ibu kota 平城{へいじょう}京{きょう}, 710).',ex:[['弥生{やよい}時代{じだい}に米作{こめづく}りが広{ひろ}まった。','Penanaman padi menyebar pada zaman Yayoi.']]},
+   {p:'平安{へいあん}時代{じだい}（794〜1185）',e:'Ibu kota 平安{へいあん}京{きょう} (Kyoto). Budaya bangsawan berkembang: aksara kana lahir, sastra perempuan seperti 源氏{げんじ}物語{ものがたり} dan 枕{まくら}草子{そうし}.',ex:[['ひらがなは平安{へいあん}時代{じだい}に広{ひろ}まった。','Hiragana menyebar pada zaman Heian.']]},
+   {p:'武士{ぶし}の時代{じだい}：鎌倉{かまくら}〜戦国{せんごく}',e:'Kekuasaan berpindah ke samurai. 鎌倉{かまくら}幕府{ばくふ} (1185/1192) adalah pemerintahan militer pertama. 戦国{せんごく}時代{じだい} adalah masa perang antarpenguasa daerah, diakhiri oleh 織田{おだ}信長{のぶなが}, 豊臣{とよとみ}秀吉{ひでよし}, dan 徳川{とくがわ}家康{いえやす}.',ex:[['幕府{ばくふ}とは、将軍{しょうぐん}が行{おこな}う武士{ぶし}の政治{せいじ}のことだ。','Bakufu adalah pemerintahan samurai yang dipimpin shogun.']]},
+   {p:'江戸{えど}時代{じだい}（1603〜1868）',e:'Keshogunan Tokugawa berpusat di Edo (Tokyo). Sekitar 260 tahun damai, kebijakan isolasi (鎖国{さこく}), budaya rakyat (歌舞伎{かぶき}, 浮世{うきよ}絵{え}, 俳句{はいく}) berkembang.',ex:[['鎖国{さこく}の間{あいだ}も、長崎{ながさき}ではオランダと貿易{ぼうえき}をした。','Selama isolasi, perdagangan dengan Belanda tetap ada di Nagasaki.']]},
+   {p:'近代{きんだい}と現代{げんだい}：明治{めいじ}〜令和{れいわ}',e:'明治{めいじ}維新{いしん} (1868): modernisasi cepat ala Barat. Setelah Perang Dunia II (1945), Jepang menjadi negara demokratis dan mengalami 高度{こうど}経済{けいざい}成長{せいちょう} (1950–70-an). Era: 明治{めいじ}→大正{たいしょう}→昭和{しょうわ}→平成{へいせい}→令和{れいわ}.',ex:[['戦後{せんご}、日本{にほん}は高度{こうど}経済{けいざい}成長{せいちょう}を経験{けいけん}した。','Setelah perang, Jepang mengalami pertumbuhan ekonomi pesat.']]}],
+  nu:[{a:'明治{めいじ}維新{いしん}',b:'戦後{せんご}の改革{かいかく}',la:3,lb:3,t:'Dua titik balik besar sejarah modern Jepang. Topik "pengaruh Restorasi Meiji" dan "perubahan masyarakat pascaperang" sering muncul di mata kuliah 日本{にほん}事情{じじょう} dan soal ujian akhir.'}],
+  vx:[['歴史{れきし}','sejarah'],['時代{じだい}','zaman'],['武士{ぶし}','samurai'],['幕府{ばくふ}','pemerintahan keshogunan'],['将軍{しょうぐん}','shogun'],['鎖国{さこく}','isolasi negara'],['維新{いしん}','restorasi'],['戦後{せんご}','pascaperang']],
+  quiz:[
+   {q:'米作{こめづく}りが広{ひろ}まったのはどの時代{じだい}か。',o:['弥生{やよい}時代{じだい}','縄文{じょうもん}時代{じだい}','江戸{えど}時代{じだい}'],a:0,x:'Penanaman padi menyebar pada <b>弥生{やよい}時代{じだい}</b>.'},
+   {q:'『源氏{げんじ}物語{ものがたり}』が書{か}かれた時代{じだい}はどれか。',o:['平安{へいあん}時代{じだい}','鎌倉{かまくら}時代{じだい}','明治{めいじ}時代{じだい}'],a:0,x:'Ditulis oleh 紫式部{むらさきしきぶ} pada <b>平安{へいあん}時代{じだい}</b>.'},
+   {q:'江戸{えど}幕府{ばくふ}を開{ひら}いた人物{じんぶつ}は誰{だれ}か。',o:['徳川{とくがわ}家康{いえやす}','織田{おだ}信長{のぶなが}','聖徳{しょうとく}太子{たいし}'],a:0,x:'<b>徳川{とくがわ}家康{いえやす}</b> mendirikan keshogunan Edo pada 1603.'},
+   {q:'明治{めいじ}維新{いしん}が起{お}こった年{とし}は？',o:['1868','1603','1945'],a:0,x:'Restorasi Meiji: <b>1868</b>.'},
+   {q:'Urutan era modern yang benar adalah…',o:['明治{めいじ}→大正{たいしょう}→昭和{しょうわ}→平成{へいせい}→令和{れいわ}','明治{めいじ}→昭和{しょうわ}→大正{たいしょう}→平成{へいせい}→令和{れいわ}','大正{たいしょう}→明治{めいじ}→昭和{しょうわ}→令和{れいわ}→平成{へいせい}'],a:0,x:'明治{めいじ} → 大正{たいしょう} → 昭和{しょうわ} → 平成{へいせい} → 令和{れいわ}.'}]},
+ {id:'ku-b3',grp:'Budaya & Masyarakat · 日本{にほん}事情{じじょう}',title:'Budaya 3 · Agama, Tradisi, dan Nilai',jp:'宗教{しゅうきょう}・年中{ねんじゅう}行事{ぎょうじ}・日本人{にほんじん}の価値{かち}観{かん}',sum:'Shinto dan Buddha, kalender acara tahunan, seni tradisional, serta nilai seperti 和, おもてなし, dan 侘び寂び.',
+  scene:{bg:'sky',alt:'Gerbang torii di depan kuil Shinto',
+   art:()=>`<g fill="#B5462F"><rect x="150" y="70" width="12" height="145"/><rect x="238" y="70" width="12" height="145"/><rect x="130" y="62" width="140" height="12" rx="4"/><rect x="142" y="88" width="116" height="8"/></g>`+P(90,215,1,{c:'#4F7CAC',talk:1})+P(320,215,1,{c:'#E85D75',long:1,flip:1}),
+   bub:[[90,108,'初詣{はつもうで}に行{い}こう！','Ayo kunjungan kuil tahun baru!']],
+   hot:[[130,56,140,44,'鳥居{とりい}は神社{じんじゃ}の入{い}り口{ぐち}です。','Torii adalah gerbang masuk kuil Shinto.']]},
+  points:[
+   {p:'神道{しんとう}と仏教{ぶっきょう}',e:'神道{しんとう} (kepercayaan asli, 神社{じんじゃ}, banyak dewa/八百万{はっぴゃくまん}の神{かみ}) dan 仏教{ぶっきょう} (masuk abad ke-6, お寺{てら}) hidup berdampingan (神仏{しんぶつ}習合{しゅうごう}). Banyak orang Jepang merayakan kelahiran di 神社{じんじゃ} dan pemakaman secara Buddha.',ex:[['神社{じんじゃ}には鳥居{とりい}があり、お寺{てら}にはお墓{はか}がある。','Kuil Shinto punya torii, kuil Buddha punya makam.']]},
+   {p:'年中{ねんじゅう}行事{ぎょうじ}',e:'Acara tahunan penting: 正月{しょうがつ} (tahun baru, 初詣{はつもうで}), 節分{せつぶん} (Feb), ひな祭{まつ}り (3/3), 花見{はなみ} (April), こどもの日{ひ} (5/5), 七夕{たなばた} (7/7), お盆{ぼん} (Agustus, menyambut arwah leluhur), 七五三{しちごさん} (Nov), 大晦日{おおみそか}.',ex:[['お盆{ぼん}には、多{おお}くの人{ひと}が実家{じっか}に帰{かえ}る。','Saat Obon, banyak orang pulang kampung.']]},
+   {p:'伝統{でんとう}芸能{げいのう}と文化{ぶんか}',e:'茶道{さどう}, 華道{かどう}, 書道{しょどう}, 歌舞伎{かぶき}, 能{のう}, 文楽{ぶんらく}, dan 落語{らくご}. Banyak yang memakai sistem 家元{いえもと} (garis perguruan turun-temurun).',ex:[['茶道{さどう}では、季節{きせつ}を大切{たいせつ}にする。','Dalam upacara minum teh, musim sangat dihargai.']]},
+   {p:'日本人{にほんじん}の価値{かち}観{かん}',e:'和{わ} (keharmonisan kelompok), 本音{ほんね}と建前{たてまえ} (isi hati vs sikap di depan umum), 恥{はじ}の文化{ぶんか} (budaya malu), 甘{あま}え (ketergantungan emosional), 空気{くうき}を読{よ}む (membaca suasana). Konsep ini sering dibahas di mata kuliah 日本{にほん}事情{じじょう}.',ex:[['空気{くうき}を読{よ}んで、反対{はんたい}意見{いけん}を言{い}わなかった。','Membaca suasana, dia tidak menyampaikan pendapat berbeda.']]},
+   {p:'美{び}意識{いしき}：侘{わ}び寂{さ}び・もののあわれ',e:'侘{わ}び寂{さ}び = keindahan dalam kesederhanaan dan ketidaksempurnaan. もののあわれ = rasa haru terhadap sesuatu yang fana (konsep dari 本居{もとおり}宣長{のりなが} untuk membaca 源氏{げんじ}物語{ものがたり}). おもてなし = keramahtamahan sepenuh hati.',ex:[['桜{さくら}がすぐ散{ち}ることに、もののあわれを感{かん}じる。','Merasakan mono no aware pada sakura yang cepat gugur.']]}],
+  nu:[{a:'本音{ほんね}',b:'建前{たてまえ}',la:2,lb:4,t:'本音{ほんね} = perasaan sebenarnya, biasanya hanya dibagikan dengan orang dekat. 建前{たてまえ} = sikap resmi di depan umum. Memahami keduanya membantu membaca makna tersirat dalam komunikasi kerja di Jepang.'}],
+  vx:[['宗教{しゅうきょう}','agama'],['神社{じんじゃ}','kuil Shinto'],['お寺{てら}','kuil Buddha'],['年中{ねんじゅう}行事{ぎょうじ}','acara tahunan'],['初詣{はつもうで}','kunjungan kuil tahun baru'],['先祖{せんぞ}','leluhur'],['価値{かち}観{かん}','nilai-nilai'],['伝統{でんとう}','tradisi']],
+  quiz:[
+   {q:'鳥居{とりい}があるのはどこか。',o:['神社{じんじゃ}','お寺{てら}','教会{きょうかい}'],a:0,x:'Torii adalah gerbang <b>神社{じんじゃ}</b>.'},
+   {q:'先祖{せんぞ}の霊{れい}を迎{むか}える夏{なつ}の行事{ぎょうじ}はどれか。',o:['お盆{ぼん}','七夕{たなばた}','節分{せつぶん}'],a:0,x:'<b>お盆{ぼん}</b> (Agustus).'},
+   {q:'「本音{ほんね}」の反対{はんたい}の意味{いみ}の言葉{ことば}はどれか。',o:['建前{たてまえ}','甘{あま}え','和{わ}'],a:0,x:'本音{ほんね} ↔ <b>建前{たてまえ}</b>.'},
+   {q:'簡素{かんそ}で不{ふ}完全{かんぜん}なものに美{び}を見{み}いだす考{かんが}え方{かた}はどれか。',o:['侘{わ}び寂{さ}び','おもてなし','空気{くうき}を読{よ}む'],a:0,x:'Keindahan dalam kesederhanaan: <b>侘{わ}び寂{さ}び</b>.'},
+   {q:'七五三{しちごさん}は何{なに}月{がつ}の行事{ぎょうじ}か。',o:['十一{じゅういち}月{がつ}','三{さん}月{がつ}','七月{しちがつ}'],a:0,x:'七五三{しちごさん} dirayakan sekitar 15 <b>November</b>.'}]},
+ {id:'ku-b4',grp:'Budaya & Masyarakat · 日本{にほん}事情{じじょう}',title:'Budaya 4 · Masyarakat Jepang Modern',jp:'現代{げんだい}日本{にほん}社会{しゃかい}',sum:'Penurunan angka kelahiran dan penuaan, budaya kerja, reformasi cara kerja, dan pekerja asing (特定技能).',
+  scene:{bg:'room',alt:'Grafik populasi menurun di papan presentasi',
+   art:()=>BOARD(200,18,240,100,'',14)+`<polyline points="100,50 150,48 200,56 250,74 300,98" fill="none" stroke="#F4B642" stroke-width="5" stroke-linecap="round"/>`+ARROW(280,88,305,102,'#F4B642')+P(80,215,1.05,{c:'#3B3F4A',h:'#555',gl:1,tie:'#2F6F8F',arm:'point',talk:1})+P(330,215,1.05,{c:'#4F7CAC',flip:1}),
+   bub:[[80,106,'人口{じんこう}が減{へ}りつつあります。','Populasi terus berkurang.']],
+   hot:[[240,60,70,50,'少子{しょうし}高齢{こうれい}化{か}で、働{はたら}く人{ひと}が足{た}りなくなっている。','Karena penuaan dan sedikitnya kelahiran, tenaga kerja semakin kurang.']]},
+  points:[
+   {p:'少子{しょうし}高齢{こうれい}化{か}',e:'Angka kelahiran rendah (少子{しょうし}化{か}) dan populasi lansia tinggi (高齢{こうれい}化{か}). Lebih dari seperempat penduduk berusia 65 tahun ke atas. Dampaknya: kekurangan tenaga kerja, biaya kesejahteraan naik, dan desa yang kosong (過疎{かそ}化{か}).',ex:[['少子{しょうし}高齢{こうれい}化{か}が進{すす}み、労働{ろうどう}力{りょく}が不足{ふそく}している。','Penuaan populasi berlanjut dan tenaga kerja kurang.']]},
+   {p:'日本{にほん}型{がた}雇用{こよう}',e:'Ciri tradisional: 終身{しゅうしん}雇用{こよう} (kerja seumur hidup), 年功{ねんこう}序列{じょれつ} (kenaikan berdasarkan senioritas), dan 新卒{しんそつ}一括{いっかつ}採用{さいよう} (rekrutmen lulusan baru serentak). Sistem ini mulai berubah ke arah 成果{せいか}主義{しゅぎ} dan 転職{てんしょく}.',ex:[['最近{さいきん}は転職{てんしょく}する人{ひと}が増{ふ}えている。','Akhir-akhir ini orang yang pindah kerja semakin banyak.']]},
+   {p:'働{はたら}き方{かた}改革{かいかく}',e:'Reformasi cara kerja: membatasi lembur, mendorong cuti berbayar (有給{ゆうきゅう}休暇{きゅうか}), kerja jarak jauh (テレワーク), dan mengatasi 過労{かろう}死{し} (kematian karena kerja berlebih).',ex:[['テレワークで働{はたら}く会社{かいしゃ}が増{ふ}えた。','Perusahaan yang menerapkan kerja jarak jauh bertambah.']]},
+   {p:'外国人{がいこくじん}労働{ろうどう}者{しゃ}と特定{とくてい}技能{ぎのう}',e:'Untuk mengatasi kekurangan tenaga kerja, Jepang membuka jalur 技能{ぎのう}実習{じっしゅう} dan 特定{とくてい}技能{ぎのう} (SSW, sejak 2019). Indonesia termasuk negara pengirim terbesar. Program 技能{ぎのう}実習{じっしゅう} direncanakan diganti dengan 育成{いくせい}就労{しゅうろう}.',ex:[['特定{とくてい}技能{ぎのう}の試験{しけん}には、日本{にほん}語{ご}能力{のうりょく}の条件{じょうけん}がある。','Ujian SSW mensyaratkan kemampuan bahasa Jepang.']]},
+   {p:'多{た}文化{ぶんか}共生{きょうせい}',e:'Hidup berdampingan antarbudaya: dukungan bahasa di kantor pemerintah, "やさしい日本{にほん}語{ご}" (bahasa Jepang sederhana untuk warga asing), dan pendidikan anak berlatar asing.',ex:[['市{し}役所{やくしょ}では、やさしい日本{にほん}語{ご}でお知{し}らせを出{だ}している。','Kantor kota mengeluarkan pengumuman dalam bahasa Jepang sederhana.']]}],
+  nu:[{a:'技能{ぎのう}実習{じっしゅう}',b:'特定{とくてい}技能{ぎのう}',la:3,lb:3,t:'技能{ぎのう}実習{じっしゅう} bertujuan alih teknologi ke negara asal. 特定{とくてい}技能{ぎのう} bertujuan mengisi kekurangan tenaga kerja dan memungkinkan pindah perusahaan dalam bidang yang sama. Topik ini sangat relevan untuk lulusan prodi Jepang.'}],
+  vx:[['少子{しょうし}化{か}','penurunan kelahiran'],['高齢{こうれい}化{か}','penuaan populasi'],['過疎{かそ}化{か}','depopulasi desa'],['終身{しゅうしん}雇用{こよう}','kerja seumur hidup'],['年功{ねんこう}序列{じょれつ}','sistem senioritas'],['転職{てんしょく}','pindah kerja'],['働{はたら}き方{かた}改革{かいかく}','reformasi cara kerja'],['多{た}文化{ぶんか}共生{きょうせい}','hidup berdampingan antarbudaya']],
+  quiz:[
+   {q:'子{こ}どもが減{へ}り、高齢{こうれい}者{しゃ}が増{ふ}える現象{げんしょう}は何{なに}か。',o:['少子{しょうし}高齢{こうれい}化{か}','過疎{かそ}化{か}','国際{こくさい}化{か}'],a:0,x:'<b>少子{しょうし}高齢{こうれい}化{か}</b>.'},
+   {q:'年齢{ねんれい}や勤続{きんぞく}年数{ねんすう}で給料{きゅうりょう}が上{あ}がる制度{せいど}は何{なに}か。',o:['年功{ねんこう}序列{じょれつ}','成果{せいか}主義{しゅぎ}','終身{しゅうしん}雇用{こよう}'],a:0,x:'Berdasarkan senioritas: <b>年功{ねんこう}序列{じょれつ}</b>.'},
+   {q:'人手{ひとで}不足{ふそく}を補{おぎな}うため2019 年{ねん}に始{はじ}まった在留{ざいりゅう}資格{しかく}はどれか。',o:['特定{とくてい}技能{ぎのう}','技能{ぎのう}実習{じっしゅう}','留学{りゅうがく}'],a:0,x:'<b>特定{とくてい}技能{ぎのう}</b> (SSW) dimulai 2019.'},
+   {q:'外国人{がいこくじん}にもわかるように簡単{かんたん}にした日本{にほん}語{ご}を何{なに}と言{い}うか。',o:['やさしい日本{にほん}語{ご}','共通{きょうつう}語{ご}','役割{やくわり}語{ご}'],a:0,x:'<b>やさしい日本{にほん}語{ご}</b>.'},
+   {q:'働{はたら}きすぎによる死亡{しぼう}を何{なに}と言{い}うか。',o:['過労{かろう}死{し}','過疎{かそ}化{か}','少子{しょうし}化{か}'],a:0,x:'<b>過労{かろう}死{し}</b> (karoushi).'}]},
+ {id:'ku-b5',grp:'Budaya & Masyarakat · 日本{にほん}事情{じじょう}',title:'Budaya 5 · Pengantar Sastra Jepang',jp:'日本{にほん}文学{ぶんがく}入門{にゅうもん}',sum:'Sastra klasik (万葉集, 源氏物語, 枕草子), haiku dan Basho, serta sastrawan modern dari Soseki sampai Murakami.',
+  scene:{bg:'autumn',alt:'Kolam tua dan seekor katak, inspirasi haiku',
+   art:()=>`<ellipse cx="220" cy="200" rx="110" ry="22" fill="#5B8FA8"/><circle cx="200" cy="196" r="9" fill="none" stroke="#FFFDF8" stroke-width="2"/><circle cx="200" cy="196" r="18" fill="none" stroke="#FFFDF8" stroke-width="1.5" opacity=".6"/>`+TREE(330,215,.8)+P(80,215,1,{c:'#4F7CAC',talk:1}),
+   bub:[[80,108,'五{ご}・七{しち}・五{ご}ですね。','Lima-tujuh-lima ya.']],
+   hot:[[180,180,40,30,'古池{ふるいけ}や　蛙{かわず}飛{と}び込{こ}む　水{みず}の音{おと}（松尾{まつお}芭蕉{ばしょう}）','Kolam tua / seekor katak melompat masuk / suara air (Matsuo Basho)']]},
+  points:[
+   {p:'上代{じょうだい}・中古{ちゅうこ}：万葉{まんよう}集{しゅう}・源氏{げんじ}物語{ものがたり}・枕{まくら}草子{そうし}',e:'万葉{まんよう}集{しゅう} (abad ke-8) adalah antologi puisi waka tertua. 源氏{げんじ}物語{ものがたり} karya 紫式部{むらさきしきぶ} dianggap salah satu novel tertua di dunia. 枕{まくら}草子{そうし} karya 清少納言{せいしょうなごん} adalah esai (随筆{ずいひつ}) dengan pengamatan tajam tentang kehidupan istana.',ex:[['『源氏{げんじ}物語{ものがたり}』の作者{さくしゃ}は紫式部{むらさきしきぶ}です。','Pengarang Hikayat Genji adalah Murasaki Shikibu.']]},
+   {p:'中世{ちゅうせい}：軍記{ぐんき}物語{ものがたり}と随筆{ずいひつ}',e:'平家{へいけ}物語{ものがたり} mengisahkan kejatuhan klan Taira dengan tema ketidakkekalan (無常{むじょう}). 方丈{ほうじょう}記{き} dan 徒然草{つれづれぐさ} adalah dua esai klasik penting lainnya.',ex:[['『平家{へいけ}物語{ものがたり}』は琵琶{びわ}法師{ほうし}によって語{かた}られた。','Kisah Heike dituturkan oleh pendeta pemain biwa.']]},
+   {p:'近世{きんせい}：俳句{はいく}と松尾{まつお}芭蕉{ばしょう}',e:'Haiku: puisi 5-7-5 mora dengan 季語{きご} (kata musim). 松尾{まつお}芭蕉{ばしょう} (zaman Edo) adalah penyair haiku paling terkenal, penulis『おくのほそ道{みち}』. Haiku "古池{ふるいけ}や" (musim semi, kata musim: 蛙{かわず}) adalah karya klasik yang sudah menjadi domain publik.',ex:[['古池{ふるいけ}や　蛙{かわず}飛{と}び込{こ}む　水{みず}の音{おと}','5 / 7 / 5 mora, kata musim: 蛙 (musim semi)']]},
+   {p:'近代{きんだい}文学{ぶんがく}',e:'夏目{なつめ}漱石{そうせき} (『吾輩{わがはい}は猫{ねこ}である』『こころ』), 森{もり}鷗外{おうがい}, 芥川{あくたがわ}龍之介{りゅうのすけ} (『羅生{らしょう}門{もん}』). 川端{かわばた}康成{やすなり} menerima Hadiah Nobel Sastra 1968 sebagai orang Jepang pertama, disusul 大江{おおえ}健三郎{けんざぶろう} (1994).',ex:[['川端{かわばた}康成{やすなり}は『雪国{ゆきぐに}』で知{し}られる。','Kawabata Yasunari terkenal dengan Yukiguni (Negeri Salju).']]},
+   {p:'現代{げんだい}文学{ぶんがく}と研究{けんきゅう}テーマ',e:'村上{むらかみ}春樹{はるき}, 吉本{よしもと}ばなな, dan 東野{とうの}圭吾{けいご} banyak diterjemahkan ke bahasa Indonesia. Tema skripsi sastra yang umum: analisis tokoh, nilai budaya, simbol, dan perbandingan karya asli dengan terjemahan atau adaptasi film.',ex:[['この小説{しょうせつ}の主人{しゅじん}公{こう}の心理{しんり}を分析{ぶんせき}する。','Menganalisis psikologi tokoh utama novel ini.']]}],
+  nu:[{a:'俳句{はいく}（五{ご}・七{しち}・五{ご}）',b:'短歌{たんか}（五{ご}・七{しち}・五{ご}・七{しち}・七{しち}）',la:3,lb:3,t:'Haiku harus memiliki 季語{きご} dan berjumlah 17 mora. 短歌{たんか} (31 mora) adalah bentuk waka yang lebih tua dan lebih bebas mengungkapkan perasaan.'}],
+  vx:[['文学{ぶんがく}','sastra'],['作品{さくひん}','karya'],['作者{さくしゃ}','pengarang'],['小説{しょうせつ}','novel'],['随筆{ずいひつ}','esai'],['俳句{はいく}','haiku'],['季語{きご}','kata musim'],['登場{とうじょう}人物{じんぶつ}','tokoh']],
+  quiz:[
+   {q:'『源氏{げんじ}物語{ものがたり}』の作者{さくしゃ}は誰{だれ}か。',o:['紫式部{むらさきしきぶ}','清少納言{せいしょうなごん}','松尾{まつお}芭蕉{ばしょう}'],a:0,x:'<b>紫式部{むらさきしきぶ}</b>. 清少納言{せいしょうなごん} menulis 枕{まくら}草子{そうし}.'},
+   {q:'俳句{はいく}に必{かなら}ず入{い}れる、季節{きせつ}を表{あらわ}す言葉{ことば}は何{なに}か。',o:['季語{きご}','枕詞{まくらことば}','擬音{ぎおん}語{ご}'],a:0,x:'<b>季語{きご}</b> (kata musim).'},
+   {q:'日本人{にほんじん}で初{はじ}めてノーベル文学{ぶんがく}賞{しょう}を受賞{じゅしょう}したのは誰{だれ}か。',o:['川端{かわばた}康成{やすなり}','夏目{なつめ}漱石{そうせき}','村上{むらかみ}春樹{はるき}'],a:0,x:'<b>川端{かわばた}康成{やすなり}</b> (1968).'},
+   {q:'『吾輩{わがはい}は猫{ねこ}である』の作者{さくしゃ}は誰{だれ}か。',o:['夏目{なつめ}漱石{そうせき}','芥川{あくたがわ}龍之介{りゅうのすけ}','森{もり}鷗外{おうがい}'],a:0,x:'<b>夏目{なつめ}漱石{そうせき}</b>.'},
+   {q:'俳句{はいく}は全部{ぜんぶ}で何{なに}音{おん}（拍{はく}）か。',o:['十七音{じゅうしちおん}','三十一{さんじゅういち}音{おん}','十四{じゅうよん}音{おん}'],a:0,x:'5 + 7 + 5 = <b>17</b> mora.'}]},
+ {id:'ku-w1',grp:'Menulis & Menerjemah · 作文{さくぶん}・翻訳{ほんやく}',title:'Menulis 1 · Ragam Tulis dan Genkou Youshi',jp:'書{か}き言葉{ことば}と原稿{げんこう}用{よう}紙{し}',sum:'Gaya です・ます vs だ・である, mengubah bahasa lisan menjadi bahasa tulis, dan aturan kertas genkou youshi.',
+  scene:{bg:'room',alt:'Mahasiswa menulis karangan di kertas genkou youshi',
+   art:()=>DESK(200,215,1.5)+`<rect x="160" y="150" width="80" height="26" fill="#FFFDF8" stroke="#B5462F"/>`+[170,180,190,200,210,220,230].map(x=>`<line x1="${x}" y1="150" x2="${x}" y2="176" stroke="#E2B8A8"/>`).join('')+P(110,215,1.1,{c:'#4F7CAC',arm:'hold',talk:1})+OWL(345,226,.7),
+   bub:[[110,106,'「しかし」で書{か}こう。','Tulis dengan "shikashi".']],
+   hot:[[160,150,80,26,'原稿{げんこう}用{よう}紙{し}：一{ひと}マスに一{いち}字{じ}、段落{だんらく}の最初{さいしょ}は一{ひと}マスあける。','Genkou youshi: satu kotak satu huruf, awal paragraf kosongkan satu kotak.']]},
+  points:[
+   {p:'文体{ぶんたい}：です・ます体{たい} と だ・である体{たい}',e:'です・ます体{たい} (敬体{けいたい}) untuk surat, email, dan pidato. だ・である体{たい} (常体{じょうたい}) untuk laporan, makalah, skripsi, dan artikel. Jangan mencampur keduanya dalam satu tulisan.',ex:[['本{ほん}研究{けんきゅう}の目的{もくてき}は、類義{るいぎ}語{ご}の違{ちが}いを明{あき}らかにすることである。','Gaya である untuk tulisan ilmiah']]},
+   {p:'話{はな}し言葉{ことば} → 書{か}き言葉{ことば}',e:'Ubah ungkapan lisan menjadi tulisan: でも → しかし, だから → そのため, すごく → 非常{ひじょう}に, いろんな → さまざまな, ちゃんと → きちんと, 〜けど → 〜が, 〜じゃない → 〜ではない.',ex:[['すごく大事{だいじ}だけど、ちゃんとやってない。→ 非常{ひじょう}に重要{じゅうよう}であるが、きちんと行{おこな}われていない。','Lisan → tulis']]},
+   {p:'原稿{げんこう}用{よう}紙{し}の使{つか}い方{かた}',e:'Satu kotak untuk satu huruf atau tanda baca. Awal paragraf dikosongkan satu kotak. Tanda 、。 tidak boleh di awal baris (ditulis di kotak terakhir baris sebelumnya). っゃゅょ tetap satu kotak.',ex:[['「」は一{ひと}マス、。」は同{おな}じマスに書{か}く。','Tanda kutip dan titik di akhir kutipan']]},
+   {p:'作文{さくぶん}の構成{こうせい}',e:'Struktur karangan dasar: はじめ (topik dan pendapat), なか (alasan dan contoh), おわり (kesimpulan). Untuk 意見{いけん}文{ぶん}, sebutkan pendapat di awal dan ulangi di akhir.',ex:[['私{わたし}は〜と考{かんが}える。なぜなら〜からである。したがって〜。','Pola paragraf pendapat']]}],
+  nu:[{a:'いろんな問題{もんだい}があるけど…',b:'さまざまな問題{もんだい}があるが…',la:1,lb:4,t:'Dosen di Jepang sangat memperhatikan perbedaan ragam lisan dan tulis. Ungkapan lisan dalam laporan dianggap kurang akademis dan bisa mengurangi nilai.'}],
+  vx:[['作文{さくぶん}','karangan'],['文体{ぶんたい}','gaya bahasa'],['敬体{けいたい}','gaya sopan (です・ます)'],['常体{じょうたい}','gaya biasa (だ・である)'],['書{か}き言葉{ことば}','ragam tulis'],['話{はな}し言葉{ことば}','ragam lisan'],['原稿{げんこう}用{よう}紙{し}','kertas genkou youshi'],['段落{だんらく}','paragraf']],
+  quiz:[
+   {q:'レポートで「でも」の代{か}わりに使{つか}うのはどれか。',o:['しかし','だけど','けど'],a:0,x:'Ragam tulis: <b>しかし</b>.'},
+   {q:'「すごく」を書{か}き言葉{ことば}にするとどれか。',o:['非常{ひじょう}に','めっちゃ','とっても'],a:0,x:'<b>非常{ひじょう}に</b> / 極{きわ}めて.'},
+   {q:'論文{ろんぶん}に適{てき}した文体{ぶんたい}はどれか。',o:['だ・である体{たい}','です・ます体{たい}','話{はな}し言葉{ことば}'],a:0,x:'Tulisan ilmiah: <b>だ・である体{たい}</b>.'},
+   {q:'原稿{げんこう}用{よう}紙{し}で段落{だんらく}の最初{さいしょ}はどうするか。',o:['一{ひと}マスあける','二{に}行{ぎょう}あける','記号{きごう}を書{か}く'],a:0,x:'Awal paragraf: <b>kosongkan satu kotak</b>.'},
+   {q:'「いろんな」を書{か}き言葉{ことば}にするとどれか。',o:['さまざまな','いっぱいな','いろいろの'],a:0,x:'<b>さまざまな</b>.'}]},
+ {id:'ku-w2',grp:'Menulis & Menerjemah · 作文{さくぶん}・翻訳{ほんやく}',title:'Menulis 2 · Laporan dan Makalah',jp:'レポート・論文{ろんぶん}の書{か}き方{かた}',sum:'Struktur 序論・本論・結論, ungkapan akademik, kutipan, dan daftar pustaka.',
+  scene:{bg:'room',alt:'Mahasiswa menyusun makalah di laptop',
+   art:()=>DESK(200,215,1.5)+PC(200,170,.95)+BOOK(270,180,.8,'#2F6F8F')+BOOK(285,168,.7,'#B5462F')+P(100,215,1.1,{c:'#4F7CAC',talk:1}),
+   bub:[[100,106,'本稿{ほんこう}では…','Dalam tulisan ini…']],
+   hot:[[160,135,80,40,'序論{じょろん}・本論{ほんろん}・結論{けつろん}の三{さん}部{ぶ}構成{こうせい}で書{か}く。','Tulis dengan tiga bagian: pendahuluan, isi, kesimpulan.']]},
+  points:[
+   {p:'序論{じょろん}・本論{ほんろん}・結論{けつろん}',e:'序論{じょろん}: latar belakang, tujuan, dan pertanyaan. 本論{ほんろん}: data, analisis, dan pembahasan. 結論{けつろん}: jawaban atas pertanyaan, ringkasan, dan tugas berikutnya (今後{こんご}の課題{かだい}).',ex:[['本稿{ほんこう}では、〜について考察{こうさつ}する。','Dalam tulisan ini, akan dibahas tentang…']]},
+   {p:'事実{じじつ}と意見{いけん}を分{わ}ける',e:'Bedakan fakta (〜である, 〜によると) dan pendapat (〜と考{かんが}えられる, 〜と思{おも}われる). Dalam tulisan ilmiah, hindari 〜と思{おも}う yang terlalu subjektif.',ex:[['調査{ちょうさ}の結果{けっか}、〜ことが明{あき}らかになった。','Hasil survei menunjukkan bahwa….']]},
+   {p:'引用{いんよう}のしかた',e:'Kutipan langsung memakai「」dan nama penulis serta tahun. Kutipan tidak langsung memakai 〜によれば / 〜は〜と述{の}べている. Selalu cantumkan sumber untuk menghindari plagiarisme (剽窃{ひょうせつ}).',ex:[['田中{たなか}（2020）は「〜」と述{の}べている。','Tanaka (2020) menyatakan bahwa "…".']]},
+   {p:'参考{さんこう}文献{ぶんけん}の書{か}き方{かた}',e:'Format umum: Nama penulis (tahun)『judul buku』penerbit. Judul artikel memakai「」dan nama jurnal memakai『』.',ex:[['山田{やまだ}太郎{たろう}（2018）『日本{にほん}語{ご}の類義{るいぎ}語{ご}』〇〇出版{しゅっぱん}','Contoh entri daftar pustaka']]},
+   {p:'よく使{つか}うアカデミック表現{ひょうげん}',e:'〜について論{ろん}じる (membahas), 〜に焦点{しょうてん}を当{あ}てる (berfokus pada), 〜を明{あき}らかにする (mengungkap), 〜と言{い}える (dapat dikatakan), 以上{いじょう}のことから (dari uraian di atas).',ex:[['以上{いじょう}のことから、〜と言{い}えるだろう。','Dari uraian di atas, dapat dikatakan bahwa….']]}],
+  vx:[['序論{じょろん}','pendahuluan'],['本論{ほんろん}','isi pembahasan'],['結論{けつろん}','kesimpulan'],['考察{こうさつ}','pembahasan / analisis'],['引用{いんよう}','kutipan'],['参考{さんこう}文献{ぶんけん}','daftar pustaka'],['剽窃{ひょうせつ}','plagiarisme'],['今後{こんご}の課題{かだい}','tugas ke depan']],
+  quiz:[
+   {q:'研究{けんきゅう}の目的{もくてき}や背景{はいけい}を書{か}く部分{ぶぶん}はどれか。',o:['序論{じょろん}','本論{ほんろん}','結論{けつろん}'],a:0,x:'Latar belakang dan tujuan: <b>序論{じょろん}</b>.'},
+   {q:'論文{ろんぶん}で意見{いけん}を述{の}べるとき、より適切{てきせつ}な表現{ひょうげん}はどれか。',o:['〜と考{かんが}えられる','〜と思{おも}うんだけど','〜に決{き}まっている'],a:0,x:'Ungkapan akademik yang objektif: <b>〜と考{かんが}えられる</b>.'},
+   {q:'他人{たにん}の文章{ぶんしょう}を出典{しゅってん}なしで使{つか}うことを何{なに}と言{い}うか。',o:['剽窃{ひょうせつ}','引用{いんよう}','要約{ようやく}'],a:0,x:'<b>剽窃{ひょうせつ}</b> (plagiarisme).'},
+   {q:'本{ほん}のタイトルに使{つか}うかっこはどれか。',o:['『』','「」','（）'],a:0,x:'Judul buku: <b>『』</b>. Judul artikel: 「」.'},
+   {q:'「以上{いじょう}のことから」の意味{いみ}はどれか。',o:['Dari uraian di atas','Sebagai contoh','Di sisi lain'],a:0,x:'以上{いじょう}のことから = <b>dari uraian di atas</b>.'}]},
+ {id:'ku-w3',grp:'Menulis & Menerjemah · 作文{さくぶん}・翻訳{ほんやく}',title:'Menerjemah 1 · Jepang ke Indonesia',jp:'翻訳{ほんやく}①　日本{にほん}語{ご}→インドネシア語{ご}',sum:'Teknik menerjemahkan: subjek yang hilang, kalimat panjang, onomatope, keigo, dan latihan dengan teks.',
+  scene:{bg:'room',alt:'Penerjemah membandingkan teks Jepang dan Indonesia',
+   art:()=>DESK(200,215,1.5)+`<rect x="140" y="150" width="56" height="34" fill="#FFFDF8" stroke="#3B2A20"/><rect x="206" y="150" width="56" height="34" fill="#FFFDF8" stroke="#3B2A20"/>`+TXT(168,172,'日',14,'#B5462F',800)+TXT(234,172,'ID',12,'#2F6F8F',800)+P(90,215,1.1,{c:'#4F7CAC',talk:1}),
+   bub:[[90,106,'主語{しゅご}は誰{だれ}だろう？','Subjeknya siapa ya?']],
+   hot:[[140,150,122,34,'訳{やく}す前{まえ}に、省略{しょうりゃく}された主語{しゅご}を確認{かくにん}する。','Sebelum menerjemahkan, pastikan subjek yang dihilangkan.']]},
+  points:[
+   {p:'省略{しょうりゃく}された主語{しゅご}を補{おぎな}う',e:'Bahasa Jepang sering menghilangkan subjek, sedangkan bahasa Indonesia membutuhkannya. Tentukan subjek dari konteks, keigo, dan bentuk kata kerja (てくれる = orang lain untuk saya).',ex:[['先生{せんせい}が教{おし}えてくださった。→ Guru mengajari saya.','Subjek penerima "saya" ditambahkan']]},
+   {p:'長{なが}い修飾{しゅうしょく}節{せつ}を分{わ}ける',e:'Klausa penjelas Jepang diletakkan sebelum kata benda dan bisa sangat panjang. Dalam bahasa Indonesia, pecah menjadi "yang…" atau dua kalimat.',ex:[['昨日{きのう}駅{えき}で会{あ}った大学{だいがく}の先輩{せんぱい} → senior kampus yang saya temui di stasiun kemarin','Urutan dibalik']]},
+   {p:'オノマトペ',e:'Onomatope (ドキドキ, ペコペコ, ニコニコ) jarang punya padanan langsung. Terjemahkan maknanya: お腹{なか}がペコペコ → sangat lapar.',ex:[['ニコニコ笑{わら}っている → tersenyum lebar','Terjemahkan makna, bukan bunyi']]},
+   {p:'敬語{けいご}と呼称{こしょう}',e:'Keigo tidak bisa diterjemahkan kata per kata. Gunakan pilihan kata sopan bahasa Indonesia (beliau, Bapak/Ibu, mohon). さん dan 先輩{せんぱい} bisa diterjemahkan sesuai konteks atau dipertahankan.',ex:[['社長{しゃちょう}がお見{み}えになりました。→ Direktur sudah datang. / Bapak Direktur sudah tiba.','Kesopanan dialihkan lewat pilihan kata']]},
+   {p:'直訳{ちょくやく}と意訳{いやく}',e:'直訳{ちょくやく} (harfiah) setia pada struktur, 意訳{いやく} (bebas) setia pada makna dan kealamian. Untuk ungkapan budaya seperti よろしくお願{ねが}いします, gunakan 意訳{いやく} sesuai situasi.',ex:[['よろしくお願{ねが}いします → Mohon bantuannya / Salam kenal / Terima kasih sebelumnya','Satu ungkapan, banyak terjemahan']]}],
+  rd:[{h:'翻訳{ほんやく}練習{れんしゅう}',t:'Latihan menerjemahkan · メール',a:['先日{せんじつ}はお忙{いそが}しいところ、工場{こうじょう}見学{けんがく}の機会{きかい}をいただき、誠{まこと}にありがとうございました。','実際{じっさい}に現場{げんば}を拝見{はいけん}し、品質{ひんしつ}管理{かんり}の大切{たいせつ}さを改{あらた}めて感{かん}じました。','今後{こんご}ともどうぞよろしくお願{ねが}いいたします。'],
+   tr:['Contoh terjemahan: Terima kasih banyak telah memberi kami kesempatan untuk mengunjungi pabrik di tengah kesibukan Bapak/Ibu beberapa hari yang lalu.','Dengan melihat langsung lokasi kerja, saya kembali menyadari pentingnya pengendalian mutu.','Kami berharap dapat terus bekerja sama ke depannya.']}],
+  vx:[['翻訳{ほんやく}','penerjemahan'],['通訳{つうやく}','penjurubahasaan'],['原文{げんぶん}','teks sumber'],['訳文{やくぶん}','teks terjemahan'],['直訳{ちょくやく}','terjemahan harfiah'],['意訳{いやく}','terjemahan bebas'],['省略{しょうりゃく}','penghilangan'],['擬態{ぎたい}語{ご}','kata mimetik']],
+  quiz:[
+   {q:'意味{いみ}を重視{じゅうし}して自然{しぜん}に訳{やく}す方法{ほうほう}はどれか。',o:['意訳{いやく}','直訳{ちょくやく}','逐語{ちくご}訳{やく}'],a:0,x:'<b>意訳{いやく}</b> = terjemahan bebas yang mementingkan makna.'},
+   {q:'「お腹{なか}がペコペコだ」の適切{てきせつ}な訳{やく}はどれか。',o:['Saya sangat lapar','Perut saya berbunyi peko-peko','Perut saya kecil'],a:0,x:'Terjemahkan makna onomatope: <b>sangat lapar</b>.'},
+   {q:'「先生{せんせい}が教{おし}えてくださった」の省略{しょうりゃく}された人物{じんぶつ}は誰{だれ}か。',o:['Penutur (saya) sebagai penerima','Guru lain','Orang ketiga'],a:0,x:'くださる = pemberian kepada penutur, jadi subjek penerima adalah <b>saya</b>.'},
+   {q:'Dalam latihan email di atas, 「工場{こうじょう}見学{けんがく}」 berarti…',o:['kunjungan pabrik','pembangunan pabrik','pekerjaan pabrik'],a:0,x:'見学{けんがく} = kunjungan untuk melihat dan belajar: <b>kunjungan pabrik</b>.'},
+   {q:'Terjemahan paling alami untuk 「今後{こんご}ともどうぞよろしくお願{ねが}いいたします」 di akhir email kerja adalah…',o:['Kami berharap dapat terus bekerja sama ke depannya','Mulai sekarang tolong baik-baik','Sampai jumpa lagi besok'],a:0,x:'Ungkapan penutup bisnis diterjemahkan secara 意訳{いやく} sesuai fungsinya.'}]},
+ {id:'ku-w4',grp:'Menulis & Menerjemah · 作文{さくぶん}・翻訳{ほんやく}',title:'Menerjemah 2 · Indonesia ke Jepang',jp:'翻訳{ほんやく}②　インドネシア語{ご}→日本{にほん}語{ご}',sum:'Menghindari あなた dan 彼/彼女 berlebihan, memilih gaya bahasa, partikel, dan istilah khusus.',
+  scene:{bg:'room',alt:'Penerjemah memeriksa kamus dan glosarium',
+   art:()=>DESK(200,215,1.5)+BOOK(170,178,1,'#2F6F8F')+BOOK(230,178,1,'#B5462F')+P(100,215,1.1,{c:'#4F7CAC',talk:1})+P(320,215,1.05,{c:'#3B3F4A',h:'#555',gl:1,flip:1}),
+   bub:[[100,106,'「あなた」は使{つか}わない？','Tidak pakai "anata"?']],
+   hot:[[150,160,100,30,'用語{ようご}集{しゅう}を作{つく}って、訳語{やくご}を統一{とういつ}する。','Buat glosarium agar istilah terjemahan seragam.']]},
+  points:[
+   {p:'「あなた」「彼{かれ}・彼女{かのじょ}」を多用{たよう}しない',e:'Kamu / Anda / dia dalam bahasa Indonesia sering diterjemahkan menjadi nama atau jabatan (田中{たなか}さん, 部長{ぶちょう}), atau dihilangkan. あなた kepada atasan terdengar tidak sopan.',ex:[['Apakah Anda sudah makan? → （部{ぶ}長{ちょう}、）もうお食事{しょくじ}はお済{す}みですか。','Gunakan jabatan atau hilangkan subjek']]},
+   {p:'文体{ぶんたい}を決{き}める',e:'Sebelum menerjemahkan, tentukan gaya: です・ます untuk surat dan pengumuman, だ・である untuk artikel dan dokumen, keigo untuk klien. Jaga konsistensi dari awal sampai akhir.',ex:[['Dengan hormat, → 拝啓{はいけい}（ビジネス文書{ぶんしょ}）','Gaya disesuaikan dengan jenis dokumen']]},
+   {p:'助詞{じょし}の選{えら}び方{かた}：は・が・に・で',e:'Kesalahan paling sering dalam terjemahan Indonesia → Jepang adalah partikel. "Di" bisa menjadi に (keberadaan) atau で (tempat kegiatan).',ex:[['Saya tinggal di Jakarta. → ジャカルタに住{す}んでいます。／ Saya bekerja di Jakarta. → ジャカルタで働{はたら}いています。','に vs で']]},
+   {p:'固有{こゆう}名詞{めいし}と専門{せんもん}用語{ようご}',e:'Nama orang Indonesia ditulis dengan katakana. Istilah khusus (hukum, teknik, medis) harus dicek di glosarium resmi atau korpus. Buat 用語{ようご}集{しゅう} sendiri agar konsisten.',ex:[['Kementerian Ketenagakerjaan → インドネシア労働{ろうどう}省{しょう}','Nama lembaga resmi']]},
+   {p:'見直{みなお}しのチェックリスト',e:'Setelah selesai: (1) baca hanya teks Jepang, apakah alami? (2) cek angka, nama, tanggal (3) cek konsistensi istilah (4) minta penutur asli memeriksa (ネイティブチェック) bila memungkinkan.',ex:[['数字{すうじ}・日付{ひづけ}・固有{こゆう}名詞{めいし}は必{かなら}ず原文{げんぶん}と照合{しょうごう}する。','Angka, tanggal, dan nama selalu dicocokkan dengan teks sumber.']]}],
+  rd:[{h:'翻訳{ほんやく}練習{れんしゅう}',t:'Latihan menerjemahkan · pengumuman kampus',a:['Pengumuman: Kuliah umum tentang budaya kerja di Jepang akan diadakan pada hari Jumat, 14 November, pukul 13.00 di Aula Gedung B. Mahasiswa semester lima ke atas diwajibkan hadir.'],
+   tr:['訳例{やくれい}：【お知{し}らせ】日本{にほん}の職場{しょくば}文化{ぶんか}に関{かん}する特別{とくべつ}講義{こうぎ}を、十一{じゅういち}月{がつ}十四日{じゅうよっか}（金{きん}）十三時{じゅうさんじ}より、B棟{とう}ホールにて行{おこな}います。五{ご}学期{がっき}以上{いじょう}の学生{がくせい}は必{かなら}ず出席{しゅっせき}してください。']}],
+  vx:[['訳語{やくご}','padanan terjemahan'],['用語{ようご}集{しゅう}','glosarium'],['固有{こゆう}名詞{めいし}','nama diri'],['専門{せんもん}用語{ようご}','istilah khusus'],['統一{とういつ}','penyeragaman'],['見直{みなお}し','pemeriksaan ulang'],['照合{しょうごう}','pencocokan'],['出席{しゅっせき}','kehadiran']],
+  quiz:[
+   {q:'Terjemahan yang lebih alami untuk "Apakah Bapak sudah membaca laporan saya?" kepada atasan adalah…',o:['部長{ぶちょう}、私{わたし}の報告{ほうこく}書{しょ}はもうご覧{らん}になりましたか。','あなたは私{わたし}の報告{ほうこく}書{しょ}を読{よ}みましたか。','彼{かれ}は私{わたし}の報告{ほうこく}書{しょ}を読{よ}んだか。'],a:0,x:'Gunakan jabatan dan 尊敬{そんけい}語{ご} (ご覧{らん}になる). あなた tidak sopan kepada atasan.'},
+   {q:'"Saya bekerja di Bandung." の正{ただ}しい訳{やく}はどれか。',o:['バンドンで働{はたら}いています。','バンドンに働{はたら}いています。','バンドンを働{はたら}いています。'],a:0,x:'Tempat kegiatan memakai <b>で</b>.'},
+   {q:'訳語{やくご}を統一{とういつ}するために作{つく}るものはどれか。',o:['用語{ようご}集{しゅう}','参考{さんこう}文献{ぶんけん}','原稿{げんこう}用{よう}紙{し}'],a:0,x:'<b>用語{ようご}集{しゅう}</b> (glosarium).'},
+   {q:'Dalam contoh pengumuman, 「必{かなら}ず出席{しゅっせき}してください」 adalah terjemahan dari…',o:['diwajibkan hadir','boleh hadir','dilarang hadir'],a:0,x:'必{かなら}ず出席{しゅっせき} = <b>wajib hadir</b>.'},
+   {q:'翻訳{ほんやく}後{ご}、日本{にほん}語{ご}母語{ぼご}話者{わしゃ}に確認{かくにん}してもらうことを何{なに}と言{い}うか。',o:['ネイティブチェック','意訳{いやく}','引用{いんよう}'],a:0,x:'<b>ネイティブチェック</b>.'}]},
+ {id:'ku-w5',grp:'Menulis & Menerjemah · 作文{さくぶん}・翻訳{ほんやく}',title:'Skripsi · Dari Proposal sampai Sidang',jp:'卒業{そつぎょう}論文{ろんぶん}と口頭{こうとう}試問{しもん}',sum:'Menentukan tema, struktur bab skripsi, menulis abstrak (要旨), dan ungkapan presentasi serta tanya jawab sidang.',
+  scene:{bg:'room',alt:'Mahasiswa mempresentasikan skripsi di depan dosen penguji',
+   art:()=>BOARD(230,18,220,90,'',14)+TXT(230,56,'卒業論文',18,'#FFFDF8',800)+TXT(230,86,'発表',13,'#F4B642',700)+P(90,215,1.1,{c:'#4F7CAC',tie:'#B5462F',arm:'point',talk:1})+DESK(300,215,1.1)+P(300,200,.9,{c:'#3B3F4A',h:'#555',gl:1,flip:1}),
+   bub:[[90,106,'ご清聴{せいちょう}ありがとうございました。','Terima kasih atas perhatiannya.']],
+   hot:[[300,26,20,20,'本{ほん}研究{けんきゅう}の目的{もくてき}は、〜を明{あき}らかにすることです。','Tujuan penelitian ini adalah mengungkap….']]},
+  points:[
+   {p:'テーマの決{き}め方{かた}',e:'Tema yang baik: spesifik, punya data yang bisa dikumpulkan, dan belum banyak diteliti. Bidang populer: 日本{にほん}語学{ごがく} (analisis sinonim, partikel, keigo), 日本{にほん}語{ご}教育{きょういく} (kesalahan pelajar, metode), 文学{ぶんがく} (analisis tokoh), 日本{にほん}事情{じじょう} (budaya dan masyarakat).',ex:[['「〜ばかり」と「〜だけ」の意味{いみ}の違{ちが}い：小説{しょうせつ}コーパスを用{もち}いた分析{ぶんせき}','Contoh judul yang spesifik']]},
+   {p:'卒論{そつろん}の構成{こうせい}',e:'第{だい}一{いち}章{しょう} 序論{じょろん} (背景{はいけい}・目的{もくてき}・研究{けんきゅう}課題{かだい}), 第{だい}二{に}章{しょう} 先行{せんこう}研究{けんきゅう}, 第{だい}三{さん}章{しょう} 研究{けんきゅう}方法{ほうほう} (データ・対象{たいしょう}), 第{だい}四{よん}章{しょう} 分析{ぶんせき}・考察{こうさつ}, 第{だい}五{ご}章{しょう} 結論{けつろん} (まとめ・今後{こんご}の課題{かだい}), 参考{さんこう}文献{ぶんけん}, 資料{しりょう}.',ex:[['第{だい}二{に}章{しょう}では、先行{せんこう}研究{けんきゅう}を整理{せいり}し、本{ほん}研究{けんきゅう}の位置{いち}づけを示{しめ}す。','Bab dua merangkum penelitian terdahulu']]},
+   {p:'要旨{ようし}（アブストラクト）',e:'Ringkasan 200–400 karakter: tujuan, metode, hasil, kesimpulan. Ditulis dengan だ・である体{たい} dan tanpa pendapat yang tidak didukung data.',ex:[['本{ほん}研究{けんきゅう}では、アンケート調査{ちょうさ}を通{とお}して、学習{がくしゅう}者{しゃ}の敬語{けいご}使用{しよう}の傾向{けいこう}を分析{ぶんせき}した。','Kalimat pembuka abstrak']]},
+   {p:'発表{はっぴょう}の表現{ひょうげん}',e:'Pembukaan: これから〜について発表{はっぴょう}いたします. Transisi: 次{つぎ}に〜についてご説明{せつめい}します. Penutup: 以上{いじょう}で発表{はっぴょう}を終{お}わります。ご清聴{せいちょう}ありがとうございました.',ex:[['まず、研究{けんきゅう}の背景{はいけい}についてお話{はな}しします。','Pertama, saya akan menyampaikan latar belakang penelitian.']]},
+   {p:'質疑{しつぎ}応答{おうとう}',e:'Saat menjawab pertanyaan penguji: ご質問{しつもん}ありがとうございます (terima kasih atas pertanyaannya), おっしゃるとおりです (benar sekali), 今後{こんご}の課題{かだい}とさせていただきます (akan saya jadikan tugas ke depan), 確認{かくにん}させていただいてもよろしいでしょうか (bolehkah saya memastikan).',ex:[['ご指摘{してき}の点{てん}につきましては、今後{こんご}の課題{かだい}とさせていただきます。','Poin yang Bapak/Ibu sampaikan akan saya jadikan tugas penelitian selanjutnya.']]}],
+  kw:[{k:'k',p:'Sidang skripsi · tanya jawab',sp:['審査{しんさ}の先生{せんせい}','アンディ'],l:[
+   [0,'データの数{かず}が少{すく}ないのではありませんか。','Bukankah jumlah datanya terlalu sedikit?'],
+   [1,'*ご質問{しつもん}ありがとうございます*。*おっしゃるとおり*、データは五十{ごじゅう}例{れい}です。','Terima kasih atas pertanyaannya. Benar, datanya lima puluh contoh.'],
+   [0,'では、結論{けつろん}は一般{いっぱん}化{か}できますか。','Kalau begitu, apakah kesimpulannya bisa digeneralisasi?'],
+   [1,'その点{てん}につきましては、*今後{こんご}の課題{かだい}とさせていただきます*。','Poin tersebut akan saya jadikan tugas penelitian ke depan.']],
+   tip:'Akui keterbatasan penelitian dengan tenang dan sopan. Penguji menilai cara berpikir, bukan hanya hasil.'}],
+  vx:[['卒業{そつぎょう}論文{ろんぶん}','skripsi'],['先行{せんこう}研究{けんきゅう}','penelitian terdahulu'],['研究{けんきゅう}方法{ほうほう}','metode penelitian'],['研究{けんきゅう}課題{かだい}','pertanyaan penelitian'],['要旨{ようし}','abstrak'],['指導{しどう}教員{きょういん}','dosen pembimbing'],['口頭{こうとう}試問{しもん}','sidang lisan'],['質疑{しつぎ}応答{おうとう}','tanya jawab']],
+  quiz:[
+   {q:'これまでの研究{けんきゅう}をまとめる章{しょう}は何{なに}か。',o:['先行{せんこう}研究{けんきゅう}','結論{けつろん}','資料{しりょう}'],a:0,x:'<b>先行{せんこう}研究{けんきゅう}</b> (penelitian terdahulu).'},
+   {q:'論文{ろんぶん}の内容{ないよう}を短{みじか}くまとめたものは何{なに}か。',o:['要旨{ようし}','目次{もくじ}','序論{じょろん}'],a:0,x:'<b>要旨{ようし}</b> (abstrak).'},
+   {q:'発表{はっぴょう}の最後{さいご}に言{い}う言葉{ことば}として最{もっと}も適切{てきせつ}なのはどれか。',o:['以上{いじょう}で発表{はっぴょう}を終{お}わります。ご清聴{せいちょう}ありがとうございました。','じゃあ、これで終{お}わりです。','発表{はっぴょう}、おしまい！'],a:0,x:'Penutup presentasi formal.'},
+   {q:'答{こた}えられない質問{しつもん}を受{う}けたとき、適切{てきせつ}な表現{ひょうげん}はどれか。',o:['今後{こんご}の課題{かだい}とさせていただきます','知{し}りません','それは関係{かんけい}ないです'],a:0,x:'<b>今後{こんご}の課題{かだい}とさせていただきます</b>: sopan dan akademis.'},
+   {q:'卒業{そつぎょう}論文{ろんぶん}を指導{しどう}する先生{せんせい}は何{なに}と呼{よ}ぶか。',o:['指導{しどう}教員{きょういん}','担任{たんにん}','校長{こうちょう}'],a:0,x:'<b>指導{しどう}教員{きょういん}</b> (dosen pembimbing).'}]},
+ {id:'ku-z1',grp:'Bisnis & Keigo · ビジネス日本{にほん}語{ご}',title:'Bisnis 1 · Sistem Keigo Lima Kategori',jp:'敬語{けいご}の五{ご}分類{ぶんるい}と誤用{ごよう}',sum:'尊敬語, 謙譲語Ⅰ, 謙譲語Ⅱ (丁重語), 丁寧語, 美化語, serta kesalahan umum: 二重敬語 dan バイト敬語.',
+  scene:{bg:'room',alt:'Dosen menjelaskan lima kategori keigo',
+   art:()=>BOARD(200,18,270,100,'',14)+TXT(200,48,'尊敬語・謙譲語Ⅰ・謙譲語Ⅱ',13,'#FFFDF8',800)+TXT(200,74,'丁寧語・美化語',13,'#FFFDF8',800)+TXT(200,102,'×おっしゃられる',13,'#F4B642',800)+P(80,215,1.05,{c:'#3B3F4A',h:'#555',gl:1,tie:'#2F6F8F',arm:'point',talk:1})+P(330,215,1.05,{c:'#4F7CAC',tie:'#B5462F',flip:1}),
+   bub:[[80,106,'二{に}重{じゅう}敬語{けいご}に注意{ちゅうい}！','Awas keigo ganda!']],
+   hot:[[300,90,20,20,'「おっしゃられる」は二{に}重{じゅう}敬語{けいご}。正{ただ}しくは「おっしゃる」。','おっしゃられる adalah keigo ganda. Yang benar おっしゃる.']]},
+  points:[
+   {p:'敬語{けいご}の五{ご}分類{ぶんるい}',e:'Berdasarkan pedoman Badan Urusan Kebudayaan (文化{ぶんか}審議{しんぎ}会{かい}, 2007), keigo dibagi menjadi lima: 尊敬{そんけい}語{ご}, 謙譲{けんじょう}語{ご}Ⅰ, 謙譲{けんじょう}語{ご}Ⅱ (丁重{ていちょう}語{ご}), 丁寧{ていねい}語{ご}, 美化{びか}語{ご}. Pembagian tradisional tiga kategori masih dipakai di sekolah.',ex:[['いらっしゃる（尊敬{そんけい}語{ご}）・伺{うかが}う（謙譲{けんじょう}語{ご}Ⅰ）・参{まい}る（謙譲{けんじょう}語{ご}Ⅱ）','Tiga kata untuk "pergi/datang"']]},
+   {p:'謙譲{けんじょう}語{ご}Ⅰ と 謙譲{けんじょう}語{ご}Ⅱ',e:'謙譲{けんじょう}語{ご}Ⅰ merendahkan diri untuk meninggikan pihak tujuan tindakan (伺{うかが}う = berkunjung ke tempat orang yang dihormati). 謙譲{けんじょう}語{ご}Ⅱ (丁重{ていちょう}語{ご}) bersikap sopan kepada lawan bicara tanpa ada pihak tujuan (明日{あした}から出張{しゅっちょう}に参{まい}ります).',ex:[['先生{せんせい}のお宅{たく}に伺{うかが}います。／ 来週{らいしゅう}、大阪{おおさか}へ参{まい}ります。','伺う perlu pihak yang dihormati, 参る tidak']]},
+   {p:'美化{びか}語{ご}',e:'Awalan お / ご untuk memperhalus kata benda, bukan untuk menghormati orang tertentu: お茶{ちゃ}, お酒{さけ}, ご飯{はん}. Tidak dipakai untuk kata serapan (×おコーヒー secara umum).',ex:[['お水{みず}をください。','Minta air (diperhalus)']]},
+   {p:'二{に}重{じゅう}敬語{けいご}',e:'Menumpuk dua bentuk keigo yang sama jenisnya dianggap salah: おっしゃられる (おっしゃる + れる), お召{め}し上{あ}がりになる, 拝見{はいけん}させていただく.',ex:[['×社長{しゃちょう}がおっしゃられました → ○社長{しゃちょう}がおっしゃいました','Hindari keigo ganda']]},
+   {p:'バイト敬語{けいご}・させていただく',e:'Ungkapan kerja paruh waktu yang dianggap tidak baku: 〜になります (untuk menyerahkan barang), 〜でよろしかったでしょうか, 〜のほう. させていただく hanya tepat bila ada izin dan manfaat dari lawan bicara.',ex:[['×こちらコーヒーになります → ○こちらがコーヒーでございます','Bentuk baku saat menyajikan']]}],
+  nu:[{a:'明日{あした}、御社{おんしゃ}に伺{うかが}います。',b:'明日{あした}、大阪{おおさか}に参{まい}ります。',la:4,lb:4,t:'伺{うかが}う (謙譲{けんじょう}語{ご}Ⅰ) menghormati pemilik tempat yang dikunjungi. 参{まい}る (謙譲{けんじょう}語{ご}Ⅱ) hanya sopan kepada lawan bicara. ×大阪{おおさか}に伺{うかが}う terdengar janggal karena Osaka bukan orang yang dihormati.'}],
+  vx:[['尊敬{そんけい}語{ご}','bahasa hormat'],['謙譲{けんじょう}語{ご}','bahasa merendah'],['丁重{ていちょう}語{ご}','bahasa santun (謙譲語Ⅱ)'],['丁寧{ていねい}語{ご}','bahasa sopan'],['美化{びか}語{ご}','bahasa halus'],['二{に}重{じゅう}敬語{けいご}','keigo ganda'],['誤用{ごよう}','salah pakai'],['伺{うかが}う','berkunjung / bertanya (merendah)']],
+  quiz:[
+   {q:'二{に}重{じゅう}敬語{けいご}ではない正{ただ}しい表現{ひょうげん}はどれか。',o:['おっしゃいました','おっしゃられました','お話{はな}しになられました'],a:0,x:'<b>おっしゃいました</b>. Dua lainnya keigo ganda.'},
+   {q:'「お茶{ちゃ}」「ご飯{はん}」の「お・ご」はどの分類{ぶんるい}か。',o:['美化{びか}語{ご}','尊敬{そんけい}語{ご}','謙譲{けんじょう}語{ご}Ⅰ'],a:0,x:'Memperhalus kata benda: <b>美化{びか}語{ご}</b>.'},
+   {q:'「来週{らいしゅう}、福岡{ふくおか}へ（　）。」に最{もっと}も適切{てきせつ}なのはどれか。',o:['参{まい}ります','伺{うかが}います','いらっしゃいます'],a:0,x:'Tidak ada pihak yang dihormati di tujuan: 謙譲{けんじょう}語{ご}Ⅱ <b>参{まい}ります</b>.'},
+   {q:'レストランで料理{りょうり}を出{だ}すときの正{ただ}しい敬語{けいご}はどれか。',o:['こちらがカレーでございます','こちらカレーになります','カレーのほうでよろしかったでしょうか'],a:0,x:'Bentuk baku: <b>〜でございます</b>.'},
+   {q:'敬語{けいご}の五{ご}分類{ぶんるい}を示{しめ}したのはどれか。',o:['文化{ぶんか}審議{しんぎ}会{かい}','日本{にほん}語{ご}能力{のうりょく}試験{しけん}','国会{こっかい}'],a:0,x:'Pedoman <b>文化{ぶんか}審議{しんぎ}会{かい}</b> (2007).'}],
+  kw:[{k:'k',p:'Kantor · menerima telepon klien',sp:['お客{きゃく}様{さま}','アンディ'],l:[
+   [0,'営業{えいぎょう}部{ぶ}の山田{やまだ}さんはいらっしゃいますか。','Apakah Pak Yamada dari bagian penjualan ada?'],
+   [1,'申{もう}し訳{わけ}ございません。山田{やまだ}はただいま席{せき}を外{はず}して*おります*。','Mohon maaf. Yamada sedang tidak di tempat.'],
+   [0,'では、明日{あした}の午後{ごご}に*伺{うかが}い*たいとお伝{つた}えください。','Kalau begitu, tolong sampaikan saya ingin berkunjung besok siang.'],
+   [1,'*かしこまりました*。山田{やまだ}に申{もう}し伝{つた}えます。','Baik. Akan saya sampaikan kepada Yamada.']],
+   tip:'Kepada pihak luar, nama rekan sendiri disebut tanpa さん dan tindakannya memakai 謙譲{けんじょう}語{ご}.'}]},
+ {id:'ku-z2',grp:'Bisnis & Keigo · ビジネス日本{にほん}語{ご}',title:'Bisnis 2 · Dokumen dan Surat Bisnis',jp:'ビジネス文書{ぶんしょ}',sum:'Surat ke luar perusahaan (拝啓・敬具, salam musim), dokumen internal, notulen rapat, dan format email.',
+  scene:{bg:'room',alt:'Surat resmi dengan salam pembuka dan penutup',
+   art:()=>`<rect x="140" y="30" width="120" height="160" rx="4" fill="#FFFDF8" stroke="#C9B39D" stroke-width="2"/>`+TXT(170,58,'拝啓',13,'#B5462F',800)+`<g stroke="#D8C4AE" stroke-width="3"><line x1="155" y1="80" x2="245" y2="80"/><line x1="155" y1="98" x2="245" y2="98"/><line x1="155" y1="116" x2="245" y2="116"/><line x1="155" y1="134" x2="225" y2="134"/></g>`+TXT(230,170,'敬具',13,'#B5462F',800)+P(70,215,1.05,{c:'#4F7CAC',tie:'#B5462F',talk:1})+OWL(350,226,.7),
+   bub:[[70,108,'拝啓{はいけい}で始{はじ}めて敬具{けいぐ}で終{お}わる。','Mulai haikei, akhiri keigu.']],
+   hot:[[215,40,30,24,'頭語{とうご}「拝啓{はいけい}」と結語{けつご}「敬具{けいぐ}」はセットで使{つか}う。','Pembuka 拝啓 dan penutup 敬具 dipakai berpasangan.']]},
+  points:[
+   {p:'社外{しゃがい}文書{ぶんしょ}の構成{こうせい}',e:'Susunan surat ke luar perusahaan: 前付{まえづ}け (nomor dokumen, tanggal, penerima, pengirim), 件名{けんめい}, 前文{ぜんぶん} (頭語{とうご}・時候{じこう}の挨拶{あいさつ}・感謝{かんしゃ}), 主文{しゅぶん} (さて、〜), 末文{まつぶん} (salam penutup), 結語{けつご}, 記{き} (rincian), 以上{いじょう}.',ex:[['拝啓{はいけい}　時下{じか}ますますご清栄{せいえい}のこととお慶{よろこ}び申{もう}し上{あ}げます。','Salam pembuka baku surat bisnis']]},
+   {p:'頭語{とうご}と結語{けつご}',e:'Pasangan tetap: 拝啓{はいけい} ↔ 敬具{けいぐ} (umum), 謹啓{きんけい} ↔ 謹白{きんぱく} (sangat formal), 前略{ぜんりゃく} ↔ 草々{そうそう} (tanpa salam pembuka). Untuk balasan: 拝復{はいふく} ↔ 敬具{けいぐ}.',ex:[['前略{ぜんりゃく}　取{と}り急{いそ}ぎご連絡{れんらく}いたします。草々{そうそう}','Surat singkat tanpa salam musim']]},
+   {p:'時候{じこう}の挨拶{あいさつ}',e:'Salam musim di awal surat, berbeda tiap bulan: 新春{しんしゅん}の候{こう} (Januari), 盛夏{せいか}の候{こう} (Juli), 秋涼{しゅうりょう}の候{こう} (September). 時下{じか} bisa dipakai sepanjang tahun.',ex:[['盛夏{せいか}の候{こう}、貴社{きしゃ}ますますご発展{はってん}のこととお喜{よろこ}び申{もう}し上{あ}げます。','Salam musim panas']]},
+   {p:'社内{しゃない}文書{ぶんしょ}と議事{ぎじ}録{ろく}',e:'Dokumen internal lebih ringkas: tanpa salam musim, langsung ke 件名{けんめい} dan isi. 議事{ぎじ}録{ろく} (notulen) mencatat: tanggal, peserta, agenda (議題{ぎだい}), keputusan (決定{けってい}事項{じこう}), dan tindak lanjut (今後{こんご}の対応{たいおう}).',ex:[['決定{けってい}事項{じこう}：新{しん}商品{しょうひん}の発売日{はつばいび}を十月一日{じゅうがつついたち}とする。','Contoh butir keputusan dalam notulen']]},
+   {p:'メールの基本{きほん}',e:'Email bisnis tidak memakai 拝啓{はいけい} dan salam musim. Susunan: 宛名{あてな} (会社{かいしゃ}名{めい}・部署{ぶしょ}・氏名{しめい}様{さま}), 名乗{なの}り, いつもお世話{せわ}になっております, isi, penutup (よろしくお願{ねが}いいたします), 署名{しょめい}. Gunakan 御社{おんしゃ} saat bicara, 貴社{きしゃ} saat menulis.',ex:[['株式{かぶしき}会社{かいしゃ}〇〇　営業{えいぎょう}部{ぶ}　田中{たなか}様{さま}','Format penerima email']]}],
+  vx:[['文書{ぶんしょ}','dokumen'],['頭語{とうご}','salam pembuka'],['結語{けつご}','salam penutup'],['時候{じこう}の挨拶{あいさつ}','salam musim'],['件名{けんめい}','perihal'],['議事{ぎじ}録{ろく}','notulen'],['決定{けってい}事項{じこう}','butir keputusan'],['署名{しょめい}','tanda tangan email']],
+  quiz:[
+   {q:'「拝啓{はいけい}」とセットで使{つか}う結語{けつご}はどれか。',o:['敬具{けいぐ}','草々{そうそう}','謹白{きんぱく}'],a:0,x:'拝啓{はいけい} ↔ <b>敬具{けいぐ}</b>.'},
+   {q:'時候{じこう}の挨拶{あいさつ}を省略{しょうりゃく}するときの頭語{とうご}はどれか。',o:['前略{ぜんりゃく}','謹啓{きんけい}','拝復{はいふく}'],a:0,x:'<b>前略{ぜんりゃく}</b> ↔ 草々{そうそう}.'},
+   {q:'会議{かいぎ}で決{き}まったことを記録{きろく}する文書{ぶんしょ}は何{なに}か。',o:['議事{ぎじ}録{ろく}','履歴{りれき}書{しょ}','請求{せいきゅう}書{しょ}'],a:0,x:'<b>議事{ぎじ}録{ろく}</b> (notulen).'},
+   {q:'文書{ぶんしょ}で相手{あいて}の会社{かいしゃ}を指{さ}す言葉{ことば}はどれか。',o:['貴社{きしゃ}','弊社{へいしゃ}','御社{おんしゃ}'],a:0,x:'Tulisan: <b>貴社{きしゃ}</b>. Lisan: 御社{おんしゃ}. 弊社{へいしゃ} = perusahaan sendiri.'},
+   {q:'ビジネスメールに一般{いっぱん}的{てき}に入{い}れないものはどれか。',o:['拝啓{はいけい}と時候{じこう}の挨拶{あいさつ}','宛名{あてな}','署名{しょめい}'],a:0,x:'Email bisnis biasanya tidak memakai <b>拝啓{はいけい} dan salam musim</b>.'}]},
+ {id:'ku-z3',grp:'Bisnis & Keigo · ビジネス日本{にほん}語{ご}',title:'Bisnis 3 · Mencari Kerja dan Magang',jp:'就職{しゅうしょく}活動{かつどう}とインターンシップ',sum:'Entry sheet, 自己PR, ガクチカ, 志望動機, wawancara (termasuk 逆質問), dan etika magang.',
+  scene:{bg:'room',alt:'Wawancara kerja dengan dua pewawancara',
+   art:()=>DESK(270,215,1.3)+P(110,215,1.1,{c:'#3B3F4A',tie:'#B5462F',talk:1})+P(255,200,.9,{c:'#3B3F4A',h:'#555',gl:1,tie:'#2F6F8F',flip:1})+P(320,200,.9,{c:'#B5462F',long:1,flip:1}),
+   bub:[[110,104,'御社{おんしゃ}を志望{しぼう}した理由{りゆう}は…','Alasan saya melamar ke perusahaan Anda…']],
+   hot:[[230,120,120,50,'最後{さいご}に何{なに}か質問{しつもん}はありますか。（逆{ぎゃく}質問{しつもん}）','Terakhir, ada pertanyaan? (kesempatan bertanya balik)']]},
+  points:[
+   {p:'就活{しゅうかつ}の流{なが}れ',e:'Alur umum di Jepang: 自己{じこ}分析{ぶんせき} → 企業{きぎょう}研究{けんきゅう} → エントリー → エントリーシート (ES) dan 適性{てきせい}検査{けんさ} (SPI) → 面接{めんせつ} beberapa tahap → 内定{ないてい} (tawaran kerja). Untuk lulusan prodi Jepang, ada juga jalur 特定{とくてい}技能{ぎのう}, 技人国{ぎじんこく} (技術{ぎじゅつ}・人文{じんぶん}知識{ちしき}・国際{こくさい}業務{ぎょうむ}), dan perusahaan Jepang di Indonesia.',ex:[['内定{ないてい}をいただき、ありがとうございます。','Terima kasih atas tawaran kerjanya.']]},
+   {p:'自己{じこ}PR',e:'Promosi diri: satu kekuatan utama + bukti pengalaman konkret + manfaat bagi perusahaan. Struktur PREP: Point → Reason → Example → Point.',ex:[['私{わたし}の強{つよ}みは、粘{ねば}り強{づよ}さです。日本{にほん}語{ご}能力{のうりょく}試験{しけん}N2に、三年{さんねん}かけて合格{ごうかく}しました。','Kekuatan saya adalah ketekunan.']]},
+   {p:'ガクチカ',e:'"学生{がくせい}時代{じだい}に力{ちから}を入{い}れたこと": pengalaman yang paling diusahakan selama kuliah. Yang dinilai bukan besarnya prestasi, tetapi proses: masalah, tindakan, hasil, dan pelajaran.',ex:[['日本{にほん}語{ご}サークルの代表{だいひょう}として、参加{さんか}者{しゃ}を二{に}倍{ばい}に増{ふ}やしました。','Sebagai ketua klub bahasa Jepang, saya menggandakan jumlah peserta.']]},
+   {p:'志望{しぼう}動機{どうき}',e:'Alasan melamar: mengapa industri ini, mengapa perusahaan ini (bukan yang lain), dan apa yang ingin dilakukan. Tunjukkan hasil 企業{きぎょう}研究{けんきゅう}, jangan hanya memuji perusahaan.',ex:[['御社{おんしゃ}のインドネシア事業{じぎょう}に、日本{にほん}語{ご}力{りょく}を生{い}かして貢献{こうけん}したいと考{かんが}えております。','Saya ingin berkontribusi pada bisnis Anda di Indonesia dengan kemampuan bahasa Jepang.']]},
+   {p:'面接{めんせつ}と逆{ぎゃく}質問{しつもん}',e:'Ketuk pintu tiga kali, 失礼{しつれい}いたします, tunggu dipersilakan duduk. Di akhir biasanya ada 逆{ぎゃく}質問{しつもん}: siapkan pertanyaan tentang pekerjaan, bukan gaji atau libur di tahap awal.',ex:[['入社{にゅうしゃ}までに勉強{べんきょう}しておくべきことはありますか。','Apakah ada yang sebaiknya saya pelajari sebelum mulai bekerja?']]}],
+  nu:[{a:'御社{おんしゃ}の給料{きゅうりょう}はいくらですか。',b:'御社{おんしゃ}で活躍{かつやく}されている方{かた}の共通{きょうつう}点{てん}を教{おし}えていただけますか。',la:2,lb:5,t:'逆{ぎゃく}質問{しつもん} adalah kesempatan menunjukkan minat dan hasil riset. Pertanyaan tentang gaji dan libur sebaiknya ditanyakan setelah tahap akhir atau melalui bagian HR.'}],
+  vx:[['就職{しゅうしょく}活動{かつどう}','mencari kerja'],['自己{じこ}分析{ぶんせき}','analisis diri'],['企業{きぎょう}研究{けんきゅう}','riset perusahaan'],['履歴{りれき}書{しょ}','daftar riwayat hidup'],['志望{しぼう}動機{どうき}','alasan melamar'],['強{つよ}み','kekuatan'],['内定{ないてい}','tawaran kerja resmi'],['逆{ぎゃく}質問{しつもん}','pertanyaan balik ke pewawancara']],
+  quiz:[
+   {q:'「学生{がくせい}時代{じだい}に力{ちから}を入{い}れたこと」の略語{りゃくご}はどれか。',o:['ガクチカ','ES','SPI'],a:0,x:'<b>ガクチカ</b>.'},
+   {q:'会社{かいしゃ}から採用{さいよう}の約束{やくそく}をもらうことを何{なに}と言{い}うか。',o:['内定{ないてい}','入社{にゅうしゃ}','退職{たいしょく}'],a:0,x:'<b>内定{ないてい}</b>.'},
+   {q:'Struktur PREP dimulai dengan…',o:['Point (kesimpulan)','Example (contoh)','Reason (alasan)'],a:0,x:'P-R-E-P: dimulai dengan <b>Point</b>.'},
+   {q:'面接{めんせつ}の逆{ぎゃく}質問{しつもん}として最{もっと}も適切{てきせつ}なのはどれか。',o:['入社{にゅうしゃ}までに勉強{べんきょう}しておくべきことはありますか。','休{やす}みは何日{なんにち}ありますか。','残業{ざんぎょう}はありますか。'],a:0,x:'Tunjukkan motivasi belajar dan minat pada pekerjaan.'},
+   {q:'面接{めんせつ}室{しつ}に入{はい}るとき、まず何{なに}と言{い}うか。',o:['失礼{しつれい}いたします','お邪魔{じゃま}します','こんにちは'],a:0,x:'<b>失礼{しつれい}いたします</b>.'}],
+  kw:[{k:'k',p:'Wawancara · pertanyaan umum',sp:['面接{めんせつ}官{かん}','アンディ'],l:[
+   [0,'では、自己{じこ}PRをお願{ねが}いします。','Silakan promosikan diri Anda.'],
+   [1,'はい。*私{わたし}の強{つよ}みは*、粘{ねば}り強{づよ}さです。','Baik. Kekuatan saya adalah ketekunan.'],
+   [0,'当社{とうしゃ}を志望{しぼう}した理由{りゆう}は何{なに}ですか。','Apa alasan Anda melamar ke perusahaan kami?'],
+   [1,'*御社{おんしゃ}の*インドネシア事業{じぎょう}に、日本{にほん}語{ご}力{りょく}を*生{い}かして貢献{こうけん}したい*と考{かんが}えております。','Saya ingin berkontribusi pada bisnis Anda di Indonesia dengan kemampuan bahasa Jepang saya.']],
+   tip:'Jawab dengan kesimpulan di awal (結論{けつろん}から), lalu beri alasan dan contoh singkat.'}]},
+ {id:'ku-z4',grp:'Bisnis & Keigo · ビジネス日本{にほん}語{ご}',title:'Bisnis 4 · Presentasi dan Rapat',jp:'プレゼンテーションと会議{かいぎ}',sum:'Struktur presentasi, menjelaskan grafik (増加・減少・横ばい), serta menyampaikan setuju, tidak setuju, dan usulan dalam rapat.',
+  scene:{bg:'room',alt:'Presentasi grafik penjualan di ruang rapat',
+   art:()=>BOARD(210,18,240,100,'',14)+`<g fill="#F4B642"><rect x="130" y="80" width="22" height="26"/><rect x="170" y="66" width="22" height="40"/><rect x="210" y="50" width="22" height="56"/><rect x="250" y="42" width="22" height="64"/></g>`+P(70,215,1.05,{c:'#4F7CAC',tie:'#B5462F',arm:'point',talk:1})+P(340,215,1.05,{c:'#3B3F4A',h:'#555',gl:1,tie:'#2F6F8F',flip:1}),
+   bub:[[70,106,'売上{うりあげ}は年々{ねんねん}増加{ぞうか}しています。','Penjualan naik dari tahun ke tahun.']],
+   hot:[[240,40,40,66,'前年{ぜんねん}比{ひ}二十{にじゅう}パーセント増加{ぞうか}しました。','Naik 20 persen dibandingkan tahun sebelumnya.']]},
+  points:[
+   {p:'プレゼンの構成{こうせい}',e:'Pembukaan: これから〜についてご説明{せつめい}いたします. Isi: まず・次{つぎ}に・最後{さいご}に. Penutup: 以上{いじょう}でございます。ご質問{しつもん}はございますか. Sampaikan kesimpulan di awal (結論{けつろん}から).',ex:[['本日{ほんじつ}は、新{しん}商品{しょうひん}の販売{はんばい}計画{けいかく}についてご説明{せつめい}いたします。','Hari ini saya akan menjelaskan rencana penjualan produk baru.']]},
+   {p:'グラフの説明{せつめい}',e:'Naik: 増加{ぞうか}する・上昇{じょうしょう}する・伸{の}びる. Turun: 減少{げんしょう}する・低下{ていか}する・落{お}ち込{こ}む. Tetap: 横{よこ}ばい. Tingkat perubahan: 急激{きゅうげき}に・大幅{おおはば}に・緩{ゆる}やかに・わずかに.',ex:[['売上{うりあげ}は緩{ゆる}やかに増加{ぞうか}し、昨年{さくねん}からは横{よこ}ばいが続{つづ}いています。','Penjualan naik perlahan, dan sejak tahun lalu stagnan.']]},
+   {p:'賛成{さんせい}・同意{どうい}',e:'おっしゃるとおりです, 私{わたし}もその意見{いけん}に賛成{さんせい}です, その案{あん}はいいと思{おも}います. Tambahkan alasan agar persetujuan bermakna.',ex:[['田中{たなか}さんのご意見{いけん}に賛成{さんせい}です。コストも抑{おさ}えられますので。','Saya setuju dengan pendapat Pak Tanaka karena biaya juga bisa ditekan.']]},
+   {p:'反対{はんたい}・懸念{けねん}を伝{つた}える',e:'Tidak setuju secara halus: 確{たし}かにそうですが, 〜という点{てん}が少{すこ}し気{き}になります, 〜という見{み}方{かた}もできるのではないでしょうか. Hindari 違{ちが}います atau 反対{はんたい}です secara langsung kepada atasan.',ex:[['確{たし}かに魅力{みりょく}的{てき}な案{あん}ですが、納期{のうき}の点{てん}が少{すこ}し気{き}になります。','Usulannya memang menarik, tetapi saya agak khawatir soal tenggat waktu.']]},
+   {p:'提案{ていあん}する',e:'〜てはいかがでしょうか, 〜というのはどうでしょうか, 一{ひと}つ提案{ていあん}があるのですが. Usulan disertai alasan dan data.',ex:[['まずは小{ちい}さい地域{ちいき}で試{ため}してみてはいかがでしょうか。','Bagaimana kalau dicoba dulu di wilayah kecil?']]}],
+  vx:[['売上{うりあげ}','penjualan'],['前年{ぜんねん}比{ひ}','dibanding tahun lalu'],['増加{ぞうか}','kenaikan'],['減少{げんしょう}','penurunan'],['横{よこ}ばい','stagnan / datar'],['懸念{けねん}','kekhawatiran'],['提案{ていあん}','usulan'],['納期{のうき}','tenggat pengiriman']],
+  quiz:[
+   {q:'数値{すうち}が変{か}わらない状態{じょうたい}を表{あらわ}す言葉{ことば}はどれか。',o:['横{よこ}ばい','急増{きゅうぞう}','低下{ていか}'],a:0,x:'Datar, tidak berubah: <b>横{よこ}ばい</b>.'},
+   {q:'上司{じょうし}の意見{いけん}に反対{はんたい}するとき、最{もっと}も適切{てきせつ}なのはどれか。',o:['確{たし}かにそうですが、〜という点{てん}が少{すこ}し気{き}になります。','それは違{ちが}います。','反対{はんたい}です。'],a:0,x:'Akui dulu, lalu sampaikan kekhawatiran secara halus.'},
+   {q:'提案{ていあん}するときの表現{ひょうげん}はどれか。',o:['〜てはいかがでしょうか','〜てもらえない？','〜しろ'],a:0,x:'<b>〜てはいかがでしょうか</b>.'},
+   {q:'「緩{ゆる}やかに増加{ぞうか}する」の意味{いみ}はどれか。',o:['naik perlahan','naik tajam','turun perlahan'],a:0,x:'緩{ゆる}やかに = perlahan.'},
+   {q:'プレゼンの終{お}わりに言{い}う言葉{ことば}はどれか。',o:['以上{いじょう}でございます。ご質問{しつもん}はございますか。','これから始{はじ}めます。','まず、ご説明{せつめい}いたします。'],a:0,x:'Penutup presentasi.'}],
+  kw:[{k:'k',p:'Rapat · membahas usulan',sp:['田中{たなか}課長{かちょう}','アンディ'],l:[
+   [0,'来月{らいげつ}から全国{ぜんこく}で販売{はんばい}を始{はじ}めようと思{おも}うんだが、どうかな。','Saya berpikir mulai menjual di seluruh negeri bulan depan, bagaimana?'],
+   [1,'*確{たし}かに*魅力{みりょく}的{てき}な案{あん}ですが、在庫{ざいこ}の点{てん}が*少{すこ}し気{き}になります*。','Memang usulan yang menarik, tetapi saya agak khawatir soal stok.'],
+   [0,'なるほど。何{なに}かいい方法{ほうほう}はある？','Begitu. Ada cara yang bagus?'],
+   [1,'まずは関東{かんとう}だけで試{ため}し*てはいかがでしょうか*。','Bagaimana kalau dicoba dulu di Kanto saja?']],
+   tip:'Pola 確{たし}かに〜が、〜少{すこ}し気{き}になります + usulan alternatif adalah cara aman untuk tidak setuju dengan atasan.'}]}
+];
+const KSEM=[
+ {s:1,t:'Fondasi bahasa dan budaya',mk:['Bahasa Jepang Dasar I (bunpou, kaiwa, choukai)','Kanji I','Pengantar Studi Jepang','Pengantar Ilmu Bahasa'],lv:'n5',ls:['ku-b1','ku-b3']},
+ {s:2,t:'Dasar lanjutan dan menulis',mk:['Bahasa Jepang Dasar II','Kanji II','Sakubun Dasar','Sejarah Jepang'],lv:'n4',ls:['ku-w1','ku-b2']},
+ {s:3,t:'Madya dan linguistik awal',mk:['Bahasa Jepang Madya I','Fonetik dan Fonologi Jepang','Dokkai I','Kanji III'],lv:'n4',ls:['ku-l1','ku-l2']},
+ {s:4,t:'Madya lanjut, sastra, dan masyarakat',mk:['Bahasa Jepang Madya II','Morfologi Jepang','Pengantar Sastra Jepang','Masyarakat Jepang Modern'],lv:'n3',ls:['ku-l3','ku-b5','ku-b4']},
+ {s:5,t:'Tingkat lanjut, sintaksis, dan bisnis',mk:['Bahasa Jepang Lanjut I','Sintaksis Jepang','Penerjemahan I (Jepang–Indonesia)','Bahasa Jepang Bisnis I'],lv:'n3',ls:['ku-l4','ku-w3','ku-z1','ku-z2']},
+ {s:6,t:'Semantik, penerjemahan, dan karier',mk:['Bahasa Jepang Lanjut II','Semantik dan Pragmatik','Penerjemahan II (Indonesia–Jepang)','Bahasa Jepang Bisnis II','Metodologi Penelitian'],lv:'n2',ls:['ku-l5','ku-w4','ku-z3','ku-z4']},
+ {s:7,t:'Penelitian dan magang',mk:['Sosiolinguistik','Penulisan Ilmiah','Seminar Proposal','Magang / PKL'],lv:'n2',ls:['ku-l6','ku-w2','ku-z3']},
+ {s:8,t:'Skripsi dan sidang',mk:['Skripsi (卒業{そつぎょう}論文{ろんぶん})','Sidang Skripsi (口頭{こうとう}試問{しもん})','Persiapan karier dan JLPT N2–N1'],lv:'n1',ls:['ku-w5','ku-w2']}];
+const KGLOS=[['講義{こうぎ}','kuliah (tatap muka)'],['ゼミ','seminar / kelompok bimbingan'],['単位{たんい}','SKS'],['履修{りしゅう}','mengambil mata kuliah'],['学期{がっき}','semester'],['期末{きまつ}試験{しけん}','ujian akhir semester'],['中間{ちゅうかん}試験{しけん}','ujian tengah semester'],['レポート','laporan / makalah'],['課題{かだい}','tugas'],['出席{しゅっせき}','kehadiran'],['指導{しどう}教員{きょういん}','dosen pembimbing'],['卒業{そつぎょう}論文{ろんぶん}','skripsi'],['研究{けんきゅう}計画{けいかく}書{しょ}','proposal penelitian'],['先行{せんこう}研究{けんきゅう}','penelitian terdahulu'],['仮説{かせつ}','hipotesis'],['考察{こうさつ}','pembahasan'],['参考{さんこう}文献{ぶんけん}','daftar pustaka'],['要旨{ようし}','abstrak'],['口頭{こうとう}試問{しもん}','sidang lisan'],['留学{りゅうがく}','studi ke luar negeri'],['奨学{しょうがく}金{きん}','beasiswa'],['日本{にほん}語学{ごがく}','linguistik Jepang'],['日本{にほん}語{ご}教育{きょういく}','pendidikan bahasa Jepang'],['日本{にほん}文学{ぶんがく}','sastra Jepang']];
 const LEVELS=[
  {id:'kana',tag:'かな',name:'Kana Dasar',sub:'Hiragana & Katakana · Starter',desc:'Titik nol: 8 pelajaran hiragana dan katakana dengan tabel bersuara, latihan menulis, tes pendengaran, kaiwa, dan menulis nama dalam katakana.',lessons:KANAB},
  {id:'n5',tag:'N5',name:'Pemula',sub:'Minna no Nihongo I · Bab 1–25',desc:'25 bab pola kalimat dasar dengan ilustrasi interaktif, contoh bersuara, kosakata per bab, dan latihan.',lessons:N5B},
@@ -4211,6 +4623,8 @@ KANAB.forEach((x,idx)=>{x.vocab=x.vx||[];x.quiz.forEach((q,i)=>{const n=q.o.leng
 N3B.forEach((x,idx)=>{x.vocab=x.vx||[];x.quiz.forEach((q,i)=>{const n=q.o.length,k=(idx+i+2)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
 N2B.forEach((x,idx)=>{x.vocab=x.vx||[];x.quiz.forEach((q,i)=>{const n=q.o.length,k=(idx+i+1)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
 N2B.forEach(x=>{x.grp=x.id.startsWith('n2-r')?'Membaca · 読解':x.id.startsWith('n2-v')?'Kosakata & Kanji · 語彙・漢字':'Tata Bahasa · 文法'});
+KUB.forEach((x,idx)=>{x.vocab=x.vx||[];x.ku=1;x.quiz.forEach((q,i)=>{const n=q.o.length,k=(idx+i+2)%n,o=q.o;q.o=o.map((_,j)=>o[(j+k)%n]);q.a=(q.a-k+n)%n})});
+LEVELS.push({id:'kuliah',tag:'大学',name:'Kuliah Prodi Jepang',sub:'Semester 1–8 · linguistik, budaya, menulis, menerjemah, bisnis, skripsi',desc:'Pendamping kuliah prodi Bahasa Jepang.',lessons:KUB});
 </script>
 
 <script>
@@ -4274,20 +4688,20 @@ function checkBadges(){const B=S.badges;const give=k=>{if(!B[k]){B[k]=dk(Date.no
  if(LEVELS.find(l=>l.id==='biz').lessons.every(x=>S.done[x.id]))give('biz');if(LEVELS.find(l=>l.id==='n1').lessons.every(x=>S.done[x.id]))give('n1');if(allLessons().every(x=>S.done[x.id]))give('all')}
 
 /* ===================== KERANGKA ===================== */
-const NAV=[['beranda','Beranda','ホーム','home'],['belajar','Belajar','学習','book'],['bisnis','Bisnis','ビジネス','brief'],['kaiwa','Kaiwa','会話','chat'],['soal','Soal','問題','pen'],['game','Game','ゲーム','game'],['profil','Profil','マイページ','user']];
+const NAV=[['beranda','Beranda','ホーム','home'],['belajar','Belajar','学習','book'],['bisnis','Bisnis','ビジネス','brief'],['kuliah','Kuliah','大学','cap'],['kaiwa','Kaiwa','会話','chat'],['soal','Soal','問題','pen'],['game','Game','ゲーム','game'],['profil','Profil','マイページ','user']];
 function paintChrome(){
  $('#sidenav').innerHTML=NAV.map(n=>`<a href="#${n[0]}" class="${UI.route===n[0]?'on':''}">${ic(n[3])}<span>${n[1]}</span><span class="jpn">${n[2]}</span></a>`).join('');
- $('#tabs').innerHTML=NAV.slice(0,6).map(n=>`<a href="#${n[0]}" class="${UI.route===n[0]?'on':''}">${ic(n[3])}<span>${n[1]}</span><span class="jpn">${n[2]}</span></a>`).join('');
+ $('#tabs').innerHTML=NAV.slice(0,7).map(n=>`<a href="#${n[0]}" class="${UI.route===n[0]?'on':''}">${ic(n[3])}<span>${n[1]}</span><span class="jpn">${n[2]}</span></a>`).join('');
  $('#topstats').innerHTML=`<span class="chip-stat" title="Hari beruntun">${ic('fire')}<span class="num">${curStreak()}</span></span><span class="chip-stat num">${S.xp} XP</span><a class="iconbtn" href="#profil" aria-label="Profil">${ic('user')}</a>`;
  $('#sidegoal').innerHTML=ring(todayXP()/GOAL,50)+`<div style="min-width:0"><b style="font-size:.9rem">Target harian</b><div class="muted num" style="font-size:.82rem">${Math.min(todayXP(),GOAL)}/${GOAL} XP · ${curStreak()} hari beruntun</div></div>`;
  document.documentElement.style.setProperty('--rt',{m:'.5em',l:'.6em',xl:'.72em'}[S.set.fs]||'.6em');
  document.body.classList.toggle('nofuri',!S.set.furi);document.body.classList.toggle('notr',!S.set.tr);
 }
-function render(keepScroll){const y=window.scrollY;const V={tentang:vAbout,beranda:vHome,belajar:vLearn,bisnis:vBisnis,kaiwa:vKaiwa,soal:vSoal,game:vGame,profil:vProfile}[UI.route];
+function render(keepScroll){const y=window.scrollY;const V={tentang:vAbout,beranda:vHome,belajar:vLearn,bisnis:vBisnis,kuliah:vKuliah,kaiwa:vKaiwa,soal:vSoal,game:vGame,profil:vProfile}[UI.route];
  $('#view').innerHTML=V();paintChrome();fixBubbles();drawTrace();if(keepScroll)window.scrollTo(0,y)}
 function rerender(){render(true)}
 function go(){const h=location.hash.slice(1);UI.route=NAV.some(n=>n[0]===h)||h==='tentang'?h:'beranda';stopTimers();
- Object.assign(UI,{lesson:(UI.route==='belajar'||UI.route==='bisnis')&&UI.pending?UI.pending:null,pending:null,lq:{},kaiwa:UI.route==='kaiwa'&&UI.pendingK?UI.pendingK:null,pendingK:null,kmode:'dengar',rp:null,quiz:null,game:null,reset:false,rev:null,confirmSubmit:false});render();window.scrollTo(0,0);
+ Object.assign(UI,{lesson:(UI.route==='belajar'||UI.route==='bisnis'||UI.route==='kuliah')&&UI.pending?UI.pending:null,pending:null,lq:{},kaiwa:UI.route==='kaiwa'&&UI.pendingK?UI.pendingK:null,pendingK:null,kmode:'dengar',rp:null,quiz:null,game:null,reset:false,rev:null,confirmSubmit:false});render();window.scrollTo(0,0);
  if(UI.route==='soal'&&UI.pendingT){const id=UI.pendingT;UI.pendingT=null;ACT.startTryout({id})}
  if(UI.route==='game'&&UI.pendingG){const p=UI.pendingG;UI.pendingG=null;UI.gLv=p.lv;UI.game=initGame(p.g,p.lv);render()}}
 function openSub(fn){stopTimers();fn();render();window.scrollTo(0,0)}
@@ -4342,7 +4756,7 @@ function vHome(){
  const h=new Date().getHours();const g=h<11?'おはようございます':h<18?'こんにちは':'こんばんは';
  const {r}=rank();const next=allLessons().find(x=>!S.done[x.id]);const wl=allVocab();
  const w=wl[Math.floor(Date.now()/864e5)%wl.length];const tx=todayXP();
- const feats=[['belajar','book','Belajar JLPT','学習','Jalur bertahap dari kana, N5, sampai N1.',''],['bisnis','brief','Bahasa Jepang Bisnis','ビジネス','Keigo, telepon, email, rapat, dan wawancara.','am'],['kaiwa','chat','Kaiwa','会話','Dialog bersuara dan roleplay situasi nyata.','am'],['soal','pen','Soal & Tryout','問題','Latihan per kategori dan simulasi ujian berwaktu.',''],['game','game','Game','ゲーム','Game per level N5–N1 dan bisnis: flashcard, kilat kosakata, keigo master.','am'],['profil','user','Progres','マイページ','XP, hari beruntun, lencana, dan pengaturan.','']];
+ const feats=[['belajar','book','Belajar JLPT','学習','Jalur bertahap dari kana, N5, sampai N1.',''],['bisnis','brief','Bahasa Jepang Bisnis','ビジネス','Keigo, telepon, email, rapat, dan wawancara.','am'],['kuliah','cap','Kuliah Prodi Jepang','大学','Semester 1–8: linguistik, budaya, menulis, menerjemah, bisnis, skripsi.',''],['kaiwa','chat','Kaiwa','会話','Dialog bersuara dan roleplay situasi nyata.','am'],['soal','pen','Soal & Tryout','問題','Latihan per kategori dan simulasi ujian berwaktu.',''],['game','game','Game','ゲーム','Game per level N5–N1 dan bisnis: flashcard, kilat kosakata, keigo master.','am'],['profil','user','Progres','マイページ','XP, hari beruntun, lencana, dan pengaturan.','']];
  return `
  <section class="hero">
   <div class="leaves" aria-hidden="true">${leaves(7)}</div>
@@ -4424,7 +4838,7 @@ function vBisnis(){
 function vRoadmapAll(){
  const all=allLessons(),dn=all.filter(x=>S.done[x.id]).length;let curSet=false;
  return `<div class="sec-head"><div><span class="eyebrow">Jalur belajar · 学習ロードマップ</span><h1>Dari nol sampai bisnis</h1></div><span class="pill maple num">${dn}/${all.length} pelajaran selesai</span></div>
- <div class="road">${LEVELS.map((l,i)=>{const d=l.lessons.filter(x=>S.done[x.id]).length,full=d===l.lessons.length;let cur=false;if(!full&&!curSet){cur=true;curSet=true}
+ <div class="road">${LEVELS.filter(l=>l.id!=='kuliah').map((l,i)=>{const d=l.lessons.filter(x=>S.done[x.id]).length,full=d===l.lessons.length;let cur=false;if(!full&&!curSet){cur=true;curSet=true}
   return `<div class="stage ${full?'done':''} ${cur?'cur':''}"><div class="badge">${l.tag}</div>
   <div class="card stage-body"><header><div><span class="eyebrow">Tahap ${i+1}${cur?' · sedang dipelajari':''}</span><h2>${l.name}</h2><p class="muted" style="font-size:.9rem">${l.sub}</p></div><span class="pill ${full?'good':''} num">${d}/${l.lessons.length}</span></header>
   <p style="margin-top:8px;font-size:.95rem">${l.desc}</p>
@@ -4439,19 +4853,19 @@ function vLesson(){
   <div class="note"><b>Tips belajar:</b> hafalkan per baris (あ, か, さ…), ucapkan keras-keras, lalu uji diri di game <b>Kilat Kana</b>. Perhatikan bunyi khusus: し = shi, ち = chi, つ = tsu, ふ = fu. ${x.kana==='hira'?'Partikel は, を, へ dibaca wa, o, e.':'Tanda ー memanjangkan bunyi, contoh: コーヒー (kōhī).'}</div>`;
  }else{
   const qs=x.quiz,ans=UI.lq;const answered=qs.every((q,i)=>ans[i]!==undefined);const score=qs.filter((q,i)=>ans[i]===q.a).length;
-  body=`${sceneHTML(x)}${x.kt?ktHTML(x):''}${x.trace?trHTML(x):''}${x.mirip?mirHTML(x):''}${x.nama?namaHTML(x):''}<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>${x.rd?'Strategi menjawab<span class="jpn">解き方</span>':'Pola kalimat<span class="jpn">文型</span>'}</h2></div>
-   ${x.points.map((p,pi)=>`<article class="card point"><span class="eyebrow">${x.rd?'Langkah':'Pola'} ${pi+1}</span>${x.bab||x.fx?fm(p.p):`<div class="pattern">${rb(p.p)}</div>`}<p>${rbh(p.e)}</p>
+  body=`${sceneHTML(x)}${x.kt?ktHTML(x):''}${x.trace?trHTML(x):''}${x.mirip?mirHTML(x):''}${x.nama?namaHTML(x):''}<section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>${x.ku?'Materi inti<span class="jpn">要点</span>':x.rd?'Strategi menjawab<span class="jpn">解き方</span>':'Pola kalimat<span class="jpn">文型</span>'}</h2></div>
+   ${x.points.map((p,pi)=>`<article class="card point"><span class="eyebrow">${x.ku?'Poin':x.rd?'Langkah':'Pola'} ${pi+1}</span>${x.bab||x.fx?fm(p.p):`<div class="pattern">${rb(p.p)}</div>`}<p>${rbh(p.e)}</p>
     ${p.ex.map(e=>`<div class="ex">${say(e[0])}<div><div class="jp">${rb(e[0])}</div><div class="tr">${esc(e[1])}</div></div></div>`).join('')}</article>`).join('')}</section>
   ${x.rd?rdHTML(x):''}${x.note?`<div class="note"><b>Catatan sensei:</b> ${rbh(x.note)}</div>`:''}${x.nu?nuHTML(x):''}${x.cj?cjHTML(x):''}${x.mp?mpHTML(x):''}${x.kw?kwHTML(x):''}
   <section class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px"><div class="sec-head"><h2>Kosakata<span class="jpn">言葉</span></h2><span class="muted" style="font-size:.85rem">${x.vocab.length} kata</span></div>
    <div class="tblwrap"><table class="vtab"><tbody>${x.vocab.map(v=>`<tr><td>${rb(v[0])}</td><td class="muted">${esc(v[1])}</td><td>${say(v[0])}</td></tr>`).join('')}</tbody></table></div></section>
-  <section class="${x.rd?'rdq':''}" style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>${x.rd?'Soal bacaan<span class="jpn">問題</span>':'Latihan mini<span class="jpn">練習</span>'}</h2>${answered?`<span class="pill ${score===qs.length?'good':'maple'} num">Skor ${score}/${qs.length}</span>`:''}</div>
+  <section class="${x.rd?'rdq':''}" style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>${x.rd&&!x.ku?'Soal bacaan<span class="jpn">問題</span>':'Latihan mini<span class="jpn">練習</span>'}</h2>${answered?`<span class="pill ${score===qs.length?'good':'maple'} num">Skor ${score}/${qs.length}</span>`:''}</div>
    ${qs.map((q,i)=>{const a=ans[i],lock=a!==undefined;return `<article class="card q"><span class="eyebrow">Soal ${i+1}</span><div class="stem">${rb(q.q)}</div>
     <div class="opts ${lock?'locked':''}">${q.o.map((o,j)=>`<button class="opt ${lock&&j===q.a?'right':''} ${lock&&j===a&&a!==q.a?'wrong':''}" data-act="lq" data-q="${i}" data-o="${j}"><span class="k">${'ABCD'[j]}</span><span>${rb(o)}</span></button>`).join('')}</div>
     ${lock?`<div class="expl pop"><b>${a===q.a?'Benar.':'Belum tepat.'}</b> ${rbh(q.x)}</div>`:''}</article>`}).join('')}</section>`;
  }
  const canDone=x.kana||x.quiz.every((q,i)=>UI.lq[i]!==undefined);
- return `<button class="back" data-act="backLearn">${ic('left').replace('<svg','<svg width="18" height="18"')} ${UI.route==='bisnis'?'Bahasa Jepang Bisnis':'Jalur belajar'}</button>
+ return `<button class="back" data-act="backLearn">${ic('left').replace('<svg','<svg width="18" height="18"')} ${UI.route==='bisnis'?'Bahasa Jepang Bisnis':UI.route==='kuliah'?'Kuliah Prodi Jepang':'Jalur belajar'}</button>
  <header style="display:flex;flex-direction:column;gap:8px"><span class="eyebrow">${lv.tag} · ${lv.name}</span><h1>${esc(x.title)}</h1><div class="jp" style="color:var(--maple);font-size:1.4rem">${rb(x.jp)}</div><p class="muted">${esc(x.sum)}</p></header>
  ${body}
  <div class="card" style="padding:18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
@@ -4571,6 +4985,20 @@ const CJX={
 const PL=['','Kasar','Akrab','Sopan','Lebih sopan','Sangat hormat'];
 const pmeter=l=>`<span class="pm" aria-label="Tingkat kesopanan: ${PL[l]}">${[1,2,3,4,5].map(i=>`<i class="${i<=l?'on l'+l:''}"></i>`).join('')}<b>${PL[l]}</b></span>`;
 const nuSay=t=>/[\/→×()（）]/.test(t)?'':say(t);
+function vKuliah(){
+ if(UI.lesson)return vLesson();
+ const l=LEVELS.find(x=>x.id==='kuliah'),d=l.lessons.filter(x=>S.done[x.id]).length,sm=KSEM.find(k=>k.s===(UI.kSem||1))||KSEM[0],jl=LEVELS.find(x=>x.id===sm.lv);
+ return `<section class="biz-hero"><svg width="96" height="96" role="img" aria-label="Maskot burung hantu bertoga"><use href="#owl"/></svg><div style="flex:1;min-width:220px;display:flex;flex-direction:column;gap:8px"><span class="eyebrow">大学 · 日本語学科</span><h1>Kuliah Prodi Bahasa Jepang</h1><p class="muted">Pendamping kuliah Sastra dan Pendidikan Bahasa Jepang dari semester 1 sampai 8: linguistik, budaya dan masyarakat, menulis dan menerjemah, bahasa bisnis, sampai skripsi.</p><div class="bar" style="max-width:320px"><i style="width:${d/l.lessons.length*100}%"></i></div><span class="muted num" style="font-size:.85rem">${d}/${l.lessons.length} materi selesai</span></div></section>
+ <section class="card ksem"><div class="sec-head"><div><h2>Peta kurikulum<span class="jpn">カリキュラム</span></h2><p class="muted" style="font-size:.88rem">Disusun dari kurikulum umum prodi Bahasa Jepang di Indonesia. Nama mata kuliah di kampusmu bisa sedikit berbeda.</p></div></div>
+  <div class="semtabs" role="tablist" aria-label="Pilih semester">${KSEM.map(k=>`<button class="semtab ${k.s===sm.s?'on':''}" role="tab" aria-selected="${k.s===sm.s}" data-act="kSem" data-s="${k.s}"><small>Smt</small><b class="num">${k.s}</b></button>`).join('')}</div>
+  <div class="sem-body"><span class="eyebrow">Semester ${sm.s}</span><h3>${esc(sm.t)}</h3>
+   <ul class="sem-mk">${sm.mk.map(m=>`<li>${rb(m)}</li>`).join('')}</ul>
+   <span class="muted" style="font-size:.85rem">Materi pendukung di Owl Nihongo:</span>
+   <div class="sem-links">${sm.ls.map(id=>{const x=findLesson(id);return `<button class="sem-l ${S.done[id]?'ok':''}" data-act="openLesson" data-id="${id}">${S.done[id]?ic('check'):''}${esc(x.title)}</button>`}).join('')}<button class="sem-l jl" data-act="abGo" data-id="${sm.lv}">Target bahasa: JLPT ${jl.tag} ›</button></div></div></section>
+ <section style="display:flex;flex-direction:column;gap:14px"><div class="sec-head"><h2>Mata kuliah<span class="jpn">科目</span></h2><span class="muted" style="font-size:.85rem">${l.lessons.length} materi · 4 rumpun</span></div><div class="card" style="padding:16px">${lessonRows(l)}</div></section>
+ <section class="card" style="padding:18px;display:flex;flex-direction:column;gap:10px"><div class="sec-head"><h2>Istilah kampus<span class="jpn">大学用語</span></h2><span class="muted" style="font-size:.85rem">${KGLOS.length} istilah</span></div>
+  <div class="tblwrap"><table class="vtab"><tbody>${KGLOS.map(v=>`<tr><td>${rb(v[0])}</td><td class="muted">${esc(v[1])}</td><td>${say(v[0])}</td></tr>`).join('')}</tbody></table></div></section>`;
+}
 function rdHTML(x){return `<section class="card rd"><div class="sec-head"><div><h2>Teks bacaan<span class="jpn">本文</span></h2><p class="muted" style="font-size:.88rem">Baca teks, lalu jawab soal di bawah. Terjemahan bisa dibuka setelah mencoba.</p></div><button class="btn sm ghost" data-act="rdFuri" aria-pressed="${!!UI.nofuri}">${UI.nofuri?'Tampilkan furigana':'Mode ujian · tanpa furigana'}</button></div>
  ${x.rd.map(r=>`<article class="rd-item">${r.k?`<span class="rd-k">${r.k}</span>`:''}<div class="rd-h"><b class="jp">${rbh(r.h)}</b>${r.t?`<span class="muted">${rbh(r.t)}</span>`:''}</div><div class="rd-txt jp">${r.a.map(p=>`<p>${rbh(p)}</p>`).join('')}</div><details class="rd-tr"><summary>Tampilkan terjemahan</summary>${r.tr.map(p=>`<p>${esc(p)}</p>`).join('')}</details></article>`).join('')}</section>`}
 function nuHTML(x){return `<section class="card nu"><div class="sec-head"><div><h2>Nuansa &amp; tingkat kesopanan<span class="jpn">使い分け</span></h2><p class="muted" style="font-size:.88rem">Perbandingan dengan pola yang sudah dipelajari, dan kapan sebaiknya dipakai.</p></div></div>
@@ -4885,9 +5313,10 @@ function vProfile(){const {r,nx}=rank();const pr=nx?(S.xp-r[0])/(nx[0]-r[0]):1;c
 function playAll(i=0){const k=KAIWA.find(x=>x.id===UI.kaiwa);document.querySelectorAll('.bub.playing').forEach(b=>b.classList.remove('playing'));if(!k||UI.kmode!=='dengar'||i>=k.lines.length)return;
  const el=$('#bub-'+i);if(el){el.classList.add('playing');el.scrollIntoView({block:'nearest',behavior:'smooth'})}speak(k.lines[i][1],()=>setTimeout(()=>playAll(i+1),350))}
 const ACT={
- openLesson:d=>{const x=findLesson(d.id),dest=x.lv.id==='biz'?'bisnis':'belajar';if(dest==='belajar')UI.lvTab=x.lv.id;if(UI.route!==dest){UI.pending=d.id;location.hash=dest;return}openSub(()=>{UI.lesson=d.id;UI.lq={}})},
- backLearn:()=>openSub(()=>{const x=findLesson(UI.lesson);if(x&&x.lv.id!=='biz')UI.lvTab=x.lv.id;UI.lesson=null}),
+ openLesson:d=>{const x=findLesson(d.id),dest=x.lv.id==='biz'?'bisnis':x.lv.id==='kuliah'?'kuliah':'belajar';if(dest==='belajar')UI.lvTab=x.lv.id;if(UI.route!==dest){UI.pending=d.id;location.hash=dest;return}openSub(()=>{UI.lesson=d.id;UI.lq={}})},
+ backLearn:()=>openSub(()=>{const x=findLesson(UI.lesson);if(x&&x.lv.id!=='biz'&&x.lv.id!=='kuliah')UI.lvTab=x.lv.id;UI.lesson=null}),
  lvTab:d=>{UI.lvTab=d.id;rerender()},
+ kSem:d=>{UI.kSem=+d.s;rerender()},
  rdFuri:()=>{UI.nofuri=!UI.nofuri;document.body.classList.toggle('rdexam',UI.nofuri);rerender()},
  ktPick:d=>{UI.tr[d.id]=d.c;speak(d.c);rerender()},
  trStep:d=>{const x=findLesson(d.id),L=trList(x),c=UI.tr[d.id]&&L.includes(UI.tr[d.id])?UI.tr[d.id]:L[0],i=Math.max(0,Math.min(L.length-1,L.indexOf(c)+ +d.v));UI.tr[d.id]=L[i];rerender()},
