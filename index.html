@@ -5388,7 +5388,7 @@ function vAbout(){const s=AB_SYM[UI.abS],day=aboutDay();
 /* ===================== BERANDA ===================== */
 function leaves(n){const c=['var(--maple)','var(--amber)','var(--gold)'];let s='';for(let i=0;i<n;i++)s+=`<svg style="left:${(i*97)%100}%;animation-duration:${9+i*1.6}s;animation-delay:-${i*2.1}s;color:${c[i%3]}"><use href="#leaf"/></svg>`;return s}
 function vHome(){
- const h=new Date().getHours();const g=h<11?'おはようございます':h<18?'こんにちは':'こんばんは';
+ const h=new Date().getHours();const g=h>=4&&h<11?'おはようございます':h>=11&&h<18?'こんにちは':'こんばんは';const gi=h>=4&&h<11?'Selamat pagi':h>=11&&h<15?'Selamat siang':h>=15&&h<18?'Selamat sore':'Selamat malam';
  const {r}=rank();const next=allLessons().find(x=>!S.done[x.id]);const wl=allVocab();
  const w=wl[Math.floor(Date.now()/864e5)%wl.length];const tx=todayXP();
  const feats=[['belajar','book','Belajar JLPT','学習','Jalur bertahap dari kana, N5, sampai N1.',''],['bisnis','brief','Bahasa Jepang Bisnis','ビジネス','Keigo, telepon, email, rapat, dan wawancara.','am'],['kuliah','cap','Kuliah Prodi Jepang','大学','Semester 1–8: linguistik, budaya, menulis, menerjemah, bisnis, skripsi.',''],['kaiwa','chat','Kaiwa','会話','Dialog bersuara dan roleplay situasi nyata.','am'],['soal','pen','Soal & Tryout','問題','Latihan per kategori dan simulasi ujian berwaktu.',''],['game','game','Game','ゲーム','Game per level N5–N1 dan bisnis: flashcard, kilat kosakata, keigo master.','am'],['profil','user','Progres','マイページ','XP, hari beruntun, lencana, dan pengaturan.','']];
@@ -5396,7 +5396,7 @@ function vHome(){
  <section class="hero">
   <div class="leaves" aria-hidden="true">${leaves(7)}</div>
   <div class="hero-text">
-   <span class="greet">${g}${S.name?'、'+esc(S.name)+'さん':''}</span>
+   <span class="greet">${g}${S.name?'、'+esc(S.name)+'さん':''} <small class="muted" style="font-family:var(--f-body,inherit);font-weight:500;font-size:.8rem">· ${gi}${S.name?', '+esc(S.name):''}</small></span>
    <h1>Belajar bahasa Jepang dari nol sampai siap kerja.</h1>
    <p class="muted">Ikuti jalur dari hiragana hingga keigo bisnis, latih percakapan dengan suara asli, lalu ukur kemampuanmu lewat tryout bergaya JFT.</p>
    <div class="stats">
