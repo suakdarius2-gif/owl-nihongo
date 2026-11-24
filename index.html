@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Owl Nihongo pindah alamat</title>
+<style>:root{--bg:#FBF5EC;--ink:#3B2A20;--acc:#B5462F}@media (prefers-color-scheme:dark){:root{--bg:#1D1713;--ink:#F3E8DA;--acc:#E2735B}}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--ink);font-family:system-ui,sans-serif;text-align:center;padding:24px}
+a{color:var(--acc);font-weight:700}.s{width:34px;height:34px;border-radius:50%;border:3px solid #0002;border-top-color:var(--acc);animation:r 1s linear infinite;margin:0 auto 16px}@keyframes r{to{transform:rotate(360deg)}}</style></head>
+<body><main><div class="s" aria-hidden="true"></div><h1>Owl Nihongo pindah alamat</h1><p>Kamu sedang diarahkan ke alamat baru beserta progres belajarmu.</p><p><a id="go" href="https://owl-nihongo.pages.dev/">Buka owl-nihongo.pages.dev</a></p></main>
+<script>
+(async function(){var NEW='https://owl-nihongo.pages.dev/',h='#beranda';
+try{var s=localStorage.getItem('owl-nihongo-v1'),d=localStorage.getItem('owl-dev');if(s){h='#import='+btoa(unescape(encodeURIComponent(JSON.stringify({s:s,d:d})))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}}catch(e){}
+document.getElementById('go').href=NEW+h;
+try{if(navigator.serviceWorker){var r=await navigator.serviceWorker.getRegistrations();for(var i=0;i<r.length;i++)await r[i].unregister()}if(window.caches){var k=await caches.keys();for(var j=0;j<k.length;j++)await caches.delete(k[j])}}catch(e){}
+location.replace(NEW+h)})();
+</script></body></html>

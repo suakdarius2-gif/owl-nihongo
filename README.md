@@ -1,2 +1,3 @@
-# owl-nihongo
-Owl Nihongo sudah pindah ke owl-nihongo.pages.dev
+# Owl Nihongo
+
+Aplikasi Owl Nihongo sudah pindah ke **https://owl-nihongo.pages.dev/**
